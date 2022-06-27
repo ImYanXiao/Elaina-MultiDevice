@@ -34,35 +34,35 @@
 #### KELEBIHAN 📍
 | Kelebihan | Check |
 |--------|--------|
-| **Fast Respon** |[✔️](https://github.com/kannachann) |
-| **No Internet** |[✔️](https://github.com/kannachann) |
-| **Simple** |[✔️](https://github.com/kannachann) |
-| **Button template** |[✔️](https://github.com/kannachann) |
-| **Multi Device** |[✔️](https://github.com/kannachann) |
+| **Fast Respon** |[✔️](https://github.com/ImYanXiao) |
+| **No Internet** |[✔️](https://github.com/ImYanXiao) |
+| **Simple** |[✔️](https://github.com/ImYanXiao) |
+| **Button template** |[✔️](https://github.com/ImYanXiao) |
+| **Multi Device** |[✔️](https://github.com/ImYanXiao) |
 ---------
 #### FITUR 📍
 | Fitur | Check |
 |--------|--------|
-| **Downloader** |[✔️](https://github.com/kannachann) |
-| **Internet** |[✔️](https://github.com/kannachann) |
-| **Game Rpg** |[✔️](https://github.com/kannachann) |
-| **Nsfw** |[✔️](https://github.com/kannachann) |
-| **Sticker** |[✔️](https://github.com/kannachann) |
-| **Game** |[✔️](https://github.com/kannachann) |
-| **Kerang Ajaib** |[✔️](https://github.com/kannachann) |
-| **Quotes** |[✔️](https://github.com/kannachann) |
-| **Anime** |[✔️](https://github.com/kannachann) |
-| **Premium** |[✔️](https://github.com/kannachann) |
-| **Tools** |[✔️](https://github.com/kannachann) |
-| **Exec** |[✔️](https://github.com/kannachann) |
-| **React** |[✔️](https://github.com/kannachann) |
+| **Downloader** |[✔️](https://github.com/ImYanXiao) |
+| **Internet** |[✔️](https://github.com/ImYanXiao) |
+| **Game Rpg** |[✔️](https://github.com/ImYanXiao) |
+| **Nsfw** |[✔️](https://github.com/ImYanXiao) |
+| **Sticker** |[✔️](https://github.com/ImYanXiao) |
+| **Game** |[✔️](https://github.com/ImYanXiao) |
+| **Kerang Ajaib** |[✔️](https://github.com/ImYanXiao) |
+| **Quotes** |[✔️](https://github.com/ImYanXiao) |
+| **Anime** |[✔️](https://github.com/ImYanXiao) |
+| **Premium** |[✔️](https://github.com/ImYanXiao) |
+| **Tools** |[✔️](https://github.com/ImYanXiao) |
+| **Exec** |[✔️](https://github.com/ImYanXiao) |
+| **React** |[✔️](https://github.com/ImYanXiao) |
 ---------
 
 ## `SETTING`
 
-- Owner Number [Here](https://github.com/kannachann/kannabot-md/blob/multi-device/config.js#L1)
-- Owner Name [Here](https://github.com/kannachann/kannabot-md/blob/multi-device/config.js#L1)
-- Bot Name [Here](https://github.com/kannachann/kannabot-md/blob/multi-device/config.js#L1)
+- Owner Number [Here](https://github.com/ImYanXiao/kanna-multidevice/blob/master/config.js#L1)
+- Owner Name [Here](https://github.com/ImYanXiao/kannabot-multidevice/blob/master/config.js#L1)
+- Bot Name [Here](https://github.com/ImYanXiao/kanna-multidevice/blob/master/config.js#L1)
 ---------
 
 ## ```Heroku Buildpack```
