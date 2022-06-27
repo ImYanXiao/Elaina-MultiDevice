@@ -227,7 +227,7 @@ conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', 'https://github.com/Boc
 
 ---------
 
-### ❗ Note : Apikeynya Beli Sendiri Atau Cari Aja Sendiri
+### ❗ Note : Apikeynya Beli Sendiri Ya Guys😁
 
 ---------
 
