@@ -3,7 +3,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
 	
 let text = `❏ *📮 Script Multi Device*
 │• *Script :* 
-│↳ github.com/ImYanXiao/KannaBOT-MD
+│↳ github.com/ImYanXiao/Kanna-MultiDevice
 │• *Base :* 
 │↳ github.com/bochilgaming/games-wabot-md/
 ┗──────────═┅═──────────
