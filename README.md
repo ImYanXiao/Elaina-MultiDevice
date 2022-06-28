@@ -31,7 +31,7 @@
 [![GROUP OFFICIAL](https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/Hjr3H7l9iC8F2deP0cv6GT) 
 ---------
 
-#### KELEBIHAN 📍
+#### KELEBIHAN 🪄
 | Kelebihan | Check |
 |--------|--------|
 | **Fast Respon** |[✔️](https://github.com/ImYanXiao) |
@@ -40,7 +40,7 @@
 | **Button template** |[✔️](https://github.com/ImYanXiao) |
 | **Multi Device** |[✔️](https://github.com/ImYanXiao) |
 ---------
-#### FITUR 📍
+#### FITUR 🎀
 | Fitur | Check |
 |--------|--------|
 | **Downloader** |[✔️](https://github.com/ImYanXiao) |
@@ -242,10 +242,10 @@ conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', 'https://github.com/Boc
 * [`BochilGaming`](https://github.com/bochilgaming)
 * [`KannaChan`](https://github.com/kannachann) 
 
-## ```Recode By 🐾```
-[![ImYanXiao](https://github.com/ImYanXiao.png?size=100)](https://github.com/kannachann)
+## ```Recode By ✏️```
+[![ImYanXiao](https://github.com/ImYanXiao.png?size=50)](https://github.com/kannachann)
 
-## ```Contributor 🔭```
+## ```Contributor 🤝```
 * [`The.Sad.Boy01`](https://github.com/Kangsad01)
 * [`AmirulDev20`](https://github.com/amiruldev20)
 * [`Rasel Comel`](https://github.com/raselcomel)
