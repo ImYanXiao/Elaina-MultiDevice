@@ -1,6 +1,6 @@
 {
     "name": "Kanna BOT",
-    "version": "2.10.18",
+    "version": "3.0.",
     "description": "RPG WhatsApp BOT",
     "main": "index.js",
     "type": "module",
@@ -26,16 +26,16 @@
         "MD",
         "baileys-md"
     ],
-    "homepage": "https://github.com/BochilGaming/games-wabot",
+    "homepage": "https://github.com/ImYanXiao/Kanna-MultiDevice",
     "author": {
-        "name": "BochilGaming"
+        "name": "ImYanXiao"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/BochilGaming/games-wabot.git"
+        "url": "git+https://github.com/ImYanXiao/Kanna-MultiDevice.git"
     },
     "bugs": {
-        "url": "https://github.com/BochilGaming/games-wabot/issues"
+        "url": "https://github.com/ImYanXiao/Kanna-MultiDevice/issues"
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
