@@ -1,6 +1,7 @@
 import fetch from 'node-fetch'
 import { format } from 'util'
-let handler = async (m, { text }) => {
+
+let handler = async (m, { text, conn }) => {
     if (!/^https?:\/\//.test(text)) throw 'Awali *URL* dengan http:// atau https://'
     let _url = new URL(text)
     let url = global.API(_url.origin, _url.pathname, Object.fromEntries(_url.searchParams.entries()), 'APIKEY')
