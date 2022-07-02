@@ -679,14 +679,14 @@ export async function participantsUpdate({ id, participants, action }) {
                     } finally {
                         text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || 'unknow') :
                             (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', `${this.getName(user)}`)
-                        let wel = API('melcanz', '/welcome', 'apikey', {
+                        let wel = API('hardianto', '/api/welcomer2', {
                                 profile: pp,
                                 name: await this.getName(user),
                                 bg: 'https://telegra.ph/file/46b7a95313dbb01b8ac43.jpg',
                                 namegb: await this.getName(id),
                                 member: groupMetadata.participants.length
                             })
-                            let lea = API('melcanz', '/goodbye2', 'apikey', {
+                            let lea = API('hardianto', '/api/goodbye3', {
                                 profile: pp,
                                 name: await this.getName(user),
                                 bg: 'https://telegra.ph/file/a4afb7d0c165e4314bd8c.jpg',
