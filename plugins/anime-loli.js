@@ -5,7 +5,8 @@ let res = await fetch('https://raw.githubusercontent.com/Xmell91/loli/master/lol
 if (!res.ok) throw await `${res.status} ${res.statusText}`;
 let json = await res.json();
 let url = json[Math.floor(Math.random() * json.length)]
-await conn.sendButtonImg(m.chat, wm, await(await fetch(url)).buffer(), [['Next',`.${command}`]],m)
+await conn.sendButtonImg(m.chat, await (await fetch(url)).buffer(), 'Pedo Pedo', 'Next', '.loli', m)
+}
 handler.command = /^(loli)$/i
 handler.tags = ['anime']
 handler.help = ['loli']
