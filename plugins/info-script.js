@@ -1,36 +1,14 @@
-let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
-	
-	
-let text = `❏ *📮 Script Multi Device*
-│• *Script :* 
-│↳ github.com/ImYanXiao/Kanna-MultiDevice
-│• *Base :* 
-│↳ github.com/bochilgaming/games-wabot-md/
-┗──────────═┅═──────────
+//Credits Jangan Dihapus
+//Thanks For KannaChan & Papah-Chan
+import fetch from 'node-fetch'
+let handler = async(m, { conn, text, usedPrefix, command }) => {
+let pp = await conn.profilePictureUrl(m.chat).catch(_ => null)
 
-📍 *N o t e :* 
-• Jangan lupa minta izin owner sebelum menggunakan scriptnya kak!
-• Jangan Lupa kasih star, follow & kasih credit
-• Dilarang menjual Script Ini!
-• Jika menemukan bug di script, harap lapor owner
-• Dilarang reupload sc, Hanya boleh fork
-`
-const templateButtons = [
-    {index: 1, urlButton: {displayText: 'My Github', url: sgh}},
-    {index: 2, urlButton: {displayText: 'Group Official', url: sgc}},
-    {index: 3, quickReplyButton: {displayText: 'Owner', id: '.owner'}},
-    {index: 4, quickReplyButton: {displayText: 'Donasi', id: '.donasi'}},
-]
-let tm = {
-text: text,
-footer: global.wm,
-templateButtons: templateButtons,
-image: thumb
+let str = `*https://github.com/ImYanXiao/Kanna-Multi-Device*`
+conn.sendButtonDoc(m.chat, str, wm, 'Thankyou,'Bilek', ftextt, m)
 }
-conn.sendMessage(m.chat, tm, m)
-}
-handler.help = ['sc']
+handler.help = ['source code']
 handler.tags = ['info']
-handler.command = /^(s(ourcode|c))$/i
+handler.command =  /^(script|sc)$/i
 
 export default handler
