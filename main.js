@@ -15,15 +15,15 @@ import {
   readFileSync,
   watch
 } from 'fs';
-import yargs from 'yargs';
-import { spawn } from 'child_process';
-import lodash from 'lodash';
-import syntaxerror from 'syntax-error';
-import { tmpdir } from 'os';
-import { format } from 'util';
-import { makeWASocket, protoType, serialize } from './lib/simple.js';
-import { Low, JSONFile } from 'lowdb';
-import pino from 'pino';
+import yargs from 'yargs'
+import { spawn } from 'child_process'
+import lodash from 'lodash'
+import syntaxerror from 'syntax-error'
+import { tmpdir } from 'os'
+import { format } from 'util'
+import { makeWASocket, protoType, serialize } from './lib/simple.js'
+import { Low, JSONFile } from 'lowdb'
+import pino from 'pino'
 /*import {
   mongoDB,
   mongoDBV2
@@ -49,7 +49,7 @@ global.timestamp = {
 const __dirname = global.__dirname(import.meta.url)
 
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
-global.prefix = new RegExp('^[' + (opts['prefix'] || '‎\/!#.\\').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
+global.prefix = new RegExp('^[' + (opts['prefix'] || '‎‎xzXZ/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
 
 global.db = new Low(
   /https?:\/\//.test(opts['db'] || '') ?
