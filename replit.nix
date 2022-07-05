@@ -17,5 +17,4 @@
             pkgs.libuuid
         ];
     };
-}^M
-
+}
