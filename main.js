@@ -1,4 +1,4 @@
-import './config.js';
+import './config.js'
 
 import { createRequire } from "module"; // Bring in the ability to create the 'require' method
 import path, { join } from 'path'
