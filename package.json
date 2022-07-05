@@ -1,6 +1,6 @@
 {
     "name": "Kanna BOT",
-    "version": "3.0.",
+    "version": "3.0.0",
     "description": "RPG WhatsApp BOT",
     "main": "index.js",
     "type": "module",
