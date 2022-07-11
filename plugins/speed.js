@@ -57,7 +57,7 @@ ${speed}ms
 ${htjava} *R U N T I M E* 
 ${muptime}
 ${readMore}
-${htki} *CHATS* ${htka}
+${htjava} *CHATS* 
 • *${groupsIn.length}* Group Chats
 • *${groupsIn.length}* Groups Joined
 • *${groupsIn.length - groupsIn.length}* Groups Left
@@ -65,7 +65,7 @@ ${htki} *CHATS* ${htka}
 • *${chats.length}* Total Chats
 
 
-${htki} *SERVER* ${htka}
+${htjava} *SERVER* 
 *🛑 RAM:* ${format(totalmem() - freemem())} / ${format(totalmem())}
 *🔵 FreeRAM:* ${format(freemem())}
 
