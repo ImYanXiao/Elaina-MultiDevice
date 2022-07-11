@@ -1,5 +1,5 @@
 //Credits Jangan Dihapus
-//Thanks For KannaChan & Papah-Chan
+//Thanks For Kannachann & Papah-Chan
 import fetch from 'node-fetch'
 let handler = async(m, { conn, text, usedPrefix, command }) => {
 let pp = await conn.profilePictureUrl(m.chat).catch(_ => null)
