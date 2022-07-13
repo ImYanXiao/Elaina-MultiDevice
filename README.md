@@ -1,13 +1,13 @@
 <p align="center">
-    <img src="https://telegra.ph/file/eaabc97cb81180be2c9a6.jpg" width="100%" style="margin-left: auto;margin-right: auto;display: block;">
+    <img src="https://telegra.ph/file/37df69a78afb6e010282d.jpg" width="100%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
-<h1 align="center">KannaBOT - MD</h1>
+<h1 align="center">ElainaBOT - MD</h1>
 <p align="center">
-  <a href="https://github.com/ImYanXiao"><img src="http://readme-typing-svg.herokuapp.com?color=FFFFFF&center=true&vCenter=true&multiline=false&lines=Kanna+BOT+Multi+Device;Base+ori+by+BochilGaming;Recode+By+YanXiao;Give+star+and+forks+this+Repo+:D;Follow+My+Github" alt="ʘᴗʘ">
+  <a href="https://github.com/ImYanXiao"><img src="http://readme-typing-svg.herokuapp.com?color=FFFFFF&center=true&vCenter=true&multiline=false&lines=Elaina+BOT+Multi+Device;Base+ori+by+BochilGaming;Recode+By+YanXiao;Give+star+and+forks+this+Repo+:D;Follow+My+Github" alt="ʘᴗʘ">
 </p>
 
 <p align="center">
- <a href="#"><img title="KannaBOT" src="https://img.shields.io/badge/Kanna BOT-green?colorA=%23ff0000&colorB=%23017e40&style=for-the-badge"></a>
+ <a href="#"><img title="ElainaBOT" src="https://img.shields.io/badge/Elaina BOT-green?colorA=%23ff0000&colorB=%23017e40&style=for-the-badge"></a>
 </p>
 <p align="center">
 <a href="https://github.com/ImYanXiao"><img title="Author" src="https://img.shields.io/badge/AUTHOR-ImYanXiao-blue.svg?style=for-the-badge&logo=github"></a>
@@ -60,13 +60,13 @@
 
 ## `SETTING`
 
-- Owner Number [Here](https://github.com/ImYanXiao/kanna-multidevice/blob/master/config.js#L1)
-- Owner Name [Here](https://github.com/ImYanXiao/kannabot-multidevice/blob/master/config.js#L1)
-- Bot Name [Here](https://github.com/ImYanXiao/kanna-multidevice/blob/master/config.js#L1)
+- Owner Number [Here](https://github.com/ImYanXiao/Elaina-MultiDevice/blob/master/config.js#L1)
+- Owner Name [Here](https://github.com/ImYanXiao/Elaina-Multidevice/blob/master/config.js#L1)
+- Bot Name [Here](https://github.com/ImYanXiao/Elaina-Multidevice/blob/master/config.js#L1)
 ---------
 
 ## ```Heroku Buildpack```
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/kannachann/KannaBOT-MD)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ImYanXiao/Elaina-MultiDevice)
 
 | BuildPack | LINK |
 |--------|--------|
@@ -80,8 +80,8 @@ $ pkg install git -y
 $ pkg install nodejs -y
 $ pkg install ffmpeg -y
 $ pkg install imagemagick -y
-$ git clone https://github.com/ImYanXiao/Kanna-MultiDevice
-$ cd Kanna-MultiDevice
+$ git clone https://github.com/ImYanXiao/Elaina-MultiDevice
+$ cd Elaina-MultiDevice
 $ npm i 
 ```
 If error try using yarn instead of npm, see [here](https://github.com/BochilGaming/games-wabot/tree/multi-device#if-npm-install-failed--try--using-yarn-instead-of-npm)
@@ -123,8 +123,8 @@ apt install wget curl git ffmpeg imagemagick build-essential libcairo2-dev libpa
 ubuntu
 curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
 apt install -y nodejs gcc g++ make
-git clone https://github.com/ImYanXiao/Kanna-MultiDevice
-cd Kanna-MultiDevice
+git clone https://github.com/ImYanXiao/Elaina-MultiDevice
+cd Elaina-MultiDevice
 npm install
 npm update
 ```
@@ -139,7 +139,7 @@ npm update
 * Download And Install ImageMagick [`Click Here`](https://imagemagick.org/script/download.php)
 
 ```bash
-git clone https://github.com/ImYanXiao/Kanna-MultiDevice
+git clone https://github.com/ImYanXiao/Elaina-MultiDevice
 cd Kanna-MultiDevice
 npm install
 npm update
