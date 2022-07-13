@@ -4,7 +4,7 @@ import fetch from 'node-fetch'
 
 let handler  = async (m, { conn, usedPrefix: _p }) => {
 
-let info = `Kanna Disini (｡>_<｡)`
+let info = `Elaina Disini (｡>_<｡)`
 
 
 
@@ -22,7 +22,7 @@ conn.reply(m.chat, info, m, { quoted: fkontak },{ contextInfo: { externalAdReply
 
 }
 
-handler.customPrefix = /^(tes|bot|kanna)$/i
+handler.customPrefix = /^(tes|bot|elaina)$/i
 
 handler.command = new RegExp
 
