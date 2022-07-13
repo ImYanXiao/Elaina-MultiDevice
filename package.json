@@ -1,7 +1,7 @@
 {
-    "name": "Kanna-BOT",
+    "name": "Elaina-BOT",
     "version": "3.0.0",
-    "description": "RPG WhatsApp BOT",
+    "description": "RPG BOT Whatsapp",
     "main": "index.js",
     "type": "module",
     "directories": {
@@ -26,16 +26,16 @@
         "MD",
         "baileys-md"
     ],
-    "homepage": "https://github.com/ImYanXiao/Kanna-MultiDevice",
+    "homepage": "https://github.com/ImYanXiao/Elaina-MultiDevice",
     "author": {
         "name": "ImYanXiao"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ImYanXiao/Kanna-MultiDevice.git"
+        "url": "git+https://github.com/ImYanXiao/Elaina-MultiDevice.git"
     },
     "bugs": {
-        "url": "https://github.com/ImYanXiao/Kanna-MultiDevice/issues"
+        "url": "https://github.com/ImYanXiao/Elaina-MultiDevice/issues"
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
