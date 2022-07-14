@@ -26,7 +26,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     let before = user.level * 1
     while (canLevelUp(user.level, user.exp, global.multiplier)) user.level++
     if (before !== user.level) {
-      let rank = 'https://telegra.ph/file/24004365b51dfe3539e9b.png'
+      let rank = 'https://telegra.ph/file/5acbd203b92c03cdde356.jpg'
         {
           await conn.sendButtonImg(m.chat, await (await fetch(rank)).buffer(), `${name} Level Up!\n_${before}_ -> ${user.level}`.trim(), wm, 'AUTO LEVEL UP', `${usedPrefix}on autolevelup`)
           //await conn.sendButtonLoc(m.chat, await (await fetch(rank)).buffer(), `${name} Level Up!\n_${before}_ -> ${user.level}`.trim(), wm, 'AUTO LEVEL UP', `${usedPrefix}on autolevelup`, m)
