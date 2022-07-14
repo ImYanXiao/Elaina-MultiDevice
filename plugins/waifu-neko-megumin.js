@@ -15,11 +15,6 @@ case 'waifu':
   conn.sendButton(m.chat, 'Istrinya Kartun🐧', author, json.url, [['waifu', `${usedPrefix}waifu`]], m)
 break
 
-case 'loli':
-  let loli = (await axios.get(`https://raw.githubusercontent.com/FG98F/team-fg/main/img/loli.json`)).data
-  await conn.sendButtonImg(m.chat, 'Pedo pedo 🐦', wm, pickRandom(loli), [['Next', '.loli']], m)
-break
-
 case 'neko':
   let _neko = await fetch('https://api.waifu.pics/sfw/neko')
   if (!_neko.ok) throw await _neko.text()
@@ -40,9 +35,9 @@ default:
  }
 }
 
-handler.help = ['waifu', 'loli', 'neko', 'megumin']
+handler.help = ['waifu', 'neko', 'megumin']
 handler.tags = ['random']
-handler.command = /^(waifu|loli|neko|megumin)$/i
+handler.command = /^(waifu|neko|megumin)$/i
 
 export default handler
 
