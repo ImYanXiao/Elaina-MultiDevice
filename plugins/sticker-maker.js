@@ -1,7 +1,7 @@
 import uploadImage from '../lib/uploadImage.js'
 import { sticker } from '../lib/sticker.js'
 import MessageType from '@adiwajshing/baileys'
-const effects = ['jail', 'gay', 'glass', 'wasted' ,'triggered', 'simpcard', 'horny']
+const effects = ['jail', 'gay', 'glass', 'wasted' ,'triggered', 'lolice, 'simpcard', 'horny']
 
 let handler = async (m, { conn, usedPrefix, text, command }) => {
 let effect = text.trim().toLowerCase()
