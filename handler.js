@@ -693,13 +693,14 @@ export async function participantsUpdate({ id, participants, action }) {
                                 namegb: await this.getName(id),
                                 member: groupMetadata.participants.length
                             })
-    this.sendHydrated(id, text, '➞' + await this.getName(id), await (await fetch((action == 'add' ? wel : lea))).buffer(), sgc, (action == 'add' ? '💌 WELCOME' : '🐾 BYE'), user.split`@`[0], '🌹 USER', [
-      ['ᴍᴇɴᴜ', '/menu'],
-      [(action == 'add' ? '\n\nYAELAH BEBAN GROUP NAMBAH 1 :(' : '\n\nBYE BEBAN! :)'), '...'],
-      [null, null]
-    ], null, false, { mentions: [user] })
-                    }
-                }
+    conn.sendButtonDoc(id, text, wm, action == 'add' ? 'ᴡᴇʟᴄᴏᴍᴇ' : 'sᴀʏᴏɴᴀʀᴀᴀ', action === 'add' ? '.intro' : 'ImYanXiao', fkontak, { contextInfo: { externalAdReply: { showAdAttribution: true,
+    mediaUrl: "https://youtu.be/bdeqidjA_u0",
+    mediaType: 2, 
+    description: "https://youtu.be/bdeqidjA_u0", 
+    title: 'Elaina-MultiDevice',
+    body: wm,
+    thumbnail: await(await fetch(action === 'add' ? wel : lea)).buffer(),
+    sourceUrl: sgc                }
             }
             break
         case 'promote':
