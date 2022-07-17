@@ -140,7 +140,7 @@ npm update
 
 ```bash
 git clone https://github.com/ImYanXiao/Elaina-MultiDevice
-cd Kanna-MultiDevice
+cd Elaina-MultiDevice
 npm install
 npm update
 ```
