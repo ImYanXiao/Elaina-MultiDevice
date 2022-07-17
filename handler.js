@@ -679,7 +679,7 @@ export async function participantsUpdate({ id, participants, action }) {
                     } finally {
                         text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || 'unknow') :
                             (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', `${this.getName(user)}`)
-                        let wel = API('hardianto', '/api/welcomer2', {
+                        let wel = API('hardianto', '/api/welcomer3', {
                                 profile: pp,
                                 name: await this.getName(user),
                                 bg: 'https://telegra.ph/file/46b7a95313dbb01b8ac43.jpg',
