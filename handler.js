@@ -672,7 +672,7 @@ export async function participantsUpdate({ id, participants, action }) {
             if (chat.welcome) {
                 let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
                 for (let user of participants) {
-                    let pp = './src/avatar_contact.png'
+                    let pp = 'https://telegra.ph/file/5ab5d19aa99f3e7a4d28d.png'
                     try {
                         pp = await this.profilePictureUrl(user, 'image')
                     } catch (e) {
