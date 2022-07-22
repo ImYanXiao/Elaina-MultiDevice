@@ -240,15 +240,9 @@ conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', 'https://github.com/Boc
 * [`Adiwajshing`](https://github.com/adiwajshing/Baileys)
 * [`Nurutomo`](https://github.com/nurutomi)
 * [`BochilGaming`](https://github.com/bochilgaming)
-* [`KannaChan`](https://github.com/kannachann) 
+* [`KannaChann`](https://github.com/kannachann) 
+* [`The.Sad.Boy01`](https://github.com/Kangsad01) 
+* [`Papah-Chan`](https://github.com/FahriAdison) 
 
 ## ```Recode By ✏️```
 [![ImYanXiao](https://github.com/ImYanXiao.png?size=70)](https://github.com/ImYanXiao)
-
-## ```Contributor 🤝```
-* [`The.Sad.Boy01`](https://github.com/Kangsad01)
-* [`AmirulDev20`](https://github.com/amiruldev20)
-* [`Rasel Comel`](https://github.com/raselcomel)
-* [`Rominaru`](https://github.com/rominaru)
-* [`KannaChan`](https://github.com/kannachann)
-* [`Fahri Adison`](https://github.com/FahriAdison) 
