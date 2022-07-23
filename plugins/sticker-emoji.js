@@ -11,7 +11,7 @@ let handler = async (m, { conn, args, usedPrefix, command, isPrems }) => {
 📌 Contoh :
 *${usedPrefix + command}* fa 🐼
 
-┌─⊷ *TIPOS* 
+┌─⊷ *𝚃𝙸𝙿𝙴* 
 ▢ wha = whatsapp 
 ▢ ap = apple
 ▢ fa = facebook
