@@ -8,7 +8,7 @@ conn.reply(m.chat, info, m, { quoted: fkontak },{ contextInfo: { externalAdReply
       mediaUrl: "https://github.com/ImYanXiao",
       mediaType: 2,
       description: "https://github.com/ImYanXiao", 
-      title: 'ᴋᴀɴɴᴀ-ᴍᴜʟᴛɪᴅᴇᴠɪᴄᴇ',
+      title: 'ᴇʟᴀɪɴᴀ-ᴍᴜʟᴛɪᴅᴇᴠɪᴄᴇ',
       body: wm,
       thumbnail: thumb,
       sourceUrl: sig  }}})
