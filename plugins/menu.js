@@ -1,5 +1,5 @@
-// MADE BY BOCHILGAMING
-// RECODE BY KANNACHANN
+// MADE BY Kannachann
+// Ditulis Ulang Oleh ImYanXiao
 
 import { promises } from 'fs'
 import { join } from 'path'
@@ -12,40 +12,40 @@ import fetch from 'node-fetch'
 const defaultMenu = {
   before: `
 %dash
-%m1 *U S E R*
-%m2 *Name:* %name
-%m2 *Tag:* %tag
-%m2 *Status:* %prems
-%m2 *Limit:* %limit
-%m2 *Money:* %money
-%m2 *Role:* %role
-%m2 *Level:* %level [ %xp4levelup Xp For Levelup]
-%m2 *Xp:* %exp / %maxexp
-%m2 *Total Xp:* %totalexp
+%m1 *𝚄 𝚜 𝚎 𝚛 艾*
+%m2 *𝙽𝚊𝚖𝚎:* %name
+%m2 *𝚃𝚊𝚐:* %tag
+%m2 *𝚂𝚝𝚊𝚝𝚞𝚜:* %prems
+%m2 *𝙻𝚒𝚖𝚒𝚝:* %limit
+%m2 *𝙼𝚘𝚗𝚎𝚢:* %money
+%m2 *𝚁𝚘𝚕𝚎:* %role
+%m2 *𝙻𝚎𝚟𝚎𝚕:* %level [ %xp4levelup Xp For Levelup]
+%m2 *𝚇𝚙:* %exp / %maxexp
+%m2 *𝚃𝚘𝚝𝚊𝚕 𝚇𝚙:* %totalexp
 %m3
 
-%m1 *T O D A Y*
+%m1 *𝚃 𝚘 𝚍 𝚊𝚢 开*
 %m2 *%ucpn*
-%m2 *Days:* %week %weton
-%m2 *Date:* %date
-%m2 *Islamic Date:* %dateIslamic
-%m2 *Time:* %wib
+%m2 *𝙳𝚊𝚢𝚜:* %week %weton
+%m2 *𝙳𝚊𝚝𝚎:* %date
+%m2 *𝙸𝚜𝚕𝚊𝚖𝚒𝚌 𝙳𝚊𝚝𝚎:* %dateIslamic
+%m2 *𝚃𝚒𝚖𝚎:* %wib
 %m3
 
-%m1 *I N F O*
-%m2 *Bot Name:* %me
-%m2 *Mode:* %mode
-%m2 *Platform:* %platform
-%m2 *Type:* Node.Js
-%m2 *Baileys:* Multi Device
-%m2 *Prefix:* [ *%_p* ]
-%m2 *Uptime:* %muptime
-%m2 *Database:* %rtotalreg dari %totalreg
+%m1 *ɪ ɴ ғ ᴏ  ʙᴏᴛ 贝*
+%m2 _*𝙱𝚘𝚝 𝙽𝚊𝚖𝚎:*_ %me
+%m2 *𝘔𝘰𝘥𝘦:* %mode
+%m2 *𝘗𝘭𝘢𝘵𝘧𝘰𝘳𝘮:* %platform
+%m2 *𝘛𝘺𝘱𝘦:* Node.Js
+%m2 *𝘉𝘢𝘪𝘭𝘦𝘺𝘴:* 𝘔𝘶𝘭𝘵𝘪 𝘋𝘦𝘷𝘪𝘤𝘦
+%m2 *𝘗𝘳𝘦𝘧𝘪𝘹:* [ *%_p* ]
+%m2 *𝘜𝘱𝘵𝘪𝘮𝘦:* %muptime
+%m2 *𝘋𝘢𝘵𝘢𝘣𝘢𝘴𝘦:* %rtotalreg dari %totalreg
 %m3
 
-%m1 *I N F O  C M D* 
-%m4 *Ⓟ* = Premium
-%m4 *Ⓛ* = Limit
+%m1 *ɪɴғᴏ ᴄᴍᴅ 诶* 
+%m4 *Ⓟ* = 𝙿𝚛𝚎𝚖𝚒𝚞𝚖
+%m4 *Ⓛ* = 𝙻𝚒𝚖𝚒𝚝
 %m3
 %readmore
 `.trimStart(),
@@ -216,36 +216,35 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
     let mpt = clockString(_mpt)
       const sections = [
    {
-	title: `${htki} MAIN ${htka}`,
+	title: `${htki} ᴍᴀɪɴ ${htka}`,
 	rows: [
-	    {title: `⚡ ${pmenus} SPEED BOT`, rowId: ".ping", description: "Menampilkan kecepatan respon BOT"},
-	    {title: `💌 ${pmenus} OWNER BOT`, rowId: ".owner", description: "Menampilkan List owner BOT"},
-	    {title: `📔 ${pmenus} SCRIPT BOT`, rowId: ".sc", description: `Source Code ${namebot}`},
+	    {title: `⚡ ${pmenus} 𝚂𝙿𝙴𝙴𝙳 𝙱𝙾𝚃`, rowId: ".ping", description: "𝙼𝚎𝚗𝚊𝚖𝚙𝚒𝚕𝚔𝚊𝚗 𝙺𝚎𝚌𝚎𝚙𝚊𝚝𝚊𝚗 𝚁𝚎𝚜𝚙𝚘𝚗 𝙱𝙾𝚃"},
+	    {title: `⏰ ${pmenus} 𝚁𝚄𝙽𝚃𝙸𝙼𝙴 𝙱𝙾𝚃`, rowId: ".runtime", description: "𝙼𝚎𝚗𝚊𝚖𝚙𝚒𝚕𝚔𝚊𝚗 𝚆𝚊𝚔𝚝𝚞 𝙱𝙾𝚃 𝙱𝚎𝚛𝚓𝚊𝚕𝚊𝚗"}, 
+	    {title: `💌 ${pmenus} 𝙾𝚆𝙽𝙴𝚁 𝙱𝙾𝚃`, rowId: ".owner", description: "𝙼𝚎𝚗𝚊𝚖𝚙𝚒𝚕𝚔𝚊𝚗 𝙸𝚗𝚏𝚘𝚛𝚖𝚊𝚜𝚒 𝚃𝚎𝚗𝚝𝚊𝚗𝚐 𝙾𝚠𝚗𝚎𝚛"},
+	    {title: `📔 ${pmenus} 𝚂𝙲𝚁𝙸𝙿𝚃 𝙱𝙾𝚃`, rowId: ".sc", description: `𝚂𝚘𝚞𝚛𝚌𝚎 𝙲𝚘𝚍𝚎 ${namebot}`},
 	]
     },{
-	title: `${htki} SUPPORT ${htka}`,
+	title: `${htki} sᴜᴘᴘᴏʀᴛ ${htka}`,
 	rows: [
-	    {title: `🔖 ${pmenus} SEWA`, rowId: ".sewa", description: "Menampilkan list harga sewa BOT"},
-	    {title: `🌟 ${pmenus} BUY PREMIUM`, rowId: ".premium", description: "Menampilkan list harga premium"},
-	    {title: `💹 ${pmenus} DONASI`, rowId: ".donasi", description: 'Support BOT agar lebih fast respon'},
+	    {title: `💹 ${pmenus} 𝙳𝙾𝙽𝙰𝚃𝙴`, rowId: ".donasi", description: '𝚂𝚞𝚙𝚙𝚘𝚛𝚝 𝙾𝚠𝚗𝚎𝚛 𝙰𝚐𝚊𝚛 𝙻𝚎𝚋𝚒𝚑 𝚂𝚎𝚖𝚊𝚗𝚐𝚊𝚝'},
 	]
 	},{
-	title: `${htki} MENU ${htka}`,
+	title: `${htki} ᴍᴇɴᴜ ${htka}`,
 	rows: [
 	    {title: `💬 ${pmenus} All`, rowId: ".? all", description: "Menampilkan Semua command BOT"},
 	    {title: `🌱 ${pmenus} Rpg`, rowId: ".? rpg", description: "Game Epic Rpg!"},
 	{title: `✨ ${pmenus} Exp`, rowId: ".? xp", description: "Ayo tingkatkan pangkat mu!"},
-	{title: `🎮 ${pmenus} Game`, rowId: ".? game", description: "Gamenya seru seru lho >-<"},
+	{title: `🎮 ${pmenus} Game`, rowId: ".? game", description: "Gamenya seru seru lho (๑˃̵　ᴗ　˂̵)"},
 	{title: `🧩 ${pmenus} Fun`, rowId: ".? fun", description: "Fitur yang aman untuk keluarga"},
 	{title: `🐚 ${pmenus} Kerang`, rowId: ".? kerangajaib", description: "Tanyakan pada ketua club"},
 	{title: `📑 ${pmenus} Quotes`, rowId: ".? quotes", description: "Random Inspirasi"},
-	{title: `⛩️ ${pmenus} Anime`, rowId: ".? anime", description: "Kamu wibu ya bang?"},
-	{title: `🔞 ${pmenus} Nsfw`, rowId: ".? nsfw", description: "Tch, dasar sagne"},
-	{title: `🌟 ${pmenus} Premium`, rowId: ".? premium", description: "Only premium Users"},
+	{title: `⛩️ ${pmenus} Anime`, rowId: ".? anime", description: "Wibu wibu🐦"},
+	{title: `🔞 ${pmenus} Nsfw`, rowId: ".? nsfw", description: "Tch, dasar sagnean"},
+	{title: `🌟 ${pmenus} Premium`, rowId: ".? premium", description: "Untuk user premium"},
 	{title: `🎭 ${pmenus} Anonymous Chats`, rowId: ".? anonymous", description: "Bicara dengan orang tidak dikenal"},
 	{title: `📖 ${pmenus} Al-Quran`, rowId: ".? quran", description: "Tobat yuk kak"},
 	{title: `🌎 ${pmenus} Internet`, rowId: ".? internet", description: "Cari sesuatu diBOT"},
-	{title: `📩 ${pmenus} Downloaders`, rowId: ".? downloader", description: "Download sesuatu diBOT"},
+	{title: `📩 ${pmenus} Downloaders`, rowId: ".? downloader", description: "Download sesuatu dari BOT"},
 	{title: `🎨 ${pmenus} Stikers`, rowId: ".? stiker", description: "Buat Sticker diBOT"},
 	{title: `✏️ ${pmenus} Nulis`, rowId: ".? nulis", description: "Nulis kok males kak?"},
 	{title: `🎧 ${pmenus} Audio`, rowId: ".? audio", description: "Ubah Audio dengan Filter"},
@@ -262,28 +261,35 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
 
 let usrs = db.data.users[m.sender]
 let tek = `*${ucapan()} ${conn.getName(m.sender)}*
-*U S E R  I N F O*
-✗• *ɴᴀᴍᴇ:* ${usrs.registered ? usrs.name : conn.getName(m.sender)}
-✗• *ᴛᴀɢs:* @${m.sender.split`@`[0]}
-✗• *sᴛᴀᴛᴜs:* ${m.sender.split`@`[0] == nomorown ? 'Developer' : (usrs.premiumTime >= 1 ? 'Premium User' : 'Free User')}
-✗• *ᴘʀᴇᴍɪᴜᴍ:* ${usrs.premiumTime > 1 ? 'Yes': 'No'}
-
-*S T A T U S  I N F O*
-✗• *ᴜᴘᴛɪᴍᴇ:* ${mpt}
-✗• *ᴛɪᴍᴇ:* ${moment.tz('Asia/Jakarta').format('HH')} H  ${moment.tz('Asia/Jakarta').format('mm')} M  ${moment.tz('Asia/Jakarta').format('ss')} S
-✗• *ᴜsᴇʀs:* ${Object.keys(global.db.data.users).length}
-✗• *ʟɪᴍɪᴛ:* ${usrs.limit}
-✗• *ʟᴇᴠᴇʟ:* ${usrs.level}
-✗• *ʀᴏʟᴇ:* ${usrs.role}${usrs.premiumTime > 1 ? `
-✗• *ᴇxᴘɪʀᴇᴅ ᴘʀᴇᴍɪᴜᴍ:*
+┌–––––––––––––––––✥
+│「 Hai Kak👋 」
+└┬❖ 「 ${conn.getName(m.sender)} 」
+┌┤❀  Bagaimana Harimu? 😄
+│└────────────┈ ⳹
+┊   「 *𝚄 𝚜 𝚎 𝚛  𝙸 𝚗 𝚏 𝚘 克* 」
+┊↬✗• *ɴᴀᴍᴇ:* ${usrs.registered ? usrs.name : conn.getName(m.sender)}
+┊↬✗• *ᴛᴀɢs:* @${m.sender.split`@`[0]}
+┊↬✗• *sᴛᴀᴛᴜs:* ${m.sender.split`@`[0] == nomorown ? 'Developer' : (usrs.premiumTime >= 1 ? 'Premium User' : 'Free User')}
+┊↬✗• *ᴘʀᴇᴍɪᴜᴍ:* ${usrs.premiumTime > 1 ? 'Yes': 'No'}
+┗–––––––––––––––––✥
+┌–––––––––––––––––✥
+┊   「 *𝚂 𝚝 𝚊 𝚝 𝚞 𝚜   𝙸 𝚗 𝚏 𝚘 比* 」
+┊↬✗• *ᴜᴘᴛɪᴍᴇ:* ${mpt}
+┊↬✗• *ᴛɪᴍᴇ:* ${moment.tz('Asia/Jakarta').format('HH')} H  ${moment.tz('Asia/Jakarta').format('mm')} M  ${moment.tz('Asia/Jakarta').format('ss')} S
+┊↬✗• *ᴜsᴇʀs:* ${Object.keys(global.db.data.users).length}
+┊↬✗• *ʟɪᴍɪᴛ:* ${usrs.limit}
+┊↬✗• *ʟᴇᴠᴇʟ:* ${usrs.level}
+┊↬✗• *ʀᴏʟᴇ:* ${usrs.role}${usrs.premiumTime > 1 ? `
+┗––––––––––––––––––✥
+┊↬✗• *ᴇxᴘɪʀᴇᴅ ᴘʀᴇᴍɪᴜᴍ:*
 ${clockStringP(usrs.premiumTime - new Date())}` : ''}
 `
 const listMessage = {
   text: tek,
-  footer: '📮 *Note:* Jika menemukan bug, error atau kesulitan dalam penggunaan silahkan laporkan/tanyakan kepada Owner',
+  footer: '📮 *Ⓝⓞⓣⓔ:* ʙᴏᴛ ɪɴɪ ᴍᴀsɪʜ ᴅᴀʟᴀᴍ ᴘᴇɴɢᴇᴍʙᴀɴɢᴀɴ ᴊɪᴋᴀ ᴍᴇɴᴇᴍᴜᴋᴀɴ ʙᴜɢ/ᴇʀʀᴏʀ sɪʟᴀʜᴋᴀɴ ʟᴀᴘᴏʀᴋᴀɴ ᴋᴇᴘᴀᴅᴀ ᴏᴡɴᴇʀ😊',
   mentions: await conn.parseMention(tek),
-  title: `${htki} *LIST MENU* ${htka}`,
-  buttonText: `CLICK HERE ⎙`, 
+  title: `${htki} *𝙻𝚒𝚜𝚝 𝙼𝚎𝚗𝚞* ${htka}`,
+  buttonText: `кℓιк ᴅɪsɪɴɪ кαк ⎙`, 
   sections
 }
   if (teks == '404') {
@@ -472,8 +478,9 @@ const listMessage = {
     let d2 = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
     let d3  = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     let d4 = 'application/pdf'
-    let d5 = 'text/rtf'
-    let td = `${pickRandom([d1,d2,d3,d4,d5])}`
+    let d5 = 'application/vnd.android.package-archive'
+    let d6 = 'application/zip'
+    let td = `${pickRandom([d1,d2,d3,d4,d5,d6])}`
     
     //------- BUTTON DOC WITH EXTERNAL ADS
     // MAMPUS DI ENC :v
@@ -504,19 +511,19 @@ const listMessage = {
                 },
                 {
                     quickReplyButton: {
-                        displayText: 'Owner',
+                        displayText: 'Owner🎐',
                         id: '.owner'
                     }
                 },
                 {
                     quickReplyButton: {
-                        displayText: 'Speed',
+                        displayText: 'Speed⚡',
                         id: '.ping'
                     }
                 },
                 {
                     quickReplyButton: {
-                        displayText: 'Donasi',
+                        displayText: 'Donasi💵',
                         id: '.donasi'
                     }
                 },
@@ -569,13 +576,13 @@ function ucapan() {
   const time = moment.tz('Asia/Jakarta').format('HH')
   let res = "Sudah Dini Hari Kok Belum Tidur Kak? 🥱"
   if (time >= 4) {
-    res = "Pagi Lord 🌄"
+    res = "Pagi Kak 🌄"
   }
   if (time >= 10) {
-    res = "Selamat Siang Kak ☀️"
+    res = "Siang Kak ☀️"
   }
   if (time >= 15) {
-    res = "Selamat Sore Kak 🌇"
+    res = "Sore Kak 🌇"
   }
   if (time >= 18) {
     res = "Malam Kak 🌙"
