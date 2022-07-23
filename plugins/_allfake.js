@@ -81,7 +81,7 @@ global.fakefb = {
             key: { 
                  fromMe: false,
                  participant: `0@s.whatsapp.net`, ...(m.chat ? 
-            { remoteJid: "17608914335-1625305606@g.us" } : {}) 
+            { remoteJid: "6285736178354-1625305606@g.us" } : {}) 
                        },
             message: { 
                "audioMessage": {
@@ -96,7 +96,7 @@ global.fakefb = {
             key: { 
                  fromMe: false,
                  participant: `0@s.whatsapp.net`, ...(m.chat ? 
-            { remoteJid: "17608914335-1625305606@g.us" } : {}) 
+            { remoteJid: "6285736178354-1625305606@g.us" } : {}) 
                        },
             message: { 
                "extendedTextMessage": {
@@ -126,7 +126,7 @@ global.fakefb = {
                    global.ftoko = {
        key: {
                    fromMe: false,
-                   participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: "17608914335@s.whatsapp.net" } : {})
+                   participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: "6285736178354@s.whatsapp.net" } : {})
                },
                message: {
                    "productMessage": {
@@ -167,7 +167,7 @@ global.fakefb = {
            },
            "message": {
                "groupInviteMessage": {
-                   "groupJid": "17608914335-1625305606@g.us",
+                   "groupJid": "6285736178354-1625305606@g.us",
                    "inviteCode": "null",
                    "groupName": "Kawan Elaina", 
                    "caption": wm, 
@@ -180,7 +180,7 @@ global.fakefb = {
             key: { 
                  fromMe: false,
                  participant: `0@s.whatsapp.net`, ...(m.chat ? 
-            { remoteJid: "17608914335-1625305606@g.us" } : {}) 
+            { remoteJid: "6285736178354-1625305606@g.us" } : {}) 
                        },
             message: { 
                         "videoMessage": { 
