@@ -1,20 +1,32 @@
-import uploadFile from '../lib/uploadFile.js'
-import uploadImage from '../lib/uploadImage.js'
+import fs from 'fs'
+import fetch from 'node-fetch'
+import FormData from 'form-data'
 
 let handler = async (m) => {
-  let q = m.quoted ? m.quoted : m
-  let mime = (q.msg || q).mimetype || ''
-  if (!mime) throw 'No media found'
-  let media = await q.download()
-  let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
-  let link = await (isTele ? uploadImage : uploadFile)(media)
-  m.reply(`📮 *L I N K :*
-${link}
-📊 *S I Z E :* ${media.length} Byte
-📛 *E x p i r e d :* ${isTele ? 'No Expiry Date' : 'Unknown'}`)
+	let q = m.quoted ? m.quoted : m
+	let mime = q.mediaType || ''
+	if (/image|video|audio|sticker|document/.test(mime)) {
+		let media = await q.download(true)
+		let data = await uploadFile(media)
+		m.reply(data.files[0].url)
+	} else throw 'No media found'
 }
-handler.help = ['upload (reply media)', 'tourl (reply media)']
-handler.tags = ['tools']
-handler.command = /^(tourl|upload)$/i
+handler.help = ['tourl']
+// handler.tags = ['tools']
+handler.command = /^(tourl)$/i
 
 export default handler
+
+async function uploadFile(path) {
+	let form = new FormData()
+	form.append('files[]', fs.createReadStream(path))
+	let res = await (await fetch('https://uguu.se/upload.php', {
+		method: 'post',
+		headers: {
+			...form.getHeaders()
+		},
+		body: form
+	})).json()
+	await fs.promises.unlink(path)
+	return res
+}
