@@ -117,7 +117,7 @@ apt install wget curl git ffmpeg imagemagick build-essential libcairo2-dev libpa
 
 ---------
 
-[ INSTALLING NODEJS & KANNABOT-MD]
+[ INSTALLING NODEJS & ELAINABOT-MD]
 
 ```bash
 ubuntu
