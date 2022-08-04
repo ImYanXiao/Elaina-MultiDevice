@@ -89,7 +89,7 @@ If error try using yarn instead of npm, see [here](https://github.com/BochilGami
 $ node .
 ```
 
-#### If npm install failed, try using yarn instead of npm
+#### For android 10 and above don't use npm, use yarn install
 ```bash
 $ pkg install yarn -y
 $ yarn install
