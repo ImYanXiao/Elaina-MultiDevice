@@ -1,21 +1,43 @@
-import fetch from 'node-fetch'
-import { extractImageThumb } from '@adiwajshing/baileys'
-
-let handler = async (m, { conn, args }) => {
-	let code = (args[0] || '').replace(/\D/g, '')
-	if (!code) throw 'Input code' 
-	await m.reply('_In progress, please wait..._')
-	let res = await fetch('https://expressjs-akkun.up.railway.app/nhentai?code=' + code)
-	if (!res.ok) throw await res.statusText
-	let json = await res.json()
-	let buffer = await (await fetch('https://external-content.duckduckgo.com/iu/?u=' + json.result.pages[0])).buffer()
-	let jpegThumbnail = await extractImageThumb(buffer)
-	conn.sendMessage(m.chat, { document: { url: 'https://expressjs-akkun.up.railway.app/nhentai/' + code }, jpegThumbnail, fileName: json.result.title + '.pdf', mimetype: 'application/pdf' }, { quoted: m })
+let fetch = require('node-fetch')
+let handler = async(m, { conn, usedPrefix, args, command }) => {
+  if (!args[0]) throw `Harap masukkan code sebagai parameter!\n\nContoh: ${usedPrefix + command} 304307`
+  let res1 = await fetch(global.API('lol', `/api/nhentai/${args[0]}`, {}, 'apikey'))
+  if (!res1.ok) throw await res1.text()
+  let json = await res1.json()
+  let ayaka = `
+Title: ${json.result.title_romanji}
+Native: ${json.result.title_native}
+Parodies: ${json.result.info.parodies}
+Tags: ${json.result.info.tags}
+Pages: ${json.result.info.pages}
+Uploaded: ${json.result.info.uploaded}
+`.trim()
+let thumbnail = await(await fetch(json.result.image[0])).buffer()
+let poi = await(await fetch(thumbfoto)).buffer()
+await conn.reply(m.chat, ayaka, m, { contextInfo: {
+  externalAdReply: {
+    mediaUrl: 'https://youtu.be/0oBYZOh0Zy0', 
+    title: 'Doujin Downloader',
+    body: `Code: ${args[0]}`,
+    thumbnail: thumbnail
+  }
 }
-handler.help = ['nhentai']
+})
+await conn.reply(m.chat, 'Uploading...', m, { contextInfo: {
+  externalAdReply: {
+    mediaUrl: 'https://youtu.be/0oBYZOh0Zy0', 
+    title: 'Doujin Downloader',
+    body: `Code: ${args[0]}`,
+    thumbnail: thumbnail
+  }
+}
+})
+  let res2 = await fetch(global.API('lol', `/api/nhentaipdf/${args[0]}`, {}, 'apikey'))
+  let hakta = await res2.json()
+  await conn.sendFile(m.chat, hakta.result, '[Elaina Bot]' + ' ' + `${args[0]}` + '.pdf', '', m, false, { asDocument: true, thumbnail: thumbnail})
+}
 handler.tags = ['nsfw']
-handler.command = /^(nhentai)$/i
-
-handler.limit = true
+handler.command = /^(nh|nhentai|doujin)$/i
+handler.help = ['nhentai']
 
 export default handler
