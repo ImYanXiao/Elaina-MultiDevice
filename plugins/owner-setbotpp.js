@@ -1,17 +1,18 @@
+import { webp2png } from '../lib/webp2mp4.js'
+
 let handler = async (m, { conn, args }) => {
-    let bot = conn.user.jid // Bot
-    let q = m.quoted ? m.quoted : m
-    let mime = (q.msg || q).mimetype || ''
-    if (/image/.test(mime)) {
-      let img = await q.download()
-      if (!img) throw `Fotonya Gak Ada Kak *┰ω┰*`
-     conn.updateProfilePicture (bot, img)
-    conn.reply(m.chat, 'Selesai Mengganti Profil Bot Kak*>ω<*!', m)
-	}
-    }
-handler.help = ['setbotpp']
-handler.tags = ['owner']
-handler.command = /^(setbotpp)$/i
-handler.owner = true
+  let q = m.quoted ? m.quoted : m
+  let mime = (q.msg || q).mimetype || q.mediaType || ''
+  if (/image/.test(mime)) {
+    let url = await webp2png(await q.download())
+    await conn.updateProfilePicture(conn.user.jid, { url }).then(_ => m.reply('Success update profile picture'))
+  } else if (args[0] && /https?:\/\//.test(args[0])) {
+    await conn.updateProfilePicture(conn.user.jid, { url: args[0] }).then(_ => m.reply('Success update profile picture'))
+  } else throw 'Where\'s the media?'
+}
+handler.alias = ['setpp', 'setppbot']
+handler.command = /^setpp(bot)?$/i
+
+handler.rowner = true
 
 export default handler
