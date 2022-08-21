@@ -86,7 +86,7 @@ global.APIs = { // API Prefix
   botstyle: 'https://botstyle-api.herokuapp.com',
   adiisus: 'https://adiixyzapi.herokuapp.com',
   kanx: 'https://kannxapi.herokuapp.com/', 
-  violetics : 'https://violetics.pw'
+  violetics : 'https://violetics.pw', 
   males : 'https://malesin.xyz'
 }
 global.APIKeys = { // APIKey Here
