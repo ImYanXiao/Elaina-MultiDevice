@@ -87,6 +87,7 @@ global.APIs = { // API Prefix
   adiisus: 'https://adiixyzapi.herokuapp.com',
   kanx: 'https://kannxapi.herokuapp.com/', 
   violetics : 'https://violetics.pw'
+  males : 'https://malesin.xyz'
 }
 global.APIKeys = { // APIKey Here
   // 'https://website': 'apikey'
