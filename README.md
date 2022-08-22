@@ -35,10 +35,10 @@
 | Kelebihan | Check |
 |--------|--------|
 | **Fast Respon** |[✔️](https://github.com/ImYanXiao) |
-| **No Internet** |[✔️](https://github.com/ImYanXiao) |
 | **Simple** |[✔️](https://github.com/ImYanXiao) |
-| **Button template** |[✔️](https://github.com/ImYanXiao) |
+| **Button Template** |[✔️](https://github.com/ImYanXiao) |
 | **Multi Device** |[✔️](https://github.com/ImYanXiao) |
+| **Button Document** |[✔️](https://github.com/ImYanXiao) |
 ---------
 #### FITUR 🎀
 | Fitur | Check |
