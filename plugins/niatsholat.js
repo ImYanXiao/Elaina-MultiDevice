@@ -10,7 +10,7 @@ Artinya: "Sesungguhnya (sahnya) amal itu tergantung kepada niat ... [Hadits Riwa
 handler.help = ['niatsholat']
 handler.tags = ['quran']
 handler.command = /^(niatsh[ao]lat)$/i
-handler.register = true
+handler.register = false
 export default handler
 
 global.niatsolat = {
