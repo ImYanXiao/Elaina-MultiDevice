@@ -59,6 +59,7 @@
         "google-play-scraper": "^8.1.0",
         "https": "^1.0.0", 
         "human-readable": "^0.2.1",
+        "instagram-url-direct": "^1.0.12",
         "imgbb-uploader": "^1.3.5",
         "jimp": "^0.16.1",
         "jsdom": "^19.0.0",
