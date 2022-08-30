@@ -6,8 +6,8 @@ let handler = async (m) => {
     let res = await fetch('https://raw.githubusercontent.com/ArugaZ/grabbed-results/main/random/anime/neko.txt')
     let txt = await res.text()
     let arr = txt.split('\n')
-    let cita = arr[Math.floor(Math.random() * arr.length)]
-    let thumb = await(await fetch(cita)).buffer()
+    let zeen = arr[Math.floor(Math.random() * arr.length)]
+    let thumb = await(await fetch(zeen)).buffer()
     let who
     if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.sender
     else who = m.sender
@@ -58,7 +58,7 @@ https://github.com/FahriAdison
 https://github.com/ImYanXiao
 *▸ - - - —「 Thanks For Suhu 」— - - - ◂*
 *❉ Kannachan:*
-*❉ The.sadboy01
+*❉ The.sadboy.01
 *❉ Papah-Chan:*
 *❉ Johannes:*
 *❉ Krisna:*
@@ -69,7 +69,7 @@ conn.sendButtonDoc(m.chat, tqto, wm,'Thanks','Bilek', m, { contextInfo: { extern
     mediaUrl: "https://Instagram.com/Xiao_yan_21",
     mediaType: "VIDEO",
     description: "https://Instagram.com/Xiao_yan_21", 
-    title: 'Kanna-MultiDevice',
+    title: 'Elaina-MultiDevice',
     body: wm,
     thumbnail: thumb,
     sourceUrl: sgc
