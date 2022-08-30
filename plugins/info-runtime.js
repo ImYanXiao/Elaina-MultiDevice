@@ -1,4 +1,4 @@
-Thanks Papah-Chan https://github.com/FahriAdison
+//Thanks Papah-Chan https://github.com/FahriAdison
 let { generateWAMessageFromContent } = (await import("@adiwajshing/baileys")).default 
 import { performance } from 'perf_hooks'
 import fs from 'fs'
