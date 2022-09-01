@@ -1,4 +1,4 @@
-// S C R I P T  O R I  B Y  Kannachan 🔭
+// S C R I P T  O R I  B Y  Bochilgaming 🔭
 // Ditulis Ulang Oleh ImYanXiao
 // Credits, jangan dihapus atau diubah!
 
@@ -8,7 +8,9 @@
 // • Bochilgaming
 // • Rominaru
 // • Kannachann
+// • FahriAdison
 // • The.Sad.Boy01
+// • Rlxfly
 // • Rasel comel
 // • ImYanXiao
 // • Xtreshe (Beban)
