@@ -1,8 +1,9 @@
-//By Papah-Chan
+//By ImYanXiao
 
 import fs from 'fs'
 import fetch from 'node-fetch'
 import moment from 'moment-timezone'
+import knights from 'knights-canvas'
 
 let handler = m => m
 handler.all = async function (m) {
@@ -33,8 +34,7 @@ handler.all = async function (m) {
 		
 		// pesan sementara
 		global.ephemeral = '86400' // 86400 = 24jam, kalo ingin di hilangkan ganti '86400' jadi 'null' atau ''
-		let urls = pickRandom(['https://tinyurl.com/248tem3e', 'https://tinyurl.com/2ygkf7cn', 'https://tinyurl.com/29rt6ynv', 'https://tinyurl.com/25ampr4y', 'https://tinyurl.com/2yq9srmd', 'https://tinyurl.com/2bahkesq', 'https://tinyurl.com/2xnzw74a', 'https://tinyurl.com/2b9hocps', 'https://tinyurl.com/265ekuvk', 
-'https://tinyurl.com/2c82ajhq', 'https://tinyurl.com/265y8p3e', 'https://tinyurl.com/286yslxu'])
+		let urls = pickRandom(['https://tinyurl.com/2j9wa2gm', 'https://a.uguu.se/HwyqVYow.jpg', 'https://a.uguu.se/pXdtYjF.jpg', 'https://a.uguu.se/RyffdQeq.jpg', 'https://a.uguu.se/OUpyWceD.jpg', 'https://a.uguu.se/eachYTbC.jpg', 'https://a.uguu.se/mzSokzVU.jpg'])
 		// externalAdReply atau text with thumbnail. gatau bahasa Inggris? coba translate!
 		global.adReply = {
 			contextInfo: {
@@ -52,6 +52,32 @@ handler.all = async function (m) {
 				}
 			}
 		}
+		global.fpayment = {
+				"key": {
+					"remoteJid": "0@s.whatsapp.net",
+					"fromMe": false,
+					"id": "BAE595C600522C9C",
+					"participant": "0@s.whatsapp.net"
+				},
+				"message": {
+					"requestPaymentMessage": {
+						"currencyCodeIso4217": wm,
+						"amount1000": fsizedoc,
+						"requestFrom": "0@s.whatsapp.net",
+						"noteMessage": {
+							"extendedTextMessage": {
+								"text": " Hay Kak :> " + name
+							}
+						},
+						"expiryTimestamp": fsizedoc,
+						"amount": {
+							"value": fsizedoc,
+							"offset": fsizedoc,
+							"currencyCode": wm
+						}
+					}
+				}
+			}
 		global.fakeig = {
          contextInfo: { externalAdReply: { showAdAttribution: true,
             mediaUrl: "https://Instagram.com/Xiao_yan_21",
@@ -60,7 +86,7 @@ handler.all = async function (m) {
             title: 'Elaina-MultiDevice',
             body: wm,
             thumbnailUrl: pp,
-            sourceUrl: sgc
+            sourceUrl: sig
     }
     } }
 global.fakefb = {
@@ -126,7 +152,7 @@ global.fakefb = {
                    global.ftoko = {
        key: {
                    fromMe: false,
-                   participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: "6285736178354@s.whatsapp.net" } : {})
+                   participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: "17608914335@s.whatsapp.net" } : {})
                },
                message: {
                    "productMessage": {
@@ -152,9 +178,9 @@ global.fakefb = {
                   participant : '0@s.whatsapp.net'
                                },
               message: {
-                           documentMessage: {
-                           title: wm, 
-                           jpegThumbnail: fs.readFileSync('./thumbnail.jpg')
+                           "documentMessage": {
+                           "title": wm, 
+                           "jpegThumbnail": fs.readFileSync('./thumbnail.jpg')
                                  }
                                }
                              }
@@ -175,6 +201,37 @@ global.fakefb = {
                }
            }
        }
+       global.fimg = {
+			key: {
+				participant: '0@s.whatsapp.net'
+			},
+			message: {
+				imageMessage: {
+					url: logo,
+					mimetype: 'image/jpeg',
+					fileLength: fsizedoc,
+					height: 306,
+					width: 366,
+					jpegThumbnail: fs.readFileSync('./thumbnail.jpg')
+				}
+			}
+		}
+		global.fimgv = {
+				key: {
+					participant: '0@s.whatsapp.net'
+				},
+				message: {
+					imageMessage: {
+						url: logo,
+						mimetype: 'image/jpeg',
+						fileLength: fsizedoc,
+						height: 306,
+						width: 366,
+						jpegThumbnail: fs.readFileSync('./thumbnail.jpg'),
+						viewOnce: true
+					}
+				}
+			}
        
                     global.fgif = {
             key: { 
@@ -193,27 +250,46 @@ global.fakefb = {
                                }
                               }
                              }
+                            // Random Pick Fake
+                             let pft = [global.fimg, global.fimgv, global.fpayment, global.ftroli, global.fkontak, global.fvn, global.fvid, global.ftextt, global.fliveLoc, global.fliveLoc2, global.ftoko, global.fdocs, global.fgclink, global.fgif]
+			               // Fake Knights
+			                 let imagea = await new knights.Jo().setImage(pp).toBuild();
+		                     let dataa = imagea.toBuffer();
+		                     let imageb = await new knights.Patrick().setAvatar(pp).toAttachment();
+		                     let datab = imageb.toBuffer();
+		                     let imagec = await new knights.Bonk().setAvatar1(pp).setAvatar2(pp).toBuild();
+		                     let datac = imagec.toBuffer();
+		                     let imaged = await new knights.Burn().setAvatar(pp).toAttachment();
+		                     let datad = imaged.toBuffer();
+		                     let kn = [dataa, datab, datac, datad]
+		                   // Pick Random
+		                     global.fakes = pft.getRandom()
+		                     global.knimg = kn.getRandom()
+		                     global.knimg = kn.getRandom()
 	}
 }
 
 export default handler 
 
 function ucapan() {
-    const time = moment.tz('Asia/Jakarta').format('HH')
-    let res = "Selamat malam 🌙"
-    if (time >= 4) {
-        res = "Selamat pagi 🌄"
-    }
-    if (time > 10) {
-        res = "Selamat siang ☀️"
-    }
-    if (time >= 15) {
-        res = "Selamat sore 🌅"
-    }
-    if (time >= 18) {
-        res = "Selamat malam 🌙"
-    }
-    return res
+	const time = moment.tz('Asia/Jakarta').format('HH')
+	let res = "Selamat malam 🌌"
+	if(time >= 1) {
+		res = "Selamat Dini hari 🌌"
+	}
+	if(time >= 4) {
+		res = "Selamat pagi ⛅"
+	}
+	if(time > 10) {
+		res = "Selamat siang 🌅"
+	}
+	if(time >= 15) {
+		res = "Selamat sore 🌇"
+	}
+	if(time >= 18) {
+		res = "Selamat malam 🌃"
+	}
+	return res
 }
 
 function pickRandom(list) {
