@@ -16,7 +16,7 @@
 // • Xtreshe (Beban)
 // • Dll
 
-//[!] Jangan Dihapus, mending ditambahin 
+//[!] Jangan Lupa Ganti Ownernya
 
 import { watchFile, unwatchFile } from 'fs'
 import chalk from 'chalk'
