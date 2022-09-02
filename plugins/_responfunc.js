@@ -15,7 +15,6 @@ export async function all(m) {
   if (m.chat.endsWith('status@broadcast')) {
         console.log('YOW!')
     }
-    let { isBanned } = db.data.chats[m.chat]
     let { banned } = db.data.users[m.sender]
     let setting = db.data.settings[this.user.jid]
     let user = db.data.users[m.sender]
