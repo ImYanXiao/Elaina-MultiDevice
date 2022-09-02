@@ -15,9 +15,10 @@ export async function all(m) {
   if (m.chat.endsWith('status@broadcast')) {
         console.log('YOW!')
     }
-    let { banned } = db.data.users[m.sender]
-    let setting = db.data.settings[this.user.jid]
-    let user = db.data.users[m.sender]
+    let chat = global.db.data.chats[m.chat]
+    let { banned } = global.db.data.users[m.sender]
+    let setting = global.db.data.settings[this.user.jid]
+    let user = global.db.data.users[m.sender]
     //Responder
     if (m.isGroup) {
       if (m.mentionedJid.includes(this.user.jid)) {
@@ -39,9 +40,9 @@ export async function all(m) {
 
 //Auto downloader
 export async function before(m, { isAdmin, isBotAdmin }) {
-  let chat = db.data.chats[m.chat]
-    let user = db.data.users[m.sender]
-    let set = db.data.settings[this.user.jid]
+  let chat = global.db.data.chats[m.chat]
+    let user = global.db.data.users[m.sender]
+    let set = global.db.data.settings[this.user.jid]
     let teks = m.text //Simple
     if (m.chat.endsWith('broadcast')) return
     if (chat.isBanned || user.banned || !chat.download || m.isBaileys) return
