@@ -78,16 +78,13 @@ global.prems = [] // Premium user bukan disini nambahinnya, ketik .addprem @user
 global.APIs = { // API Prefix
   // name: 'https://website'
   nrtm: 'https://nurutomo.herokuapp.com',
-  rey: 'https://server-api-rey.herokuapp.com',
   xteam: 'https://api.xteam.xyz',
   zahir: 'https://zahirr-web.herokuapp.com',
   lol: 'https://api.lolhuman.xyz',
   ana: 'https://anabotofc.herokuapp.com/',
   amel: 'https://melcanz.com',
   hardianto: 'https://hardianto.xyz',
-  botstyle: 'https://botstyle-api.herokuapp.com',
   adiisus: 'https://adiixyzapi.herokuapp.com',
-  kanx: 'https://kannxapi.herokuapp.com/', 
   violetics : 'https://violetics.pw', 
   males : 'https://malesin.xyz'
 }
@@ -98,8 +95,6 @@ global.APIKeys = { // APIKey Here
   'https://api.lolhuman.xyz': 'Apikeymu',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
   'https://melcanz.com': 'apikeymu',
-  'https://server-api-rey.herokuapp.com': 'apirey',
-  'https://botstyle-api.herokuapp.com': 'Apikeymu',
   'https://hardianto.xyz': 'hardianto',
   'https://violetics.pw': 'beta'
 }
