@@ -64,7 +64,7 @@ const listMessage = {
   if (!age) throw 'Umur tidak boleh kosong (Angka)'
   age = parseInt(age)
   if (age > 30) throw 'WOI TUA (。-`ω´-)'
-  if (age < 5) throw 'Halah dasar bocil'
+  if (age < 9) throw 'Halah dasar bocil'
   user.name = name.trim()
   user.age = age
   user.regTime = + new Date
@@ -88,7 +88,7 @@ const listMessage = {
 'fileLength':fsizedoc,
 'pageCount':fpagedoc,
 'contextInfo':{
-'forwardingScore':555,
+'forwardingScore':999,
 'isForwarded':true,
 'externalAdReply':{
 'mediaUrl':global.sig,
