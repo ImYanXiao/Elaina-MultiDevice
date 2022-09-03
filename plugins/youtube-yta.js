@@ -2,6 +2,10 @@ let limit = 80
 import fetch from 'node-fetch'
 import { youtubedl, youtubedlv2, youtubedlv3 } from '@bochilteam/scraper';
 let handler = async (m, { conn, args, isPrems, isOwner }) => {
+let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+let pp = await conn.profilePictureUrl(who).catch(_ => hwaifu.getRandom())
+let name = await conn.getName(who)
+
   if (!args || !args[0]) throw 'Uhm... urlnya mana?'
   let chat = global.db.data.chats[m.chat]
   const isY = /y(es)/gi.test(args[1])
@@ -34,24 +38,25 @@ let handler = async (m, { conn, args, isPrems, isOwner }) => {
 
 *L O A D I N G. . .*
 `.trim(), m)
-  if (!isLimit) await conn.sendFile(m.chat, source, title + '.mp3', `
-*${htki} YOUTUBE ${htka}*
-
-*${htjava} Title:* ${title}
-*${htjava} Type:* mp3
-*${htjava} Filesize:* ${audio.fileSizeH}
-
-*L O A D I N G. . .*
-`.trim(), m, null, {
-    asDocument: chat.useDocument
+  if (!isLimit) await conn.sendFile(m.chat, source, title + '.mp3', '', fakes, null, { fileLength: fsizedoc, seconds: fsizedoc, mimetype: 'audio/mp4', contextInfo: {
+          externalAdReply :{
+    body: 'Size: ' + audio.fileSizeH,
+    containsAutoReply: true,
+    mediaType: 2, 
+    mediaUrl: args[0],
+    showAdAttribution: true,
+    sourceUrl: args[0],
+    thumbnailUrl: thumbnail,
+    renderLargerThumbnail: true,
+    title: 'Nih Kak, ' + name,
+     }}
   })
 }
 handler.help = ['mp3', 'a'].map(v => 'yt' + v + ` <url> <without message>`)
 handler.tags = ['downloader']
-handler.command = /^yt(a|mp3)$/i
+handler.command = /^y((outube|tb)audio|(outube|tb?)mp3|utubaudio|taudio|ta)$/i
 
 handler.exp = 0
-handler.register = true
-handler.limit = true
+handler.register = false
 
 export default handler
