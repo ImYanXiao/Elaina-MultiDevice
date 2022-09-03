@@ -1,5 +1,7 @@
 // Script Ori By BochilGaming
 // Ditulis Ulang Oleh ImYanXiao
+// Cara Ganti Menu? Hilangin Tanda // 
+// Lalu Ganti Ke Menu Sebelumnya
 
 import { promises } from 'fs'
 import { join } from 'path'
