@@ -10,8 +10,8 @@ let handler = async (m, { conn, command, args }) => {
   if (global.db.data.users[m.sender].money >= xpperlimit * count) {
     global.db.data.users[m.sender].money -= xpperlimit * count
     global.db.data.users[m.sender].bank += count
-    conn.reply(m.chat, `Sukses menabung sebesar ${count} Money 💹`, m)
-  } else conn.reply(m.chat, `[❗] Uang anda tidak mencukupi untuk menabung ${count} money 💹`, m)
+    conn.reply(m.chat, `Sukses menabung sebesar ${count} Money 💶`, m)
+  } else conn.reply(m.chat, `[❗] Uang kamu tidak mencukupi untuk menabung ${count} money 💵`, m)
 }
 handler.help = ['nabung <jumlah>']
 handler.tags = ['rpg']
