@@ -9,7 +9,7 @@ handler.before = async (m) => {
         let res = await fetch(global.API('https://api.simsimi.net', '/v2/', { text: encodeURIComponent(m.text), lc: "id" }, ''))
         if (!res.ok) throw eror
         let json = await res.json()
-        if (json.success == 'gapaham banh:v') return m.reply('lu ngetik apaaan sih')
+        if (json.success == 'aku tidak paham') return m.reply('lu ngetik apaaan sih')
         await m.reply(`${json.success}`)
         return !0
     }
