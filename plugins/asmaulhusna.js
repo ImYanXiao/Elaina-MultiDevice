@@ -1,4 +1,4 @@
-const contoh = `*Asmaul Husna*
+const contoh = `*ᴀsᴍᴀᴜʟ-ʜᴜsɴᴀ*
 
 `
 // data here
