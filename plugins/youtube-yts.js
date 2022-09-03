@@ -1,30 +1,28 @@
-import { youtubeSearch } from '@bochilteam/scraper'
-let handler = async (m, { text }) => {
-  if (!text) throw 'Cari apa?'
-  const { video, channel } = await youtubeSearch(text)
-  let teks = [...video, ...channel].map(v => {
+import yts from 'yt-search'
+let handler = async (m, { conn, text }) => {
+  if (!text) return conn.reply(m.chat, 'Cari apa?', m)
+  let results = await yts(text)
+  let teks = results.all.map(v => {
     switch (v.type) {
       case 'video': return `
-💌 *${v.title}* 
-🔗 _${v.url}_
-⏰ Duration: ${v.durationH}
-📤 Uploaded ${v.publishedTime}
-👁️ ${v.view} views
-      `.trim()
+💌 *Judul:* ${v.title} 
+📎 *Link:* (${v.url})
+🎈 *Duration:* ${v.timestamp}
+📤 *Uploaded:* ${v.ago}
+👁 *Viewer:* ${v.views} 
+ `.trim()
       case 'channel': return `
-╭──────━• *CHANNEL*
-│🎀 *${v.channelName}* 
-│🔗 _${v.url}_
-│📛 _${v.subscriberH} Subscriber_
-│🎥 ${v.videoCount} video
-┗──────━•
+*Chanel:* ${v.name} 
+*Link:* (${v.url})
+*Subscriber:* ${v.subCountLabel} (${v.subCount})
+*Total Video:* ${v.videoCount} video
 `.trim()
     }
-  }).filter(v => v).join('\n\n─────────────━─────────────\n\n')
-  m.reply(`*${htki} SEARCH ${htka}*\n\n` + teks)
+  }).filter(v => v).join('\n\n*=========================*\n\n')
+ conn.reply(m.chat, '*───「 Youtube Search 」───*\n\n' + teks, m)
 }
-handler.help = ['', 'earch'].map(v => 'yts' + v + ' <pencarian>')
-handler.tags = ['tools']
+handler.help = ['ytsearch <query>']
+handler.tags = ['internet']
 handler.command = /^yts(earch)?$/i
 
 export default handler
