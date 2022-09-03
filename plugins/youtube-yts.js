@@ -12,10 +12,10 @@ let handler = async (m, { conn, text }) => {
 👁 *Viewer:* ${v.views} 
  `.trim()
       case 'channel': return `
-*Chanel:* ${v.name} 
-*Link:* (${v.url})
-*Subscriber:* ${v.subCountLabel} (${v.subCount})
-*Total Video:* ${v.videoCount} video
+📺 *Channel:* ${v.name} 
+📎 *Link:* (${v.url})
+📊 *Subscriber:* ${v.subCountLabel} (${v.subCount})
+📈 *Total Video:* ${v.videoCount} video
 `.trim()
     }
   }).filter(v => v).join('\n\n*=========================*\n\n')
