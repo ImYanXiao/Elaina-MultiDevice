@@ -1,7 +1,7 @@
 let handler = m => m
 
 handler.before = async function (m) {
-    let user = db.data.users[m.sender] 
+    let user = global.db.data.users[m.sender] 
  
 //Sword                            
     if (user.sword > 0) {
