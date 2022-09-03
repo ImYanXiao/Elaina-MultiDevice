@@ -34,7 +34,7 @@ handler.all = async function (m) {
 		
 		// pesan sementara
 		global.ephemeral = '86400' // 86400 = 24jam, kalo ingin di hilangkan ganti '86400' jadi 'null' atau ''
-		let urls = pickRandom(['https://tinyurl.com/2j9wa2gm', 'https://a.uguu.se/HwyqVYow.jpg', 'https://a.uguu.se/pXdtYjF.jpg', 'https://a.uguu.se/RyffdQeq.jpg', 'https://a.uguu.se/OUpyWceD.jpg', 'https://a.uguu.se/eachYTbC.jpg', 'https://a.uguu.se/mzSokzVU.jpg'])
+                let urls = pickRandom(['https://telegra.ph/file/035e524939ab0294ba91f.jpg', 'https://telegra.ph/file/96b2275d3b14d071290bc.jpg', 'https://telegra.ph/file/2c6b7660bc6126404a9bb.jpg', 'https://telegra.ph/file/c635bf577bb9d59a3e00b.jpg', 'https://telegra.ph/file/be8dd52f6363f9e9f5a60.jpg', 'https://telegra.ph/file/02e53361b9dc946f63c8d.jpg', 'https://telegra.ph/file/298ed2f1bba17aeb64ca8.jpg', 'https://telegra.ph/file/be2a18221974147f66ea0.jpg'])
 		// externalAdReply atau text with thumbnail. gatau bahasa Inggris? coba translate!
 		global.adReply = {
 			contextInfo: {
@@ -66,7 +66,7 @@ handler.all = async function (m) {
 						"requestFrom": "0@s.whatsapp.net",
 						"noteMessage": {
 							"extendedTextMessage": {
-								"text": " Hay Kak :> " + name
+								"text": "Hai Kak " + name
 							}
 						},
 						"expiryTimestamp": fsizedoc,
