@@ -1,4 +1,4 @@
-let { MessageType, Presence } = (await import('@adiwajshing/baileys')).default
+const { MessageType, Presence } = (await import('@adiwajshing/baileys')).default
 
 async function handler(m, { command, conn, text }) {
 	this.anonymous = this.anonymous ? this.anonymous : {}
@@ -12,7 +12,7 @@ async function handler(m, { command, conn, text }) {
 	var number = who.split('@')[0]
 	let tks = `➔ Nomor: ${m.sender.split`@`[0]}
 ➔ Nama: ${name}`
-    this.reply(m.chat, 'Menggirimkan Kontak...')
+    this.reply(m.chat, 'Sedang Menggirimkan Kontak...')
 	if (other) this.reply(other, `Partner mengirimkan kontak kepadamu`)
 	if (other) this.sendHydrated(other, `${htki} ᴀɴᴏɴʏᴍᴏᴜs ᴄʜᴀᴛs ${htka}`, tks, await conn.profilePictureUrl(m.sender, 'image').catch(_ => './src/avatar_contact.png'), `wa.me/${m.sender.split`@`[0]}`, 'ᴛᴜʀɴ ᴄʜᴀᴛ ᴘᴀʀᴛɴᴇʀ', null,null, [['ʟᴇᴀᴠᴇ', '.leave'],[null,null],[null,null]], 0,  { mentionedJid: [m.sender]})
 }
