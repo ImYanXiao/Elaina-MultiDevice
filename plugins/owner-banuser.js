@@ -1,16 +1,18 @@
+// import db from '../lib/database.js'
+
 let handler = async (m, { conn, text }) => {
-    if (!text) throw 'Siapa yg mau dibanned?🗿'
+    if (!text) throw 'Siapa yang mau di banned?🗿'
     let who
     if (m.isGroup) who = m.mentionedJid[0]
     else who = m.chat
-    if (!who) throw 'Tag??'
-    let users = global.db.data.users
+    if (!who) throw 'Tag salah satu bang'
+    let users = db.data.users
     users[who].banned = true
-    conn.reply(m.chat, 'sᴜᴄᴄᴇs!', m)
+    conn.reply(m.chat, `mampos dibanned awowkwkowkw`, m)
 }
-handler.help = ['ban']
+handler.help = ['ban @user']
 handler.tags = ['owner']
-handler.command = /^ban(user)?$/i
+handler.command = /^ban$/i
 handler.rowner = true
 
 export default handler
