@@ -7,8 +7,8 @@ let handler = async(m, { conn, text }) => {
   let { result } = json.result[0]
 m.reply(`${json.result}`)
 }
-handler.help = ['Bucin']
+handler.help = ['bucin']
 handler.tags = ['quotes']
-handler.command = /^(q-bucin)$/i
+handler.command = /^(bucin)$/i
 
 export default handler
