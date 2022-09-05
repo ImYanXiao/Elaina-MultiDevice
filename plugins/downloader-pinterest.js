@@ -5,7 +5,7 @@ import { URL_REGEX } from '@adiwajshing/baileys'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 	text = text.endsWith('SMH') ? text.replace('SMH', '') : text 
-	if (!text) throw 'Input Query / Pinterest Url'
+	if (!text) throw 'Input Pinterest Url'
 	let res = await pinterest(text)
 	// if (!res) throw res
 	let mime = await lookup(res)
@@ -13,7 +13,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 		await conn.sendMessage(m.chat, { [mime.split('/')[0]]: { url: res }, caption: `Succes Download: ${await shortUrl(res)}` }, { quoted: m }) :
 	await conn.sendButton(m.chat, `Result From: ${text.capitalize()}`, await shortUrl(res), res, [['Next', `${usedPrefix + command} ${text}`]], m)
 }
-handler.help = handler.alias = ['pinterest']
+handler.help = ['pinterest']
 handler.tags = ['downloader']
 handler.command = /^(pinterest)$/i
 
