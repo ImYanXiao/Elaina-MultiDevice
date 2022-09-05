@@ -8,6 +8,8 @@ let text = `
 │ • *Dana:* [${global.pdana}]
 ❏────
 `
+let flaa = flaaa.getRandom() 
+
 const templateButtons = [
     {index: 1, urlButton: {displayText: '✨ Saweria', url: psaweria}},
     {index: 2, urlButton: {displayText: '📷 Instagram', url: sig}},
@@ -19,7 +21,7 @@ let tm = {
 text: text,
 footer: global.wm,
 templateButtons: templateButtons,
-image: {url: flaaa + 'Donasi'}
+image: {url: flaa + 'Donasi'}
 }
 conn.sendMessage(m.chat, tm, m)
 }
