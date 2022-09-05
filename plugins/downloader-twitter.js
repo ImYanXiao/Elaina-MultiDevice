@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 
 let handler = async (m, { conn, text }) => {
-	if (!text) throw 'Input URL'
+	if (!text) throw 'Input Twitter URL'
 	let res = await twitterDl(text)
 	await m.reply('_In progress, please wait..._')
 	for (let x = 0; x < res.media.length; x++) {
@@ -11,7 +11,6 @@ let handler = async (m, { conn, text }) => {
 }
 handler.help = ['twitter']
 handler.tags = ['downloader']
-handler.alias = ['twt', 'twtdl', 'twitter', 'twitterdl']
 handler.command = /^((twt|twitter)(dl)?)$/i
 
 export default handler
