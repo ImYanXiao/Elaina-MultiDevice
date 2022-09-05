@@ -2,7 +2,7 @@ import { extract } from 'zs-extract'
 import { lookup } from 'mime-types'
 
 let handler = async (m, { conn, args }) => {
-  if (!args[0]) throw 'Input URL'
+  if (!args[0]) throw 'Input Zippyshare URL'
   if (!args[0].includes('zippyshare.com/v')) throw 'Invalid URL'
   await m.reply('_In progress, please wait..._')
   for (let i = 0; i < args.length; i++) {
@@ -14,7 +14,6 @@ let handler = async (m, { conn, args }) => {
 }
 handler.help = ['zippyshare']
 handler.tags = ['downloader']
-handler.alias = ['zs', 'zippy', 'zippydl', 'zippyshare']
 handler.command = /^z(s|ippy(dl|share)?)$/i 
 
 export default handler
