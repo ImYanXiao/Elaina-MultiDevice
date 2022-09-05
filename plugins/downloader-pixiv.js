@@ -4,16 +4,16 @@ import { Pixiv } from '@ibaraki-douji/pixivts'
 const pixiv = new Pixiv()
 
 let handler = async (m, { conn, text }) => {
-	if (!text) throw 'Input Query / Pixiv Url'
+	if (!text) throw 'Input Pixiv Url'
 	let res = await pixivDl(text)
 	await m.reply('_In progress, please wait..._')
 	for (let i = 0; i < res.media.length; i++) {
-		let caption = i == 0 ? `${res.caption}\n\n*By:* ${res.artist}\n*Tags:* ${res.tags.join(', ')}` : ''
+		let caption = i == 0 ? `${res.caption}\n\n*✏️ By:* ${res.artist}\n*🔖 Tags:* ${res.tags.join(', ')}` : ''
 		let mime = (await fileTypeFromBuffer(res.media[i])).mime 
 		await conn.sendMessage(m.chat, { [mime.split('/')[0]]: res.media[i], caption, mimetype: mime }, { quoted: m })
 	}
 }
-handler.help = handler.alias = ['pixiv']
+handler.help = ['pixiv']
 handler.tags = ['downloader']
 handler.command = /^(pixiv)$/i
 
