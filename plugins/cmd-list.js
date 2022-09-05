@@ -1,6 +1,6 @@
 let handler = async (m, { conn }) => {
     conn.reply(m.chat, `
-*DAFTAR HASH*
+*DAFTAR CMD*
 \`\`\`
 ${Object.entries(global.db.data.sticker).map(([key, value], index) => `${index + 1}. ${value.locked ? `(Terkunci) ${key}` : key} : ${value.text}`).join('\n')}
 \`\`\`
