@@ -9,6 +9,5 @@ let response = args.join(' ').split('|')
 handler.help = ['sadboylogo'].map(v => v + ' <text|text>')
 handler.tags = ['maker']
 handler.command = /^(logosadboy)$/i
-handler.limit = false
 
 export default handler
