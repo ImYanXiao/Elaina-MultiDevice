@@ -84,8 +84,6 @@ global.APIs = { // API Prefix
   zahir: 'https://zahirr-web.herokuapp.com',
   lol: 'https://api.lolhuman.xyz',
   ana: 'https://anabotofc.herokuapp.com/',
-  amel: 'https://melcanz.com',
-  hardianto: 'https://hardianto.xyz',
   adiisus: 'https://adiixyzapi.herokuapp.com',
   violetics : 'https://violetics.pw', 
   males : 'https://malesin.xyz'
@@ -96,8 +94,6 @@ global.APIKeys = { // APIKey Here
   'https://anabotofc.herokuapp.com/': 'AnaBot',
   'https://api.lolhuman.xyz': 'Apikeymu',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
-  'https://melcanz.com': 'apikeymu',
-  'https://hardianto.xyz': 'hardianto',
   'https://violetics.pw': 'beta'
 }
 // Kata APIKEY itu isi dengan apikey lu sendiri, dengan beli ke website itu
