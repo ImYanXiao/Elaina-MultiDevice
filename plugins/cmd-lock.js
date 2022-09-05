@@ -1,5 +1,5 @@
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!m.quoted) throw 'Reply Pesan!'
+    if (!m.quoted) throw 'Tag Pesan!'
     if (!m.quoted.fileSha256) throw 'SHA256 Hash Missing'
     let sticker = db.data.sticker
     let hash = m.quoted.fileSha256.toString('hex')
@@ -10,6 +10,5 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.help = ['un', ''].map(v => v + 'lockcmd')
 handler.tags = ['database']
 handler.command = /^(un)?lockcmd$/i
-handler.premium = true
 
 export default handler
