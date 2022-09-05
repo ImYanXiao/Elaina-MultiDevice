@@ -4,7 +4,7 @@ import fetch from 'node-fetch'
 let handler = async (m, { conn, text }) => {
 	if (text.match(/(https:\/\/sfile.mobi\/)/gi)) {
 		let res = await sfileDl(text)
-		if (!res) throw 'Error :/'
+		if (!res) throw 'Tidak Dapat Mengunduh File'
 		await m.reply(Object.keys(res).map(v => `*• ${v.capitalize()}:* ${res[v]}`).join('\n') + '\n\n_Sending file..._')
 		conn.sendMessage(m.chat, { document: { url: res.download }, fileName: res.filename, mimetype: res.mimetype }, { quoted: m })
 	} else if (text) {
@@ -15,7 +15,7 @@ let handler = async (m, { conn, text }) => {
 		m.reply(res)
 	} else throw 'Input Query / Sfile Url!'
 }
-handler.help = handler.alias = ['sfile']
+handler.help = ['sfile']
 handler.tags = ['downloader']
 handler.command = /^(sfile)$/i
 
