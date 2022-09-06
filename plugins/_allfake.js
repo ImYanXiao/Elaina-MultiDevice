@@ -91,9 +91,9 @@ handler.all = async function (m) {
     } }
 global.fakefb = {
          contextInfo: { externalAdReply: { showAdAttribution: true,
-            mediaUrl: "https://Facebook.com/Fay.cats.Kun",
+            mediaUrl: "https://Facebook.com/zuck",
             mediaType: "VIDEO",
-            description: "https://www.Facebook.com/Fay.cats.kun", 
+            description: "https://www.Facebook.com/zuck", 
             title: 'Elaina-MultiDevice',
             body: wm,
             thumbnailUrl: pp,
