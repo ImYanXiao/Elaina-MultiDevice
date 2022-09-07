@@ -252,20 +252,9 @@ global.fakefb = {
                              }
                             // Random Pick Fake
                              let pft = [global.fimg, global.fimgv, global.fpayment, global.ftroli, global.fkontak, global.fvn, global.fvid, global.ftextt, global.fliveLoc, global.fliveLoc2, global.ftoko, global.fdocs, global.fgclink, global.fgif]
-			               // Fake Knights
-			                 let imagea = await new knights.Jo().setImage(pp).toBuild();
-		                     let dataa = imagea.toBuffer();
-		                     let imageb = await new knights.Patrick().setAvatar(pp).toAttachment();
-		                     let datab = imageb.toBuffer();
-		                     let imagec = await new knights.Bonk().setAvatar1(pp).setAvatar2(pp).toBuild();
-		                     let datac = imagec.toBuffer();
-		                     let imaged = await new knights.Burn().setAvatar(pp).toAttachment();
-		                     let datad = imaged.toBuffer();
-		                     let kn = [dataa, datab, datac, datad]
-		                   // Pick Random
+			                   // Pick Random
 		                     global.fakes = pft.getRandom()
-		                     global.knimg = kn.getRandom()
-		                     global.knimg = kn.getRandom()
+		        
 	}
 }
 
