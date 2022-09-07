@@ -11,6 +11,6 @@ return conn.sendMessage(m.chat, { delete: m.quoted.vM.key })
 handler.help = ['del', 'delete']
 handler.tags = ['tools']
 
-handler.command = /^d(el(ete)?$/i
+handler.command = /^del(ete)?$/i
 
 export default handler
