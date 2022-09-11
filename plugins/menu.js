@@ -615,7 +615,7 @@ let usrs = db.data.users[m.sender]
 
     orderTitle: `▮Menu ▸`,
 
-    thumbnail: await (await fetch(flaaa + 'Menu')).buffer(), //Gambarnye
+    thumbnail: await (await fetch(fla + 'Menu')).buffer(), //Gambarnye
 
     sellerJid: '0@s.whatsapp.net' 
 
