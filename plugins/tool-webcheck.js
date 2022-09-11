@@ -2,7 +2,7 @@ import https from 'https'
 import fetch from 'node-fetch'
 
 let handler = async (m, { args, usedPrefix, command }) => {
-	if (!args[0]) throw `Ex: ${usedPrefix + command} nekopoi.care`
+	if (!args[0]) throw `Ex: ${usedPrefix + command} nhentai.net`
 	let res = await checkWeb(args)
 	m.reply(res.map(v => `*• Domain:* ${v.Domain}\n*• Status:* ${v.Status}`).join('\n\n'))
 }
