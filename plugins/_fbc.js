@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-let handler = async (m, { conn, text }) => await conn.send3ButtonLoc(m.chat, await (await fetch(flaaa + 'Broadcast Here')).buffer(), `
+let handler = async (m, { conn, text }) => await conn.send3ButtonLoc(m.chat, await (await fetch(fla + 'Broadcast Here')).buffer(), `
 *ʙʀᴏᴀᴅᴄᴀsᴛ ʜᴇʀᴇ*
 
 ${text}
