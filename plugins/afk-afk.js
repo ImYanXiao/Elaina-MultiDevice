@@ -4,7 +4,7 @@ let handler = async (m, { text }) => {
 let name = m.pushName || conn.getName(m.sender)
 
 let user = global.db.data.users[m.sender]
-let wibu = `https://api.dhamzxploit.my.id/api/neko`    
+let wibu = `https://hadi-api.herokuapp.com/api/loli`    
 let thumb = await(await fetch(wibu)).buffer()
 user.afk = + new Date
 user.afkReason = text
