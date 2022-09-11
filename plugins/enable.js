@@ -25,6 +25,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 	{title: "💬 | PcOnly", rowId: `${usedPrefix + command} pconly`},
 	{title: "🏢 | GcOnly", rowId: `${usedPrefix + command} gconly`},
 	{title: "📷 | SwOnly", rowId: `${usedPrefix + command} swonly`},
+        {title: "📬 | Getmsg", rowId: `${usedPrefix + command} getmsg`}, 
         {title: "🎌 | AutoAnime", rowId: `${usedPrefix + command} autoupnime`}
     },
 ]
@@ -260,6 +261,12 @@ const listMessage = {
         throw false
       }
       global.opts['swonly'] = isEnable
+      break
+     case 'getmsg':
+      if (m.isGroup) {
+        if (!(isAdmin || isOwner)) return dfail('admin', m, conn)
+      }
+      chat.getmsg = isEnable
       break
     default:
       if (!/[01]/.test(command)) return await conn.sendMessage(m.chat, listMessage)
