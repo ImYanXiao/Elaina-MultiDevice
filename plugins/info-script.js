@@ -1,5 +1,5 @@
 //Credits Jangan Dihapus
-//Thanks For Kannachann(Kang Ngamok) & Papah-Chan
+//Thanks To Papah-Chan
 import fetch from 'node-fetch'
 let handler = async(m, { conn, text, usedPrefix, command }) => {
 let pp = await conn.profilePictureUrl(m.chat).catch(_ => null)
@@ -16,8 +16,8 @@ conn.sendButtonDoc(m.chat, str, wm,'ᴏᴋ','Bilek', m, { contextInfo: { externa
   }
   } }) 
           }
-handler.help = ['source code']
-handler.tags = ['info']
+handler.help = ['sc', 'script']
+handler.tags = ['info', 'main']
 handler.command =  /^(script|sc)$/i
 
 export default handler
