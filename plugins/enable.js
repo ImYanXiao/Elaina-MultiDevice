@@ -25,6 +25,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 	{title: "💬 | PcOnly", rowId: `${usedPrefix + command} pconly`},
 	{title: "🏢 | GcOnly", rowId: `${usedPrefix + command} gconly`},
 	{title: "📷 | SwOnly", rowId: `${usedPrefix + command} swonly`},
+        {title: "🎌 | AutoAnime", rowId: `${usedPrefix + command} autoupnime`}
     },
 ]
 
@@ -264,12 +265,12 @@ const listMessage = {
       if (!/[01]/.test(command)) return await conn.sendMessage(m.chat, listMessage)
       throw false
   }
-  conn.sendButton(m.chat, `*${htki} 𝙾𝙿𝚃𝙸𝙾𝙽𝚂 ${htka}*
-🗂️ *ᴛʏᴘᴇ:* ${type} 
-📊 *sᴛᴀᴛᴜs:* Succes ✅
-🎚️ *ᴏᴘᴛɪᴏɴs:* ${isEnable ? 'Enable' : 'Disable'}
-📣 *ғᴏʀ:* ${isAll ? 'This Bot' : isUser ? '' : 'This Chats'}
-`,wm, null, [[`${isEnable ? '✖️ ᴅɪsᴀʙʟᴇ' : '✔️ ᴇɴᴀʙʟᴇ'}`, `${isEnable ? `.off ${type}` : `.on ${type}`}`], ['🎀 ᴍᴇɴᴜ', '.menu']],m)
+  conn.send2ButtonDoc(m.chat, `*${htki} OPTIONS ${htka}*
+🗂️ *Type:* ${type} 
+📊 *Status:* Succes ✅
+🎚️ *Options:* ${isEnable ? 'Enable' : 'Disable'}
+📣 *For:* ${isAll ? 'This Bot' : isUser ? '' : 'This Chats'}
+`, wm, `${isEnable ? '✖️ Disable' : '✔️ Enable'}`, `${isEnable ? `.off ${type}` : `.on ${type}`}`, '🎀 Menu', '.menu', fpayment, adReply)
 }
 handler.help = ['en', 'dis'].map(v => v + 'able <option>')
 handler.tags = ['group', 'owner']
