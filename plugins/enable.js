@@ -205,6 +205,13 @@ const listMessage = {
       }
       bot.restrict = isEnable
       break
+    case 'autoupnime':
+        if (!isROwner) {
+          global.dfail('rowner', m, conn)
+          throw false
+        }
+      chat.updateAnime = isEnable
+      break
     case 'nyimak':
       isAll = true
       if (!isROwner) {
