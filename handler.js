@@ -335,14 +335,10 @@ export async function handler(chatUpdate) {
                 if (!('self' in settings)) settings.self = false
                 if (!('autoread' in settings)) settings.autoread = true
                 if (!('restrict' in settings)) settings.restrict = true
-                if (!('autorestart' in settings)) settings.autorestart = true
-                if (!('restartDB' in settings)) settings.restartDB = 0
             } else global.db.data.settings[this.user.jid] = {
                 self: false,
                 autoread: true,
-                restrict: true,
-                autorestart: true,
-                restartDB: 0
+                restrict: true
             }
         } catch (e) {
             console.error(e)
