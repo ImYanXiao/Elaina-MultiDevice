@@ -259,13 +259,54 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname, args, command}) => {
 
 let usrs = db.data.users[m.sender]
 
-  if (teks == '404') {
- 
-    let gojo = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-        "listMessage": {
-          "title": `✧────···[ Dashboard ]···────✧`.trim(),
-          "description": `${ucapan()}, ${conn.getName(m.sender)} !`.trim(),
-          "footerText": `╭━━━━━━━━━━━━━━━━┈─✧
+const sections = [
+   {
+	title: `${htki} ᴍᴀɪɴ ${htka}`,
+	rows: [
+	    {title: `⚡ ${pmenus} 𝚂𝙿𝙴𝙴𝙳 𝙱𝙾𝚃`, rowId: ".ping", description: "𝙼𝚎𝚗𝚊𝚖𝚙𝚒𝚕𝚔𝚊𝚗 𝙺𝚎𝚌𝚎𝚙𝚊𝚝𝚊𝚗 𝚁𝚎𝚜𝚙𝚘𝚗 𝙱𝙾𝚃"},
+	    {title: `⏰ ${pmenus} 𝚁𝚄𝙽𝚃𝙸𝙼𝙴 𝙱𝙾𝚃`, rowId: ".runtime", description: "𝙼𝚎𝚗𝚊𝚖𝚙𝚒𝚕𝚔𝚊𝚗 𝚆𝚊𝚔𝚝𝚞 𝙱𝙾𝚃 𝙱𝚎𝚛𝚓𝚊𝚕𝚊𝚗"}, 
+	    {title: `💌 ${pmenus} 𝙾𝚆𝙽𝙴𝚁 𝙱𝙾𝚃`, rowId: ".creator", description: "𝙼𝚎𝚗𝚊𝚖𝚙𝚒𝚕𝚔𝚊𝚗 𝙸𝚗𝚏𝚘𝚛𝚖𝚊𝚜𝚒 𝚃𝚎𝚗𝚝𝚊𝚗𝚐 𝙾𝚠𝚗𝚎𝚛"},
+	    {title: `📔 ${pmenus} 𝚂𝙲𝚁𝙸𝙿𝚃 𝙱𝙾𝚃`, rowId: ".sc", description: `𝚂𝚘𝚞𝚛𝚌𝚎 𝙲𝚘𝚍𝚎 ${namebot}`},
+	]
+    },{
+	title: `${htki} sᴜᴘᴘᴏʀᴛ ${htka}`,
+	rows: [
+	    {title: `💹 ${pmenus} 𝙳𝙾𝙽𝙰𝚃𝙴`, rowId: ".donasi", description: '𝚂𝚞𝚙𝚙𝚘𝚛𝚝 𝙾𝚠𝚗𝚎𝚛 𝙰𝚐𝚊𝚛 𝙻𝚎𝚋𝚒𝚑 𝚂𝚎𝚖𝚊𝚗𝚐𝚊𝚝'},
+	]
+	},{
+	title: `${htki} ᴍᴇɴᴜ ${htka}`,
+	rows: [
+	    {title: `💬 ${pmenus} All`, rowId: ".? all", description: "Menampilkan Semua command BOT"},
+	    {title: `🌱 ${pmenus} Rpg`, rowId: ".? rpg", description: "Game Epic Rpg!"},
+	{title: `✨ ${pmenus} Exp`, rowId: ".? xp", description: "Ayo tingkatkan pangkat mu!"},
+	{title: `🎮 ${pmenus} Game`, rowId: ".? game", description: "Gamenya seru seru lho (๑˃̵　ᴗ　˂̵)"},
+	{title: `🧩 ${pmenus} Fun`, rowId: ".? fun", description: "Fitur yang aman untuk keluarga"},
+	{title: `🐚 ${pmenus} Kerang`, rowId: ".? kerangajaib", description: "Tanyakan pada ketua club"},
+	{title: `📑 ${pmenus} Quotes`, rowId: ".? quotes", description: "Random Inspirasi"},
+	{title: `⛩️ ${pmenus} Anime`, rowId: ".? anime", description: "Wibu wibu🐦"},
+	{title: `🔞 ${pmenus} Nsfw`, rowId: ".? nsfw", description: "Tch, dasar sagnean"},
+	{title: `🌟 ${pmenus} Premium`, rowId: ".? premium", description: "Untuk user premium"},
+	{title: `🎭 ${pmenus} Anonymous Chats`, rowId: ".? anonymous", description: "Bicara dengan orang tidak dikenal"},
+	{title: `📖 ${pmenus} Al-Quran`, rowId: ".? quran", description: "Tobat yuk kak"},
+	{title: `🌎 ${pmenus} Internet`, rowId: ".? internet", description: "Cari sesuatu diBOT"},
+	{title: `📩 ${pmenus} Downloaders`, rowId: ".? downloader", description: "Download sesuatu dari BOT"},
+	{title: `🎨 ${pmenus} Stikers`, rowId: ".? stiker", description: "Buat Sticker diBOT"},
+	{title: `✏️ ${pmenus} Nulis`, rowId: ".? nulis", description: "Nulis kok males kak?"},
+	{title: `🎧 ${pmenus} Audio`, rowId: ".? audio", description: "Ubah Audio dengan Filter"},
+	{title: `🏢 ${pmenus} Group`, rowId: ".? group", description: "Only Groups"},
+	{title: `👑 ${pmenus} Admin`, rowId: ".? admin", description: "Only Admin Group"},
+	{title: `🗂️ ${pmenus} Database`, rowId: ".? database", description: "Simpan sesuatu diBOT"},
+	{title: `🛠️ ${pmenus} Tools`, rowId: ".? tools", description: "Mungkin tools ini bisa membantu?"},
+	{title: `ℹ️ ${pmenus} Info`, rowId: ".? info", description: "Info info BOT"},
+	{title: `👩‍💻 ${pmenus} Owner`, rowId: ".? owner", description: "Owner Only!"},
+	{title: `❓ ${pmenus} No Category`, rowId: ".? nocategory", description: "Fitur tanpa kategory!"},
+	]
+  },
+]
+
+let tek = `✧────···[ Dashboard ]···────✧
+*${ucapan()} ${conn.getName(m.sender)}*
+╭━━━━━━━━━━━━━━━━┈─✧
 ┴
 │⬡ Aktif selama ${mpt}
 │⬡ Baterai ${conn.battery != undefined ? `${conn.battery.value}% ${conn.battery.live ? '🔌 pengisian' : ''}` : 'tidak diketahui'}
@@ -280,152 +321,18 @@ let usrs = db.data.users[m.sender]
 ✧
 ┬ 📌 𝗣𝗶𝗻𝗻𝗲𝗱 :
 │ ʙᴇʀɪ ᴊᴇᴅᴀ ʏᴀʜ ᴋᴀᴋ ^ω^
-╰━━━━━━━━━━━━━━━━┈─◂
-     ▌│█║▌║▌║║▌║▌║█│▌
-     
-     ${week}, ${date}`,
-          "buttonText": "Click Here!",
-          "listType": "SINGLE_SELECT",
-          "sections": [
-                            {
-                                "rows": [{
-                                         "title": "[⚡] Speed",
-                                         "description": "Menampilkann Kecepatan Respon Bot",
-                                         "rowId": ".ping"
-                                    }, {
-                                         "title": "[🗒️] Script Bot",
-                                         "description": "Source Code Bot",
-                                         "rowId": ".sc"
-                                    }, {
-                                         "title": "[🎐] Creator",
-                                         "description": "Kontak Creator ku ^~^",
-                                         "rowId": ".owner nomor"
-                       }],
-                    "title": "✧───────────────[ ᴍᴀɪɴ ]───────────────✧"
-                }, {
-                  "rows": [{
-                  "title": "Menu 01 |🧾|",
-                  "description": "All Commands",
-                  "rowId": ".? all"
-                }, {
-                  "title": "Menu 02 |🎮|",
-                  "description": "Game",
-                  "rowId": ".? game"
-                }, {
-                  "title": "Menu 03 |🌱|",
-                  "description": "RPG",
-                  "rowId": ".? rpg"
-                }, {
-                  "title": "Menu 04 |✨|",
-                  "description": "Exp & limit",
-                  "rowId": ".? xp"
-                }, {
-                  "title": "Menu 05 |🧩|",
-                  "description": "Fun",
-                  "rowId": ".? fun"
-                }, {
-                  "title": "Menu 07 |🔞|",
-                  "description": "Nsfw",
-                  "rowId": ".? nsfw"
-                }, {
-                  "title": "Menu 08 |⛩️|",
-                  "description": "Anime",
-                  "rowId": ".? anime"
-                }, {
-                  "title": "Menu 10 |🕋|",
-                  "description": "Islami",
-                  "rowId": ".? quran"
-                }, {
-                  "title": "Menu 13 |🎫|",
-                  "description": "Sticker",
-                  "rowId": ".? stiker"
-                }, {
-                  "title": "Menu 14 |🐚|",
-                  "description": "Kerang ajaib",
-                  "rowId": ".? kerangajaib"
-                }, {
-                  "title": "Menu 15 |📑|",
-                  "description": "Quotes",
-                  "rowId": ".? quotes"
-                }, {
-                  "title": "Menu 16 |👑|",
-                  "description": "Admin Group",
-                  "rowId": ".? admin"
-                }, {
-                  "title": "Menu 17 |👥|",
-                  "description": "Group Chat",
-                  "rowId": ".? group"
-                }, {
-                  "title": "Menu 18 |🌟|",
-                  "description": "Premium Users",
-                  "rowId": ".? premium"
-                }, {
-                  "title": "Menu 19 |💻|",
-                  "description": "Internet",
-                  "rowId": ".? internet"
-                }, {
-                  "title": "Menu 20 |🎭|",
-                  "description": "Anonymous Chat",
-                  "rowId": ".? anonymous"
-                }, {
-                  "title": "Menu 21 |✍️|",
-                  "description": "Menulis & Membuat Logo",
-                  "rowId": ".? nulis"
-                }, {
-                  "title": "Menu 22 |📥|",
-                  "description": "Downloader",
-                  "rowId": ".? downloader"
-                }, {
-                  "title": "Menu 23 |🧰|",
-                  "description": "Tools",
-                  "rowId": ".? tools"
-                }, {
-                  "title": "Menu 24 |📂|",
-                  "description": "Database",
-                  "rowId": ".? database"
-                }, {
-                  "title": "Menu 26 |🎙️|",
-                  "description": "Voice Changer",
-                  "rowId": ".? audio"
-                }, {
-                  "title": "Menu 28 |ℹ️|",
-                  "description": "Info",
-                  "rowId": ".? info"
-                }, {
-                  "title": "Menu 29 |❓|",
-                  "description": "No Category",
-                  "rowId": ".? nocategory"
-                }, {
-                  "title": "Menu 30 | 🧑‍💻|",
-                  "description": "Owner",
-                  "rowId": ".? owner"
-                }],
-                                "title": "✧───────────────[ ᴍᴇɴᴜ ]───────────────✧"
-                                }, {
-                                "rows": [{
-                                "title": "[🗳️] Donasi",
-                                "description": "Donasi kak, jangan enak pakenya doang",
-                                "rowId": ".donasi"
-                                }, {
-                                "title": "[🎖️] Thanks To",
-                                "description": "Terima kasih banyak untuk user yang telah berpartisipasi dalam bot",
-                                "rowId": ".tqto"
-                                }],
-                                "title": "✧────────────────[ sᴜᴘᴘᴏʀᴛ ]────────────────✧"
-                            }
-                        ], "contextInfo": 
-                         { "stanzaId": m.key.id,
-                        "participant": m.sender,
-                        "quotedMessage": m.message
-                        }
-                    }
-                 }, {}), {waitForAck: true})
-  return await conn.relayMessage(
-         m.chat,
-         gojo.message,
-         { messageId: gojo.key.id }
-     )
-    }
+╰━━━━━━━━━━━━━━━━┈─◂`
+const listMessage = {
+  text: tek,
+  footer: wm2,
+  mentions: await conn.parseMention(tek),
+  title: ``,
+  buttonText: `Klik Disini ⎙`, 
+  sections
+}
+  if (teks == '404') {
+  	return conn.sendMessage(m.chat, listMessage, { quoted: fkontak, mentions: await conn.parseMention(tek), contextInfo:{ forwardingScore: 99999, isForwarded: true }})
+    }            
   	
  /**************************** TIME *********************/
  let wib = moment.tz('Asia/Jakarta').format('HH:mm:ss')
