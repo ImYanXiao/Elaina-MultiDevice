@@ -7,6 +7,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 	    {title: "🚫 | Delete", rowId: `${usedPrefix + command} delete`},
 	    {title: "👁 | Antiviewonce", rowId: `${usedPrefix + command} antiviewonce`}, 
 	    {title: "🌎 | Public", rowId: `${usedPrefix + command} public`},
+            {title: "✏️ | AutoBio", rowId: `${usedPrefix + command} autoBio`}, 
 	{title: "🗣️ | Simi", rowId: `${usedPrefix + command} simi`},
 	{title: "🔞 | Nsfw", rowId: `${usedPrefix + command} nsfw`},
 	{title: "🌟 | PremNsfwChat", rowId: `${usedPrefix + command} premnsfwchat`},
@@ -78,6 +79,13 @@ const listMessage = {
         }
       }
       chat.viewonce = isEnable
+      break
+     case 'autobio':
+        if (!isROwner) {
+          global.dfail('rowner', m, conn)
+          throw false
+        }
+      chat.autoBio = isEnable
       break
     case 'antidelete':
       if (m.isGroup) {
