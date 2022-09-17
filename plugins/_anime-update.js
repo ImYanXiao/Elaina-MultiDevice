@@ -80,7 +80,7 @@ async function downloadAnime(url) {
 }
 
 async function getLatestAnime() {
-	let html = (await axios.get('https://62.182.83.93/')).data
+	let html = (await axios.get('https://anoboy.lol/')).data
 	let $ = cheerio.load(html), arr = []
 	$('div.home_index > a').each((idx, el) => {
 		arr.push({
