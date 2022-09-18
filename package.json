@@ -52,7 +52,7 @@
         "colors": "1.4.0",
         "emoji-api": "^1.0.2",
         "express": "^4.17.3",
-        "file-type": "^17.1.1",
+        "file-type": "^18.0.0",
         "fluent-ffmpeg": "^2.1.2",
         "formdata-node": "^4.3.2",
         "genshin": "^1.2.4", 
