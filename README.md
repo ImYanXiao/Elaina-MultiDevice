@@ -31,18 +31,19 @@ Script ini untuk semua orang, bukan untuk Dijual. Jika dijual neraka menunggumu 
 
 ## ```Whatsapp``` <a href="https://wa.me/6285736178354"> <img align="left" alt="SIEGRIN | Whastapp" width="26px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Whatsapp.svg" />
 [![BOT WHATSAPP](https://img.shields.io/badge/WhatsApp%20BOT-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/6281231079387) 
-[![ONWER] If you have problem chat me in this number (https://img.shields.io/badge/Owner%20BOT-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/6285736178354) 
- 
+[![ONWER](https://img.shields.io/badge/Owner%20BOT-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/6285736178354) 
 ---------
 
 #### a little about this bot
+|--------|--------|
 | **Fast Respon** |[✔️](https://github.com/ImYanXiao) |
 | **Simple** |[✔️](https://github.com/ImYanXiao) |
 | **Button Template** |[✔️](https://github.com/ImYanXiao) |
 | **Multi Device** |[✔️](https://github.com/ImYanXiao) |
-| **Button Document (This Experiment)** |[✔️](https://github.com/ImYanXiao) |
+| **Button Document(Experiment)** |[✔️](https://github.com/ImYanXiao) |
 ---------
 #### Some of the features include
+|--------|--------|
 | **Downloader** |[✔️](https://github.com/ImYanXiao) |
 | **Internet** |[✔️](https://github.com/ImYanXiao) |
 | **Game Rpg** |[✔️](https://github.com/ImYanXiao) |
@@ -58,14 +59,14 @@ Script ini untuk semua orang, bukan untuk Dijual. Jika dijual neraka menunggumu 
 | **React** |[✔️](https://github.com/ImYanXiao) |
 ---------
 
-## `SETTING ⚙️`
+## `SETTING`
 
 - Owner Number [Here](https://github.com/ImYanXiao/Elaina-MultiDevice/blob/master/config.js#L1)
 - Owner Name [Here](https://github.com/ImYanXiao/Elaina-Multidevice/blob/master/config.js#L1)
 - Bot Name [Here](https://github.com/ImYanXiao/Elaina-Multidevice/blob/master/config.js#L1)
 ---------
 
-## ```Heroku Buildpack 📪```
+## ```Heroku Buildpack```
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ImYanXiao/Elaina-MultiDevice)
 
 | BuildPack | LINK |
@@ -224,6 +225,7 @@ conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', 'https://github.com/Boc
 2. Don't forget give star this repo
 3. Follow Github
 4. Don't use this repository wrong!
+5. If you have problem chat me in owner number
 
 ---------
 
