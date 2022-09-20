@@ -23,7 +23,6 @@ import { tmpdir } from 'os'
 import { format } from 'util'
 import { makeWASocket, protoType, serialize } from './lib/simple.js'
 import { Low, JSONFile } from 'lowdb'
-import pino from 'pino'
 /*import {
   mongoDB,
   mongoDBV2
