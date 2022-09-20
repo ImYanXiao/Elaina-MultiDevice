@@ -512,7 +512,7 @@ const listMessage = {
 
     orderTitle: `▮Menu ▸`,
 
-    thumbnail: await (await fetch(flaaa + teks)).buffer(), //Gambarnye
+    thumbnail: await (await fetch(fla + teks)).buffer(), //Gambarnye
 
     sellerJid: '0@s.whatsapp.net' 
 
@@ -546,7 +546,7 @@ const listMessage = {
 
     orderTitle: `▮Menu ▸`,
 
-    thumbnail: await (await fetch(flaaa + 'Loading')).buffer(), //Gambarnye
+    thumbnail: await (await fetch(fla + 'Loading')).buffer(), //Gambarnye
 
     sellerJid: '0@s.whatsapp.net' 
 
