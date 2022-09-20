@@ -15,7 +15,8 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 	{title: "🚫 | Antidelete", rowId: `${usedPrefix + command} antidelete`},
 	{title: "📛 | Antitoxic", rowId: `${usedPrefix + command} antitoxic`},
 	{title: "📞 | Anticall", rowId: `$usedPrefix + command} anticall`}, 
-	{title: "🖼 | Autosticker", rowId: `${usedPrefix + command} stiker`}, 
+        {title: "📩 | Antispam", rowId: `$usedPrefix + command} antiSpam`}, 
+	{title: "🖼 | Autosticker", rowId: `${usedPrefix + command} autoSticker`}, 
 	{title: "⏏️ | Autolevelup", rowId: `${usedPrefix + command} autolevelup`},
 	{title: "🔎 | Detect", rowId: `${usedPrefix + command} detect`},
 	{title: "📑 | Document", rowId: `${usedPrefix + command} document`},
@@ -141,14 +142,12 @@ const listMessage = {
       }
       chat.antiLink = isEnable
       break
-     //case 'autosticker':
-     //if (m.isGroup) {
-       //if (!(isAdmin || isOwner)) {
-         //global.dfail('admin', m, conn)
-     //     throw false
-      //  }
-    //  }
-    // chat.autosticker = isEnable
+     case 'autosticker':
+        if (!isROwner) {
+          global.dfail('rowner', m, conn)
+          throw false
+        }
+      chat.autoSticker = isEnable
       break
       case 'simi':
         if (!isROwner) {
@@ -215,6 +214,24 @@ const listMessage = {
       }
       bot.restrict = isEnable
       break
+    case 'antispam':
+       if (m.isGroup) {
+         if (!(isAdmin || isOwner)) {
+           global.dfail('admin', m, conn)
+           throw false
+         }
+       }
+       chat.antiSpam = isEnable
+       break
+       case 'anticall':
+       if (m.isGroup) {
+         if (!(isAdmin || isOwner)) {
+           global.dfail('admin', m, conn)
+           throw false
+         }
+       }
+       chat.antiCall = isEnable
+       break
     case 'autoupnime':
         if (!isROwner) {
           global.dfail('rowner', m, conn)
@@ -237,11 +254,6 @@ const listMessage = {
         throw false
       }
       global.opts['autoread'] = isEnable
-      break
-      case 'anticall':
-      isAll = true
-      if (!isOwner) return dfail('owner', m, conn)
-      setting.anticall = isEnable
       break
     case 'pconly':
     case 'privateonly':
