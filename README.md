@@ -35,28 +35,26 @@ Script ini untuk semua orang, bukan untuk Dijual. Jika dijual neraka menunggumu 
 ---------
 
 #### a little about this bot
-|--------|--------|
-| **Fast Respon** |[✔️](https://github.com/ImYanXiao) |
-| **Simple** |[✔️](https://github.com/ImYanXiao) |
-| **Button Template** |[✔️](https://github.com/ImYanXiao) |
-| **Multi Device** |[✔️](https://github.com/ImYanXiao) |
-| **Button Document(Experiment)** |[✔️](https://github.com/ImYanXiao) |
+- [x] **Fast Respon** |[✔️](https://github.com/ImYanXiao) |
+- [x] **Simple** |[✔️](https://github.com/ImYanXiao) |
+- [x] **Button Template** |[✔️](https://github.com/ImYanXiao) |
+- [x] **Multi Device** |[✔️](https://github.com/ImYanXiao) |
+- [x] **Button Document(Experiment)** |[✔️](https://github.com/ImYanXiao) |
 ---------
 #### Some of the features include
-|--------|--------|
-| **Downloader** |[✔️](https://github.com/ImYanXiao) |
-| **Internet** |[✔️](https://github.com/ImYanXiao) |
-| **Game Rpg** |[✔️](https://github.com/ImYanXiao) |
-| **Nsfw** |[✔️](https://github.com/ImYanXiao) |
-| **Sticker** |[✔️](https://github.com/ImYanXiao) |
-| **Game** |[✔️](https://github.com/ImYanXiao) |
-| **Kerang Ajaib** |[✔️](https://github.com/ImYanXiao) |
-| **Quotes** |[✔️](https://github.com/ImYanXiao) |
-| **Anime** |[✔️](https://github.com/ImYanXiao) |
-| **Premium** |[✔️](https://github.com/ImYanXiao) |
-| **Tools** |[✔️](https://github.com/ImYanXiao) |
-| **Exec** |[✔️](https://github.com/ImYanXiao) |
-| **React** |[✔️](https://github.com/ImYanXiao) |
+- [x] Downloader |[✔️](https://github.com/ImYanXiao) |
+- [x] Internet |[✔️](https://github.com/ImYanXiao) |
+- [x] Game Rpg |[✔️](https://github.com/ImYanXiao) |
+- [x] Nsfw |[✔️](https://github.com/ImYanXiao) |
+- [x] Sticker |[✔️](https://github.com/ImYanXiao) |
+- [x] Game |[✔️](https://github.com/ImYanXiao) |
+- [x] Kerang Ajaib |[✔️](https://github.com/ImYanXiao) |
+- [x] Quotes |[✔️](https://github.com/ImYanXiao) |
+- [x] Anime |[✔️](https://github.com/ImYanXiao) |
+- [x] Premium |[✔️](https://github.com/ImYanXiao) |
+- [x] Tools |[✔️](https://github.com/ImYanXiao) |
+- [x] Exec |[✔️](https://github.com/ImYanXiao) |
+- [x] React |[✔️](https://github.com/ImYanXiao) |
 ---------
 
 ## `SETTING`
