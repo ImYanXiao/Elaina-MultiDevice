@@ -35,26 +35,26 @@ Script ini untuk semua orang, bukan untuk Dijual. Jika dijual neraka menunggumu 
 ---------
 
 #### a little about this bot
-- [x] **Fast Respon** |[✔️](https://github.com/ImYanXiao) |
-- [x] **Simple** |[✔️](https://github.com/ImYanXiao) |
-- [x] **Button Template** |[✔️](https://github.com/ImYanXiao) |
-- [x] **Multi Device** |[✔️](https://github.com/ImYanXiao) |
-- [x] **Button Document(Experiment)** |[✔️](https://github.com/ImYanXiao) |
+- [x] **Fast Respon** 
+- [x] **Simple** 
+- [x] **Button Template** 
+- [x] **Multi Device** 
+- [x] **Button Document(Experiment)** 
 ---------
 #### Some of the features include
-- [x] Downloader |[✔️](https://github.com/ImYanXiao) |
-- [x] Internet |[✔️](https://github.com/ImYanXiao) |
-- [x] Game Rpg |[✔️](https://github.com/ImYanXiao) |
-- [x] Nsfw |[✔️](https://github.com/ImYanXiao) |
-- [x] Sticker |[✔️](https://github.com/ImYanXiao) |
-- [x] Game |[✔️](https://github.com/ImYanXiao) |
-- [x] Kerang Ajaib |[✔️](https://github.com/ImYanXiao) |
-- [x] Quotes |[✔️](https://github.com/ImYanXiao) |
-- [x] Anime |[✔️](https://github.com/ImYanXiao) |
-- [x] Premium |[✔️](https://github.com/ImYanXiao) |
-- [x] Tools |[✔️](https://github.com/ImYanXiao) |
-- [x] Exec |[✔️](https://github.com/ImYanXiao) |
-- [x] React |[✔️](https://github.com/ImYanXiao) |
+- [x] Downloader 
+- [x] Internet 
+- [x] Game Rpg 
+- [x] Nsfw 
+- [x] Sticker 
+- [x] Game 
+- [x] Kerang Ajaib 
+- [x] Quotes 
+- [x] Anime 
+- [x] Premium 
+- [x] Tools 
+- [x] Exec 
+- [x] React 
 ---------
 
 ## `SETTING`
