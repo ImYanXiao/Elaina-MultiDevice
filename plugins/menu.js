@@ -487,40 +487,6 @@ const listMessage = {
     }
 
     }
-
-    const ftroli = {
-
-    key : {
-
-    remoteJid: 'status@broadcast',
-
-    participant : '0@s.whatsapp.net'
-
-    },
-
-    message: {
-
-    orderMessage: {
-
-    itemCount : 2022,
-
-    status: 1,
-
-    surface : 1,
-
-    message: `Hai Kak ${name}!`, 
-
-    orderTitle: `▮Menu ▸`,
-
-    thumbnail: await (await fetch(fla + teks)).buffer(), //Gambarnye
-
-    sellerJid: '0@s.whatsapp.net' 
-
-    }
-
-    }
-
-    }
     
     const fload = {
 
@@ -609,7 +575,7 @@ const listMessage = {
             mimetype: td,
             fileLength: fsizedoc,
             pageCount: fpagedoc,
-            caption: text,
+            caption: text.trim(),
             footer: titlebot,
             templateButtons: [
                 {
