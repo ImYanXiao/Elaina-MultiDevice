@@ -43,6 +43,7 @@ ${usedPrefix + command} demote @user`.trim(), wm, null, [['Welcome', '#simulate 
 }
 handler.help = ['simulate <event> [@mention]']
 handler.tags = ['owner']
+handler.rowner = true
 
 handler.command = /^simulate$/i
 export default handler
