@@ -1,7 +1,5 @@
 // Script Ori By BochilGaming
 // Ditulis Ulang Oleh ImYanXiao
-// Cara Ganti Menu? Hilangin Tanda // 
-// Lalu Ganti Ke Menu Sebelumnya
 
 import { promises } from 'fs'
 import { join } from 'path'
@@ -256,10 +254,9 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname, args, command}) => {
       }) * 1000
     }
     let mpt = clockString(_mpt)
-
-let usrs = db.data.users[m.sender]
-
-const sections = [
+    let usrs = db.data.users[m.sender]
+   
+   const sections = [
    {
 	title: `${htki} ᴍᴀɪɴ ${htka}`,
 	rows: [
@@ -332,8 +329,8 @@ const listMessage = {
 }
   if (teks == '404') {
   	return conn.sendMessage(m.chat, listMessage, { quoted: fkontak, mentions: await conn.parseMention(tek), contextInfo:{ forwardingScore: 99999, isForwarded: true }})
-    }            
-  	
+    }
+
  /**************************** TIME *********************/
  let wib = moment.tz('Asia/Jakarta').format('HH:mm:ss')
     let wibh = moment.tz('Asia/Jakarta').format('HH')
@@ -449,7 +446,7 @@ const listMessage = {
   }
   
     let urls = pickRandom(['https://telegra.ph/file/035e524939ab0294ba91f.jpg', 'https://telegra.ph/file/96b2275d3b14d071290bc.jpg', 'https://telegra.ph/file/2c6b7660bc6126404a9bb.jpg', 'https://telegra.ph/file/c635bf577bb9d59a3e00b.jpg', 'https://telegra.ph/file/be8dd52f6363f9e9f5a60.jpg', 'https://telegra.ph/file/02e53361b9dc946f63c8d.jpg', 'https://telegra.ph/file/298ed2f1bba17aeb64ca8.jpg', 'https://telegra.ph/file/be2a18221974147f66ea0.jpg'])
-  
+ 
     const pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => 'https://telegra.ph/file/24fa902ead26340f3df2c.png')
     
     //FAKE TROLI
@@ -478,7 +475,7 @@ const listMessage = {
 
     orderTitle: `▮Menu ▸`,
 
-    thumbnail: await (await fetch(fla + 'Menu')).buffer(), //Gambarnye
+    thumbnail: await (await fetch(flaaa + 'Menu')).buffer(), //Gambarnye
 
     sellerJid: '0@s.whatsapp.net' 
 
@@ -512,7 +509,7 @@ const listMessage = {
 
     orderTitle: `▮Menu ▸`,
 
-    thumbnail: await (await fetch(fla + 'Loading')).buffer(), //Gambarnye
+    thumbnail: await (await fetch(flaaa + 'Loading')).buffer(), //Gambarnye
 
     sellerJid: '0@s.whatsapp.net' 
 
@@ -549,7 +546,7 @@ const listMessage = {
     let d6 = 'application/zip'
     let td = `${pickRandom([d1,d2,d3,d4,d5,d6])}`
     
-    // Thanks Rlxfly https://github.com/Rlxfly
+    
     //------- MENU LOCATION
     const pre = generateWAMessageFromContent(m.chat, { liveLocationMessage:{
   degreesLatitude: 34.672314,
@@ -575,7 +572,7 @@ const listMessage = {
             mimetype: td,
             fileLength: fsizedoc,
             pageCount: fpagedoc,
-            caption: text.trim(),
+            caption: text,
             footer: titlebot,
             templateButtons: [
                 {
@@ -611,15 +608,27 @@ const listMessage = {
             ]
         }
        //await conn.sendMessage(m.chat, message, m, { mentionedJid: [m.sender] })
+        
+        //MAIN MENU
+      /*conn.sendButton(m.chat, `*${ucapan()}, ${name} 👋*`, text.trim(), await genProfile(conn, m), [['Speedtest', _p + 'speedtest'], ['Owner', _p + 'owner']], false, { quoted: fkon, contextInfo: { externalAdReply: { showAdAttribution: true,
+    mediaUrl: "https://Instagram.com/Xiao_yan_21",
+    mediaType: "VIDEO",
+    description: "https://Instagram.com/Xiao_yan_21", 
+    title: wm,
+    body: 'List Menu?',
+    thumbnail: thumb,
+    sourceUrl: sgc
+}
+} })*/
 
     //------------------- 2BUTTON VID
-    conn.sendMessage(m.chat, { video: { url: 'https://telegra.ph/file/c82d5c358495e8ef15916.mp4' }, gifPlayback: true, gifAttribution: ~~(Math.random() * 2), caption: text.trim(), footer: 'ᴍᴀᴅᴇ ᴡɪᴛʜ ❤ ʙʏ ɪᴍ-ʏᴀɴxɪᴀᴏ', templateButtons: [{ quickReplyButton: { displayText: 'Speedtest⚡', id: `${_p}speedtest` }}, { quickReplyButton: { displayText: 'Owner🎀', id: `${_p}owner` }} ] })
-
-   //------------------- PAYMENT MENU
+   // conn.sendMessage(m.chat, { video: { url: 'https://telegra.ph/file/c82d5c358495e8ef15916.mp4' }, gifPlayback: true, gifAttribution: ~~(Math.random() * 2), caption: text.trim(), footer: 'ᴍᴀᴅᴇ ᴡɪᴛʜ ❤ ʙʏ ɪᴍ-ʏᴀɴxɪᴀᴏ', templateButtons: [{ quickReplyButton: { displayText: 'Speedtest⚡', id: `${_p}speedtest` }}, { quickReplyButton: { displayText: 'Owner🎀', id: `${_p}owner` }} ] })
+    
+    //------------------- Payment MENU
     /*await conn.relayMessage(m.chat,  {
     requestPaymentMessage: {
       currencyCodeIso4217: 'USD',
-      amount1000: 10000000,
+      amount1000: 50000000,
       requestFrom: m.sender,
       noteMessage: {
       extendedTextMessage: {
@@ -628,12 +637,12 @@ const listMessage = {
       externalAdReply: {
       showAdAttribution: true
       }}}}}}, {})*/
-    
+      
     //------------------- 2BUTTON LOCATION
-    /*conn.sendButton(m.chat, `${ucapan()}﹗`, text.trim(), `${timeimg()}`, [
-      ['ᴍᴇɴᴜ', `${_p}menu`],
-      ['sᴘᴇᴇᴅᴛᴇsᴛ', `${_p}speedtest`]
-    ], m, {asLocation: true})*/
+    conn.sendButton(m.chat, `${ucapan()}﹗`, text.trim(), `${timeimg()}`, [
+      ['🎏 ᴍᴇɴᴜ', `${_p}menu`],
+      ['⚡ sᴘᴇᴇᴅᴛᴇsᴛ', `${_p}speedtest`]
+    ], m, {asLocation: true})
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
@@ -691,7 +700,7 @@ function ucapan() {
 }
 function timeimg() {
     let imgloc = ''
-  const time = moment.tz('Asia/Kolkata').format('HH')
+  const time = moment.tz('Asia/Jakarta').format('HH')
   imgloc = ('./media/elaina8.png')
   if (time >= 0) {
     imgloc = ('./media/elaina.png')
