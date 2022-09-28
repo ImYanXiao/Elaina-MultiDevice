@@ -16,7 +16,7 @@ handler.all = async function (m) {
 		
         //global.bg = await (await fetch(img)).buffer()
 		global.doc = pickRandom(["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/msword", "application/pdf", "application/vnd.android.package-archive", "application/zip"])
-		global.pic = pickRandom(hwaifu) 
+		global.pic = hwaifu.getRandom()
 		global.fla = pickRandom(flaaa)
 
 		// Module 
