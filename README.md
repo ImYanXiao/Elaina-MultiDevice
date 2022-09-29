@@ -34,26 +34,26 @@ Script ini untuk semua orang, bukan untuk Dijual. Jika dijual neraka menunggumu 
 ---------
 
 #### a little about this bot
-- [x] **Fast Respon** 
-- [x] **Simple** 
-- [x] **Button Template** 
-- [x] **Multi Device** 
-- [x] **Button Document(Experiment)** 
+- [❖] **Fast Respon** 
+- [❖] **Simple** 
+- [❖] **Button Template** 
+- [❖] **Multi Device** 
+- [❖] **Button Document(Experiment)** 
 ---------
 #### Some of the features include
-- [x] Downloader 
-- [x] Internet 
-- [x] Game Rpg 
-- [x] Nsfw 
-- [x] Sticker 
-- [x] Game 
-- [x] Kerang Ajaib 
-- [x] Quotes 
-- [x] Anime 
-- [x] Premium 
-- [x] Tools 
-- [x] Exec 
-- [x] React 
+- [❖] Downloader 
+- [❖] Internet 
+- [❖] Game Rpg 
+- [❖] Nsfw 
+- [❖] Sticker 
+- [❖] Game 
+- [❖] Kerang Ajaib 
+- [❖] Quotes 
+- [❖] Anime 
+- [❖] Premium 
+- [❖] Tools 
+- [❖] Exec 
+- [❖] React 
 ---------
 
 ## `SETTING`
