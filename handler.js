@@ -21,6 +21,7 @@ const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(function (
  * Handle messages upsert
  * @param {import('@adiwajshing/baileys').BaileysEventMap<unknown>['messages.upsert']} groupsUpdate 
  */
+
 export async function handler(chatUpdate) {
     this.msgqueque = this.msgqueque || []
     if (!chatUpdate)
@@ -46,7 +47,7 @@ export async function handler(chatUpdate) {
                 if (!isNumber(user.exp))
                     user.exp = 0
                 if (!isNumber(user.limit))
-                    user.limit = 10
+                    user.limit = 25
                 if (!isNumber(user.lastclaim))
                     user.lastclaim = 0
                 if (!isNumber(user.pasangan))
@@ -75,7 +76,6 @@ export async function handler(chatUpdate) {
                     user.role = 'Beginner'
                 if (!('autolevelup' in user))
                     user.autolevelup = true
-
                 if (!isNumber(user.money))
                     user.money = 0
                 if (!isNumber(user.atm))
@@ -98,7 +98,6 @@ export async function handler(chatUpdate) {
                     user.string = 0
                 if (!isNumber(user.petFood))
                     user.petFood = 0
-
                 if (!isNumber(user.emerald))
                     user.emerald = 0
                 if (!isNumber(user.diamond))
@@ -109,7 +108,6 @@ export async function handler(chatUpdate) {
                     user.iron = 0
                 if (!isNumber(user.upgrader))
                     user.upgrader = 0
-
                 if (!isNumber(user.common))
                     user.common = 0
                 if (!isNumber(user.uncommon))
@@ -122,7 +120,6 @@ export async function handler(chatUpdate) {
                     user.superior = 0
                 if (!isNumber(user.pet))
                     user.pet = 0
-
                 if (!isNumber(user.horse))
                     user.horse = 0
                 if (!isNumber(user.horseexp))
@@ -144,6 +141,7 @@ export async function handler(chatUpdate) {
                 if (!isNumber(user.roboxp))
                     user.roboxp = 0
 
+
                 if (!isNumber(user.horselastfeed))
                     user.horselastfeed = 0
                 if (!isNumber(user.catlastfeed))
@@ -153,11 +151,12 @@ export async function handler(chatUpdate) {
                 if (!isNumber(user.doglastfeed))
                     user.doglastfeed = 0
 
+
                 if (!isNumber(user.armor))
                     user.armor = 0
                 if (!isNumber(user.armordurability))
                     user.armordurability = 0
-                if (!isNumber(user.sword))
+                if (!isNumber(user.sword))              
                     user.sword = 0
                 if (!isNumber(user.sworddurability))
                     user.sworddurability = 0
@@ -169,6 +168,7 @@ export async function handler(chatUpdate) {
                     user.fishingrod = 0
                 if (!isNumber(user.fishingroddurability))
                     user.fishingroddurability = 0
+
 
                 if (!isNumber(user.lastclaim))
                     user.lastclaim = 0
@@ -191,6 +191,7 @@ export async function handler(chatUpdate) {
                 if (!isNumber(user.lastbunga))
                     user.lastbunga = 0
                     
+
                 if (!isNumber(user.premium))
                     user.premium = false
                 if (!isNumber(user.premiumTime))
@@ -200,7 +201,7 @@ export async function handler(chatUpdate) {
             } else
                 global.db.data.users[m.sender] = {
                     exp: 0,
-                    limit: 10,
+                    limit: 25,
                     lastclaim: 0,
                     registered: false,
                     name: m.name,
@@ -211,10 +212,9 @@ export async function handler(chatUpdate) {
                     afkReason: '',
                     banned: false,
                     warn: 0,
-                    level: 0,
+                    level: 0,                    
                     role: 'Beginner',
                     autolevelup: true,
-
                     money: 0,
                     bank: 0,
                     atm: 0,
@@ -225,20 +225,17 @@ export async function handler(chatUpdate) {
                     wood: 0,
                     rock: 0,
                     string: 0,
-
                     emerald: 0,
                     diamond: 0,
                     gold: 0,
                     iron: 0,
                     upgrader: 0,
-
                     common: 0,
                     uncommon: 0,
                     mythic: 0,
                     legendary: 0,
                     superior: 0,
                     pet: 0,
-
                     horse: 0,
                     horseexp: 0,
                     cat: 0,
@@ -247,12 +244,10 @@ export async function handler(chatUpdate) {
                     foxexp: 0,
                     dog: 0,
                     dogexp: 0,
-
                     horselastfeed: 0,
                     catlastfeed: 0,
                     foxlastfeed: 0,
                     doglastfeed: 0,
-
                     armor: 0,
                     armordurability: 0,
                     sword: 0,
@@ -261,7 +256,6 @@ export async function handler(chatUpdate) {
                     pickaxedurability: 0,
                     fishingrod: 0,
                     fishingroddurability: 0,
-
                     lastclaim: 0,
                     lastadventure: 0,
                     lastfishing: 0,
@@ -272,7 +266,6 @@ export async function handler(chatUpdate) {
                     lastweekly: 0,
                     lastmonthly: 0,
                     lastbunga: 0,
-                    
                     premium: false,
                     premiumTime: 0,
                     limitjoin: 0,
@@ -307,6 +300,12 @@ export async function handler(chatUpdate) {
                     chat.simi = false
                 if (!('nsfw' in chat))
                     chat.nsfw = false
+                if (!('nsfwnhentai' in chat)) 
+                    chat.nsfwnhentai = false
+                if (!('premium' in chat))
+                    chat.premium = false
+                if (!('premiumTime' in chat)) 
+                    chat.premiumTime = false
                 if (!('premnsfw' in chat))
                     chat.premnsfw = false
                 if (!isNumber(chat.expired))
@@ -327,18 +326,27 @@ export async function handler(chatUpdate) {
                     simi: false,
                     expired: 0,
                     nsfw: false,
+                    premium: false,
+	                premiumTime: false,
                     premnsfw: false,
+                    nsfwnhentai: false, 
                 }
             let settings = global.db.data.settings[this.user.jid]
             if (typeof settings !== 'object') global.db.data.settings[this.user.jid] = {}
             if (settings) {
                 if (!('self' in settings)) settings.self = false
-                if (!('autoread' in settings)) settings.autoread = true
-                if (!('restrict' in settings)) settings.restrict = true
+                if (!('autoread' in settings)) settings.autoread = false
+                if (!('restrict' in settings)) settings.restrict = false
+                if (!('anticall' in settings)) settings.anticall = true
+                if (!('autorestart' in settings)) settings.autorestart = false
+                if (!('restartDB' in settings)) settings.restartDB = 0
             } else global.db.data.settings[this.user.jid] = {
                 self: false,
-                autoread: true,
-                restrict: true
+                autoread: false,
+                autorestart: false,
+                anticall: true,
+                restartDB: 0,
+                restrict: false
             }
         } catch (e) {
             console.error(e)
@@ -356,10 +364,14 @@ export async function handler(chatUpdate) {
         if (typeof m.text !== 'string')
             m.text = ''
 
+
+
         const isROwner = [conn.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
         const isOwner = isROwner || m.fromMe
         const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
         const isPrems = isROwner || db.data.users[m.sender].premiumTime > 0
+
+
 
         if (opts['queque'] && m.text && !(isMods || isPrems)) {
             let queque = this.msgqueque, time = 1000 * 5
@@ -377,7 +389,6 @@ export async function handler(chatUpdate) {
 
         let usedPrefix
         let _user = global.db.data && global.db.data.users && global.db.data.users[m.sender]
-
         const groupMetadata = (m.isGroup ? ((conn.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) : {}) || {}
         const participants = (m.isGroup ? groupMetadata.participants : []) || []
         const user = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) === m.sender) : {}) || {} // User Data
@@ -411,6 +422,7 @@ export async function handler(chatUpdate) {
                     }
                 }
             }
+
             if (!opts['restrict'])
                 if (plugin.tags && plugin.tags.includes('admin')) {
                     // global.dfail('restrict', m, this)
@@ -423,7 +435,7 @@ export async function handler(chatUpdate) {
                 Array.isArray(_prefix) ? // Array?
                     _prefix.map(p => {
                         let re = p instanceof RegExp ? // RegExp in Array?
-                            p :
+                           p :
                             new RegExp(str2Regex(p))
                         return [re.exec(m.text), re]
                     }) :
@@ -465,7 +477,7 @@ export async function handler(chatUpdate) {
                     plugin.command.test(command) :
                     Array.isArray(plugin.command) ? // Array?
                         plugin.command.some(cmd => cmd instanceof RegExp ? // RegExp in Array?
-                            cmd.test(command) :
+                            cmd.test(command) :       
                             cmd === command
                         ) :
                         typeof plugin.command === 'string' ? // String?
@@ -588,7 +600,7 @@ export async function handler(chatUpdate) {
                         }
                     }
                     if (m.limit)
-                        m.reply(+m.limit + ' ʟɪᴍɪᴛ ᴛᴇʀᴘᴀᴋᴀɪ ✔️')
+                        m.reply(+m.limit + ' ʟɪᴍɪᴛ ᴋᴀᴍᴜ ᴛᴇʀᴘᴀᴋᴀɪ ✔️')
                 }
                 break
             }
@@ -608,7 +620,6 @@ export async function handler(chatUpdate) {
                 user.exp += m.exp
                 user.limit -= m.limit * 1
             }
-
             let stat
             if (m.plugin) {
                 let now = +new Date
@@ -630,14 +641,13 @@ export async function handler(chatUpdate) {
                         lastSuccess: m.error != null ? 0 : now
                     }
                 stat.total += 1
-                stat.last = now
+                stat.last = now                
                 if (m.error == null) {
                     stat.success += 1
                     stat.lastSuccess = now
                 }
             }
         }
-
         try {
             if (!opts['noprint']) await (await import(`./lib/print.js`)).default(m, this)
         } catch (e) {
@@ -647,7 +657,6 @@ export async function handler(chatUpdate) {
             await this.chatRead(m.chat, m.isGroup ? m.sender : undefined, m.id || m.key.id).catch(() => { })
     }
 }
-
 /**
  * Handle groups participants update
  * @param {import('@adiwajshing/baileys').BaileysEventMap<unknown>['group-participants.update']} groupsUpdate 
@@ -668,9 +677,11 @@ export async function participantsUpdate({ id, participants, action }) {
             if (chat.welcome) {
                 let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
                 for (let user of participants) {
-                    let pp = 'https://telegra.ph/file/2d06f0936842064f6b3bb.png'
+                    let pp = 'https://telegra.ph/file/24fa902ead26340f3df2c.png'
+                    let ppgc = 'https://telegra.ph/file/24fa902ead26340f3df2c.png'
                     try {
                         pp = await this.profilePictureUrl(user, 'image')
+                        ppgc = await this.profilePictureUrl(id, 'image') 
                     } catch (e) {
                     } finally {
                         text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || 'unknow') :
@@ -689,14 +700,14 @@ export async function participantsUpdate({ id, participants, action }) {
                                 groupname: await this.getName(id),
                                 membercount: groupMetadata.participants.length
                             })
-    conn.sendButtonDoc(id, text, wm, action == 'add' ? 'ᴡᴇʟᴄᴏᴍᴇ' : 'sᴀʏᴏɴᴀʀᴀᴀ', action === 'add' ? '.intro' : 'ImYanXiao', fkontak, { contextInfo: { externalAdReply: { showAdAttribution: true,
-    mediaUrl: "https://youtu.be/-TleC8rbDT8",
+    conn.sendButtonDoc(id, text, wm, action == 'add' ? 'ᴡᴇʟᴄᴏᴍᴇ' : 'sᴀʏᴏɴᴀʀᴀᴀ', action === 'add' ? '.intro' : 'ok', fkontak, { contextInfo: { externalAdReply: { showAdAttribution: true,
+    mediaUrl: "https://instagram.com/Xiao_yan_21",
     mediaType: 2, 
     description: "https://youtu.be/-TleC8rbDT8", 
     title: 'Elaina-MultiDevice',
     body: wm,
     thumbnail: await(await fetch(action === 'add' ? wel : lea)).buffer(),
-    sourceUrl: sgc
+    sourceUrl: sig
      }}
   })
                     }
@@ -716,7 +727,7 @@ export async function participantsUpdate({ id, participants, action }) {
 }
 
 /**
- * Handle groups update
+ * Handler groups update
  * @param {import('@adiwajshing/baileys').BaileysEventMap<unknown>['groups.update']} groupsUpdate 
  */
 export async function groupsUpdate(groupsUpdate) {
@@ -731,8 +742,12 @@ export async function groupsUpdate(groupsUpdate) {
         if (groupUpdate.subject) text = (chats.sSubject || this.sSubject || conn.sSubject || '```Subject has been changed to```\n@subject').replace('@subject', groupUpdate.subject)
         if (groupUpdate.icon) text = (chats.sIcon || this.sIcon || conn.sIcon || '```Icon has been changed to```').replace('@icon', groupUpdate.icon)
         if (groupUpdate.revoke) text = (chats.sRevoke || this.sRevoke || conn.sRevoke || '```Group link has been changed to```\n@revoke').replace('@revoke', groupUpdate.revoke)
+        if (groupUpdate.announce == true) text = (chats.sAnnounceOn || this.sAnnounceOn || conn.sAnnounceOn || '*Group has been closed!*')
+        if (groupUpdate.announce == false) text = (chats.sAnnounceOff || this.sAnnounceOff || conn.sAnnounceOff || '*Group has been open!*')
+        if (groupUpdate.restrict == true) text = (chats.sRestrictOn || this.sRestrictOn || conn.sRestrictOn || '*Group has been all participants!*')
+        if (groupUpdate.restrict == false) text = (chats.sRestrictOff || this.sRestrictOff || conn.sRestrictOff || '*Group has been only admin!*')
         if (!text) continue
-        await this.sendMessage(id, { text, mentions: this.parseMention(text) })
+         this.send2ButtonDoc(id, text.trim(), author, '🔖 Matikan Fitur', '.off detect', '🎀 Menu', '.menu', fakes, adReply)
     }
 }
 
@@ -746,14 +761,14 @@ export async function deleteUpdate(message) {
             return
         let chat = global.db.data.chats[msg.chat] || {}
         if (chat.delete)
-            return
-        await this.reply(msg.chat, `
-Terdeteksi @${participant.split`@`[0]} telah menghapus pesan
+            return 
+            this.send2ButtonDoc(msg.chat, `
+Terdeteksi @${participant.split`@`[0]} telah menghapus pesan. 
 Untuk mematikan fitur ini, ketik
 *.enable delete*
-`.trim(), msg, {
-            mentions: [participant]
-        })
+          
+Untuk menghapus pesan yang dikirim oleh Bot, reply pesan dengan perintah
+*.delete*`, author, '🔖 Matikan Fitur', '.on delete', '🎀 Menu', '.menu', msg, adReply)
         this.copyNForward(msg.chat, msg).catch(e => console.log(e, msg))
     } catch (e) {
         console.error(e)
@@ -770,14 +785,10 @@ global.dfail = (type, m, conn) => {
         private: '*ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ* • ᴄᴏᴍᴍᴀɴᴅ ɪɴɪ ʜᴀɴʏᴀ ʙɪsᴀ ᴅɪᴘᴀᴋᴀɪ ᴅɪᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ',
         admin: '*ᴏɴʟʏ ᴀᴅᴍɪɴ* • ᴄᴏᴍᴍᴀɴᴅ ɪɴɪ ʜᴀɴʏᴀ ᴜɴᴛᴜᴋ ᴀᴅᴍɪɴ ɢʀᴏᴜᴘ',
         botAdmin: '*ᴏɴʟʏ ʙᴏᴛ ᴀᴅᴍɪɴ* • ᴄᴏᴍᴍᴀɴᴅ ɪɴɪ ʜᴀɴʏᴀ ʙɪsᴀ ᴅɪɢᴜɴᴀᴋᴀɴ ᴋᴇᴛɪᴋᴀ ʙᴏᴛ ᴍᴇɴᴊᴀᴅɪ ᴀᴅᴍɪɴ',
+        unreg: '*ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ʀᴇɢɪsᴛᴇʀᴇᴅ ʏᴇᴛ* • ᴋᴇᴛɪᴋ  .daftar ᴜɴᴛᴜᴋ ʙɪsᴀ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ғɪᴛᴜʀ ɪɴɪ', 
         restrict: '*ʀᴇsᴛʀɪᴄᴛ* • ʀᴇsᴛʀɪᴄᴛ ʙᴇʟᴜᴍ ᴅɪɴʏᴀʟᴀᴋᴀɴ ᴅɪᴄʜᴀᴛ ɪɴɪ',
     }[type]
-    if (msg) return conn.reply(m.chat, msg, m, { contextInfo: { externalAdReply: {title: global.wm, body: '404 Access denied ✘', sourceUrl: global.snh, thumbnail: fs.readFileSync('./thumbnail.jpg') }}})
-    
-    let msgg = {
-    	unreg: 'ʜᴀʟʟᴏ ᴋᴀᴋ 👋\nᴀɴᴅᴀ ʜᴀʀᴜs ᴍᴇɴᴅᴀғᴛᴀʀ ᴋᴇ ᴅᴀᴛᴀʙᴀsᴇ ʙᴏᴛ ᴅᴜʟᴜ sᴇʙᴇʟᴜᴍ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ғɪᴛᴜʀ ɪɴɪ\n\n➞ ᴋʟɪᴄᴋ ᴛᴏᴍʙᴏʟ ᴅɪʙᴀᴡᴀʜ ᴜɴᴛᴜᴋ ᴍᴇɴᴅᴀғᴛᴀʀ ᴋᴇ ᴅᴀᴛᴀʙᴀsᴇ ʙᴏᴛ'
-}[type]
-if (msgg) return conn.sendButton(m.chat, `${global.htki} VERIFY ${global.htka}`, msgg, null, ['- ᴠᴇʀɪғʏ -', '/verify'],m)
+    if (msg) return conn.send2ButtonDoc(m.chat, msg, author, '💌 Creator', '.creator', '🎀 Menu', '.menu', fpayment, adReply)
 }
 
 let file = global.__filename(import.meta.url, true)
