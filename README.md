@@ -218,7 +218,7 @@ conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', 'https://github.com/Boc
 ---------
 
 ### 📮 S&K
-1. Don't For Sale
+1. Not For Sale
 2. Don't forget give star this repo
 3. Follow Github
 4. Don't use this repository wrong!
