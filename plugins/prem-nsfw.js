@@ -128,7 +128,7 @@ let trap = true
 let waifu = true
 let yaoi = true
 let yuri = true
-let zetai = false
+let zettai = false
 
 //-------------------------------------
 
