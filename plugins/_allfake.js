@@ -1,4 +1,5 @@
-//By ImYanXiao
+// Made By Aguz Familia
+// Recode By ImYanXiao
 
 import fs from 'fs'
 import fetch from 'node-fetch'
@@ -17,7 +18,7 @@ handler.all = async function (m) {
         //global.bg = await (await fetch(img)).buffer()
 		global.doc = pickRandom(["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/msword", "application/pdf", "application/vnd.android.package-archive", "application/zip"])
 		global.pic = hwaifu.getRandom()
-		global.fla = pickRandom(flaaa)
+		global.fla = flaaa.getRandom()
 
 		// Module 
 		global.fetch = import('node-fetch')
