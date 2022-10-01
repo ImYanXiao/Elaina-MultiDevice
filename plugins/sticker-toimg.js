@@ -14,7 +14,7 @@ let handler = async (m, { conn }) => {
 		await conn.sendMessage(m.chat, { video: out, gifPlayback: /gif/i.test(m.text), gifAttribution: ~~(Math.random() * 2) }, { quoted: m })
 	} else throw 'Reply a sticker!'
 }
-handler.help = ['toimg', 'togif', 'tovid, 'tovideo']
+handler.help = ['toimg', 'togif', 'tovid', 'tovideo']
 handler.tags = ['sticker']
 handler.command = /^to(img|gif|vid|video)$/i
 
