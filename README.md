@@ -1,6 +1,6 @@
 
 ## CATATAN
-Script ini untuk semua orang, bukan untuk Dijual. Jika dijual neraka menunggumu kakak !
+Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menunggumu Brother!!
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 <p align="center">
     <img src="https://telegra.ph/file/37df69a78afb6e010282d.jpg" width="100%" style="margin-left: auto;margin-right: auto;display: block;">
@@ -33,27 +33,27 @@ Script ini untuk semua orang, bukan untuk Dijual. Jika dijual neraka menunggumu 
 [![BOT WHATSAPP](https://img.shields.io/badge/WhatsApp%20BOT-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/6281231079387) 
 ---------
 
-#### a little about this bot
-- [❖] **Fast Respon** 
-- [❖] **Simple** 
-- [❖] **Button Template** 
-- [❖] **Multi Device** 
-- [❖] **Button Document(Experiment)** 
+### a little about this bot
+- [✔️] | **Fast Respon** 
+- [✔️] | **Simple** 
+- [✔️] | **Button Template** 
+- [✔️] | **Multi Device** 
+- [✔️] | **Button Document(Experiment)** 
 ---------
-#### Some of the features include
-- [❖] Downloader 
-- [❖] Internet 
-- [❖] Game Rpg 
-- [❖] Nsfw 
-- [❖] Sticker 
-- [❖] Game 
-- [❖] Kerang Ajaib 
-- [❖] Quotes 
-- [❖] Anime 
-- [❖] Premium 
-- [❖] Tools 
-- [❖] Exec 
-- [❖] React 
+### Some of the features include
+- [✔️] | Downloader 
+- [✔️] | Internet 
+- [✔️] | Game Rpg 
+- [✔️] | Nsfw 
+- [✔️] | Sticker 
+- [✔️] | Game 
+- [✔️] | Kerang Ajaib 
+- [✔️] | Quotes
+- [✔️] | Anime 
+- [✔️] | Premium 
+- [✔️] | Tools 
+- [✔️] | Exec 
+- [✔️] | React 
 ---------
 
 ## `SETTING`
@@ -145,7 +145,7 @@ npm update
 
 ---------
 
-## Run 🏃
+## Run ⏳
 
 ```bash
 node .
@@ -226,7 +226,7 @@ conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', 'https://github.com/Boc
 
 ---------
 
-### ❗ Note : Apikeynya Beli Sendiri Ya Guys😁
+### ❗ Note : Untuk apikey kamu bisa beli ke website itu sendiri :D
 
 ---------
 
