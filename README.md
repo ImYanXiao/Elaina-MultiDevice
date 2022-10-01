@@ -34,29 +34,29 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
 ---------
 
 ### a little about this bot
-- [✔️] | **Fast Respon** 
-- [✔️] | **Simple** 
-- [✔️] | **Button Template** 
-- [✔️] | **Multi Device** 
-- [✔️] | **Button Document(Experiment)** 
+- ✔️ | **Fast Respon** 
+- ✔️ | **Simple** 
+- ✔️ | **Button Template** 
+- ✔️ | **Multi Device** 
+- ✔️ | **Button Document(Experiment)** 
 ---------
 ### Some of the features include
-- [✔️] | Downloader 
-- [✔️] | Internet 
-- [✔️] | Game Rpg 
-- [✔️] | Nsfw 
-- [✔️] | Sticker 
-- [✔️] | Game 
-- [✔️] | Kerang Ajaib 
-- [✔️] | Quotes
-- [✔️] | Anime 
-- [✔️] | Premium 
-- [✔️] | Tools 
-- [✔️] | Exec 
-- [✔️] | React 
+- ✔️ | Downloader 
+- ✔️ | Internet 
+- ✔️ | Game Rpg 
+- ✔️ | Nsfw 
+- ✔️ | Sticker 
+- ✔️ | Game 
+- ✔️ | Kerang Ajaib 
+- ✔️ | Quotes
+- ✔️ | Anime 
+- ✔️ | Premium 
+- ✔️ | Tools 
+- ✔️ | Exec 
+- ✔️ | React 
 ---------
 
-## `SETTING`
+## `SETTING` ⚙️
 
 - Owner Number [Here](https://github.com/ImYanXiao/Elaina-MultiDevice/blob/master/config.js#L1)
 - Owner Name [Here](https://github.com/ImYanXiao/Elaina-Multidevice/blob/master/config.js#L1)
