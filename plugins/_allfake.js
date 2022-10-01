@@ -1,4 +1,5 @@
-// Made By Aguz Familia
+// Made By Aguz Familia/@FokusDotId (Fokus ID)
+// Github: https://github.com/fokusdotid
 // Recode By ImYanXiao
 
 import fs from 'fs'
