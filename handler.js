@@ -300,8 +300,6 @@ export async function handler(chatUpdate) {
                     chat.simi = false
                 if (!('nsfw' in chat))
                     chat.nsfw = false
-                if (!('nsfwnhentai' in chat)) 
-                    chat.nsfwnhentai = false
                 if (!('premium' in chat))
                     chat.premium = false
                 if (!('premiumTime' in chat)) 
@@ -327,9 +325,8 @@ export async function handler(chatUpdate) {
                     expired: 0,
                     nsfw: false,
                     premium: false,
-	                premiumTime: false,
-                    premnsfw: false,
-                    nsfwnhentai: false, 
+	            premiumTime: false,
+                    premnsfw: false, 
                 }
             let settings = global.db.data.settings[this.user.jid]
             if (typeof settings !== 'object') global.db.data.settings[this.user.jid] = {}
@@ -540,7 +537,7 @@ export async function handler(chatUpdate) {
                 else
                     m.exp += xp
                 if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 1) {
-                    this.reply(m.chat, `[❗] Limit kau abis dek, beli melalui *${usedPrefix}buy limit*`, m)
+                    this.reply(m.chat, `[❗] Limit harian kamu telah habis, silahkan beli melalui *${usedPrefix}buy limit*`, m)
                     continue // Limit habis
                 }
                 if (plugin.level > _user.level) {
