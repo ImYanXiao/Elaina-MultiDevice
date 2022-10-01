@@ -50,7 +50,7 @@ handler.all = async function (m) {
 					mediaUrl: sgc,
 					description: 'Elaina-MultiDevice',
 					previewType: "PHOTO",
-					thumbnail: await (await fetch(thumb)).buffer(),
+					thumbnail: await (await fetch(pic)).buffer(),
 					sourceUrl: "https://github.com/ImYanXiao",					
 				}
 			}
