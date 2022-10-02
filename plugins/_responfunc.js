@@ -16,6 +16,7 @@ export async function all(m) {
         console.log('YOW!')
     }
     let chat = global.db.data.chats[m.chat]
+    let { isBanned } = global.db.data.chats[m.chat]
     let { banned } = global.db.data.users[m.sender]
     let setting = global.db.data.settings[this.user.jid]
     let user = global.db.data.users[m.sender]
