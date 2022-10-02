@@ -90,7 +90,7 @@ loadDatabase()
 global.authFile = `${opts._[0] || 'session'}.data.json`
 const { state, saveState } = useSingleFileAuthState(global.authFile)
 const store = storeSys.makeInMemoryStore()
-const sess = `${set.opts._[0] || 'rell'}.store.json`
+const sess = `${opts._[0] || 'rell'}.store.json`
 store.readFromFile(sess)
 global.store = store
 
@@ -103,10 +103,10 @@ const connectionOptions = {
 global.conn = makeWASocket(connectionOptions)
 conn.isInit = false
 
-if (!set.opts['test']) {
+if (!opts['test']) {
     setInterval(async () => {
         if (global.db.data) await global.db.write().catch(console.error)
-        if (!set.opts['tmp']) try {
+        if (!opts['tmp']) try {
             clearTmp()
 
         } catch (e) {
@@ -114,7 +114,7 @@ if (!set.opts['test']) {
         }
     }, 60 * 1000)
 }
-if (set.opts['server']) (await import('./server.js')).default(global.conn, PORT)
+if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
 
 
 function clearTmp() {
@@ -135,7 +135,7 @@ async function connectionUpdate(update) {
     const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
     if (code && code !== DisconnectReason.loggedOut && conn?.ws.readyState !== CONNECTING) {
         console.log(await global.reloadHandler(true).catch(console.error))
-        set.timestamp.connect = new Date
+        timestamp.connect = new Date
     }
     
     if (global.db.data == null) loadDatabase()
@@ -201,13 +201,13 @@ global.reloadHandler = async function (restatConn) {
 
 }
 
-const pluginFolder = set.__dirname(join(__dirname, './plugins/index'))
+const pluginFolder = .__dirname(join(__dirname, './plugins/index'))
 const pluginFilter = filename => /\.js$/.test(filename)
 global.plugins = {}
 async function filesInit() {
     for (let filename of readdirSync(pluginFolder).filter(pluginFilter)) {
         try {
-            let file = set.__filename(join(pluginFolder, filename))
+            let file = .__filename(join(pluginFolder, filename))
             const module = await import(file)
             global.plugins[filename] = module.default || module
         } catch (e) {
@@ -223,7 +223,7 @@ filesInit().then(_ => {
 
 global.reload = async (_ev, filename) => {
     if (pluginFilter(filename)) {
-        let dir = global.set.__filename(join(pluginFolder, filename), true)
+        let dir = global.__filename(join(pluginFolder, filename), true)
         if (filename in global.plugins) {
             if (existsSync(dir)) conn.logger.info(`re - require plugin '${filename}'`)
             else {
@@ -252,7 +252,7 @@ log:
 ${format(err)}`)
         }
         else try {
-            const module = (await import(`${global.set.__filename(dir)}?update=${Date.now()}`))
+            const module = (await import(`${global.__filename(dir)}?update=${Date.now()}`))
             global.plugins[filename] = module.default || module
         } catch (e) {
             conn.logger.error(`error require plugin '${filename}\n${format(e)}'`)
