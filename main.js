@@ -62,7 +62,7 @@ global.db = new Low(
       (opts['mongodbv2'] ? new mongoDBV2(opts['db']) : new mongoDB(opts['db'])) :
       new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`)
 )
-global.DATABASE = db // Backwards Compatibility
+global.DATABASE = global.db // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
     if (db.READ) return new Promise((resolve) => setInterval(async function () {
         if (!db.READ) {
@@ -201,13 +201,13 @@ global.reloadHandler = async function (restatConn) {
 
 }
 
-const pluginFolder = .__dirname(join(__dirname, './plugins/index'))
+const pluginFolder = global.__dirname(join(__dirname, './plugins/index'))
 const pluginFilter = filename => /\.js$/.test(filename)
 global.plugins = {}
 async function filesInit() {
     for (let filename of readdirSync(pluginFolder).filter(pluginFilter)) {
         try {
-            let file = .__filename(join(pluginFolder, filename))
+            let file = global.__filename(join(pluginFolder, filename))
             const module = await import(file)
             global.plugins[filename] = module.default || module
         } catch (e) {
