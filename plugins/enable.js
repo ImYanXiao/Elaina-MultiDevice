@@ -15,7 +15,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 	{title: "📛 | Antitoxic", rowId: `${usedPrefix + command} antitoxic`},
 	{title: "📞 | Anticall", rowId: `$usedPrefix + command} anticall`}, 
 	{title: "📩 | Antispam", rowId: `$usedPrefix + command} antiSpam`}, 
-	{title: "🖼 | Autosticker", rowId: `${usedPrefix + command} autoSticker`}, 
+	{title: "🖼 | Autosticker", rowId: `${usedPrefix + command} stiker`}, 
 	{title: "⏏️ | Autolevelup", rowId: `${usedPrefix + command} autolevelup`},
 	{title: "🔎 | Detect", rowId: `${usedPrefix + command} detect`},
 	{title: "📑 | Document", rowId: `${usedPrefix + command} document`},
@@ -117,13 +117,6 @@ const listMessage = {
     //   break
      case 'document':
        chat.useDocument = isEnable
-       break
-       case 'autopresence':
-        if (!isROwner) {
-          global.dfail('rowner', m, conn)
-          throw false
-        }
-      chat.autoPresence = isEnable
       break
     case 'public':
       isAll = true
@@ -143,12 +136,14 @@ const listMessage = {
       chat.antiLink = isEnable
       break
       break
-      case 'autosticker':
-        if (!isROwner) {
-          global.dfail('rowner', m, conn)
+      case 'stiker':
+      if (m.isGroup) {
+        if (!(isAdmin || isOwner)) {
+          global.dfail('admin', m, conn)
           throw false
         }
-      chat.autoSticker = isEnable
+      }
+      chat.stiker = isEnable
       break
       chat.updateAnimeNews = isEnable
       break
