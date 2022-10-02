@@ -1,12 +1,12 @@
 import './config.js'
 
-import { createRequire } from "module" // Bring in the ability to create the 'require' method
 import path, { join } from 'path'
-import { fileURLToPath, pathToFileURL } from 'url'
 import { platform } from 'process'
+import { fileURLToPath, pathToFileURL } from 'url'
+import { createRequire } from 'module' // Bring in the ability to create the 'require' method
 global.__filename = function filename(pathURL = import.meta.url, rmPrefix = platform !== 'win32') { return rmPrefix ? /file:\/\/\//.test(pathURL) ? fileURLToPath(pathURL) : pathURL : pathToFileURL(pathURL).toString() }; global.__dirname = function dirname(pathURL) { return path.dirname(global.__filename(pathURL, true)) }; global.__require = function require(dir = import.meta.url) { return createRequire(dir) }
 
-import * as ws from 'ws';
+import * as ws from 'ws'
 import {
   readdirSync,
   statSync,
@@ -14,7 +14,7 @@ import {
   existsSync,
   readFileSync,
   watch
-} from 'fs';
+} from 'fs'
 import yargs from 'yargs'
 import { spawn } from 'child_process'
 import lodash from 'lodash'
@@ -23,12 +23,13 @@ import { tmpdir } from 'os'
 import { format } from 'util'
 import { makeWASocket, protoType, serialize } from './lib/simple.js'
 import { Low, JSONFile } from 'lowdb'
-/*import {
+/* import {
   mongoDB,
   mongoDBV2
 } from './lib/mongoDB.js' */
+import store from './lib/store.js'
 const {
-  useSingleFileAuthState,
+  // useSingleFileAuthState,
   DisconnectReason
 } = await import('@adiwajshing/baileys')
 
@@ -40,9 +41,12 @@ protoType()
 serialize()
 
 global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
+
 // global.Fn = function functionCallBack(fn, ...args) { return fn.call(global.conn, ...args) }
+
 global.timestamp = {
   start: new Date
+
 }
 
 const __dirname = global.__dirname(import.meta.url)
@@ -50,20 +54,14 @@ const __dirname = global.__dirname(import.meta.url)
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 global.prefix = new RegExp('^[' + (opts['prefix'] || '‎‎xzXZ/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
 
-global.db = new Low(
-  /https?:\/\//.test(opts['db'] || '') ?
-    new cloudDBAdapter(opts['db']) : /mongodb(\+srv)?:\/\//i.test(opts['db']) ?
-      (opts['mongodbv2'] ? new mongoDBV2(opts['db']) : new mongoDB(opts['db'])) :
-      new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`)
-)
-
+global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`))
 
 global.DATABASE = global.db // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
   if (global.db.READ) return new Promise((resolve) => setInterval(async function () {
     if (!global.db.READ) {
       clearInterval(this)
-      resolve(global.db.data == null ? global.loadDatabase() : global.db.data)
+      resolve(global.db.data == null ? await global.loadDatabase() : global.db.data)
     }
   }, 1 * 1000))
   if (global.db.data !== null) return
@@ -84,28 +82,28 @@ global.loadDatabase = async function loadDatabase() {
 loadDatabase()
 
 global.authFile = `${opts._[0] || 'session'}.data.json`
-const { state, saveState } = useSingleFileAuthState(global.authFile)
+
+const { state, saveState } = store.useSingleFileAuthState(global.authFile)
 
 const connectionOptions = {
   printQRInTerminal: true,
   auth: state,
-  // logger: pino({ level: 'trace' })
+  downloadHistory: false 
+  // logger: P({ level: 'trace' })
 }
 
 global.conn = makeWASocket(connectionOptions)
 conn.isInit = false
 
 if (!opts['test']) {
+  (await import('./server.js')).default(PORT)
   setInterval(async () => {
     if (global.db.data) await global.db.write().catch(console.error)
-    if (opts['autocleartmp']) try {
+   // if (opts['autocleartmp']) try {
       clearTmp()
-
-    } catch (e) { console.error(e) }
+  //  } catch (e) { console.error(e) }
   }, 60 * 1000)
 }
-if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
-
 
 function clearTmp() {
   const tmp = [tmpdir(), join(__dirname, './tmp')]
@@ -117,6 +115,7 @@ function clearTmp() {
     return false
   })
 }
+if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
 
 async function connectionUpdate(update) {
   const { connection, lastDisconnect, isNewLogin } = update
@@ -126,14 +125,15 @@ async function connectionUpdate(update) {
     console.log(await global.reloadHandler(true).catch(console.error))
     global.timestamp.connect = new Date
   }
+  // console.log(JSON.stringify(update, null, 4))
   if (global.db.data == null) loadDatabase()
 }
 
-
 process.on('uncaughtException', console.error)
+
 // let strQuot = /(["'])(?:(?=(\\?))\2.)*?\1/
 
-let isInit = true;
+let isInit = true
 let handler = await import('./handler.js')
 global.reloadHandler = async function (restatConn) {
   try {
@@ -158,20 +158,25 @@ global.reloadHandler = async function (restatConn) {
     conn.ev.off('creds.update', conn.credsUpdate)
   }
 
-  conn.welcome = '❖━━━━━━[ *いらっしゃいませ* ]━━━━━━❖\n\n┏––––––━━━━━━━━•\n│☘︎ @subject\n┣━━━━━━━━┅┅┅\n│( 👋 Hallo @user)\n├[ *ɪɴᴛʀᴏ* ]—\n│ *ɴᴀᴍᴀ:* \n│ *ᴜᴍᴜʀ:* \n│ *ɢᴇɴᴅᴇʀ:*\n┗––––––━━┅┅┅\n\n––––––┅┅ *ᴅᴇsᴄʀɪᴘᴛɪᴏɴ* ┅┅––––––\n@desc'
-  conn.bye = '❖━━━━━━[ *さようなら* ]━━━━━━❖\n𝚂𝚊𝚢𝚘𝚗𝚊𝚛𝚊𝚊 *@user* 👋😃'
-  conn.spromote = '@user sekarang admin!'
-  conn.sdemote = '@user sekarang bukan admin!'
-  conn.sDesc = 'Deskripsi telah diubah ke \n@desc'
-  conn.sSubject = 'Judul grup telah diubah ke \n@subject'
+  conn.welcome = '❖━━━━━━[ *ᴡᴇʟᴄᴏᴍᴇ* ]━━━━━━❖\n\n┏––––––━━━━━━━━•\n│☘︎ @subject\n┣━━━━━━━━┅┅┅\n│( 👋 ʜᴀʟʟᴏ ᴋᴀᴋ @user)\n├[ *ɪɴᴛʀᴏ* ]—\n│ *ɴᴀᴍᴀ:* \n│ *ᴜᴍᴜʀ:* \n│ *ɢᴇɴᴅᴇʀ:*\n┗––––––━━┅┅┅\n\n––––––┅┅ *ᴅᴇsᴄʀɪᴘᴛɪᴏɴ* ┅┅––––––\n@desc'
+  conn.bye = '𝚂𝚊𝚢𝚘𝚗𝚊𝚛𝚊𝚊 *@user* 👋'
+  conn.spromote = '*@user* Sekarang jadi admin!'
+  conn.sdemote = '*@user* Sekarang bukan lagi admin!'
+  conn.sDesc = 'Deskripsi telah diubah menjadi \n@desc'
+  conn.sSubject = 'Judul grup telah diubah menjadi \n@subject'
   conn.sIcon = 'Icon grup telah diubah!'
   conn.sRevoke = 'Link group telah diubah ke \n@revoke'
+  conn.sAnnounceOn = 'Group telah di tutup!\nsekarang hanya admin yang dapat mengirim pesan.'
+  conn.sAnnounceOff = 'Group telah di buka!\nsekarang semua peserta dapat mengirim pesan.'
+  conn.sRestrictOn = 'Edit Info Grup di ubah ke hanya admin!'
+  conn.sRestrictOff = 'Edit Info Grup di ubah ke semua peserta!'
+
   conn.handler = handler.handler.bind(global.conn)
   conn.participantsUpdate = handler.participantsUpdate.bind(global.conn)
   conn.groupsUpdate = handler.groupsUpdate.bind(global.conn)
   conn.onDelete = handler.deleteUpdate.bind(global.conn)
   conn.connectionUpdate = connectionUpdate.bind(global.conn)
-  conn.credsUpdate = saveState.bind(global.conn)
+  conn.credsUpdate = saveState.bind(global.conn, true)
 
   conn.ev.on('messages.upsert', conn.handler)
   conn.ev.on('group-participants.update', conn.participantsUpdate)
@@ -230,6 +235,7 @@ watch(pluginFolder, global.reload)
 await global.reloadHandler()
 
 // Quick Test
+
 async function _quickTest() {
   let test = await Promise.all([
     spawn('ffmpeg'),
