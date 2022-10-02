@@ -1,4 +1,5 @@
 // Source https://github.com/amiruldev20/wabotjs
+// Recode By ImYanXiao
 import './config.js'
 
 import { createRequire } from "module";
