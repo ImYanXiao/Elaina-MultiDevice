@@ -38,7 +38,6 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
 ---------
 
 ### a little about this bot
-- ✔️ | **Fast Respon** 
 - ✔️ | **Simple** 
 - ✔️ | **Button Template** 
 - ✔️ | **Multi Device** 
