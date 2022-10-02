@@ -3,12 +3,12 @@
 import fetch from 'node-fetch'
 import yts from 'yt-search'
 let handler = async (m, { conn, groupMetadata, usedPrefix, text, args, command }) => {
-if (!text) throw `Example : ${prefix + command} story wa anime`
+if (!text) throw `Example : ${usedPrefix + command} story wa anime`
                 let search = await yts(text)
                 let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
                 let buttons = [
-                    {buttonId: `ytmp3 ${anu.url}`, buttonText: {displayText: '♫ Audio'}, type: 1},
-                    {buttonId: `ytmp4 ${anu.url}`, buttonText: {displayText: '► Video'}, type: 1}
+                    {buttonId: `${usedPrefix} ytmp3 ${anu.url}`, buttonText: {displayText: '♫ Audio'}, type: 1},
+                    {buttonId: `${usedPrefix} ytmp4 ${anu.url}`, buttonText: {displayText: '► Video'}, type: 1}
                 ]
                 let buttonMessage = {
                     image: { url: anu.thumbnail },
