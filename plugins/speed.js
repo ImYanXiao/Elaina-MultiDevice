@@ -1,6 +1,9 @@
 import { cpus as _cpus, totalmem, freemem } from 'os'
 import util from 'util'
 import os from 'os'
+import fs from 'fs'
+import fetch from 'node-fetch'
+import osu from 'node-os-utils'
 import { performance } from 'perf_hooks'
 import { sizeFormatter } from 'human-readable'
 let format = sizeFormatter({
@@ -46,18 +49,20 @@ let handler = async (m, { conn, isRowner}) => {
       irq: 0
     }
   })
-  let old = performance.now()
-  await m.reply(`${htjava} *T e s t i n g. . .*`)
-  let neww = performance.now()
-  let speed = neww - old
-  await conn.sendHydrated(m.chat,`
-${htjava} *P I N G*
-${speed}ms
 
-${htjava} *R U N T I M E* 
+  let old = performance.now()
+  await m.reply(`${htjava} *ᴛ ᴇ s ᴛ ɪ ɴ ɢ . . .*`)
+  let neww = performance.now()
+  let session = fs.statSync(authFile)
+  let speed = neww - old
+  await conn.reply(m.chat,`*s ᴘ ᴇ ᴇ ᴅ*
+${Math.round(neww - old)} ms
+${speed} ms
+
+*ʀ ᴜ ɴ ᴛ ɪ ᴍ ᴇ* 
 ${muptime}
 ${readMore}
-${htjava} *CHATS* 
+*ᴄ ʜ ᴀ ᴛ s*
 • *${groupsIn.length}* Group Chats
 • *${groupsIn.length}* Groups Joined
 • *${groupsIn.length - groupsIn.length}* Groups Left
@@ -65,14 +70,14 @@ ${htjava} *CHATS*
 • *${chats.length}* Total Chats
 
 
-${htjava} *SERVER* 
-*🛑 RAM:* ${format(totalmem() - freemem())} / ${format(totalmem())}
-*🔵 FreeRAM:* ${format(freemem())}
-
-*💻 Platform:* ${os.platform()}
-*🧿 Server:* ${os.hostname()}
+*s ᴇ ʀ ᴠ ᴇ ʀ*
+*🛑 ʀᴀᴍ:* ${format(totalmem() - freemem())} / ${format(totalmem())}
+*🔵 ғʀᴇᴇRAM:* ${format(freemem())}
+*📑 sᴇssɪᴏɴ sɪᴢᴇ :* ${format(session.size)}
+*💻 ᴘʟᴀᴛғᴏʀᴍ :* ${os.platform()}
+*🧿 sᴇʀᴠᴇʀ :* ${os.hostname()}
 ${readMore}
-*${htjava} NodeJS Memory Usage*
+NodeJS Memory Usage*
 ${'```' + Object.keys(used).map((key, _, arr) => `${key.padEnd(Math.max(...arr.map(v => v.length)), ' ')}: ${format(used[key])}`).join('\n') + '```'}
 
 ${cpus[0] ? `_Total CPU Usage_
@@ -80,7 +85,7 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
 
 _CPU Core(s) Usage (${cpus.length} Core CPU)_
 ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type => `- *${(type + '*').padEnd(6)}: ${(100 * cpu.times[type] / cpu.total).toFixed(2)}%`).join('\n')}`).join('\n\n')}` : ''}
-`,botdate, null, sgc, '🌎 GROUP OFFICIAL', null,null, [[null,null],[null,null],[null,null]], m)
+`, m)
 }
 handler.help = ['ping', 'speed']
 handler.tags = ['info', 'tools']
