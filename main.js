@@ -62,7 +62,7 @@ global.db = new Low(
       (opts['mongodbv2'] ? new mongoDBV2(opts['db']) : new mongoDB(opts['db'])) :
       new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`)
 )
-global.set.DATABASE = db // Backwards Compatibility
+global.DATABASE = db // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
     if (db.READ) return new Promise((resolve) => setInterval(async function () {
         if (!db.READ) {
@@ -92,7 +92,7 @@ const { state, saveState } = useSingleFileAuthState(global.authFile)
 const store = storeSys.makeInMemoryStore()
 const sess = `${set.opts._[0] || 'rell'}.store.json`
 store.readFromFile(sess)
-global.set.store = store
+global.store = store
 
 const connectionOptions = {
   printQRInTerminal: true,
