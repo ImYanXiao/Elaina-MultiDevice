@@ -17,6 +17,10 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
 <a href="https://github.com/ImYanXiao"><img title="Author" src="https://img.shields.io/badge/AUTHOR-ImYanXiao-green.svg?style=for-the-badge&logo=github"></a>
 
 ---------
+
+## Node Modules : https://www.mediafire.com/file/28sddjopmyh8mxp/node_modules.zip/file
+---------
+
 ## ```Connect With Me 📞``` <img src="https://github.com/siegrin/siegrin/blob/main/Assets/Handshake.gif" height="32px">
   <a href="https://wa.me/6285736178354">
     <img align="left" alt="SIEGRIN | Whastapp" width="26px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Whatsapp.svg" />
