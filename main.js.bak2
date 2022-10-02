@@ -24,7 +24,7 @@ import {
   readFileSync,
   watch
 } from 'fs';
-import yargs from 'yargs/yargs'
+import yargs from 'yargs'
 import { spawn } from 'child_process'
 import lodash from 'lodash'
 import syntaxerror from 'syntax-error'
