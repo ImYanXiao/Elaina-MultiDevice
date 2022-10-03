@@ -110,7 +110,7 @@ if (!opts['test']) {
 }
 
 if (opts['big-qr'] || opts['server']) conn.ev.on('qr', qr => generate(qr, { small: false }))
-if (opts['server']) require('./server.js')(global.conn, PORT)
+if (opts['server']) (await import('./server.js')(global.conn, PORT)
 
 async function connectionUpdate(update) {
   console.log(update)
@@ -141,7 +141,7 @@ const imports = (path) => {
 }
 let isInit = true
 global.reloadHandler = function (restatConn) {
-  let handler = imports('./handler.js')
+  let handler = (await import ('./handler.js')).default
   if (restatConn) {
     const oldChats = global.conn.chats
     try { global.conn.ws.close() } catch { }
