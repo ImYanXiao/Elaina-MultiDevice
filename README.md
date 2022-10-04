@@ -80,8 +80,6 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
 
 ## USER REPLIT
 [![Run on Repl.it](https://repl.it/badge/github/ImYanXiao/Elaina-MultiDevice)](https://repl.it/github/ImYanXiao/Elaina-MultiDevice)
-Click Run
-```
 ## TERMUX USER
 ```bash
 $ pkg upgrade && pkg update
