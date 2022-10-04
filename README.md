@@ -74,6 +74,23 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
 | **FFMPEG** |[here](https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest) |
 | **IMAGEMAGICK** | [here](https://github.com/rocketmobile/heroku-buildpack-imagemagick.git) |
 
+## USER RAILWAY
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/ImYanXiao/Elaina-MultiDevice)
+
+## USER REPLIT
+
+[![Run on Repl.it](https://repl.it/github/ImYanXiao/Elaina-MultiDevice)
+```cmd
+Buka Console
+------------
+> npm i
+> npm i qrcode
+> install-pkg webp
+> install-pkg ffmpeg
+-------------
+Click Run
+```
 ## TERMUX USER
 ```bash
 $ pkg upgrade && pkg update
