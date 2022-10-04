@@ -79,16 +79,7 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/ImYanXiao/Elaina-MultiDevice)
 
 ## USER REPLIT
-
-[![Run on Repl.it](https://repl.it/github/ImYanXiao/Elaina-MultiDevice)
-```cmd
-Buka Console
-------------
-> npm i
-> npm i qrcode
-> install-pkg webp
-> install-pkg ffmpeg
--------------
+[![Run on Repl.it](https://repl.it/badge/github/ImYanXiao/Elaina-MultiDevice)](https://repl.it/github/ImYanXiao/Elaina-MultiDevice)
 Click Run
 ```
 ## TERMUX USER
