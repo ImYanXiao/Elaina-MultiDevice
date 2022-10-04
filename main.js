@@ -7,7 +7,8 @@
   * @ImYanXiao https://github.com/ImYanXiao
   * Catatan : Sessionnya Berubah Bukan session.data.json
   *           tetapi banyak file dalam folder sessions
- */                     
+ */
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';                     
 import './config.js'
 
 import { createRequire } from "module";
