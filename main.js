@@ -7,8 +7,8 @@
   * @ImYanXiao https://github.com/ImYanXiao
   * Catatan : Sessionnya Berubah Bukan session.data.json
   *           tetapi banyak file dalam folder sessions
- */
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';                     
+ */ 
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';                    
 import './config.js'
 
 import { createRequire } from "module";
@@ -34,6 +34,7 @@ import { format } from 'util';
 import pino from 'pino';
 const {
     useMultiFileAuthState,
+    useSingleFileAuthState, 
     DisconnectReason,
     fetchLatestBaileysVersion,
     msgRetryCounterMap
@@ -97,8 +98,8 @@ global.loadDatabase = async function loadDatabase() {
 }
 loadDatabase()
 
-global.authFile= `${opts._[0] || 'sessions'}`
-const { state, saveState, saveCreds } = await useMultiFileAuthState(authFile)
+global.authFile = opts['single'] ? `${opts._[0] || 'session'}.data.json` : 'sessions'
+const { state, saveState, saveCreds } = opts['single'] ? await useSingleFileAuthState(authF) : await storeSys.useMultiFileAuthState(authFile)                      
 const store = storeSys.makeInMemoryStore()
 const sess = `${opts._[0] || 'elaina'}.store.json`
 store.readFromFile(sess)
@@ -280,6 +281,20 @@ ${format(e)}`)
 Object.freeze(global.reload)
 watch(pluginFolder, global.reload)
 await global.reloadHandler()
+
+// Auto Delete Session Made By Rlxfly
+async function clearSessions(folder = 'sessions') {
+	let filename = []
+	fs.readdirSync(folder).forEach(file => filename.push(path.join(folder, file)))
+	return filename.map(file => {
+		let stats = fs.statSync(file)
+		if (stats.isFile() && (Date.now() - stats.mtimeMs >= 1000 * 60 * 60)) { // 1 hours
+			console.log('Deleted session', file)
+			return fs.unlinkSync(file)
+		}
+		return false
+	})
+}
 
 // Quick Test
 
