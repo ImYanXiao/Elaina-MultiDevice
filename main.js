@@ -5,8 +5,8 @@
   * @Rasel Comel https://github.com/raselcomel
   * Recode : ImYanXiao
   * @ImYanXiao https://github.com/ImYanXiao
-  * Catatan : Sessionnya Berubah Bukan session.data.json
-  *           tetapi banyak file dalam folder sessions
+  * Catatan : Untuk Sessionnya Support SingleFileAuthState/session.data.json
+  *           dan MultiFileAuthState/banyak file dalam folder sessions
  */ 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';                    
 import './config.js'
