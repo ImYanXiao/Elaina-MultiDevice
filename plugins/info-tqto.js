@@ -58,7 +58,7 @@ https://github.com/FahriAdison
 https://github.com/ImYanXiao
 *▸ - - - —「 Thanks For Suhu 」— - - - ◂*
 *❉ Kannachan:*
-*❉ The.sadboy.01
+*❉ The.sadboy.01:*
 *❉ Papah-Chan:*
 *❉ Johannes:*
 *❉ Krisna:*
