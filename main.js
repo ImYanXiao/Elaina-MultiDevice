@@ -108,7 +108,10 @@ global.store = store
 const connectionOptions = {
   printQRInTerminal: true,
   auth: state,
-  // logger: pino({ level: 'trace' })
+  logger: pino({ level: 'trace' }), 
+            printQRInTerminal: true,
+            auth: state,
+            browser: ['Elaina', 'Safari', '3.1.0']
 }
 
 global.conn = makeWASocket(connectionOptions)
