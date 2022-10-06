@@ -21,7 +21,7 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
 ## Node Modules : https://www.mediafire.com/file/28sddjopmyh8mxp/node_modules.zip/file
 ---------
 
-## ```Connect With Me 📞``` <img src="https://github.com/siegrin/siegrin/blob/main/Assets/Handshake.gif" height="32px">
+## ```Connect With Me 📞``` 
   <a href="https://wa.me/6285736178354">
     <img align="left" alt="SIEGRIN | Whastapp" width="26px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Whatsapp.svg" />
   </a> &nbsp;&nbsp;
