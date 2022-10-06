@@ -18,3 +18,9 @@ export async function before(m) {
 	}
 	return !0
 }
+/* Made By FokusDotId (Fokus ID)
+ * https://github.com/FokusDotId
+ * Ingin bikin fitur tapi goblok coding?
+ * hubungi: https://wa.me/6281320170984
+ * Jangan lupa bawa udut minimal sukun🗿
+*/
