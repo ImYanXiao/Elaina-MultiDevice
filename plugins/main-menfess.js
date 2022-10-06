@@ -38,4 +38,9 @@ handler.private = true
 
 export default handler
 
-//Credit? https://github.com/ImYanXiao
+/* Made By FokusDotId (Fokus ID)
+ * https://github.com/FokusDotId
+ * Ingin bikin fitur tapi tidak bisa coding?
+ * hubungi: https://wa.me/6281320170984
+ * Jangan lupa bawa udut minimal sukun🗿
+*/
