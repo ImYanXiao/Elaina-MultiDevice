@@ -14,7 +14,8 @@
 // • Rasel comel
 // • ImYanXiao
 // • Xtreshe (Beban)
-// • Dll
+// • RakaBotz
+// •Dll
 
 //[!] Jangan Lupa Ganti Ownernya
 
@@ -54,15 +55,15 @@ global.sdc = '-' //Isi Pake Link Discordmu Kalo Gada Biarin aja
 global.snh = 'https://nhentai.net/g/HaramTod🗿' //Hmmm, Ini boleh kalian isi terserah :v
 
 /*============== PAYMENT ==============*/
-global.pdana = '085736178354' //Nomor Danamu
-global.ppulsa = '085736178354' //Nomor SimCard Yang Kamu Pake
+global.pdana = '085783195634' //Nomor Danamu
+global.ppulsa = '085783195634' //Nomor SimCard Yang Kamu Pake
 global.psaweria = 'https://saweria.com/XiaoYan021' //Link Saweriamu Kalo Nggada Ketik - aja
 
 /*============== NOMOR ==============*/
-global.nomorbot = '6281231079387' //Nomor Bot
-global.nomorown = '6285736178354' //Nomor Owner
-global.namebot = 'Elaina BOT' //Nama Bot
-global.nameown = '𝓧𝓲𝓪𝓸 - 𝓨𝓪𝓷' // Nama Owner
+global.nomorbot = '085783195634' //Nomor Bot
+global.nomorown = '085783195634' //Nomor Owner
+global.namebot = '𝙍𝙖𝙠𝙖𝘽𝙊𝙏𝙯' //Nama Bot
+global.nameown = '𝙍𝙖𝙠𝙖' // Nama Owner
 
 
 /*============== STAFF ==============*/
@@ -371,8 +372,8 @@ global.hsquere = ['⛶','❏','⫹⫺']
 
 /*============== STICKER WM ==============*/
 global.stickpack = '.'
-global.stickauth = `☂︎\n𝗘\nl\na\ni\nn\na\n-\n𝗕\n𝗢\n𝗧\n✦\n\n⫹⫺ Whatsapp BOT\nwa.me/${global.nomorbot}`
-global.packname = 'Cʀᴇᴀᴛᴇᴅ Bʏ'
+global.stickauth = `𝙍𝙖𝙠𝙖𝘽𝙊𝙏𝙯\nwa.me/6285783195634${global.nomorbot}`
+global.packname = '𝙍𝙖𝙠𝙖𝘽𝙊𝙏𝙯'
 global.packname2 = 'ᴄʀᴇᴀᴛᴇᴅ ʙʏ ᴇʟᴀɪɴᴀ ʙᴏᴛᴢ'
 
 global.multiplier = 38 // The higher, The harder levelup
@@ -432,4 +433,4 @@ watchFile(file, () => {
 //------ FUNCTION
 function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())]
-}
+}) 
