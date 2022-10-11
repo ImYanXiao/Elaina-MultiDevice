@@ -1,5 +1,5 @@
 // Source? https://github/DikaArdnt/Hisoka-Morou
-// Recode ImYanXiao
+// Recode By ImYanXiao
 import fetch from 'node-fetch'
 import yts from 'yt-search'
 let handler = async (m, { conn, groupMetadata, usedPrefix, text, args, command }) => {
