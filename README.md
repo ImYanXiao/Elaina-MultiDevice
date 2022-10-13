@@ -67,9 +67,7 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
 ---------
 
 ## ```For User Panel Buy In This Number```
-  <a href="https://wa.me/6285692006004">
-    <img align="left" alt="SIEGRIN | Whastapp" width="26px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Whatsapp.svg" />
-  </a> &nbsp;&nbsp;
+[![WHATSAPP](https://img.shields.io/badge/Seller%20Panel-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/6285692006004) 
 ---------
 
 ## ```USER RAILWAY```
