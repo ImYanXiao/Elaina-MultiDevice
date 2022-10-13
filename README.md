@@ -33,6 +33,12 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
   </a> &nbsp;&nbsp;
 ---------
 
+## For User Panel Buy In This Number
+  <a href="https://wa.me/6285692006004">
+    <img align="left" alt="SIEGRIN | Whastapp" width="26px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Whatsapp.svg" />
+  </a> &nbsp;&nbsp;
+---------
+
 ## ```Whatsapp``` <a href="https://wa.me/6285736178354"> <img align="left" alt="SIEGRIN | Whastapp" width="26px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Whatsapp.svg" />
 [![BOT WHATSAPP](https://img.shields.io/badge/WhatsApp%20BOT-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/6281231079387) 
 ---------
