@@ -33,12 +33,6 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
   </a> &nbsp;&nbsp;
 ---------
 
-## ```For User Panel Buy In This Number```
-  <a href="https://wa.me/6285692006004">
-    <img align="left" alt="SIEGRIN | Whastapp" width="26px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Whatsapp.svg" />
-  </a> &nbsp;&nbsp;
----------
-
 ## ```Whatsapp``` <a href="https://wa.me/6285736178354"> <img align="left" alt="SIEGRIN | Whastapp" width="26px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Whatsapp.svg" />
 [![BOT WHATSAPP](https://img.shields.io/badge/WhatsApp%20BOT-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/6281231079387) 
 ---------
@@ -72,19 +66,17 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
 - Bot Name [Here](https://github.com/ImYanXiao/Elaina-Multidevice/blob/master/config.js#L1)
 ---------
 
-## ```Heroku Buildpack```
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ImYanXiao/Elaina-MultiDevice)
+## ```For User Panel Buy In This Number```
+  <a href="https://wa.me/6285692006004">
+    <img align="left" alt="SIEGRIN | Whastapp" width="26px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Whatsapp.svg" />
+  </a> &nbsp;&nbsp;
+---------
 
-| BuildPack | LINK |
-|--------|--------|
-| **FFMPEG** |[here](https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest) |
-| **IMAGEMAGICK** | [here](https://github.com/rocketmobile/heroku-buildpack-imagemagick.git) |
-
-## USER RAILWAY
+## ```USER RAILWAY```
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/ImYanXiao/Elaina-MultiDevice)
 
-## USER REPLIT
+## ```USER REPLIT```
 [![Run on Repl.it](https://repl.it/badge/github/ImYanXiao/Elaina-MultiDevice)](https://repl.it/github/ImYanXiao/Elaina-MultiDevice)
 ## TERMUX USER
 ```bash
