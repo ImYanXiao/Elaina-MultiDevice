@@ -8,7 +8,7 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
 
 ## PENTING
 
-> **Warning**: Script Ini Tidak Support Qr, Jadi kalian bisa gunakan script lain yang sudah multi session
+> **Warning**: Script Ini Tidak Support Qr, Jadi kalian bisa gunakan script lain yang sudah multi session, 
 Atau Kalian Bisa Pakai Script Ini Untuk Mengambil Session : https://github.com/ImYanXiao/games-wabot-md
 
 <h1 align="center">ElainaBOT - MD</h1>
