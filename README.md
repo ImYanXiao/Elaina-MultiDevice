@@ -5,6 +5,9 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
 <p align="center">
     <img src="https://telegra.ph/file/37df69a78afb6e010282d.jpg" width="100%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
+## PENTING
+> **Warning**: Script Ini Tidak Support Qr, Jadi kalian bisa gunakan script lain yang sudah multi session
+
 <h1 align="center">ElainaBOT - MD</h1>
 <p align="center">
   <a href="https://github.com/ImYanXiao"><img src="http://readme-typing-svg.herokuapp.com?color=FFFFFF&center=true&vCenter=true&multiline=false&lines=Elaina+BOT+Multi+Device;Base+ori+by+BochilGaming;Recode+By+YanXiao;Give+star+and+forks+this+Repo+:D;Follow+My+Github" alt="ʘᴗʘ">
