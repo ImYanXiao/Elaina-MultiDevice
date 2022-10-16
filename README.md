@@ -5,7 +5,9 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
 <p align="center">
     <img src="https://telegra.ph/file/37df69a78afb6e010282d.jpg" width="100%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
+
 ## PENTING
+
 > **Warning**: Script Ini Tidak Support Qr, Jadi kalian bisa gunakan script lain yang sudah multi session
 
 <h1 align="center">ElainaBOT - MD</h1>
