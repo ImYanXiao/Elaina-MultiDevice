@@ -24,9 +24,6 @@ Bisa Juga Memakai Ini Untuk Mengambil Session : https://replit.com/@tioclkp02/Se
 
 ---------
 
-## Node Modules : https://www.mediafire.com/file/28sddjopmyh8mxp/node_modules.zip/file
----------
-
 ## ```Connect With Me 📞``` 
   <a href="https://wa.me/6285736178354">
     <img align="left" alt="SIEGRIN | Whastapp" width="26px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Whatsapp.svg" />
