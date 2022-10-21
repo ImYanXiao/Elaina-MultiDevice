@@ -9,7 +9,7 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
 ## PENTING
 
 > **Warning**: Script Ini Tidak Support Qr, Jadi Kalian Bisa Menggunakan Replit Atau
-Bisa Juga Memakai Ini Untuk Mengambil Session : https://replit.com/@tioclkp02/Sessions-Multi-Auth?lite=1&outputonly=1
+Bisa Juga Memakai Ini Untuk Mengambil Session : https://replit.com/@ImYanXiao/Elaina-MultiDevice?outputonly=1&lite=1
 
 <h1 align="center">ElainaBOT - MD</h1>
 <p align="center">
