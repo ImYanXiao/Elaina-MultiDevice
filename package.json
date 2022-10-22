@@ -4,6 +4,9 @@
     "description": "RPG BOT Whatsapp",
     "main": "index.js",
     "type": "module",
+   "engines": {
+    "node": "17.1.0"
+  }, 
     "directories": {
         "lib": "lib",
         "src": "src",
