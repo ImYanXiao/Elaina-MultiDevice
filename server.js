@@ -29,7 +29,7 @@ function connect(conn, PORT) {
 
     server.listen(PORT, () => {
         console.log('App listened on port', PORT)
-        if (set.opts['keepalive']) keepAlive()
+        if (opts['keepalive']) keepAlive()
     })
 }
 
