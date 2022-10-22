@@ -1,4 +1,4 @@
-// S C R I P T  O R I  B Y  Bochilgaming 🔭
+Yo// S C R I P T  O R I  B Y  Bochilgaming 🔭
 // Ditulis Ulang Oleh ImYanXiao
 // Credits, jangan dihapus atau diubah!
 
