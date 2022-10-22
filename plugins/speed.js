@@ -53,7 +53,7 @@ let handler = async (m, { conn, isRowner}) => {
   let old = performance.now()
   await m.reply(`${htjava} *ᴛ ᴇ s ᴛ ɪ ɴ ɢ . . .*`)
   let neww = performance.now()
-  let session = fs.statSync(authFile)
+  let session = fs.statSync(authFolder)
   let speed = neww - old
   await conn.reply(m.chat,`*s ᴘ ᴇ ᴇ ᴅ*
 ${Math.round(neww - old)} ms
