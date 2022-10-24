@@ -38,9 +38,7 @@ handler.all = async function (m) {
 		
 		// pesan sementara
 		global.ephemeral = '86400' // 86400 = 24jam, kalo ingin di hilangkan ganti '86400' jadi 'null' atau ''
-                let ente = await conn.resize(hwaifu.getRandom(), 300, 150)
-		// Acumalaka
-		global.terkadang = ente
+         
      		// externalAdReply atau text with thumbnail. gatau bahasa Inggris? coba translate!
 		global.adReply = {
 			contextInfo: {
