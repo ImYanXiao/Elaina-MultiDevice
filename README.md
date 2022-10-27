@@ -8,8 +8,8 @@ Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menu
 
 ## PENTING
 
-> **Warning**: Script Ini Tidak Support Qr, Jadi Kalian Bisa Menggunakan Replit Untuk Mengambil Session Atau
-Memakai Ini Untuk Mencoba Script Ini : https://replit.com/@ImYanXiao/Elaina-MultiDevice?outputonly=1&lite=1
+> **Warning**: Script Ini Tidak Support Qr Untuk Saat Ini, Jadi Kalian Bisa Menggunakan Replit Untuk Mengambil Session Atau
+Memakai Sc Lain Untuk Mengambil Session Atau Kalau Kalian Masih pengguna Satu Sesi Bisa Pakai main.js.bak yg sudah saya sediakan
 
 <h1 align="center">ElainaBOT - MD</h1>
 <p align="center">
