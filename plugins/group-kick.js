@@ -4,7 +4,7 @@ let handler = async (m, { conn, participants }) => {
     let kickedUser = []
     for (let user of users)
         if (user.endsWith('@s.whatsapp.net') && !(participants.find(v => areJidsSameUser(v.id, user)) || { admin: true }).admin) {
-            const res = await conn.groupParticipantsUpdate(m.chat, [m.sender], "remove")
+            const res = await conn.groupParticipantsUpdate(m.chat, [user], "remove")
             kickedUser.concat(res)
             await delay(1 * 1000)
         }
