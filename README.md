@@ -245,7 +245,7 @@ conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', 'https://github.com/Boc
 * [`All Contributors`](https://github.com/ImYanXiao)
 * [`All Creator Bot`](https://github.com/ImYanXiao)
 * [`Adiwajshing`](https://github.com/adiwajshing/Baileys)
-* [`Nurutomo`](https://github.com/nurutomi)
+* [`Nurutomo`](https://github.com/nurutomo)
 * [`BochilGaming`](https://github.com/bochilgaming)
 * [`KannaChann`](https://github.com/kannachann) 
 * [`The.Sad.Boy01`](https://github.com/Kangsad01) 
