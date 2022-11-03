@@ -1,17 +1,13 @@
-let handler = async (m, { conn, text }) => {
-	let setting = global.db.data.settings[conn.user.jid]
+export async function before(m) {
+	let setting = global.db.data.settings[this.user.jid]
 	if (new Date() * 1 - setting.status > 1000) {
 		let _uptime = process.uptime() * 1000
 		let uptime = clockString(_uptime);
-                let namebot = global.namebot
 		let bio = `Im ${namebot} 🤖 || ⏰ Aktif Selama ${uptime} || 🌎 Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Hanya Grup' : 'Publik'} || 🎨 Create By ${nameown}`)
-		await conn.updateProfileStatus(bio).catch(_ => _)
-		conn.reply(m.chat, 'Sukses Mengganti Bio Bot', m)
+		await this.updateProfileStatus(bio).catch(_ => _)
 		setting.status = new Date() * 1
 	}
 }
-
-export default handler
 function clockString(ms) {
   let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
   let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
