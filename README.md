@@ -247,9 +247,7 @@ conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', 'https://github.com/Boc
 * [`Adiwajshing`](https://github.com/adiwajshing/Baileys)
 * [`Nurutomo`](https://github.com/nurutomo)
 * [`BochilGaming`](https://github.com/bochilgaming)
-* [`KannaChann`](https://github.com/kannachann) 
-* [`The.Sad.Boy01`](https://github.com/Kangsad01) 
-* [`Papah-Chan`](https://github.com/FahriAdison) 
+* [`Fokus ID`](https://github.com/Fokusdotid) 
 
 ## ```Recode By ✏️```
 [![ImYanXiao](https://github.com/ImYanXiao.png?size=70)](https://github.com/ImYanXiao)
