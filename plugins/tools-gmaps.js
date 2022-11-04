@@ -1,4 +1,4 @@
-import { jarak } from "../lib/scrape.js"
+/*import { jarak } from "../lib/scrape.js"
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 let [dari, ke] = text.split(",")
 if (!dari || !ke) throw `*GMAPS JARAK*\n\n*• Gesek pesan ini* atau\nKetik *${usedPrefix}${command} pekalongan,sukabumi`
@@ -12,4 +12,4 @@ handler.tags = ['tools']
 handler.desc = ["Melihat jarak dari kota A ke kota B"]
 handler.command = /^(jarak|gmaps)$/i
 
-export default handler 
+export default handler*/
