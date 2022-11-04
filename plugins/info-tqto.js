@@ -69,7 +69,7 @@ conn.sendButtonDoc(m.chat, tqto, wm,'Thanks','Bilek', m, { contextInfo: { extern
     mediaUrl: global.sig,
     mediaType: "VIDEO",
     description: global.sig, 
-    title: 'Elaina-MultiDevice',
+    title: wm3,
     body: wm,
     thumbnail: thumb,
     sourceUrl: sgc
