@@ -1,5 +1,3 @@
-//Credit? ImYanXiao
-//Gunakan Fitur Ini Dengan Bijak Karena Ini Termasuk Bug Whatsapp
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 	
 if (!args[0]) throw `Tidak ada teks untuk survei \n\nExample : \n*${usedPrefix + command}* Pesan  |Hai|Kak`
