@@ -1,6 +1,3 @@
-
-## CATATAN
-Script ini gratis untuk semua orang, bukan untuk Dijual. Jika dijual neraka menunggumu Brother!!
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 <p align="center">
     <img src="https://telegra.ph/file/37df69a78afb6e010282d.jpg" width="100%" style="margin-left: auto;margin-right: auto;display: block;">
@@ -24,12 +21,9 @@ Memakai Link Yang Ada Di Issues Untuk Mengambil Sessionnya
 
 ---------
 
-## ```Connect With Me 📞``` 
+## ```Contact Me 💌``` 
   <a href="https://wa.me/6285736178354">
     <img align="left" alt="SIEGRIN | Whastapp" width="26px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Whatsapp.svg" />
-  </a> &nbsp;&nbsp;
-  <a href="https://www.instagram.com/Xiao_yan_21">
-    <img align="left" alt="SIEGRIN | Instagram" width="24px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Instagram.svg" />
   </a> &nbsp;&nbsp;
   <a href="mailto:yanxiao021@gmail.com">
     <img align="left" alt="SIEGRIN | Gmail" width="26px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Gmail.svg" />
@@ -60,13 +54,6 @@ Memakai Link Yang Ada Di Issues Untuk Mengambil Sessionnya
 - ✔️ | Tools 
 - ✔️ | Exec 
 - ✔️ | React 
----------
-
-## `SETTING` ⚙️
-
-- Owner Number [Here](https://github.com/ImYanXiao/Elaina-MultiDevice/blob/master/config.js#L1)
-- Owner Name [Here](https://github.com/ImYanXiao/Elaina-Multidevice/blob/master/config.js#L1)
-- Bot Name [Here](https://github.com/ImYanXiao/Elaina-Multidevice/blob/master/config.js#L1)
 ---------
 
 ## ``Join Group Panelku Hosting``
@@ -168,7 +155,7 @@ node .
 ## ```Arguments node . [--options] [<session name>]```
 
 ## `--self`
-* Activate self mode (Ignores other)
+* activate self mode (ignores other)
 
 ## `--pconly`
 * If that chat not from private bot, bot will ignore
@@ -232,13 +219,8 @@ conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', 'https://github.com/Boc
 ### 📮 S&K
 1. Not For Sale
 2. Don't forget give star this repo
-3. Follow Github
-4. Don't use this repository wrong!
-5. If you have problem chat me in owner number
-
----------
-
-### ❗ Note : Untuk apikey kamu bisa beli ke website itu sendiri :D
+3. Don't use this repository wrong!
+4. If you have problem chat me in owner number
 
 ---------
 
