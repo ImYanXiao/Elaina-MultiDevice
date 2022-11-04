@@ -56,7 +56,7 @@ https://github.com/FahriAdison
 *▸ - - - —「 Penulis Ulang 」— - - - ◂*
 *❉ ImYanXiao:*
 https://github.com/ImYanXiao
-*▸ - - - —「 Thanks For Suhu 」— - - - ◂*
+*▸ - - - —「 Thanks For Help Me 」— - - - ◂*
 *❉ Kannachan:*
 *❉ The.sadboy.01:*
 *❉ Papah-Chan:*
@@ -66,9 +66,9 @@ https://github.com/ImYanXiao
 
 `
 conn.sendButtonDoc(m.chat, tqto, wm,'Thanks','Bilek', m, { contextInfo: { externalAdReply: { showAdAttribution: true,
-    mediaUrl: "https://Instagram.com/Xiao_yan_21",
+    mediaUrl: global.sig,
     mediaType: "VIDEO",
-    description: "https://Instagram.com/Xiao_yan_21", 
+    description: global.sig, 
     title: 'Elaina-MultiDevice',
     body: wm,
     thumbnail: thumb,
