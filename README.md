@@ -47,8 +47,8 @@ Memakai Link Yang Ada Di Issues Untuk Mengambil Sessionnya
 - ✔️ | **Button Document(Experiment)** 
 ---------
 ### Some of the features include
-- ✔️ | Downloader 
-- ✔️ | Internet 
+- ✔️ | Menfess
+- ✔️ | AntiCall
 - ✔️ | Game Rpg 
 - ✔️ | Nsfw 
 - ✔️ | Sticker 
