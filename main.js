@@ -5,7 +5,6 @@
   * @Rasel Comel https://github.com/raselcomel
   * @Rlxfly Thanks For Function Auto Clear Sessions
   * https://github.com/Rlxfly
-  * Fix By : @ImYanXiao https://github.com/ImYanXiao
   * Catatan : Untuk Sessionnya Hanya Support 
   * MultiFileAuthState/banyak file dalam folder sessions
   * Kamu Bisa Fork Scan Pakai Link Replit Yg Ada Di Issues
