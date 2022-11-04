@@ -56,6 +56,17 @@ handler.all = async function (m) {
 				}
 			}
 		}
+                global.flocation = {
+	key : {
+           participant : '0@s.whatsapp.net'
+                        },
+       message: {
+                    locationMessage: {
+                    name: 'Japan`s',
+                    jpegThumbnail: fs.readFileSync('./thumbnail.jpg')
+                          }
+                        }
+                      }
 		global.fpayment = {
 				"key": {
 					"remoteJid": "0@s.whatsapp.net",
@@ -254,9 +265,9 @@ global.fakefb = {
                                }
                               }
                              }
-                            // Random Pick Fake
-                             let pft = [global.fimg, global.fimgv, global.fpayment, global.ftroli, global.fkontak, global.fvn, global.fvid, global.ftextt, global.fliveLoc, global.fliveLoc2, global.ftoko, global.fdocs, global.fgclink, global.fgif]
-			                   // Pick Random
+                                      // Random Pick Fake
+                             let pft = [global.fimg, global.flocation, global.fimgv, global.fpayment, global.ftroli, global.fkontak, global.fvn, global.fvid, global.ftextt, global.fliveLoc, global.fliveLoc2, global.ftoko, global.fdocs, global.fgclink, global.fgif]
+			                   // Get Random
 		                     global.fakes = pft.getRandom()
 		        
 	}
