@@ -3,7 +3,7 @@ export async function before(m) {
 	if (new Date() * 1 - setting.status > 1000) {
 		let _uptime = process.uptime() * 1000
 		let uptime = clockString(_uptime);
-		let bio = `Im ${namebot} 🤖 || ⏰ Aktif Selama ${uptime} || 🌎 Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Hanya Grup' : 'Publik'} || 🎨 Create By ${nameown}`)
+		let bio = `Im ${namebot} 🤖 || ⏰ Aktif Selama ${uptime} || 🌎 Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Hanya Grup' : 'Publik'} || 🎨 Create By ${nameown}`
 		await this.updateProfileStatus(bio).catch(_ => _)
 		setting.status = new Date() * 1
 	}
