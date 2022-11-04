@@ -49,7 +49,7 @@ handler.all = async function (m) {
 					title: global.ucapan,
 					body: wm,
 					mediaUrl: sgc,
-					description: 'Elaina-MultiDevice',
+					description: wm3,
 					previewType: "PHOTO",
 					thumbnail: await (await fetch(pic)).buffer(),
 					sourceUrl: "https://github.com/ImYanXiao",					
@@ -95,10 +95,10 @@ handler.all = async function (m) {
 			}
 		global.fakeig = {
          contextInfo: { externalAdReply: { showAdAttribution: true,
-            mediaUrl: "https://Instagram.com/Xiao_yan_21",
+            mediaUrl: global.sig,
             mediaType: "VIDEO",
-            description: "https://Instagram.com/Xiao_yan_21", 
-            title: 'Elaina-MultiDevice',
+            description: global.sig, 
+            title: wm3,
             body: wm,
             thumbnailUrl: pp,
             sourceUrl: sig
@@ -109,7 +109,7 @@ global.fakefb = {
             mediaUrl: "https://Facebook.com/zuck",
             mediaType: "VIDEO",
             description: "https://www.Facebook.com/zuck", 
-            title: 'Elaina-MultiDevice',
+            title: wm3,
             body: wm,
             thumbnailUrl: pp,
             sourceUrl: sgc
@@ -176,8 +176,8 @@ global.fakefb = {
                                "mimetype": "image/jpeg",
                                "jpegThumbnail": fs.readFileSync('./thumbnail.jpg') //Gambarnye
                            },
-                           "title": wm, //Kasih namalu 
-                           "description": "Elaina-MultiDevice", 
+                           "title": wm, //Terserah Di Isi apa
+                           "description": wm3, 
                            "currencyCode": "USD",
                            "priceAmount1000": "20000000",
                            "retailerId": "Ghost",
