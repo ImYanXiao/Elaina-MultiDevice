@@ -42,24 +42,21 @@ Memakai Link Yang Ada Di Issues Untuk Mengambil Sessionnya
 ### Some of the features include
 - ✔️ | Menfess
 - ✔️ | AntiCall
-- ✔️ | Game Rpg 
+- ✔️ | Game & Rpg Game
 - ✔️ | Nsfw 
 - ✔️ | Sticker 
-- ✔️ | Game 
 - ✔️ | Kerang Ajaib 
 - ✔️ | Quotes
 - ✔️ | Anime 
 - ✔️ | Premium 
 - ✔️ | Tools 
-- ✔️ | Exec 
-- ✔️ | React 
 ---------
 
 ## ``Join Group Panelku Hosting``
 [![WHATSAPP](https://img.shields.io/badge/Groups%20Panel-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/DTogQfvmc8sHPv6TTdJqPr) 
 ---------
 
-## ```For User Panel, Buy Panel In This Number```
+## ```Or Buy Panel In This Number```
 [![WHATSAPP](https://img.shields.io/badge/Seller%20Panel-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/6285692006004) 
 ---------
 
