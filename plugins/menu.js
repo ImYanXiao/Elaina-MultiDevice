@@ -546,7 +546,7 @@ const listMessage = {
     let d6 = 'application/zip'
     let td = `${pickRandom([d1,d2,d3,d4,d5,d6])}`
     
-    Source : https://github.com/Rlxfly
+   //~~~Source : https://github.com/Rlxfly
     //------- MENU LOCATION
     const pre = generateWAMessageFromContent(m.chat, { liveLocationMessage:{
   degreesLatitude: 34.672314,
