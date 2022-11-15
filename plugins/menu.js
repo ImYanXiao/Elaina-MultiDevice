@@ -446,81 +446,46 @@ const listMessage = {
   }
   
     let urls = pickRandom(['https://telegra.ph/file/035e524939ab0294ba91f.jpg', 'https://telegra.ph/file/96b2275d3b14d071290bc.jpg', 'https://telegra.ph/file/2c6b7660bc6126404a9bb.jpg', 'https://telegra.ph/file/c635bf577bb9d59a3e00b.jpg', 'https://telegra.ph/file/be8dd52f6363f9e9f5a60.jpg', 'https://telegra.ph/file/02e53361b9dc946f63c8d.jpg', 'https://telegra.ph/file/298ed2f1bba17aeb64ca8.jpg', 'https://telegra.ph/file/be2a18221974147f66ea0.jpg'])
- 
     const pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => 'https://telegra.ph/file/24fa902ead26340f3df2c.png')
     
     //FAKE TROLI
 
     const ftrol = {
-
     key : {
-
     remoteJid: 'status@broadcast',
-
     participant : '0@s.whatsapp.net'
-
     },
-
     message: {
-
     orderMessage: {
-
     itemCount : 2022,
-
     status: 1,
-
     surface : 1,
-
     message: `Hai Kak ${name}!`, 
-
     orderTitle: `▮Menu ▸`,
-
     thumbnail: await (await fetch(flaaa + 'Menu')).buffer(), //Gambarnye
-
     sellerJid: '0@s.whatsapp.net' 
-
     }
-
     }
-
     }
     
     const fload = {
-
     key : {
-
     remoteJid: 'status@broadcast',
-
     participant : '0@s.whatsapp.net'
-
     },
-
     message: {
-
     orderMessage: {
-
     itemCount : 2022,
-
     status: 1,
-
     surface : 1,
-
     message: '[❗] Memuat Menu ' + teks + '...\n Sabar Ya Kak ^ω^', 
-
     orderTitle: `▮Menu ▸`,
-
     thumbnail: await (await fetch(flaaa + 'Loading')).buffer(), //Gambarnye
-
     sellerJid: '0@s.whatsapp.net' 
-
     }
-
     }
-
     }
-
     conn.reply(m.chat, '*Tunggu Sebentar Kak. . .*', ftrol) 
-
     
     //------------------< MENU >----------------
     
@@ -643,9 +608,9 @@ const listMessage = {
     // Gausah Dihapus, Thx
     //------------------ BUTTONDOC WITH EXTERNALADS NEW
     //---Versi 1
-    //const _0x128b9c=_0x4f44;(function(_0x2018b1,_0x148852){const _0xf056e8=_0x4f44,_0x1946c7=_0x2018b1();while(!![]){try{const _0x434fba=-parseInt(_0xf056e8(0x1b1))/0x1+parseInt(_0xf056e8(0x1b0))/0x2+parseInt(_0xf056e8(0x1a9))/0x3*(-parseInt(_0xf056e8(0x1ae))/0x4)+-parseInt(_0xf056e8(0x1a5))/0x5+-parseInt(_0xf056e8(0x1ac))/0x6+parseInt(_0xf056e8(0x1ad))/0x7+-parseInt(_0xf056e8(0x1a6))/0x8*(-parseInt(_0xf056e8(0x1b5))/0x9);if(_0x434fba===_0x148852)break;else _0x1946c7['push'](_0x1946c7['shift']());}catch(_0x263ef){_0x1946c7['push'](_0x1946c7['shift']());}}}(_0x233d,0xe2557));function _0x4f44(_0x4b8cb9,_0x1b0dc4){const _0x233d14=_0x233d();return _0x4f44=function(_0x4f449e,_0x423364){_0x4f449e=_0x4f449e-0x1a2;let _0x410bed=_0x233d14[_0x4f449e];return _0x410bed;},_0x4f44(_0x4b8cb9,_0x1b0dc4);}let buttonMessage={'document':{'url':sgh},'mimetype':global['ddocx'],'fileName':wm,'fileLength':fsizedoc,'pageCount':fpagedoc,'contextInfo':{'externalAdReply':{'showAdAttribution':!![],'mediaType':0x1,'previewType':'pdf','title':global[_0x128b9c(0x1a8)],'thumbnail':fs[_0x128b9c(0x1a7)](_0x128b9c(0x1b2)),'renderLargerThumbnail':!![],'sourceUrl':snh}},'caption':botdate,'footer':text[_0x128b9c(0x1a4)](),'buttons':[{'buttonId':_0x128b9c(0x1aa),'buttonText':{'displayText':_0x128b9c(0x1a3)},'type':0x1},{'buttonId':_0x128b9c(0x1b4),'buttonText':{'displayText':_0x128b9c(0x1b3)},'type':0x1},{'buttonId':'.?\x20all','buttonText':{'displayText':_0x128b9c(0x1a2)},'type':0x1}],'headerType':0x6};function _0x233d(){const _0x3c467e=['578958jnpGtT','./thumbnail.jpg','ᴅᴏɴᴀsɪ','.donasi','72TSRyZH','ᴀʟʟ-ᴍᴇɴᴜ','ᴍᴇɴᴜ','trim','1711895uGhCJk','1733680UzLqTC','readFileSync','titlebot','3PyeAPc','.menu','sendMessage','3578466MDAGZi','5489001FHKiNR','2370008ImZfan','chat','1038980ahvdKK'];_0x233d=function(){return _0x3c467e;};return _0x233d();}await conn[_0x128b9c(0x1ab)](m[_0x128b9c(0x1af)],buttonMessage,{'quoted':fkontak});
+      const _0x128b9c=_0x4f44;(function(_0x2018b1,_0x148852){const _0xf056e8=_0x4f44,_0x1946c7=_0x2018b1();while(!![]){try{const _0x434fba=-parseInt(_0xf056e8(0x1b1))/0x1+parseInt(_0xf056e8(0x1b0))/0x2+parseInt(_0xf056e8(0x1a9))/0x3*(-parseInt(_0xf056e8(0x1ae))/0x4)+-parseInt(_0xf056e8(0x1a5))/0x5+-parseInt(_0xf056e8(0x1ac))/0x6+parseInt(_0xf056e8(0x1ad))/0x7+-parseInt(_0xf056e8(0x1a6))/0x8*(-parseInt(_0xf056e8(0x1b5))/0x9);if(_0x434fba===_0x148852)break;else _0x1946c7['push'](_0x1946c7['shift']());}catch(_0x263ef){_0x1946c7['push'](_0x1946c7['shift']());}}}(_0x233d,0xe2557));function _0x4f44(_0x4b8cb9,_0x1b0dc4){const _0x233d14=_0x233d();return _0x4f44=function(_0x4f449e,_0x423364){_0x4f449e=_0x4f449e-0x1a2;let _0x410bed=_0x233d14[_0x4f449e];return _0x410bed;},_0x4f44(_0x4b8cb9,_0x1b0dc4);}let buttonMessage={'document':{'url':sgh},'mimetype':global['ddocx'],'fileName':wm,'fileLength':fsizedoc,'pageCount':fpagedoc,'contextInfo':{'externalAdReply':{'showAdAttribution':!![],'mediaType':0x1,'previewType':'pdf','title':global[_0x128b9c(0x1a8)],'thumbnail':fs[_0x128b9c(0x1a7)](_0x128b9c(0x1b2)),'renderLargerThumbnail':!![],'sourceUrl':snh}},'caption':botdate,'footer':text[_0x128b9c(0x1a4)](),'buttons':[{'buttonId':_0x128b9c(0x1aa),'buttonText':{'displayText':_0x128b9c(0x1a3)},'type':0x1},{'buttonId':_0x128b9c(0x1b4),'buttonText':{'displayText':_0x128b9c(0x1b3)},'type':0x1},{'buttonId':'.?\x20all','buttonText':{'displayText':_0x128b9c(0x1a2)},'type':0x1}],'headerType':0x6};function _0x233d(){const _0x3c467e=['578958jnpGtT','./thumbnail.jpg','ᴅᴏɴᴀsɪ','.donasi','72TSRyZH','ᴀʟʟ-ᴍᴇɴᴜ','ᴍᴇɴᴜ','trim','1711895uGhCJk','1733680UzLqTC','readFileSync','titlebot','3PyeAPc','.menu','sendMessage','3578466MDAGZi','5489001FHKiNR','2370008ImZfan','chat','1038980ahvdKK'];_0x233d=function(){return _0x3c467e;};return _0x233d();}await conn[_0x128b9c(0x1ab)](m[_0x128b9c(0x1af)],buttonMessage,{'quoted':fkontak});
     //---Versi 2
-     function _0x20c1(_0x3d1dba,_0x1a315e){const _0x1aaa67=_0x1aaa();return _0x20c1=function(_0x20c1f6,_0x54b096){_0x20c1f6=_0x20c1f6-0x1c6;let _0x4ac527=_0x1aaa67[_0x20c1f6];return _0x4ac527;},_0x20c1(_0x3d1dba,_0x1a315e);}const _0x254aec=_0x20c1;(function(_0xc90ae0,_0x2a9661){const _0x18cea6=_0x20c1,_0x2d6908=_0xc90ae0();while(!![]){try{const _0x2ba2f0=-parseInt(_0x18cea6(0x1d8))/0x1+parseInt(_0x18cea6(0x1c6))/0x2*(parseInt(_0x18cea6(0x1d3))/0x3)+-parseInt(_0x18cea6(0x1d7))/0x4*(-parseInt(_0x18cea6(0x1d1))/0x5)+parseInt(_0x18cea6(0x1da))/0x6*(parseInt(_0x18cea6(0x1db))/0x7)+parseInt(_0x18cea6(0x1d5))/0x8*(-parseInt(_0x18cea6(0x1cc))/0x9)+parseInt(_0x18cea6(0x1ca))/0xa*(-parseInt(_0x18cea6(0x1cf))/0xb)+parseInt(_0x18cea6(0x1c9))/0xc;if(_0x2ba2f0===_0x2a9661)break;else _0x2d6908['push'](_0x2d6908['shift']());}catch(_0x1f7d38){_0x2d6908['push'](_0x2d6908['shift']());}}}(_0x1aaa,0xbc66e));function _0x1aaa(){const _0x36844b=['386768jYCpaP','.ping','8723532zYlQfN','7fscaTt','912466cACkPE','readFileSync','AllMenu','5611548ebnrCK','1090xslGJh','Donasi','9ctfOjB','trim','sendMessage','69872JqHKkt','sig','4108735YfQyZP','./thumbnail.jpg','3CgyrmQ','titlebot','10789608ysbGEy','pdf','4fZdsjl'];_0x1aaa=function(){return _0x36844b;};return _0x1aaa();}let buttonMessage={'document':{'url':sgc},'mimetype':global['ddocx'],'fileName':wm,'fileLength':fsizedoc,'pageCount':fpagedoc,'contextInfo':{'externalAdReply':{'showAdAttribution':!![],'mediaUrl':global[_0x254aec(0x1d0)],'mediaType':0x2,'previewType':_0x254aec(0x1d6),'title':global[_0x254aec(0x1d4)],'body':global[_0x254aec(0x1d4)],'thumbnail':fs[_0x254aec(0x1c7)](_0x254aec(0x1d2)),'sourceUrl':snh}},'caption':botdate,'footer':text[_0x254aec(0x1cd)](),'buttons':[{'buttonId':_0x254aec(0x1d9),'buttonText':{'displayText':'Ping'},'type':0x1},{'buttonId':'.?\x20all','buttonText':{'displayText':_0x254aec(0x1c8)},'type':0x1},{'buttonId':'.donasi','buttonText':{'displayText':_0x254aec(0x1cb)},'type':0x1}],'headerType':0x6};await conn[_0x254aec(0x1ce)](m['chat'],buttonMessage,{'quoted':fkontak});
+     //function _0x20c1(_0x3d1dba,_0x1a315e){const _0x1aaa67=_0x1aaa();return _0x20c1=function(_0x20c1f6,_0x54b096){_0x20c1f6=_0x20c1f6-0x1c6;let _0x4ac527=_0x1aaa67[_0x20c1f6];return _0x4ac527;},_0x20c1(_0x3d1dba,_0x1a315e);}const _0x254aec=_0x20c1;(function(_0xc90ae0,_0x2a9661){const _0x18cea6=_0x20c1,_0x2d6908=_0xc90ae0();while(!![]){try{const _0x2ba2f0=-parseInt(_0x18cea6(0x1d8))/0x1+parseInt(_0x18cea6(0x1c6))/0x2*(parseInt(_0x18cea6(0x1d3))/0x3)+-parseInt(_0x18cea6(0x1d7))/0x4*(-parseInt(_0x18cea6(0x1d1))/0x5)+parseInt(_0x18cea6(0x1da))/0x6*(parseInt(_0x18cea6(0x1db))/0x7)+parseInt(_0x18cea6(0x1d5))/0x8*(-parseInt(_0x18cea6(0x1cc))/0x9)+parseInt(_0x18cea6(0x1ca))/0xa*(-parseInt(_0x18cea6(0x1cf))/0xb)+parseInt(_0x18cea6(0x1c9))/0xc;if(_0x2ba2f0===_0x2a9661)break;else _0x2d6908['push'](_0x2d6908['shift']());}catch(_0x1f7d38){_0x2d6908['push'](_0x2d6908['shift']());}}}(_0x1aaa,0xbc66e));function _0x1aaa(){const _0x36844b=['386768jYCpaP','.ping','8723532zYlQfN','7fscaTt','912466cACkPE','readFileSync','AllMenu','5611548ebnrCK','1090xslGJh','Donasi','9ctfOjB','trim','sendMessage','69872JqHKkt','sig','4108735YfQyZP','./thumbnail.jpg','3CgyrmQ','titlebot','10789608ysbGEy','pdf','4fZdsjl'];_0x1aaa=function(){return _0x36844b;};return _0x1aaa();}let buttonMessage={'document':{'url':sgc},'mimetype':global['ddocx'],'fileName':wm,'fileLength':fsizedoc,'pageCount':fpagedoc,'contextInfo':{'externalAdReply':{'showAdAttribution':!![],'mediaUrl':global[_0x254aec(0x1d0)],'mediaType':0x2,'previewType':_0x254aec(0x1d6),'title':global[_0x254aec(0x1d4)],'body':global[_0x254aec(0x1d4)],'thumbnail':fs[_0x254aec(0x1c7)](_0x254aec(0x1d2)),'sourceUrl':snh}},'caption':botdate,'footer':text[_0x254aec(0x1cd)](),'buttons':[{'buttonId':_0x254aec(0x1d9),'buttonText':{'displayText':'Ping'},'type':0x1},{'buttonId':'.?\x20all','buttonText':{'displayText':_0x254aec(0x1c8)},'type':0x1},{'buttonId':'.donasi','buttonText':{'displayText':_0x254aec(0x1cb)},'type':0x1}],'headerType':0x6};await conn[_0x254aec(0x1ce)](m['chat'],buttonMessage,{'quoted':fkontak});
 
      //------------------- 2BUTTON LOCATION
     /*conn.sendButton(m.chat, `${ucapan()}﹗`, text.trim(), `${timeimg()}`, [
