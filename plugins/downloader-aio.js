@@ -12,9 +12,9 @@ for (const { url, quality, formattedSize} of medias) await conn.sendFile(m.chat,
 m.reply("Eror")
 }
 }
-handler.help = ['aiovideo2'].map(v => v + ' <url>')
+handler.help = ['aiovideo'].map(v => v + ' <url>')
 handler.tags = ['downloader']
 
-handler.command = /^(aio(video2)?(dl2)?)$/i
+handler.command = /^(aio(video)?(dl)?)$/i
 
 export default handler
