@@ -28,17 +28,3 @@ handler.command = /^(telestic?ker|stic?kertele)$/i
 handler.limit = true
 
 export default handler
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-Abou
