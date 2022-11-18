@@ -1,37 +1,43 @@
+//ganti domain & ubah sebagian ga krn ga work
 import axios from 'axios'
 import cheerio from 'cheerio'
 import { lookup } from 'mime-types'
 import { extract } from 'zs-extract'
 
 export async function before(m) {
-	let chat = db.data.chats[m.chat] || {}
-	if (!chat.lastAnime) chat.lastAnime = []
+	let chat = global.db.data.chats[m.chat] || {}
 	if (chat && chat.updateAnime) {
-		let lastAnime = chat.lastAnime
-		setInterval(async () => {
-			conn.logger.info(`Checking anime for "${m.chat}"`)
-			let { title, cover, url } = (await getLatestAnime())[0]
-			if (lastAnime.includes(title)) return conn.logger.info(`${title} already sent to "${m.chat}"`)
-			let length = lastAnime[lastAnime.length - 1]
-			lastAnime.push(title)
-			if (lastAnime.indexOf(length) !== -1) lastAnime.splice(lastAnime.indexOf(length), 1)
-			conn.logger.info(`Sending anime ${title} to "${m.chat}"`)
-			let detailAnime = await getDetailAnime(url), download = detailAnime.download
-			let txt = parseResult(detailAnime, { title: '*ANIME UPDATE*', ignoreKey: ['update', 'cover', 'download'] })
-			let list = Object.keys(download).map(v => parseResult(download[v], { headers: `*• ${v}:*`, body: ' - Quality: %key\n - Url: %value' }))
-			let zippy = download['Zippy']
-			let templateButtons = [{ urlButton: { displayText: 'Source', url }}]
-			let quoted = await conn.sendMessage(m.chat, { image: { url: cover }, caption: `${txt}\n*• Download:*\n${list.join('\n')}`, footer: detailAnime.update, templateButtons })
-			if (/Movie/.test(detailAnime.episode)) return conn.reply(m.chat, 'Bot tidak dapat mengirim file video karena terlalu besar...', quoted)
-			let res = await downloadAnime(zippy?.['480p'] || zippy?.['720p'] || zippy?.['360p']).catch(() => null)
-			if (!res) return conn.reply(m.chat, 'Link download belum tersedia...', quoted)
-			await conn.sendMessage(m.chat, { document: { url: res?.download }, fileName: res?.filename, mimetype: res?.mimetype }, { quoted })
-		}, 5*60*1000) // 10 minutes 10*60*1000
+		chat.updateAnimeInterval = setTimeout(async () => {
+			try {
+				if (!Array.isArray(chat.lastAnime)) chat.lastAnime = []
+				conn.logger.info(`Checking anime for "${m.chat}"`)
+				let { title, cover, url } = (await getLatestAnime())[0]
+				if (chat.lastAnime.includes(title)) return conn.logger.info(`${title} already sent to "${m.chat}"`)
+				let length = chat.lastAnime[chat.lastAnime.length - 1]
+				chat.lastAnime.push(title)
+				if (chat.lastAnime.indexOf(length) !== -1) chat.lastAnime.splice(chat.lastAnime.indexOf(length), 1)
+				conn.logger.info(`Sending anime ${title} to "${m.chat}"`)
+				let detailAnime = await getDetailAnime(url), download = detailAnime.download
+				let txt = parseResult(detailAnime, { title: '*ANIME UPDATE*', ignoreKey: ['update', 'cover', 'download'] })
+				let list = Object.keys(download).map(v => parseResult(download[v], { headers: `*• ${v}:*`, body: ' - Quality: %key\n - Url: %value' }))
+				let zippy = download['Zippy']
+				let templateButtons = [{ urlButton: { displayText: 'Source', url } }]
+				let quoted = await conn.sendMessage(m.chat, { image: { url: cover }, caption: `${txt}\n*• Download:*\n${list.join('\n')}`, footer: detailAnime.update, templateButtons })
+				if (/Movie/.test(detailAnime.episode)) return conn.reply(m.chat, 'Bot tidak dapat mengirim file video karena terlalu besar...', quoted)
+				let res = await downloadAnime(zippy?.['480p'] || zippy?.['720p'] || zippy?.['360p']).catch(() => null)
+				if (!res) return conn.reply(m.chat, 'Link download belum tersedia...', quoted)
+				await conn.sendMessage(m.chat, { document: { url: res?.download }, fileName: res?.filename, mimetype: res?.mimetype }, { quoted })
+			} catch (e) {
+				console.error(e)
+			} finally {
+				chat.updateAnimeInterval = null
+			}
+		}, 5 * 60 * 1000) // 10 minutes 10*60*1000
 	}
 }
 
 function parseResult(json, options) {
-    // github: https://github.com/Zobin33/Anu-Wabot/blob/master/lib/functions.js#L81
+	// github: https://github.com/Zobin33/Anu-Wabot/blob/master/lib/functions.js#L81
 	let opts = {
 		unicode: true,
 		ignoreVal: [null, undefined],
@@ -51,14 +57,14 @@ function parseResult(json, options) {
 		switch (type) {
 			case 'boolean':
 				tmp.push([key, val ? true : false])
-			break
+				break
 			case 'object':
 				if (Array.isArray(val)) tmp.push([key, val.join(', ')])
 				else tmp.push([key, parseResult(val, { ignoreKey, unicode: false })])
-			break
+				break
 			default:
 				tmp.push([key, val])
-			break
+				break
 		}
 	}
 	if (unicode) {
@@ -80,7 +86,7 @@ async function downloadAnime(url) {
 }
 
 async function getLatestAnime() {
-	let html = (await axios.get('https://anoboy.lol/')).data
+	let html = (await axios.get('https://anoboy.ninja/')).data
 	let $ = cheerio.load(html), arr = []
 	$('div.home_index > a').each((idx, el) => {
 		arr.push({
@@ -116,3 +122,4 @@ async function getDetailAnime(url) {
 	})
 	return obj
 }
+
