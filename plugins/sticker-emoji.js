@@ -1,17 +1,16 @@
 import { sticker } from '../lib/sticker.js'
 import MessageType from '@adiwajshing/baileys'
-import { EmojiAPI } from 'emoji-api' 
-const emoji = new EmojiAPI()
+import * as emoji from "emoji-api";
 
 let handler = async (m, { conn, args, usedPrefix, command, isPrems }) => {
   let er = `
- ✳️ Gunakan Perintah
+ 🔗 Gunakan Perintah
 *${usedPrefix + command}* <tipe> <emoji>
 
 📌 Contoh :
 *${usedPrefix + command}* fa 🐼
 
-┌─⊷ *𝚃𝙸𝙿𝙴* 
+┌─⊷ *Type* 
 ▢ wha = whatsapp 
 ▢ ap = apple
 ▢ fa = facebook
