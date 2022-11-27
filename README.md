@@ -5,8 +5,7 @@
 
 ## PENTING
 
-> **Warning**: Script Ini Tidak Support Qr Untuk Saat Ini, Jadi Kalian Bisa Menggunakan Replit Untuk Menjalakan Script Ini Atau
-Memakai Link Yang Ada Di Issues Untuk Mengambil Sessionnya
+> **Warning**: Jangan Memperjual Belikan Script Ini
 
 <h1 align="center">ElainaBOT - MD</h1>
 <p align="center">
