@@ -15,7 +15,6 @@ const defaultMenu = {
 ╭─────═[ INFO USER ]═─────⋆
 │╭───────────────···
 ┴│☂︎ *Name:* %name
-⬡│☂︎ *Tag:* %tag
 ⬡│☂︎ *Premium:* %prems
 ⬡│☂︎ *Limit:* %limit
 ⬡│☂︎ *Money:* %money
