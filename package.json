@@ -4,9 +4,6 @@
     "description": "RPG BOT Whatsapp",
     "main": "index.js",
     "type": "module",
-   "engines": {
-    "node": "17.1.0"
-  }, 
     "directories": {
         "lib": "lib",
         "src": "src",
@@ -96,7 +93,6 @@
         "wa-sticker-formatter": "^4.3.2", 
         "ws": "^8.11.0", 
         "yargs": "^17.5.1", 
-        "yt-search": "^2.10.3", 
         "zs-extract": "^1.4.1"
     }
 }
