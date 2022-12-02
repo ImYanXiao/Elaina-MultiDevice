@@ -1,29 +1,31 @@
 let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
-let text = `
+let teks = `
 ┌─「 Donasi • Pulsa 」
 │ • *Indosat:* [${global.ppulsa}]
 ❏────
 
 ┌─「 Donasi • Non Pulsa 」
 │ • *Dana:* [${global.pdana}]
+│ • *Saweria:* [${global.psaweria}]
 ❏────
 `
 
-const templateButtons = [
-    {index: 1, urlButton: {displayText: '✨ Saweria', url: psaweria}},
-    {index: 2, urlButton: {displayText: '📷 Instagram', url: sig}},
-    {index: 3, urlButton: {displayText: '🌎 Official Group', url: sgc}},
-    {index: 4, quickReplyButton: {displayText: 'Menu', id: '.menu'}},
-    {index: 5, quickReplyButton: {displayText: 'Owner', id: '.owner'}},
+let you = flaaa.getRandom()
+
+const buttons = [
+  {buttonId: '.? all', buttonText: {displayText: 'ʙᴀᴄᴋ ᴛᴏ ᴀʟʟ ᴍᴇɴᴜ'}, type: 1},
+  {buttonId: '.ping', buttonText: {displayText: 'ᴘɪɴɢ'}, type: 1},
+  {buttonId: '.creator', buttonText: {displayText: 'ᴄʀᴇᴀᴛᴏʀ'}, type: 1}
 ]
-let tm = {
-text: text,
-footer: global.wm,
-templateButtons: templateButtons,
-image: {url: fla + 'Donasi'}
+
+const templateMessage = {
+    image: {url: you + 'Donasi'},
+    caption: teks, 
+    footer: wm,
+    buttons: buttons,
+    headerType: 4
 }
-conn.sendMessage(m.chat, tm, m)
-}
+await conn.sendMessage(m.chat, templateMessage, m)}
 handler.help = ['donasi']
 handler.tags = ['info']
 handler.command = /^dona(te|si)$/i
