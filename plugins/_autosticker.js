@@ -1,5 +1,5 @@
 import { sticker } from '../lib/sticker.js'
-import { Sticker, createSticker, StickerTypes } from 'wa-sticker-formatter'
+import * as WSF from 'wa-sticker-formatter'
 let handler = m => m
 
 handler.before = async function (m) {
