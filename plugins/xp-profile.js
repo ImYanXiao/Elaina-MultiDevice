@@ -23,16 +23,7 @@ ${readMore}
 ${clockString(user.premiumTime)}
 📑 • *Registered:* ${registered ? '✅': '❌'}
 `.trim()
-    conn.sendButton(m.chat, str, botdate, pp, [[`${registered ? 'Menu':'Verify'}`, `${user.registered ? '.menu':'.verify'}`]], fkontak, { contextInfo: { mentionedJid: [who], externalAdReply: { showAdAttribution: true, title: global.ucapan,
-					body: wm,
-					mediaUrl: sgc,
-					description: global.ucapan,
-					previewType: "PHOTO",
-					thumbnail: await (await fetch(img)).buffer(),
-					sourceUrl: "https://github.com/ImYanXiao",					
-				}
-			}
-		})
+    conn.sendButton(m.chat, str, botdate, pp, [[`${registered ? 'Menu':'Verify'}`, `${user.registered ? '.menu':'.verify'}`]], fkontak, global.adReply) 
 }
 handler.help = ['profile [@user]']
 handler.tags = ['exp']
