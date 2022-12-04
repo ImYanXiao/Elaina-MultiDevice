@@ -1,4 +1,4 @@
-console.log('🐾 Starting...')
+console.log('Starting...🐾')
 
 import yargs from 'yargs'
 import cfonts from 'cfonts'
@@ -32,7 +32,7 @@ function start(file) {
   setupMaster({ exec: args[0], args: args.slice(1) })
   let p = fork()
   p.on('message', data => {
-    console.log('[✅RECEIVED]', data)
+    console.log('[RECEIVED]✅', data)
     switch (data) {
       case 'reset':
         p.process.kill()
@@ -46,7 +46,7 @@ function start(file) {
   })
   p.on('exit', (_, code) => {
     isRunning = false
-    console.error('[❗]Exited with code:', code)
+    console.error('❗Exited with code:', code)
     if (code !== 0) return start(file)
     watchFile(args[0], () => {
       unwatchFile(args[0])
