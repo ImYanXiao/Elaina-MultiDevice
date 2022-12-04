@@ -45,14 +45,14 @@ handler.all = async function (m) {
 				forwardingScore: 9999,
 				//isForwarded: true, // ini biar ada tulisannya diteruskan berkali-kali, jika ingin di hilangkan ganti true menjadi false
 				externalAdReply: { // Bagian ini sesuka kalian berkreasi :'v
-                    showAdAttribution: true,
+                                        showAdAttribution: true,
 					title: global.ucapan,
 					body: wm,
 					mediaUrl: sgc,
 					description: wm3,
 					previewType: "PHOTO",
 					thumbnail: await (await fetch(pic)).buffer(),
-					sourceUrl: "https://github.com/ImYanXiao",					
+					sourceUrl: "https://github.com/ImYanXiao"			
 				}
 			}
 		}
