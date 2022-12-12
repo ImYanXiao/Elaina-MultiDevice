@@ -4,6 +4,7 @@
 
 import fs from 'fs'
 import fetch from 'node-fetch'
+import axios from 'axios'
 import moment from 'moment-timezone'
 import knights from 'knights-canvas'
 
