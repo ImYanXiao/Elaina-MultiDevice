@@ -16,15 +16,37 @@ handler.all = async function (m) {
 	} catch (e) {
 	} finally {
 		
-        //global.bg = await (await fetch(img)).buffer()
+                //global.bg = await (await fetch(img)).buffer()
 		global.doc = pickRandom(["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/msword", "application/pdf", "application/vnd.android.package-archive", "application/zip"])
 		global.pic = hwaifu.getRandom()
 		global.fla = flaaa.getRandom()
+                global.social = pickRandom([global.sgh, global.sig, global.snh, global.sgc]) 
 
 		// Module 
 		global.fetch = import('node-fetch')
 		global.bochil = import('@bochilteam/scraper')
 		
+                // Function
+                global.getBuffer = async function getBuffer(url, options) {
+	try {
+		options ? options : {}
+		var res = await axios({
+			method: "get",
+			url,
+			headers: {
+				'DNT': 1,
+				'User-Agent': 'GoogleBot',
+				'Upgrade-Insecure-Request': 1
+			},
+			...options,
+			responseType: 'arraybuffer'
+		})
+		return res.data
+	} catch (e) {
+		console.log(`Error : ${e}`)
+	}
+}
+
 		const _uptime = process.uptime() * 1000
         
 		// Ini untuk command crator/owner
