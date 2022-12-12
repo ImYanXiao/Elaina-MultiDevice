@@ -48,7 +48,7 @@ let handler = async (m, { conn, text, participants, usedPrefix, command }) => {
     		mentions: await conn.parseMention(txt)
     	})
     	//await conn.delay(100)
-    	conn.sendButton(m.chat, txt, wm, 'ᴍᴇɴᴜ', '.menu', m)
+    	//conn.sendButton(m.chat, txt, wm, 'ᴍᴇɴᴜ', '.menu', m)
     	await conn.sendGroupV4Invite(m.chat, jid, invite_code, invite_code_exp, await conn.getName(m.chat), 'Undangan untuk bergabung ke grup WhatsApp saya', jpegThumbnail)
     }
 }
