@@ -11,7 +11,7 @@ let info = `Elaina Disini (｡>_<｡)`
 let td = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 
 
-conn.reply(m.chat, info, m, { quoted: fakes },{ contextInfo: { externalAdReply: { showAdAttribution: true,
+conn.reply(m.chat, info, fakes,{ contextInfo: { externalAdReply: { showAdAttribution: true,
       mediaUrl: "https://Instagram.com/Xiao_yan_21",
       mediaType: 2,
       description: "https://Instagram.com/Xiao_yan_21", 
