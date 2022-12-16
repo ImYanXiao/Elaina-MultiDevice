@@ -53,7 +53,6 @@ let handler = async (m, { conn, isRowner}) => {
   let old = performance.now()
   await m.reply(`${htjava} *ᴛ ᴇ s ᴛ ɪ ɴ ɢ . . .*`)
   let neww = performance.now()
-  let session = fs.statSync(authFolder)
   let speed = neww - old
   await conn.reply(m.chat,`*s ᴘ ᴇ ᴇ ᴅ*
 ${Math.round(neww - old)} ms
@@ -73,7 +72,6 @@ ${readMore}
 *s ᴇ ʀ ᴠ ᴇ ʀ*
 *🛑 ʀᴀᴍ:* ${format(totalmem() - freemem())} / ${format(totalmem())}
 *🔵 ғʀᴇᴇRAM:* ${format(freemem())}
-*📑 sᴇssɪᴏɴ sɪᴢᴇ :* ${format(session.size)}
 *💻 ᴘʟᴀᴛғᴏʀᴍ :* ${os.platform()}
 *🧿 sᴇʀᴠᴇʀ :* ${os.hostname()}
 ${readMore}
@@ -85,7 +83,7 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
 
 _CPU Core(s) Usage (${cpus.length} Core CPU)_
 ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type => `- *${(type + '*').padEnd(6)}: ${(100 * cpu.times[type] / cpu.total).toFixed(2)}%`).join('\n')}`).join('\n\n')}` : ''}
-`, m)
+`, fakes)
 }
 handler.help = ['ping', 'speed']
 handler.tags = ['info', 'tools']
