@@ -31,7 +31,7 @@ handler.all = async function (m) {
                         let rank = `https://telegra.ph/file/37a8c015e80019878f03d.jpg`
                         {
                         	let tag = `@${m.sender.replace(/@.+/, '')}`
-                                        conn.sendButtonLoc(m.chat, logo, global.botdate, `◪ *Name:* ${tag}\n├◆ *Role:* ${user.role}\n├◆ *Exp:* ${exp} xp\n╰◆ *Level:* ${before} ➠ ${user.level}\n`.trim(), 'MY', '.pp', m)
+                                        conn.sendButtonLoc(m.chat, logo, ᴀᴜᴛᴏ ʟᴇᴠᴇʟᴜᴘ! , `◪ *Name:* ${tag}\n├◆ *Role:* ${user.role}\n├◆ *Exp:* ${exp} xp\n╰◆ *Level:* ${before} ➠ ${user.level}\n`.trim(), 'MY', '.pp', m)
                                 }
                 }
         }
