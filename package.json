@@ -39,7 +39,7 @@
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
-        "@adiwajshing/baileys": "^4.4.0", 
+        "@adiwajshing/baileys": "^4.4.0",
         "@bochilteam/scraper": "^3.0.0",
         "@ibaraki-douji/pixivts": "^2.0.2",
         "@shineiichijo/nhentai-ts": "^1.0.0",
