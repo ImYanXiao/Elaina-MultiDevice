@@ -513,7 +513,7 @@ const listMessage = {
     
    //~~~Source : https://github.com/Rlxfly
     //------- MENU LOCATION
-    const pre = generateWAMessageFromContent(m.chat, { liveLocationMessage:{
+    /*const pre = generateWAMessageFromContent(m.chat, { liveLocationMessage:{
   degreesLatitude: 34.672314,
   degreesLongitude: 135.484802,
   accuracyInMeters: 100,
@@ -527,7 +527,7 @@ const listMessage = {
 }}, { quoted: m
 					})
 
-//return conn.relayMessage(m.chat, pre.message, { messageId: pre.key.id })
+return conn.relayMessage(m.chat, pre.message, { messageId: pre.key.id })*/
 
 //-------DOC TEMPLATE
     const message = { 
