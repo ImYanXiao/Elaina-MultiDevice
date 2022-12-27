@@ -42,7 +42,6 @@
         "@adiwajshing/baileys": "^4.4.0",
         "@bochilteam/scraper": "^3.0.0",
         "@ibaraki-douji/pixivts": "^2.0.2",
-        "@shineiichijo/nhentai-ts": "^1.0.0",
         "@vitalets/google-translate-api": "^8.0.0", 
         "acrcloud": "^1.4.0",
         "awesome-phonenumber": "^2.68.0",
