@@ -1,6 +1,6 @@
 {
     "name": "Elaina-BOT",
-    "version": "3.3.0",
+    "version": "3.5.0",
     "description": "RPG BOT Whatsapp",
     "main": "index.js",
     "type": "module",
@@ -41,7 +41,7 @@
     "dependencies": {
         "@adiwajshing/baileys": "github:amiruldev20/baileys",
         "@bochilteam/scraper": "^3.0.0",
-        "@ibaraki-douji/pixivts": "^2.0.2",
+        "@ibaraki-douji/pixivts": "^2.2.0",
         "@vitalets/google-translate-api": "^8.0.0", 
         "acrcloud": "^1.4.0",
         "awesome-phonenumber": "^2.68.0",
