@@ -5,7 +5,7 @@
 
 ## PENTING
 
-> **Warning**: Jangan Memperjual Belikan Script Ini
+> **Warning**: Jangan Memperjual Belikan Script Ini. 
 > **Note**: Buat Yg Minta Modules Terpisah : https://www.mediafire.com/file/7pehsvjtyf8g6qo/Node_modules.zip/file
 <h1 align="center">ElainaBOT - MD</h1>
 <p align="center">
