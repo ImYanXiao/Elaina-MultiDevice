@@ -51,10 +51,6 @@
 - ✔️ | Tools 
 ---------
 
-## ``Group Panelku Hosting``
-[![WHATSAPP](https://img.shields.io/badge/Groups%20Panel-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/DTogQfvmc8sHPv6TTdJqPr) 
----------
-
 ## ```USER RAILWAY```
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app)
