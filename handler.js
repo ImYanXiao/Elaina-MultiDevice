@@ -701,9 +701,9 @@ export async function participantsUpdate({ id, participants, action }) {
                 .setBackground("https://telegra.ph/file/0db212539fe8a014017e3.jpg")
                 .toAttachment()
                             
-                        // this.sendFile(id, action === 'add' ? wel : lea, pp, 'pp.jpg', text, null, false, { mentions: [user] })
-                       /*await this.sendHydrated(id, global.ucapan, text, action === 'add' ? wel.toBuffer() : lea.toBuffer(), sgc, (action == 'add' ? '💌 WELCOME' : '🐾 BYE'), user.split`@`[0], 'ɴᴜᴍʙᴇʀ ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛ', [
-      [action == 'add' ? 'ᴡᴇʟᴄᴏᴍᴇ' : 'sᴀʏᴏɴᴀʀᴀᴀ', action === 'add' ? '.intro' : 'bilek']], null, fkontak, { mentions: [user] })*/
+                         //this.sendFile(id, action === 'add' ? wel : lea, pp, 'pp.jpg', text, null, false, { mentions: [user] })
+                       await this.sendHydrated(id, global.ucapan, text, action === 'add' ? wel.toBuffer() : lea.toBuffer(), sgc, (action == 'add' ? '💌 WELCOME' : '🐾 BYE'), user.split`@`[0], 'ɴᴜᴍʙᴇʀ ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛ', [
+      [action == 'add' ? 'ᴡᴇʟᴄᴏᴍᴇ' : 'sᴀʏᴏɴᴀʀᴀᴀ', action === 'add' ? '.intro' : 'bilek']], null, fkontak, { mentions: [user] })
                         /*let wel = API('males', '/welcome2', {
                                 profile: pp,
                                 username: await this.getName(user),
@@ -718,7 +718,7 @@ export async function participantsUpdate({ id, participants, action }) {
                                 groupname: await this.getName(id),
                                 membercount: groupMetadata.participants.length
                             })*/
-    conn.sendButtonDoc(id, text, wm, action == 'add' ? 'ᴡᴇʟᴄᴏᴍᴇ' : 'sᴀʏᴏɴᴀʀᴀᴀ', action === 'add' ? '.intro' : 'bilek', fkontak, { contextInfo: { externalAdReply: { showAdAttribution: true,
+    /*conn.sendButtonDoc(id, text, wm, global.namebot, action == 'add' ? 'ᴡᴇʟᴄᴏᴍᴇ' : 'sᴀʏᴏɴᴀʀᴀᴀ', action === 'add' ? '.intro' : 'bilek', fkontak, { contextInfo: { externalAdReply: { showAdAttribution: true,
     mediaUrl: global.sig,
     mediaType: 2, 
     description: global.sig, 
@@ -727,7 +727,7 @@ export async function participantsUpdate({ id, participants, action }) {
     thumbnail: await(await fetch(action === 'add' ? wel : lea)).buffer(),
     sourceUrl: sig
      }}
-  })
+  })*/
                     }
                 }
             }
@@ -786,7 +786,7 @@ Untuk mematikan fitur ini, ketik
 *.enable delete*
           
 Untuk menghapus pesan yang dikirim oleh Bot, reply pesan dengan perintah
-*.delete*`, author, '🔖 Matikan Fitur', '.on delete', '🎀 Menu', '.menu', msg, adReply)
+*.delete*`, author, 'ᴀɴᴛɪ - ᴅᴇʟᴇᴛᴇ', '🔖 Matikan Fitur', '.on delete', '🎀 Menu', '.menu', msg, adReply)
         this.copyNForward(msg.chat, msg).catch(e => console.log(e, msg))
     } catch (e) {
         console.error(e)
@@ -806,7 +806,7 @@ global.dfail = (type, m, conn) => {
         unreg: '*ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ʀᴇɢɪsᴛᴇʀᴇᴅ ʏᴇᴛ* • ᴋᴇᴛɪᴋ  .daftar ᴜɴᴛᴜᴋ ʙɪsᴀ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ғɪᴛᴜʀ ɪɴɪ', 
         restrict: '*ʀᴇsᴛʀɪᴄᴛ* • ʀᴇsᴛʀɪᴄᴛ ʙᴇʟᴜᴍ ᴅɪɴʏᴀʟᴀᴋᴀɴ ᴅɪᴄʜᴀᴛ ɪɴɪ',
     }[type]
-    if (msg) return conn.send2ButtonDoc(m.chat, msg, author, '💌 Creator', '.creator', '🎀 Menu', '.menu', fakes, adReply)
+    if (msg) return conn.send2ButtonDoc(m.chat, msg, author, 'ᴇʀʀᴏʀ - ᴀᴄᴄᴇss ᴅᴇɴɪᴇᴅ', '💌 Creator', '.creator', '🎀 Menu', '.menu', fakes, adReply)
 }
 
 let file = global.__filename(import.meta.url, true)
