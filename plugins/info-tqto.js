@@ -65,7 +65,7 @@ https://github.com/ImYanXiao
 *❉ Rlxfly:*
 
 `
-conn.sendButtonDoc(m.chat, tqto, wm,'Thanks','Bilek', m, { contextInfo: { externalAdReply: { showAdAttribution: true,
+conn.sendButtonDoc(m.chat, tqto, wm, 'ᴛʜᴀɴᴋ ʏᴏᴜ', 'Thanks','Bilek', m, { contextInfo: { externalAdReply: { showAdAttribution: true,
     mediaUrl: global.sig,
     mediaType: "VIDEO",
     description: global.sig, 
