@@ -51,6 +51,8 @@
 - ✔️ | Tools 
 ---------
 
+> Bingung Nyari QrCode? : https://github.com/ImYanXiao/Qr-Baileys-MultiAuth
+
 ## ```USER RAILWAY```
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app)
