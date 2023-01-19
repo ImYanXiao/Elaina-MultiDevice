@@ -1,31 +1,25 @@
-import fs from 'fs'
+const { generateWAMessageFromContent } =(await import('@adiwajshing/baileys')).default
 
-import fetch from 'node-fetch'
+var handler  = async (m, 
+             { conn, 
+                usedPrefix: _p }) => {
 
-let handler  = async (m, { conn, usedPrefix: _p }) => {
+var info = `Yes, Im Here Mastah`
 
-let info = `Elaina Disini (｡>_<｡)`
-
-
-
-let td = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-
-
-conn.reply(m.chat, info, fakes,{ contextInfo: { externalAdReply: { showAdAttribution: true,
-      mediaUrl: "https://Instagram.com/Xiao_yan_21",
-      mediaType: 2,
-      description: "https://Instagram.com/Xiao_yan_21", 
-      title: global.titlebot,
-      body: wm,
-      thumbnail: thumb,
-      sourceUrl: sig  }}})
-
+const pre = generateWAMessageFromContent(m.chat, { liveLocationMessage:{
+  degreesLatitude: 0,
+  degreesLongitude: 0,
+  accuracyInMeters: 0,
+  speedInMps: 0,
+  degreesClockwiseFromMagneticNorth: 0,
+  caption: info,
+  sequenceNumber: 0,
+  timeOffset: 8600,
+  jpegThumbnail: await getBuffer(global.img), 
+  contextInfo: { mentionedJid: [m.sender] }
+}}, { quoted: fakes })
+return conn.relayMessage(m.chat, pre.message, { messageId: pre.key.id })
 }
-
 handler.customPrefix = /^(tes|bot|elaina|test)$/i
-
 handler.command = new RegExp
-
-
-
 export default handler
