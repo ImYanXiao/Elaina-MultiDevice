@@ -50,12 +50,6 @@ handler.all = async function (m) {
 
 		const _uptime = process.uptime() * 1000
         
-		// Ini untuk command crator/owner
-		global.kontak2 = [
-         [owner[0], await conn.getName(owner[0] + '@s.whatsapp.net'), ' ', 'yanxiao021@gmail.com', true],
-         [owner[1], await conn.getName(owner[1] + '@s.whatsapp.net'), ' ', 'yanxiao021@gmail.com', true], // Kalo mau di tambah tinggal copy 1baris ini di tempel di bawahnya trs di edit dikit!
-        ]
-        
 		// ucapan ini mah
 		global.ucapan = ucapan()
 		
