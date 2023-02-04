@@ -35,7 +35,7 @@ async function tiktokdl (url) {
             "user-agent": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36",
         },
     });
-    getdata = cheerio.load(data.html);
+    var getdata = cheerio.load(data.html);
     if (data.status) {
         return {
             status: true,
