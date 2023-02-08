@@ -28,6 +28,10 @@ handler.all = async function (m) {
 		global.bochil = import('@bochilteam/scraper')
 		
                 // Function
+                global.pickRandom = function pickRandom(list) {
+  return list[Math.floor(list.length * Math.random())]
+}
+
                 global.getBuffer = async function getBuffer(url, options) {
 	try {
 		options ? options : {}
