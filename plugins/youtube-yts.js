@@ -1,6 +1,6 @@
 import yts from 'yt-search'
 
-let handler = async(m, { conn, usedPrefix, text, args, command }) => {
+var handler = async(m, { conn, usedPrefix, text, args, command }) => {
 let name = await conn.getName(m.sender)
 
   if (!text) throw 'Cari apa?'
@@ -9,7 +9,7 @@ let name = await conn.getName(m.sender)
     let listSections = []
 	Object.values(dapet).map((v, index) => {
 	listSections.push([index + ' ' + cmenub + ' ' + v.title, [
-          ['Video 🎥', usedPrefix + 'yt ' + v.url, '\n⌚ *Duration:* ' + v.timestamp + '\n⏲️ *Uploaded:* ' + v.ago + '\n👁️ *Views:* ' + v.views + '\n📎 *Url:* ' + v.url],
+          ['Video 🎥', usedPrefix + 'getvid' + v.url, '\n⌚ *Duration:* ' + v.timestamp + '\n⏲️ *Uploaded:* ' + v.ago + '\n👁️ *Views:* ' + v.views + '\n📎 *Url:* ' + v.url],
           ['Audio 🎧', usedPrefix + 'getaud' + v.url, '\n⌚ *Duration:* ' + v.timestamp + '\n⏲️ *Uploaded:* ' + v.ago + '\n👁️ *Views:* ' + v.views + '\n📎 *Url:* ' + v.url]
         ]])
 	}) 
