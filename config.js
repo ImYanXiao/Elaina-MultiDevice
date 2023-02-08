@@ -430,8 +430,3 @@ watchFile(file, () => {
   console.log(chalk.redBright("Update 'config.js'"))
   import(`${file}?update=${Date.now()}`)
 })
-
-//------ FUNCTION
-function pickRandom(list) {
-  return list[Math.floor(list.length * Math.random())]
-}
