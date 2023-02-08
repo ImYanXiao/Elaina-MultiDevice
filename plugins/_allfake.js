@@ -316,7 +316,3 @@ function ucapan() {
 	}
 	return res
 }
-
-function pickRandom(list) {
-  return list[Math.floor(list.length * Math.random())]
-}
