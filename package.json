@@ -41,9 +41,7 @@
     "dependencies": {
         "@adiwajshing/baileys": "github:amiruldev20/baileys",
         "@bochilteam/scraper": "^4.0.22-alpha.0",
-        "@ibaraki-douji/pixivts": "^2.2.0",
         "@vitalets/google-translate-api": "^8.0.0", 
-        "acrcloud": "^1.4.0",
         "awesome-phonenumber": "^2.68.0",
         "axios": "^0.24.0",
         "brainly-scraper-v2": "^2.0.9",
@@ -62,8 +60,6 @@
         "@hapi/boom": "^10.0.0",
         "https": "^1.0.0", 
         "human-readable": "^0.2.1",
-        "hxz-api": "^1.0.1", 
-        "instagram-url-direct": "^1.0.12",
         "imgbb-uploader": "^1.3.5",
         "jimp": "^0.16.1",
         "jsdom": "^19.0.0",
