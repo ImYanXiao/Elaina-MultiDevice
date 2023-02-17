@@ -294,7 +294,7 @@ const listMessage = {
 📊 *Status:* Succes ✅
 🎚️ *Options:* ${isEnable ? 'Enable' : 'Disable'}
 📣 *For:* ${isAll ? 'This Bot' : isUser ? '' : 'This Chats'}
-`, wm, `${isEnable ? '✖️ Disable' : '✔️ Enable'}`, `${isEnable ? `.off ${type}` : `.on ${type}`}`, '🎀 Menu', '.menu', fakes, adReply)
+`, wm, 'ᴏᴘᴛɪᴏɴs ᴛʜɪs ʙᴏᴛ', `${isEnable ? '✖️ Disable' : '✔️ Enable'}`, `${isEnable ? `.off ${type}` : `.on ${type}`}`, '🎀 Menu', '.menu', fakes, adReply)
 }
 handler.help = ['enable', 'disable'].map(v => v + 'able <option>')
 handler.tags = ['group', 'owner']
