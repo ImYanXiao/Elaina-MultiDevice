@@ -5,7 +5,7 @@ let handler = m => m
 handler.before = async function (m) {
     let chat = global.db.data.chats[m.chat]
     let user = global.db.data.users[m.sender]
-    if (chat.stiker && !user.banned && !chat.isBanned && !m.fromMe && !m.isBaileys) {
+    if (chat.autoSticker && !user.banned && !chat.isBanned && !m.fromMe && !m.isBaileys) {
         // try {
         let q = m
         let stiker = false
