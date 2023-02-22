@@ -14,7 +14,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 	{title: "🚫 | Antidelete", rowId: `${usedPrefix + command} antidelete`},
 	{title: "📛 | Antitoxic", rowId: `${usedPrefix + command} antitoxic`}, 
 	{title: "📩 | Antispam", rowId: `$usedPrefix + command} antiSpam`}, 
-	{title: "🖼 | Autosticker", rowId: `${usedPrefix + command} stiker`}, 
+	{title: "🖼 | Autosticker", rowId: `${usedPrefix + command} autoSticker`}, 
 	{title: "⏏️ | Autolevelup", rowId: `${usedPrefix + command} autolevelup`},
 	{title: "🔎 | Detect", rowId: `${usedPrefix + command} detect`},
 	{title: "📑 | Document", rowId: `${usedPrefix + command} document`},
@@ -135,14 +135,14 @@ const listMessage = {
       chat.antiLink = isEnable
       break
       break
-      case 'stiker':
+      case 'autoSticker':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
           throw false
         }
       }
-      chat.stiker = isEnable
+      chat.autoSticker = isEnable
       break
       chat.updateAnimeNews = isEnable
       break
