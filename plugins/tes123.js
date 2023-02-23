@@ -1,4 +1,4 @@
-Import { generateWAMessageFromContent } from '@adiwajshing/baileys'
+import { generateWAMessageFromContent } from '@adiwajshing/baileys'
 
 var handler  = async (m, 
              { conn, 
