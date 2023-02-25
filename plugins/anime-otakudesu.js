@@ -32,4 +32,4 @@ handler.tags = ['anime']
 handler.command = /^(otakudesu)$/i
 
 export default handler
-/*
+*/
