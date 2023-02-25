@@ -1,4 +1,4 @@
-import { otakudesu } from 'hxz-api'
+/*import { otakudesu } from 'hxz-api'
 import fetch from 'node-fetch'
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
     //let teks = text ? text : m.quoted && m.quoted.text ? m.quoted.text : ''
@@ -32,3 +32,4 @@ handler.tags = ['anime']
 handler.command = /^(otakudesu)$/i
 
 export default handler
+/*
