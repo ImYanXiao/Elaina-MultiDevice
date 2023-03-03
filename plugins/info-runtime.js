@@ -8,7 +8,7 @@ function kyun(seconds){
   function pad(s){
     return (s < 10 ? '0' : '') + s;
   }
-  var days = Math.floor(seconds / (24 * 60 * 60 * 1000));
+  var days = Math.floor(seconds / (60 * 60 * 24));
   var hours = Math.floor(seconds / (60*60));
   var minutes = Math.floor(seconds % (60*60) / 60);
   var seconds = Math.floor(seconds % 60);
