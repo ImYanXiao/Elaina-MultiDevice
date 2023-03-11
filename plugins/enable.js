@@ -1,4 +1,4 @@
-let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner }) => {
+var handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner }) => {
 	const sections = [
    {
 	title: `${dmenub} List Options`,
@@ -11,6 +11,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 	{title: "🔞 | Nsfw", rowId: `${usedPrefix + command} nsfw`},
 	{title: "🌟 | PremNsfwChat", rowId: `${usedPrefix + command} premnsfwchat`},
 	{title: "🔗 | Antilink", rowId: `${usedPrefix + command} antilink`},
+	{title: "☎ | AntiCall", rowId: `${usedPrefix + command} anticall`},
 	{title: "🚫 | Antidelete", rowId: `${usedPrefix + command} antidelete`},
 	{title: "📛 | Antitoxic", rowId: `${usedPrefix + command} antitoxic`}, 
 	{title: "📩 | Antispam", rowId: `$usedPrefix + command} antiSpam`}, 
@@ -134,7 +135,6 @@ const listMessage = {
       }
       chat.antiLink = isEnable
       break
-      break
       case 'autoSticker':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
@@ -143,8 +143,6 @@ const listMessage = {
         }
       }
       chat.autoSticker = isEnable
-      break
-      chat.updateAnimeNews = isEnable
       break
       case 'autoupnime':
         if (!isROwner) {
@@ -170,13 +168,12 @@ const listMessage = {
        chat.antiSpam = isEnable
        break
        case 'anticall':
-       if (m.isGroup) {
-         if (!(isAdmin || isOwner)) {
-           global.dfail('admin', m, conn)
+       isAll = true
+         if (!isOwner) {
+           global.dfail('rowner', m, conn)
            throw false
-         }
        }
-       chat.antiCall = isEnable
+       chat.anticall = isEnable
        break
       case 'nsfw':
         if (m.isGroup) {
