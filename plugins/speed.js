@@ -12,7 +12,7 @@ let format = sizeFormatter({
   keepTrailingZeroes: false,
   render: (literal, symbol) => `${literal} ${symbol}B`,
 })
-let handler = async (m, { conn, isRowner}) => {
+var handler = async (m, { conn, isRowner}) => {
 	let _muptime
     if (process.send) {
       process.send('uptime')
@@ -58,9 +58,6 @@ let handler = async (m, { conn, isRowner}) => {
 ${Math.round(neww - old)} ms
 ${speed} ms
 
-*ʀ ᴜ ɴ ᴛ ɪ ᴍ ᴇ* 
-${muptime}
-${readMore}
 *ᴄ ʜ ᴀ ᴛ s*
 • *${groupsIn.length}* Group Chats
 • *${groupsIn.length}* Groups Joined
