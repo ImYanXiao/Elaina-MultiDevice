@@ -24,8 +24,8 @@ handler.all = async function (m) {
                 global.social = pickRandom([global.sgh, global.sig, global.snh, global.sgc]) 
 
 		// Module 
-		global.fetch = import('node-fetch')
-		global.bochil = import('@bochilteam/scraper')
+		global.fetch = (await import('node-fetch')).default
+		global.bochil = await import('@bochilteam/scraper')
 		
                 // Function
                 global.pickRandom = function pickRandom(list) {
