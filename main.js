@@ -1,7 +1,7 @@
 /* If You Copy, Don`t Delete This Credit!!! 
   Don`t Sell This Script Or I Take Immediately 
   Yang Jual Script Ini Report/Hangusin Aja Akunnya Atau Pukulin ae orangnya
-  Fix Doesn't Not Show QrCode & Multi Auth State
+  Fix Doesn't Show QrCode & Multi Auth State
   Regards from YanXiao ♡
 */
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
@@ -29,7 +29,6 @@ import chalk from 'chalk'
 import { tmpdir } from 'os'
 import { format } from 'util'
 import pino from 'pino'
-import { Boom } from '@hapi/boom'
 import {
     useMultiFileAuthState,
     DisconnectReason,
