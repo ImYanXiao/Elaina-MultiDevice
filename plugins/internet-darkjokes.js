@@ -1,8 +1,8 @@
 import fetch from 'node-fetch'
-import bo from 'dhn-api'
-let handler = async (m, { conn }) => {
-const res = await bo.Darkjokes()
-await conn.sendButton(m.chat,`Dark ga si adick adick`, wm, res, [['Darkjoke','.darkjoke']] ,m)
+import { Darkjokes } from 'dhn-api'
+var handler = async (m, { conn }) => {
+const res = await Darkjokes()
+await conn.sendFile(m.chat, res, 'darkjoke.jpg', `Dark ga si adick adick`,m)
 }
 handler.help = ['darkjoke']
 handler.tags = ['internet']
