@@ -1,8 +1,6 @@
 import { bucin } from '@bochilteam/scraper'
 
-let handler = async (m, { conn, usedPrefix, command }) => conn.sendButton(m.chat, await bucin(), author, [
-    ['Next', `${usedPrefix+command}`], 
-], m)
+var handler = async (m, { conn }) => conn.reply(m.chat, await bucin(), m)
 
 handler.help = ['bucin']
 handler.tags = ['quotes']
