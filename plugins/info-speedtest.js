@@ -1,11 +1,11 @@
 import cp from 'child_process'
 import { promisify } from 'util'
 let exec = promisify(cp.exec).bind(cp)
-let handler = async (m) => {
+var handler = async (m) => {
 	await conn.reply(m.chat, "Wait", m)
     let o
     try {
-        o = await exec('python speed.py')
+        o = await exec('python3 speed.py --share')
     } catch (e) {
         o = e
     } finally {
