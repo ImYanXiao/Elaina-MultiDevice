@@ -1,6 +1,6 @@
 import { 
-    youtubedl,
-    youtubedlv2 
+    youtubedlv2, 
+    youtubedlv3
 } from '@bochilteam/scraper'
 
 var handler = async (m, { conn, args}) => {
@@ -14,7 +14,7 @@ let qu = args[1] || '360'
     catch (e) { }
 
 // Kocak
-const yt = await youtubedl(v).catch(async () => await youtubedlv2(v))
+const yt = await youtubedlv2(v).catch(async () => await youtubedlv3(v))
 const dl_url = await yt.video[q].download()
   const ttl = await yt.title
 const size = await yt.video[q].fileSizeH
