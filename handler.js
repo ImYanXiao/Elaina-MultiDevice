@@ -2,9 +2,8 @@ import { smsg } from './lib/simple.js'
 import { format } from 'util'
 import { fileURLToPath } from 'url'
 import path, { join } from 'path'
-import { unwatchFile, watchFile } from 'fs'
+import { unwatchFile, watchFile, readFileSync } from 'fs'
 import chalk from 'chalk'
-import fs from 'fs'
 import knights from 'knights-canvas'
 import fetch from 'node-fetch'
 
@@ -652,8 +651,8 @@ export async function handler(chatUpdate) {
             console.log(m, m.quoted, e)
         }
         if (opts['autoread'])
-            await this.chatRead(m.chat, m.isGroup ? m.sender : undefined, m.id || m.key.id).catch(() => { })
-    }
+            await conn.readMessages([m.key]) 
+  }
 }
 /**
  * Handle groups participants update
