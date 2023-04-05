@@ -21,6 +21,6 @@ const size = await yt.audio[q].fileSizeH
 ▢ Ｌｏａｄｉｎｇ. . .`)
 await conn.sendMessage(m.chat, { document: { url: dl_url}, mimetype: 'audio/mpeg', fileName: `${ttl}.mp3`}, {quoted: m})
 }
-// If u want a not document you can change mimetype 'audio/mp4' n remove .mp3 on fileName
-handler.command = /^getaud|ytmp3$/i
+// If u want a not document you can change document to audio, mimetype 'audio/mp4' n remove .mp3 on fileName
+handler.command = /^ytmp3|yta$/i
 export default handler
