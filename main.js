@@ -129,6 +129,16 @@ const connectionOptions = {
                 return message;
             }, 
       // logger: pino({ level: 'silent' })
+         getMessage: async (key) => {
+         if (store) {
+            const msg = await store.loadMessage(key.remoteJid, key.id)
+            return msg.message || undefined
+         }
+         return {
+            conversation: "hello, i'm Elaina Bots"
+         }
+      },
+// get message diatas untuk mengatasi pesan gagal dikirim, "menunggu pesan", dapat dicoba lagi
 }
 
 global.conn = makeWASocket(connectionOptions)
