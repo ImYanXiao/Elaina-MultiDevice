@@ -1,31 +1,60 @@
-import { 
-    youtubedlv2, 
-    youtubedlv3
-} from '@bochilteam/scraper'
+# Update by Xnuvers007
 
-var handler = async (m, { conn, args}) => {
+import { youtubedlv2, youtubedlv3 } from '@bochilteam/scraper'
 
-let qu = args[1] || '360'
-  let q = qu + 'p'
-  let v = args[0]
+const handler = async (m, { conn, args, command }) => {
+  const v = args[0]
 
-  let _thumb = {}
-    try { _thumb = { jpegThumbnail: thumb2 } }
-    catch (e) { }
+  const resolutions = ["144p", "240p", "360p", "480p", "720p", "1080p"]
+  let qu = args[1] && resolutions.includes(args[1]) ? args[1] : "360p"
+  let q = qu.replace('p', '')
 
-// Kocak
-const yt = await youtubedlv2(v).catch(async () => await youtubedlv3(v))
-const dl_url = await yt.video[q].download()
-  const ttl = await yt.title
-const size = await yt.video[q].fileSizeH
-  
- await m.reply(`▢ Tɪᴛᴛʟᴇ: ${ttl}
-▢  Sɪᴢᴇ: ${size}
+  let thumb = {}
+  try {
+    const thumb2 = yt.thumbnails[0].url
+    thumb = { jpegThumbnail: thumb2 }
+  } catch (e) {}
 
-▢ Ｌｏａｄｉｎｇ. . .`)
-  await conn.sendMessage(m.chat, { video : { url: dl_url, caption : ttl}}, { quoted: m })
+  let yt
+  try {
+    yt = await youtubedlv2(v)
+  } catch {
+    yt = await youtubedlv3(v)
+  }
+
+  const title = await yt.title
+
+  let size = ''
+  let dlUrl = ''
+  let selectedResolution = ''
+  let selectedQuality = ''
+  for (let i = resolutions.length - 1; i >= 0; i--) {
+    const res = resolutions[i]
+    if (yt.video[res]) {
+      selectedResolution = res
+      selectedQuality = res.replace('p', '')
+      size = await yt.video[res].fileSizeH
+      dlUrl = await yt.video[res].download()
+      break
+    }
+  }
+
+  if (dlUrl) {
+    await m.reply(`Permintaan download video YouTube. Sedang diproses, mohon bersabar...`)
+
+    await conn.sendMessage(m.chat, { video: { url: dlUrl, caption: title, ...thumb } }, { quoted: m })
+
+    await m.reply(`▢ Title: ${title}
+▢ Resolution: ${selectedResolution}
+▢ Size: ${size}
+▢ Video telah berhasil diunduh!`)
+  } else {
+    await m.reply(`Maaf, video tidak tersedia untuk diunduh.`)
+  }
 }
 
+handler.command = /^(getvid|ytmp4|youtubemp4)$/i
+handler.help = ["getvid <linkYt>","ytmp4 <linkYT>", "Download YouTube video."]
+handler.tags = ['downloader']
 
-handler.command = /^(getvid)$/i
 export default handler
