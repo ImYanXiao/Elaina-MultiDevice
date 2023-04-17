@@ -9,7 +9,7 @@ let handler = async (m, { conn, text, command }) => {
             const response = await openai.createImage({
               prompt: text,
               n: 1,
-              size: "512x512",
+              size: "1024x1024",
             });
 conn.sendButtonImg(m.chat, response.data.data[0].url, 'Done', wm, 'Menu', '.m', m)
 }
