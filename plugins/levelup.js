@@ -20,7 +20,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     if (!canLevelUp(user.level, user.exp, global.multiplier)) {
       let rank = 'https://flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=birdy-logo&doScale=true&scaleWidth=800&scaleHeight=500&text=DIKIT%20LAGI%20NAIK'
         {
-          await conn.sendButtonImg(m.chat, await (await fetch(rank)).buffer(), `Level ${name} ${user.level} (${user.exp - min}/${xp})\nKurang ${max - user.exp} EXP lagi!`.trim(), wm, 'Enable autolevelup', `${usedPrefix}on autolevelup`, m)
+          await conn.sendButtonImg(m.chat, rank, `Level ${name} ${user.level} (${user.exp - min}/${xp})\nKurang ${max - user.exp} EXP lagi!`.trim(), wm, 'Enable autolevelup', `${usedPrefix}on autolevelup`, m)
         }
     }
     let before = user.level * 1
@@ -28,7 +28,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     if (before !== user.level) {
       let rank = 'https://telegra.ph/file/5acbd203b92c03cdde356.jpg'
         {
-          await conn.sendButtonImg(m.chat, await (await fetch(rank)).buffer(), `${name} Level Up!\n_${before}_ -> ${user.level}`.trim(), wm, 'AUTO LEVEL UP', `${usedPrefix}on autolevelup`)
+          await conn.sendButtonImg(m.chat, rank, `${name} Level Up!\n_${before}_ -> ${user.level}`.trim(), wm, 'AUTO LEVEL UP', `${usedPrefix}on autolevelup`)
           //await conn.sendButtonLoc(m.chat, await (await fetch(rank)).buffer(), `${name} Level Up!\n_${before}_ -> ${user.level}`.trim(), wm, 'AUTO LEVEL UP', `${usedPrefix}on autolevelup`, m)
         }
     }
