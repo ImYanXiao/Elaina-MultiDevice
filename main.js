@@ -38,6 +38,7 @@ import { Low, JSONFile } from 'lowdb'
 
 import { makeWASocket, protoType, serialize } from './lib/simple.js'
 import storeSys from './lib/store2.js'
+const store = storeSys.makeInMemoryStore()
 import {
     mongoDB,
     mongoDBV2
@@ -106,6 +107,8 @@ const connectionOptions = {
         printQRInTerminal: true,
         auth: state,
         browser: ['Elaina(イレイナ)', 'Safari', '3.1.0'], 
+getMessage: async (key) => (store.loadMessage(key.remoteJid, key.id) || store.loadMessage(key.id) || {}).message,
+// get message diatas untuk mengatasi pesan gagal dikirim, "menunggu pesan", dapat dicoba lagi
 	      patchMessageBeforeSending: (message) => {
                 const requiresPatch = !!(
                     message.buttonsMessage 
@@ -129,16 +132,6 @@ const connectionOptions = {
                 return message;
             }, 
       // logger: pino({ level: 'silent' })
-         getMessage: async (key) => {
-         if (store) {
-            const msg = await store.loadMessage(key.remoteJid, key.id)
-            return msg.message || undefined
-         }
-         return {
-            conversation: "hello, i'm Elaina Bots"
-         }
-      },
-// get message diatas untuk mengatasi pesan gagal dikirim, "menunggu pesan", dapat dicoba lagi
 }
 
 global.conn = makeWASocket(connectionOptions)
