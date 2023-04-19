@@ -69,9 +69,9 @@ $ cd Elaina-MultiDevice
 $ npm i 
 ```
 If error try using yarn instead of npm
+```bash
 $ pkg install yarn -y
 $ yarn install
-```bash
 $ node .
 ```
 ---------
