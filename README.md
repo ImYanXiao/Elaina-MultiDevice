@@ -50,9 +50,7 @@
 - ✔️ | Premium 
 - ✔️ | Tools 
 ---------
-
-> Support QrCode.... kayaknya🗿
-  
+ 
 ## ```USER RAILWAY```
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app)
@@ -70,15 +68,11 @@ $ git clone https://github.com/ImYanXiao/Elaina-MultiDevice
 $ cd Elaina-MultiDevice
 $ npm i 
 ```
-If error try using yarn instead of npm, see [here](https://github.com/BochilGaming/games-wabot/tree/multi-device#if-npm-install-failed--try--using-yarn-instead-of-npm)
-```bash
-$ node .
-```
-
-#### For android 10 and above don't use npm, use yarn install
-```bash
+If error try using yarn instead of npm
 $ pkg install yarn -y
 $ yarn install
+```bash
+$ node .
 ```
 ---------
 
@@ -214,15 +208,12 @@ conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', 'https://github.com/Boc
 ---------
 
 ## ```Thanks to ✨```
-* [`Allah SWT`](https://github.com/ImYanXiao)
-* [`My parents`](https://github.com/ImYanXiao)
-* [`All Friends`](https://github.com/ImYanXiao)
-* [`All Contributors`](https://github.com/ImYanXiao)
-* [`All Creator Bot`](https://github.com/ImYanXiao)
-* [`Adiwajshing`](https://github.com/adiwajshing/Baileys)
-* [`Nurutomo`](https://github.com/nurutomo)
+* [`Allah SWT`]
+* [`My parents`]
+* [`All Friends`]
+* [`All Contributors`]
+* [`All Creator Bot`]
+* [`Adiwajshing/Baileys`](https://github.com/adiwajshing/Baileys)
+* [`Nurutomo`](https://github.com/Nurutomo)
 * [`BochilGaming`](https://github.com/bochilgaming)
 * [`Fokus ID`](https://github.com/Fokusdotid) 
-
-## ```Recode By ✏️```
-[![ImYanXiao](https://github.com/ImYanXiao.png?size=70)](https://github.com/ImYanXiao)
