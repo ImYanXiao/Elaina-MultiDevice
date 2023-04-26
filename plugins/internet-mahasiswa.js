@@ -15,9 +15,9 @@ var handler = async (m, { conn, text }) => {
     let website = `https://pddikti.kemdikbud.go.id${websiteLink}`;
     message += `\nNama = ${nama}\n\nData Ditemukan pada website = ${website}\n\n\n`;
   });
-  const mySecret = process.env['nomer']
+  
   conn.reply(m.chat, message, m);
-  conn.reply(m.chat, `JANGAN LUPA SUPPORT DEVELOPERNYA\nXnuvers007\nhttps://saweria.co/xnuvers007\n\nfollow Me On github\nhttps://github.com/Xnuvers007\nDana = ${mySecret}`, m);
+  conn.reply(m.chat, `JANGAN LUPA SUPPORT DEVELOPERNYA\nXnuvers007\nhttps://saweria.co/xnuvers007\n\nfollow Me On github\nhttps://github.com/Xnuvers007\nDana = DANA-KAMU`, m);
 }
 
 handler.help = ['mahasiswa <nama>', 'mhs <nama>', 'mhssiswa <nama>', 'msiswa <nama>', 'mhsiswa <nama>'];
