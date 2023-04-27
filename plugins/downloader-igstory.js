@@ -1,3 +1,5 @@
+// By Xnuvers007
+
 import axios from 'axios'
 
 const handler = async (m, { conn, command, text, usedPrefix }) => {
