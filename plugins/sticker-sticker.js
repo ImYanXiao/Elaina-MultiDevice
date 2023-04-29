@@ -29,7 +29,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 		m.reply(stiker)
 	}
 }
-handler.help = ['sfull']
+handler.help = ['sticker']
 handler.tags = ['sticker']
 handler.command = /^s(tic?ker)?(gif)?(wm)?$/i
 
