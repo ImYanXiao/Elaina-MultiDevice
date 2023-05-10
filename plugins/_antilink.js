@@ -15,10 +15,10 @@ export async function before(m, { isAdmin, isBotAdmin }) {
             if (m.text.includes(linkThisGroup)) return !0
         }
         await conn.sendButton(m.chat, `*Group link detect!*${isBotAdmin ? '' : '\n\n_Bot not admin_  t_t'}`, author, ['off antilink', '/disable antilink'], m)
-        if (isBotAdmin && bot.restrict) {
-           // await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: pesan, participant: hapus }})
+        if (isOwner && isAdmin) {
+             await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: pesan, participant: hapus }})
             conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-        } else if (!bot.restrict) return m.reply('Owner & Admin Not Removed!')
+        } else if (!isOwner && isAdmin) return m.reply('Owner & Admin Not Removed!')
     }
     return !0
 }
