@@ -20,6 +20,14 @@ async function igstalk(Username) {
         bio: $('#user-page > div.user > div > div.col-md-5.my-3 > div').text()
       }
       resolve(result)
+    }).catch(e => {
+      if (e.response?.status === 404) {
+        reject('Error: Akun tidak ditemukan')
+      } else if (e.response?.status === 403) {
+        reject('Error: Akunnya Di Private')
+      } else {
+        reject('Error: Failed to fetch Instagram profile')
+      }
     })
   })
 }
@@ -36,18 +44,20 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   let bio = res.bio
   let pepe = res.profile
 
-  let data = `
+let data = `
 💌 ᴜsᴇʀɴᴀᴍᴇ » 「 ${username} 」
 📧 ғᴜʟʟɴᴀᴍᴇ » 「 ${fullname} 」
 🎏 ${followe}  ғᴏʟʟᴏᴡᴇʀs
 🎀 ${followi}  ғᴏʟʟᴏᴡɪɴɢ
 📝 ᴘᴏsᴛ ${post} 
 📑 Bɪᴏ: ${bio}
-`.trim()
+`.trim();
 
-    let pp = await (await fetch(pepe)).buffer() 
-  
-  conn.sendFile(m.chat, pp, 'profile.jpg', data, m)
+if (pepe) {
+  let pp = await (await fetch(pepe)).buffer();
+  conn.sendFile(m.chat, pp, 'profile.jpg', data, m);
+} else {
+  conn.reply(m.chat, data, m);
 }
 
 handler.help = ['igstalk'].map(v => v + ' <username>')
