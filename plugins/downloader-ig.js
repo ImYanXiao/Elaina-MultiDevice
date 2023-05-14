@@ -1,3 +1,4 @@
+import * as bochil from '@bochilteam/scraper'
 var handler = async (m, { args }) => {
     if (!args[0]) throw 'Input URL'
     try { 
