@@ -1,4 +1,4 @@
-let handler = async (m, { conn, isOwner }) => {
+const handler = async (m, { conn, isOwner }) => {
 	let groups = Object.values(await conn.groupFetchAllParticipating())
 	
 	let str = Object.keys(groups).map((i, index) => {
@@ -20,7 +20,7 @@ ${isOwner ? `*${dmenub} isBotAdmin :* [ ${!!groups[i].participants.find(v => v.i
 *${dmenub} Size :* ${groups[i].size}
 ${dmenuf}`.trim()
     }).join('\n\n')
-    await conn.sendButtonImg(m.chat, thumb, str, author, 'ʙᴀᴄᴋ ᴛᴏ ᴍᴇɴᴜ', '.menu', fakes, adReply)
+    await conn.reply(m.chat, str, fakes)
 }
 
 handler.help = ['groups', 'grouplist']
