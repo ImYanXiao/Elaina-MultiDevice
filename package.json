@@ -41,7 +41,7 @@
     "dependencies": {
         "@adiwajshing/baileys": "npm:baileys@^6.0.9",
         "@bochilteam/scraper": "^4.0.22-alpha.0",
-        "@vitalets/google-translate-api": "^8.0.0", 
+        "@vitalets/google-translate-api": "^9.2.0", 
         "awesome-phonenumber": "^2.68.0",
         "axios": "^1.3.4",
         "brainly-scraper-v2": "^2.0.9",
