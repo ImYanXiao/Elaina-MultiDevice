@@ -103,36 +103,28 @@ store.readFromFile(sess)
 global.store = store*/
 
 const connectionOptions = {
-	    version,
-        printQRInTerminal: true,
-        auth: state,
-        browser: ['Elaina(イレイナ)', 'Safari', '3.1.0'], 
-getMessage: async (key) => (store.loadMessage(key.remoteJid, key.id) || store.loadMessage(key.id) || {}).message,
-// get message diatas untuk mengatasi pesan gagal dikirim, "menunggu pesan", dapat dicoba lagi
-	      patchMessageBeforeSending: (message) => {
-                const requiresPatch = !!(
-                    message.buttonsMessage 
-                    || message.templateMessage
-                    || message.listMessage
-                );
-                if (requiresPatch) {
-                    message = {
-                        viewOnceMessage: {
-                            message: {
-                                messageContextInfo: {
-                                    deviceListMetadataVersion: 2,
-                                    deviceListMetadata: {},
-                                },
-                                ...message,
-                            },
-                        },
-                    };
-                }
-
-                return message;
-            }, 
-      // logger: pino({ level: 'silent' })
-}
+  version: [2, 2308, 7],
+  printQRInTerminal: true,
+  auth: state,
+  logger: pino({ level: "silent" }),
+  patchMessageBeforeSending: (message) => {
+    const requiresPatch = !!(message.buttonsMessage || message.templateMessage || message.listMessage);
+    if (requiresPatch) {
+      message = {
+        viewOnceMessage: {
+          message: {
+            messageContextInfo: {
+              deviceListMetadataVersion: 2,
+              deviceListMetadata: {},
+            },
+            ...message,
+          },
+        },
+      };
+    }
+    return message;
+  },
+};
 
 global.conn = makeWASocket(connectionOptions)
 conn.isInit = false
