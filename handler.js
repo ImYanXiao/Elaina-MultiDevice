@@ -688,7 +688,7 @@ export async function participantsUpdate({ id, participants, action }) {
                          //this.sendFile(id, action === 'add' ? wel : lea, pp, 'pp.jpg', text, null, false, { mentions: [user] })
                        /*await this.sendHydrated(id, global.ucapan, text, action === 'add' ? wel.toBuffer() : lea.toBuffer(), sgc, (action == 'add' ? '💌 WELCOME' : '🐾 BYE'), user.split`@`[0], 'ɴᴜᴍʙᴇʀ ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛ', [
       [action == 'add' ? 'ᴡᴇʟᴄᴏᴍᴇ' : 'sᴀʏᴏɴᴀʀᴀᴀ', action === 'add' ? '.intro' : 'bilek']], null, fkontak, { mentions: [user] })*/
-                        await conn.sendButtonImg(id, action === 'add' ? wel : lea, action == 'add' ? 'Selamat Datang Di ' + nickgc : 'Selamat Tinggal Dari ' + nickgc, text, 'Menu', '.menu', fkontak, { contextInfo: { externalAdReply: { showAdAttribution: true,
+                        /*await conn.sendButtonImg(id, action === 'add' ? wel : lea, action == 'add' ? 'Selamat Datang Di ' + nickgc : 'Selamat Tinggal Dari ' + nickgc, text, 'Menu', '.menu', fkontak, { contextInfo: { externalAdReply: { showAdAttribution: true,
     mediaUrl: global.sig,
     mediaType: 2, 
     description: global.sig, 
@@ -697,7 +697,8 @@ export async function participantsUpdate({ id, participants, action }) {
     thumbnail: await(await fetch(thumb)).buffer(),
     sourceUrl: sig
      }}
-  })
+  })*/
+		this.sendFile(id, action === 'add' ? wel : lea, 'pp.jpg', text, null, false, { mentions: [user] })
     /*conn.sendButtonDoc(id, text, wm, global.namebot, action == 'add' ? 'ᴡᴇʟᴄᴏᴍᴇ' : 'sᴀʏᴏɴᴀʀᴀᴀ', action === 'add' ? '.intro' : 'bilek', fkontak, { contextInfo: { externalAdReply: { showAdAttribution: true,
     mediaUrl: global.sig,
     mediaType: 2, 
