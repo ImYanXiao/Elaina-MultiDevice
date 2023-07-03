@@ -13,9 +13,9 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 		await conn.sendMessage(m.chat, { [mime.split('/')[0]]: { url: res }, caption: `Succes Download: ${await shortUrl(res)}` }, { quoted: m }) :
 	await conn.sendButton(m.chat, `Result From: ${text.capitalize()}`, await shortUrl(res), res, [['Next', `${usedPrefix + command} ${text}`]], m)
 }
-handler.help = ['pinterest']
+handler.help = ['downloadpin <Link Pinterest>']
 handler.tags = ['downloader']
-handler.command = /^(pinterest)$/i
+handler.command = /^(downloadpin|downloadpinterest)$/i
 
 export default handler
 
