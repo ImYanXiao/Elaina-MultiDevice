@@ -34,7 +34,7 @@ var handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 
 const listMessage = {
   text: ' ',
-  footer: botdate,
+  footer: bottime,
   title: `*${htki} 𝙾𝙿𝚃𝙸𝙾𝙽𝚂 ${htka}*`,
   buttonText: "Click Here!",
   sections
