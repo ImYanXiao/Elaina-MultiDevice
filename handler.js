@@ -746,7 +746,7 @@ export async function groupsUpdate(groupsUpdate) {
         if (groupUpdate.restrict == true) text = (chats.sRestrictOn || this.sRestrictOn || conn.sRestrictOn || '*Group has been all participants!*')
         if (groupUpdate.restrict == false) text = (chats.sRestrictOff || this.sRestrictOff || conn.sRestrictOff || '*Group has been only admin!*')
         if (!text) continue
-         this.send2ButtonDoc(id, text.trim(), author, '🔖 Matikan Fitur', '.off detect', '🎀 Menu', '.menu', fakes, adReply)
+         this.reply(id, text.trim(), fakes) 
     }
 }
 
@@ -761,13 +761,13 @@ export async function deleteUpdate(message) {
         let chat = global.db.data.chats[msg.chat] || {}
         if (chat.delete)
             return 
-            this.send2ButtonDoc(msg.chat, `
+            this.reply(msg.chat, `
 Terdeteksi @${participant.split`@`[0]} telah menghapus pesan. 
 Untuk mematikan fitur ini, ketik
 *.enable delete*
           
 Untuk menghapus pesan yang dikirim oleh Bot, reply pesan dengan perintah
-*.delete*`, author, 'ᴀɴᴛɪ - ᴅᴇʟᴇᴛᴇ', '🔖 Matikan Fitur', '.on delete', '🎀 Menu', '.menu', msg, adReply)
+*.delete*`, msg)
         this.copyNForward(msg.chat, msg).catch(e => console.log(e, msg))
     } catch (e) {
         console.error(e)
@@ -787,7 +787,7 @@ global.dfail = (type, m, conn) => {
         unreg: '*ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ʀᴇɢɪsᴛᴇʀᴇᴅ ʏᴇᴛ* • ᴋᴇᴛɪᴋ  .daftar ᴜɴᴛᴜᴋ ʙɪsᴀ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ғɪᴛᴜʀ ɪɴɪ', 
         restrict: '*ʀᴇsᴛʀɪᴄᴛ* • ʀᴇsᴛʀɪᴄᴛ ʙᴇʟᴜᴍ ᴅɪɴʏᴀʟᴀᴋᴀɴ ᴅɪᴄʜᴀᴛ ɪɴɪ',
     }[type]
-    if (msg) return conn.send2ButtonDoc(m.chat, msg, author, 'ᴇʀʀᴏʀ - ᴀᴄᴄᴇss ᴅᴇɴɪᴇᴅ', '💌 Creator', '.creator', '🎀 Menu', '.menu', fakes, adReply)
+    if (msg) return conn.reply(m.chat, msg, fakes)
 }
 
 let file = global.__filename(import.meta.url, true)
