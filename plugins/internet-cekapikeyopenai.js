@@ -4,7 +4,7 @@ var handler = async (m, { conn, text }) => {
   let APIKEYS_NYA = text;
 
   if (!APIKEYS_NYA) {
-    return conn.reply(m.chat, 'Masukkan APIKEYS OPENAI', m);
+    return conn.reply(m.chat, '.cekopenai <APIKEYMU>', m);
   }
 
   try {
