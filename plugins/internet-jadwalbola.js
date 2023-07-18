@@ -1,36 +1,43 @@
-import fetch from 'node-fetch'
+import fetch from 'node-fetch';
+
 let handler = async (m, { conn, command }) => {
-  let res = await fetch('https://x-restapi.herokuapp.com/api/jadwal-bola?apikey=BETA')
-  if (res.status != 200) throw await res.text()
-  let json = await res.json()
-  if (!json.status) throw json
-m.reply(` *JADWAL BOLA*
+  let res = await fetch('https://tr.deployers.repl.co/jadwal-pertandingan');
+  if (res.status !== 200) throw await res.text();
+  let json = await res.json();
+  
+  if (!Array.isArray(json) || json.length === 0) {
+    throw new Error('No data found');
+  }
+  
+  let ligaIndonesiaMatches = json[0].matches;
+  let ligaInggrisMatches = json[1].matches;
+  
+  let outputLigaIndonesia = `*JADWAL PERTANDINGAN LIGA INDONESIA*\n\n`;
+  
+  for (let i = 0; i < ligaIndonesiaMatches.length; i++) {
+    let match = ligaIndonesiaMatches[i];
+    let titleDate = match.title_date;
+    let matchInfo = match.matches.map((m) => `${m.home} vs ${m.away}, Jam = ${m.jam_info}`).join('\n');
+    
+    outputLigaIndonesia += `_${titleDate}_\n${matchInfo}\n\n`;
+  }
+  
+  let outputLigaInggris = `*JADWAL PERTANDINGAN LIGA INGGRIS*\n\n`;
+  
+  for (let i = 0; i < ligaInggrisMatches.length; i++) {
+    let match = ligaInggrisMatches[i];
+    let titleDate = match.title_date;
+    let matchInfo = match.matches.map((m) => `${m.home} vs ${m.away}, Jam = ${m.jam_info}`).join('\n');
+    
+    outputLigaInggris += `_${titleDate}_\n${matchInfo}\n\n`;
+  }
+  
+  let output = outputLigaIndonesia + outputLigaInggris;
+  m.reply(output);
+};
 
-_*${json.data[0].kickoff}*_
-Waktu: _${json.data[0].waktu}_
-Channel tv: ${json.data[0].channel}
+handler.help = ['jadwalbola'];
+handler.tags = ['internet'];
+handler.command = /^(jadwalbola|bola)$/i;
 
-_*${json.data[1].kickoff}*_
-Waktu: _${json.data[1].waktu}_
-Channel tv: ${json.data[1].channel}
-
-_*${json.data[2].kickoff}*_
-Waktu: _${json.data[2].waktu}_
-Channel tv: ${json.data[2].channel}
-
-_*${json.data[3].kickoff}*_
-Waktu: _${json.data[3].waktu}_
-Channel tv: ${json.data[3].channel}
-
-_*${json.data[4].kickoff}*_
-Waktu: _${json.data[4].waktu}_
-Channel tv: ${json.data[4].channel}
-`)
-
-}
-handler.help = ['jadwalbola']
-handler.tags = ['internet']
-handler.command = /^jadwalbola$/i
-
-
-export default handler
+export default handler;
