@@ -12,7 +12,7 @@ var handler = async (m, { conn, usedPrefix: _p }) => {
       'konghucu': 'Wei De Dong Tian',
     };
 
-    greetings['Atheis/Gapunya Agama'] = text;
+    greetings['Atheis/Gapunya Agama/Orang Gila'] = text;
 
     // buat greetings info
     let greetingsInfo = Object.keys(greetings)
