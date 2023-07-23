@@ -1,3 +1,7 @@
+// sebenernya masih adalagi liga italia, spanyol, champions, jerman, prancis. tapi memang belom dapet/ada jadwalnya jadi yang tersedia jadwalnya itu baru indonesia atau inggris
+// sering sering aja cek https://tr.deployers.repl.co/jadwal-pertandingan .
+// terimakasih.
+
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, command }) => {
@@ -9,30 +13,19 @@ let handler = async (m, { conn, command }) => {
     throw new Error('No data found');
   }
   
-  let ligaIndonesiaMatches = json[0].matches;
-  let ligaInggrisMatches = json[1].matches;
+  let output = '';
   
-  let outputLigaIndonesia = `*JADWAL PERTANDINGAN LIGA INDONESIA*\n\n`;
-  
-  for (let i = 0; i < ligaIndonesiaMatches.length; i++) {
-    let match = ligaIndonesiaMatches[i];
-    let titleDate = match.title_date;
-    let matchInfo = match.matches.map((m) => `${m.home} vs ${m.away}, Jam = ${m.jam_info}`).join('\n');
+  for (let i = 0; i < json.length; i++) {
+    let data = json[i].data;
     
-    outputLigaIndonesia += `_${titleDate}_\n${matchInfo}\n\n`;
+    if (typeof data === 'string') {
+      output += `*_${json[i].judul}:_*\n${data}\n\n`;
+    } else if (Array.isArray(data)) {
+      let matchInfo = data.join('\n');
+      output += `*_${json[i].judul}:_*\n${matchInfo}\n\n`;
+    }
   }
   
-  let outputLigaInggris = `*JADWAL PERTANDINGAN LIGA INGGRIS*\n\n`;
-  
-  for (let i = 0; i < ligaInggrisMatches.length; i++) {
-    let match = ligaInggrisMatches[i];
-    let titleDate = match.title_date;
-    let matchInfo = match.matches.map((m) => `${m.home} vs ${m.away}, Jam = ${m.jam_info}`).join('\n');
-    
-    outputLigaInggris += `_${titleDate}_\n${matchInfo}\n\n`;
-  }
-  
-  let output = outputLigaIndonesia + outputLigaInggris;
   m.reply(output);
 };
 
