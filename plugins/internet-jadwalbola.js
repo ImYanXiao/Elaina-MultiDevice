@@ -1,36 +1,36 @@
-import fetch from 'node-fetch'
+// sebenernya masih adalagi liga italia, spanyol, champions, jerman, prancis. tapi memang belom dapet/ada jadwalnya jadi yang tersedia jadwalnya itu baru indonesia atau inggris
+// sering sering aja cek https://tr.deployers.repl.co/jadwal-pertandingan .
+// terimakasih.
+
+import fetch from 'node-fetch';
+
 let handler = async (m, { conn, command }) => {
-  let res = await fetch('https://x-restapi.herokuapp.com/api/jadwal-bola?apikey=BETA')
-  if (res.status != 200) throw await res.text()
-  let json = await res.json()
-  if (!json.status) throw json
-m.reply(` *JADWAL BOLA*
+  let res = await fetch('https://tr.deployers.repl.co/jadwal-pertandingan');
+  if (res.status !== 200) throw await res.text();
+  let json = await res.json();
+  
+  if (!Array.isArray(json) || json.length === 0) {
+    throw new Error('No data found');
+  }
+  
+  let output = '';
+  
+  for (let i = 0; i < json.length; i++) {
+    let data = json[i].data;
+    
+    if (typeof data === 'string') {
+      output += `*_${json[i].judul}:_*\n${data}\n\n`;
+    } else if (Array.isArray(data)) {
+      let matchInfo = data.join('\n');
+      output += `*_${json[i].judul}:_*\n${matchInfo}\n\n`;
+    }
+  }
+  
+  m.reply(output);
+};
 
-_*${json.data[0].kickoff}*_
-Waktu: _${json.data[0].waktu}_
-Channel tv: ${json.data[0].channel}
+handler.help = ['jadwalbola'];
+handler.tags = ['internet'];
+handler.command = /^(jadwalbola|bola)$/i;
 
-_*${json.data[1].kickoff}*_
-Waktu: _${json.data[1].waktu}_
-Channel tv: ${json.data[1].channel}
-
-_*${json.data[2].kickoff}*_
-Waktu: _${json.data[2].waktu}_
-Channel tv: ${json.data[2].channel}
-
-_*${json.data[3].kickoff}*_
-Waktu: _${json.data[3].waktu}_
-Channel tv: ${json.data[3].channel}
-
-_*${json.data[4].kickoff}*_
-Waktu: _${json.data[4].waktu}_
-Channel tv: ${json.data[4].channel}
-`)
-
-}
-handler.help = ['jadwalbola']
-handler.tags = ['internet']
-handler.command = /^jadwalbola$/i
-
-
-export default handler
+export default handler;
