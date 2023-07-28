@@ -20,18 +20,6 @@
 
 ---------
 
-## ```Contact Me 💌``` 
-  <a href="https://wa.me/6285736178354">
-    <img align="left" alt="SIEGRIN | Whastapp" width="26px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Whatsapp.svg" />
-  </a> &nbsp;&nbsp;
-  <a href="mailto:yanxiao021@gmail.com">
-    <img align="left" alt="SIEGRIN | Gmail" width="26px" src="https://github.com/siegrin/siegrin/blob/main/Assets/Gmail.svg" />
-  </a> &nbsp;&nbsp;
----------
-
-[![BOT WHATSAPP](https://img.shields.io/badge/WhatsApp%20BOT-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/6281231079387) 
----------
-
 ### a little about this bot
 - ✔️ | **Simple** 
 - ✔️ | **Button Template** 
@@ -57,23 +45,7 @@
 
 ## ```USER REPLIT```
 [![Run on Repl.it](https://repl.it/badge/github/ImYanXiao/Elaina-MultiDevice)](https://repl.it/github/ImYanXiao/Elaina-MultiDevice)
-## TERMUX USER
-```bash
-$ pkg upgrade && pkg update
-$ pkg install git -y
-$ pkg install nodejs -y
-$ pkg install ffmpeg -y
-$ pkg install imagemagick -y
-$ git clone https://github.com/ImYanXiao/Elaina-MultiDevice
-$ cd Elaina-MultiDevice
-$ npm i 
-```
-If error try using yarn instead of npm
-```bash
-$ pkg install yarn -y
-$ yarn install
-$ node .
-```
+
 ---------
 
 ## TERMUX WITH UBUNTU
@@ -213,7 +185,7 @@ conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', 'https://github.com/Boc
 * [`All Friends`]
 * [`All Contributors`]
 * [`All Creator Bot`]
-* [`Adiwajshing/Baileys`](https://github.com/adiwajshing/Baileys)
+* [`Whiskeysockets/Baileys`](https://github.com/WhiskeySockets/Baileys)
 * [`Nurutomo`](https://github.com/Nurutomo)
 * [`BochilGaming`](https://github.com/bochilgaming)
 * [`Fokus ID`](https://github.com/Fokusdotid) 
