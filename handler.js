@@ -48,219 +48,19 @@ export async function handler(chatUpdate) {
                     user.exp = 0
                 if (!isNumber(user.limit))
                     user.limit = 25
-                if (!isNumber(user.lastclaim))
-                    user.lastclaim = 0
-                if (!isNumber(user.pasangan))
-                    user.pasangan = ''
-                if (!('registered' in user))
-                    user.registered = false
-                if (!user.registered) {
-                    if (!('name' in user))
-                        user.name = m.name
-                    if (!isNumber(user.age))
-                        user.age = -1
-                    if (!isNumber(user.regTime))
-                        user.regTime = -1
-                }
                 if (!isNumber(user.afk))
                     user.afk = -1
                 if (!('afkReason' in user))
                     user.afkReason = ''
                 if (!('banned' in user))
                     user.banned = false
-                if (!isNumber(user.warn))
-                    user.warn = 0
-                if (!isNumber(user.level))
-                    user.level = 0
-                if (!('role' in user))
-                    user.role = 'Beginner'
-                if (!('autolevelup' in user))
-                    user.autolevelup = true
-                if (!isNumber(user.money))
-                    user.money = 0
-                if (!isNumber(user.atm))
-                    user.atm = 0
-                if (!isNumber(user.fullatm))
-                    user.fullatm = 0
-                if (!isNumber(user.bank))
-                    user.bank = 0
-                if (!isNumber(user.health))
-                    user.health = 100
-                if (!isNumber(user.potion))
-                    user.potion = 0
-                if (!isNumber(user.trash))
-                    user.trash = 0
-                if (!isNumber(user.wood))
-                    user.wood = 0
-                if (!isNumber(user.rock))
-                    user.rock = 0
-                if (!isNumber(user.string))
-                    user.string = 0
-                if (!isNumber(user.petFood))
-                    user.petFood = 0
-                if (!isNumber(user.emerald))
-                    user.emerald = 0
-                if (!isNumber(user.diamond))
-                    user.diamond = 0
-                if (!isNumber(user.gold))
-                    user.gold = 0
-                if (!isNumber(user.iron))
-                    user.iron = 0
-                if (!isNumber(user.upgrader))
-                    user.upgrader = 0
-                if (!isNumber(user.common))
-                    user.common = 0
-                if (!isNumber(user.uncommon))
-                    user.uncommon = 0
-                if (!isNumber(user.mythic))
-                    user.mythic = 0
-                if (!isNumber(user.legendary))
-                    user.legendary = 0
-                if (!isNumber(user.superior))
-                    user.superior = 0
-                if (!isNumber(user.pet))
-                    user.pet = 0
-                if (!isNumber(user.horse))
-                    user.horse = 0
-                if (!isNumber(user.horseexp))
-                    user.horseexp = 0
-                if (!isNumber(user.cat))
-                    user.cat = 0
-                if (!isNumber(user.catexp))
-                    user.catexp = 0
-                if (!isNumber(user.fox))
-                    user.fox = 0
-                if (!isNumber(user.foxhexp))
-                    user.foxexp = 0
-                if (!isNumber(user.dog))
-                    user.dog = 0
-                if (!isNumber(user.dogexp))
-                    user.dogexp = 0
-                if (!isNumber(user.robo))
-                    user.robo = 0
-                if (!isNumber(user.roboxp))
-                    user.roboxp = 0
-                if (!isNumber(user.horselastfeed))
-                    user.horselastfeed = 0
-                if (!isNumber(user.catlastfeed))
-                    user.catlastfeed = 0
-                if (!isNumber(user.foxlastfeed))
-                    user.foxlastfeed = 0
-                if (!isNumber(user.doglastfeed))
-                    user.doglastfeed = 0
-                if (!isNumber(user.armor))
-                    user.armor = 0
-                if (!isNumber(user.armordurability))
-                    user.armordurability = 0
-                if (!isNumber(user.sword))              
-                    user.sword = 0
-                if (!isNumber(user.sworddurability))
-                    user.sworddurability = 0
-                if (!isNumber(user.pickaxe))
-                    user.pickaxe = 0
-                if (!isNumber(user.pickaxedurability))
-                    user.pickaxedurability = 0
-                if (!isNumber(user.fishingrod))
-                    user.fishingrod = 0
-                if (!isNumber(user.fishingroddurability))
-                    user.fishingroddurability = 0
-                if (!isNumber(user.lastclaim))
-                    user.lastclaim = 0
-                if (!isNumber(user.lastadventure))
-                    user.lastadventure = 0
-                if (!isNumber(user.lastfishing))
-                    user.lastfishing = 0
-                if (!isNumber(user.lastdungeon))
-                    user.lastdungeon = 0
-                if (!isNumber(user.lastduel))
-                    user.lastduel = 0
-                if (!isNumber(user.lastmining))
-                    user.lastmining = 0
-                if (!isNumber(user.lasthunt))
-                    user.lasthunt = 0
-                if (!isNumber(user.lastweekly))
-                    user.lastweekly = 0
-                if (!isNumber(user.lastmonthly))
-                    user.lastmonthly = 0
-                if (!isNumber(user.lastbunga))
-                    user.lastbunga = 0
-                if (!isNumber(user.premium))
-                    user.premium = false
-                if (!isNumber(user.premiumTime))
-                    user.premiumTime = 0
-                if (!isNumber(user.limitjoin))
-                    user.limitjoin = 0
             } else
                 global.db.data.users[m.sender] = {
                     exp: 0,
                     limit: 25,
-                    lastclaim: 0,
-                    registered: false,
-                    name: m.name,
-                    pasangan: '',
-                    age: -1,
-                    regTime: -1,
                     afk: -1,
                     afkReason: '',
                     banned: false,
-                    warn: 0,
-                    level: 0,                    
-                    role: 'Beginner',
-                    autolevelup: true,
-                    money: 0,
-                    bank: 0,
-                    atm: 0,
-                    fullatm: 0,
-                    health: 100,
-                    potion: 10,
-                    trash: 0,
-                    wood: 0,
-                    rock: 0,
-                    string: 0,
-                    emerald: 0,
-                    diamond: 0,
-                    gold: 0,
-                    iron: 0,
-                    upgrader: 0,
-                    common: 0,
-                    uncommon: 0,
-                    mythic: 0,
-                    legendary: 0,
-                    superior: 0,
-                    pet: 0,
-                    horse: 0,
-                    horseexp: 0,
-                    cat: 0,
-                    catngexp: 0,
-                    fox: 0,
-                    foxexp: 0,
-                    dog: 0,
-                    dogexp: 0,
-                    horselastfeed: 0,
-                    catlastfeed: 0,
-                    foxlastfeed: 0,
-                    doglastfeed: 0,
-                    armor: 0,
-                    armordurability: 0,
-                    sword: 0,
-                    sworddurability: 0,
-                    pickaxe: 0,
-                    pickaxedurability: 0,
-                    fishingrod: 0,
-                    fishingroddurability: 0,
-                    lastclaim: 0,
-                    lastadventure: 0,
-                    lastfishing: 0,
-                    lastdungeon: 0,
-                    lastduel: 0,
-                    lastmining: 0,
-                    lasthunt: 0,
-                    lastweekly: 0,
-                    lastmonthly: 0,
-                    lastbunga: 0,
-                    premium: false,
-                    premiumTime: 0,
-                    limitjoin: 0,
                 }
             let chat = global.db.data.chats[m.chat]
             if (typeof chat !== 'object')
@@ -269,7 +69,7 @@ export async function handler(chatUpdate) {
                 if (!('isBanned' in chat))
                     chat.isBanned = false
                 if (!('welcome' in chat))
-                    chat.welcome = true
+                    chat.welcome = false
                 if (!('detect' in chat))
                     chat.detect = false
                 if (!('sWelcome' in chat))
@@ -281,7 +81,7 @@ export async function handler(chatUpdate) {
                 if (!('sDemote' in chat))
                     chat.sDemote = ''
                 if (!('delete' in chat))
-                    chat.delete = true
+                    chat.delete = false
                 if (!('antiLink' in chat))
                     chat.antiLink = false
                 if (!('viewonce' in chat))
@@ -312,12 +112,11 @@ export async function handler(chatUpdate) {
                     delete: true,
                     antiLink: false,
                     viewonce: false,
-                    antiToxic: true,
                     simi: false,
                     expired: 0,
                     autoSticker: false,
                     premium: false,
-	            premiumTime: false,
+	                premiumTime: false,
                     premnsfw: false, 
                 }
             let settings = global.db.data.settings[this.user.jid]
@@ -688,27 +487,8 @@ export async function participantsUpdate({ id, participants, action }) {
                          //this.sendFile(id, action === 'add' ? wel : lea, pp, 'pp.jpg', text, null, false, { mentions: [user] })
                        /*await this.sendHydrated(id, global.ucapan, text, action === 'add' ? wel.toBuffer() : lea.toBuffer(), sgc, (action == 'add' ? '💌 WELCOME' : '🐾 BYE'), user.split`@`[0], 'ɴᴜᴍʙᴇʀ ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛ', [
       [action == 'add' ? 'ᴡᴇʟᴄᴏᴍᴇ' : 'sᴀʏᴏɴᴀʀᴀᴀ', action === 'add' ? '.intro' : 'bilek']], null, fkontak, { mentions: [user] })*/
-                        /*await conn.sendButtonImg(id, action === 'add' ? wel : lea, action == 'add' ? 'Selamat Datang Di ' + nickgc : 'Selamat Tinggal Dari ' + nickgc, text, 'Menu', '.menu', fkontak, { contextInfo: { externalAdReply: { showAdAttribution: true,
-    mediaUrl: global.sig,
-    mediaType: 2, 
-    description: global.sig, 
-    title: '',
-    body: wm,
-    thumbnail: await(await fetch(thumb)).buffer(),
-    sourceUrl: sig
-     }}
-  })*/
+                        
 		this.sendFile(id, action === 'add' ? wel : lea, 'pp.jpg', text, null, false, { mentions: [user] })
-    /*conn.sendButtonDoc(id, text, wm, global.namebot, action == 'add' ? 'ᴡᴇʟᴄᴏᴍᴇ' : 'sᴀʏᴏɴᴀʀᴀᴀ', action === 'add' ? '.intro' : 'bilek', fkontak, { contextInfo: { externalAdReply: { showAdAttribution: true,
-    mediaUrl: global.sig,
-    mediaType: 2, 
-    description: global.sig, 
-    title: wm3,
-    body: wm,
-    thumbnail: await(await fetch(action === 'add' ? wel : lea)).buffer(),
-    sourceUrl: sig
-     }}
-  })*/
                     }
                 }
             }
