@@ -4,7 +4,7 @@ var handler = async (m, { conn, text } ) => {
 conn.reply(m.chat, `_Mengirim pesan broadcast ke ${groups.length} grup_`, m)
  for (let id of groups) {
  let member = (await conn.groupMetadata(id)).participants.map(v => v.jid)
-conn.send2ButtonDoc(id, '────━┅ *BROADCAST* ┅━────\n' + text, wm, 'ғʀᴏᴍ ᴏᴡɴᴇʀ', thumbbc, [['ᴏᴡɴᴇʀ 🎐', '.owner'],['ᴅᴏɴᴀsɪ ✨', '.donasi']], flocation, { contextInfo: {
+conn.sendFile(id, thumbbc, 'Thumb.jpg', '────━┅ *BROADCAST* ┅━────\n' + text, m, { contextInfo: {
         externalAdReply: { showAdAttribution: true,
             title: `${htjava} BROADCAST`,
             body: titlebot,
