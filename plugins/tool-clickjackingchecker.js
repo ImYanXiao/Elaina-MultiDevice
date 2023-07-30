@@ -1,8 +1,8 @@
 import fetch from 'node-fetch';
 
-const handler = async (m, { conn, text }) => {
+const handler = async (m, { conn, text, command, usedPrefix }) => {
   if (!text) {
-    throw 'Masukkan URL yang ingin Anda cek!';
+    throw `Masukkan URL yang ingin Anda cek!\n_*perintah: ${usedPrefix + command} https://tr.deployers.repl.co\natau\n${usedPrefix + command} tr.deployers.repl.co`;
   }
 
   const url = `https://tr.deployers.repl.co/cj?u=${encodeURIComponent(text)}`;
