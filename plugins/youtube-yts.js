@@ -30,8 +30,8 @@ const handler = async (m, { conn, text, command, usedPrefix }) => {
   const videoUrl = `https://tr.deployers.repl.co/vid?name=${encodeURIComponent(text)}`;
 
   // User input for start and end indices
-  const user_input_start = 0; // Default start index
-  const user_input_end = 15; // Default end index
+  const user_input_start = 0; // ini jangan diubah, boleh diubah kalo search nya dimulai dari yang kamu mau
+  const user_input_end = 51; // biar Brutal search nya (max 51)
 
   try {
     const response = await fetch(videoUrl);
