@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 const handler = async (m, { conn, text, command, usedPrefix }) => {
   if (!text) {
-    throw `Masukkan URL yang ingin Anda cek!\n_*perintah: ${usedPrefix + command} https://tr.deployers.repl.co\natau\n${usedPrefix + command} tr.deployers.repl.co*_`;
+    throw `_*Masukkan URL yang ingin Anda cek!*_\n_*perintah:*_ ${usedPrefix + command} https://tr.deployers.repl.co\n*_atau_*\n${usedPrefix + command} tr.deployers.repl.co`;
   }
 
   const url = `https://tr.deployers.repl.co/cj?u=${encodeURIComponent(text)}`;
@@ -49,7 +49,7 @@ ${data.how_to_protect}
   }
 };
 
-handler.command = /^(cj)?$/i;
+handler.command = /^(cj|clickjacking|clickjack|clickjacker)?$/i;
 handler.tags = ['internet'];
 handler.help = ['cj <URL>'];
 
