@@ -22,8 +22,8 @@ const handler = async (m, { conn, text, command, usedPrefix }) => {
   if (!text) throw `*_Masukan Judul Playlist Yang Ingin Kamu Cari!_*\nperintah:\n${usedPrefix + command} Kanao Tsuyuri\n`;
 
   const playlistUrl = `https://tr.deployers.repl.co/playlist?name=${encodeURIComponent(text)}`;
-  const user_input_start = 0; // jangan diubah
-  const user_input_end = 15; // jangan diubah
+  const user_input_start = 0; // bebas diubah dimulai dari berapa
+  const user_input_end = 51; // bebas diubah (max 51)
 
   try {
     const response = await fetch(playlistUrl);
