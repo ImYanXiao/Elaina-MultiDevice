@@ -1,5 +1,6 @@
 let handler = m => m
-let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
+// TAMBAHIN SENDIRI SITUS YANG LAIN
+let linkRegex = /(chat.whatsapp.com|whatsapp.com|xnxx.com|xvideos.com|pornhub.com)\/([0-9A-Za-z]{1,99999})/i
 handler.before = async function (m, { isAdmin, isBotAdmin }) {
     if (m.isBaileys && m.fromMe) return true
   let chat = global.db.data.chats[m.chat]
@@ -12,6 +13,7 @@ handler.before = async function (m, { isAdmin, isBotAdmin }) {
       m.reply(` *「 ANTILINK 」* \n\nLink Group Terdeteksi, bye Kamu Akan Di Kick!!`.trim())
       await this.delay(500)
       await this.groupParticipantsUpdate(m.chat, [m.sender], "remove")
+      await this.sendMessage(m.chat, { delete: { remoteJid: m.chat, id: m.id }}) // Hapus pesan yang mengandung tautan
     }
   }
   return true
