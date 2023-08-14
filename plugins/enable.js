@@ -14,7 +14,7 @@ var handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 	{title: "☎ | AntiCall", rowId: `${usedPrefix + command} anticall`},
 	{title: "🚫 | Antidelete", rowId: `${usedPrefix + command} antidelete`},
 	{title: "📛 | Antitoxic", rowId: `${usedPrefix + command} antitoxic`}, 
-	{title: "📩 | Antispam", rowId: `$usedPrefix + command} antiSpam`}, 
+	{title: "📩 | Antispam", rowId: `${usedPrefix + command} antiSpam`}, 
 	{title: "🖼 | Autosticker", rowId: `${usedPrefix + command} autoSticker`}, 
 	{title: "⏏️ | Autolevelup", rowId: `${usedPrefix + command} autolevelup`},
 	{title: "🔎 | Detect", rowId: `${usedPrefix + command} detect`},
@@ -32,13 +32,13 @@ var handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     },
 ]
 
-const listMessage = {
-  text: ' ',
-  footer: botdate,
-  title: `*${htki} 𝙾𝙿𝚃𝙸𝙾𝙽𝚂 ${htka}*`,
-  buttonText: "Click Here!",
-  sections
-}
+// const listMessage = {
+//   text: ' ',
+//   footer: botdate,
+//   title: `*${htki} 𝙾𝙿𝚃𝙸𝙾𝙽𝚂 ${htka}*`,
+//   buttonText: "Click Here!",
+//   sections
+// }
 
   let isEnable = /true|enable|(turn)?on|1/i.test(command)
   let chat = global.db.data.chats[m.chat]
@@ -55,57 +55,69 @@ const listMessage = {
         }
       } else if (!isAdmin) {
         global.dfail('admin', m, conn)
-        throw false
+        throw false;
       }
       chat.welcome = isEnable
-      break
+      break;
      case 'detect':
        if (!m.isGroup) {
          if (!isOwner) {
            global.dfail('group', m, conn)
-           throw false
+           throw false;
          }
        } else if (!isAdmin) {
          global.dfail('admin', m, conn)
-         throw false
+         throw false;
        }
        chat.detect = isEnable
-       break
-           case 'viewonce':
+       break;
+    case 'viewonce':
     case 'antiviewonce':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
-          throw false
+          throw false;
         }
       }
       chat.viewonce = isEnable
-      break
-    case 'antidelete':
-      if (m.isGroup) {
-        if (!(isAdmin || isOwner)) {
-          global.dfail('admin', m, conn)
-          throw false
-        }
-      }
+      break;
+        case 'banned':
+        case 'restrick':
+        case 'ban':
+            if (m.isGroup) {
+                if (!isOwner) {
+                    conn.reply(m.chat, 'You are not authorized to perform this action.', m);
+                    throw false;
+                }
+            }
+            break;
     case 'delete':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
-          throw false
+          throw false;
         }
       }
       chat.delete = isEnable
-      break
-    case 'antidelete':
-      if (m.isGroup) {
-        if (!(isAdmin || isOwner)) {
-          global.dfail('admin', m, conn)
-          throw false
-        }
-      }
-      chat.delete = !isEnable
-      break
+      break;
+    // case 'antidelete':
+    //   if (m.isGroup) {
+    //     if (!(isAdmin || isOwner)) {
+    //       global.dfail('admin', m, conn)
+    //       throw false
+    //     }
+    //   }
+    //   chat.delete = isEnable
+    //   break
+        case 'antidelete':
+            if (m.isGroup) {
+                if (!(isAdmin || isOwner)) {
+                    conn.reply(m.chat, 'You are not authorized to perform this action.', m);
+                    throw false;
+                }
+            }
+            chat.delete = !isEnable;
+            break;
     // case 'autodelvn':
     //   if (m.isGroup) {
     //     if (!(isAdmin || isOwner)) {
@@ -117,7 +129,7 @@ const listMessage = {
     //   break
      case 'document':
        chat.useDocument = isEnable
-      break
+      break;
     case 'public':
       isAll = true
       if (!isROwner) {
@@ -278,23 +290,22 @@ const listMessage = {
       break
       case 'getmsg':
       if (m.isGroup) {
-        if (!(isAdmin || isOwner)) return dfail('admin', m, conn)
+        if (!(isAdmin || isOwner)) return global.dfail('admin', m, conn);
       }
       chat.getmsg = isEnable
       break
-    default:
-      if (!/[01]/.test(command)) return conn.sendMessage(m.chat, listMessage, fakes)
-      throw false
-  }
-  conn.send2ButtonDoc(m.chat, `*${htki} OPTIONS ${htka}*
-🗂️ *Type:* ${type} 
-📊 *Status:* Succes ✅
-🎚️ *Options:* ${isEnable ? 'Enable' : 'Disable'}
-📣 *For:* ${isAll ? 'This Bot' : isUser ? '' : 'This Chats'}
-`, wm, 'ᴏᴘᴛɪᴏɴs ᴛʜɪs ʙᴏᴛ', `${isEnable ? '✖️ Disable' : '✔️ Enable'}`, `${isEnable ? `.off ${type}` : `.on ${type}`}`, '🎀 Menu', '.menu', fakes, adReply)
-}
-handler.help = ['enable', 'disable'].map(v => v + 'able <option>')
-handler.tags = ['group', 'owner']
-handler.command = /^((en|dis)able|(tru|fals)e|(turn)?o(n|ff)|[01])$/i
+        default:
+            if (!/[01]/.test(command)) {
+                conn.sendMessage(m.chat, `*${htki} OPTIONS ${htka}*\n🗂️ *Type:* ${type}\n📊 *Status:* Success ✅\n🎚️ *Options:* ${isEnable ? 'Enable' : 'Disable'}\n📣 *For:* ${isAll ? 'This Bot' : isUser ? '' : 'This Chats'}`, { quoted: m });
+                return;
+            }
+            throw false;
+    }
+    conn.sendMessage(m.chat, `*${htki} OPTIONS ${htka}*\n🗂️ *Type:* ${type}\n📊 *Status:* Success ✅\n🎚️ *Options:* ${isEnable ? 'Enable' : 'Disable'}\n📣 *For:* ${isAll ? 'This Bot' : isUser ? '' : 'This Chats'}`, { quoted: m });
+};
 
-export default handler
+handler.help = ['enable', 'disable'].map(v => v + 'able <option>');
+handler.tags = ['group', 'owner'];
+handler.command = /^((en|dis)able|(tru|fals)e|(turn)?o(n|ff)|[01])$/i;
+
+export default handler;
