@@ -5,11 +5,13 @@ var handler = async(m, { conn, text }) => {
 
   await m.reply('Searching...')
   let request = await githubstalk(text) 
-    let { username, following, followers, type, bio, company, blog, location, email, public_repo, public_gist, profile_pic } = request
+    let { username, following, followers, type, bio, company, blog, location, email, public_repo, public_gists, profile_pic, created_at, updated_at, html_url, name } = request
     let thumb = await getBuffer(profile_pic)
-    let hasil = `*── 「 GITHUB STALK 」 ──*
-➸ *Username*: ${username}
-➸ *Bio*: ${bio}
+    let hasil = `*── 「 GITHUB STALK 」 ──*\n
+➸ *Username*: ${username} (${name})
+➸ *LINK*: ${html_url}
+➸ *Link Gists:* https://gist.github.com/${username}/
+➸ *Bio*: _${bio}_
 ➸ *Perusahaan*: ${company}
 ➸ *Email:* ${email}
 ➸ *Blog:* ${blog}
@@ -19,6 +21,8 @@ var handler = async(m, { conn, text }) => {
 ➸ *Following:* ${following}
 ➸ *Lokasi:* ${location}
 ➸ *Type:* ${type}
+➸ *Akun Dibuat sejak:* ${created_at}
+➸ *Akun Diupdate sejak:* ${updated_at}
 `
 
     conn.sendFile(m.chat, thumb, 'githubstalk.jpg', hasil, m)
@@ -35,12 +39,12 @@ async function githubstalk(user) {
         .then(({ data }) => {
             let hasil = {
                 username: data.login,
-                nickname: data.name,
+                name: data.name,
                 bio: data.bio,
                 id: data.id,
                 nodeId: data.node_id,
                 profile_pic: data.avatar_url,
-                url: data.html_url,
+                html_url: data.html_url,
                 type: data.type,
                 admin: data.site_admin,
                 company: data.company,
@@ -51,7 +55,7 @@ async function githubstalk(user) {
                 public_gists: data.public_gists,
                 followers: data.followers,
                 following: data.following,
-                ceated_at: data.created_at,
+                created_at: data.created_at,
                 updated_at: data.updated_at
             }
             resolve(hasil)
