@@ -24,7 +24,7 @@ export async function before(m) {
         } else if (similarity(m.text.toLowerCase(), json.jawaban.toLowerCase().trim()) >= threshold)
             m.reply(`*Dikit Lagi!*`)
         else
-            conn.sendButton(m.chat, `*Salah!*` + '\nketik /suka untuk bantuan\nketik menyerah untuk mengakhiri permainan', m)
+            conn.reply(m.chat, `*Salah!*` + '\nketik /suka untuk bantuan\nketik menyerah untuk mengakhiri permainan', m)
     }
     return !0
 }
