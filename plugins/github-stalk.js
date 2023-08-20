@@ -11,7 +11,7 @@ var handler = async(m, { conn, text }) => {
 ➸ *Username*: ${username} (${name})
 ➸ *LINK*: ${html_url}
 ➸ *Link Gists:* https://gist.github.com/${username}/
-➸ *Bio*: _${bio}_
+➸ *Bio*: ${bio}
 ➸ *Perusahaan*: ${company}
 ➸ *Email:* ${email}
 ➸ *Blog:* ${blog}
