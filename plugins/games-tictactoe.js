@@ -1,15 +1,20 @@
 import TicTacToe from '../lib/tictactoe.js'
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
-    conn.game = conn.game ? conn.game : {}
-    if (Object.values(conn.game).find(room => room.id.startsWith('tictactoe') && [room.game.playerX, room.game.playerO].includes(m.sender))) throw 'Kamu masih didalam game'
-    let room = Object.values(conn.game).find(room => room.state === 'WAITING' && (text ? room.name === text : true))
-    // m.reply('[WIP Feature]')
+    conn.game = conn.game ? conn.game : {};
+    if (Object.values(conn.game).find(room => room.id.startsWith('tictactoe') && [room.game.playerX, room.game.playerO].includes(m.sender))) {
+        throw 'Kamu masih didalam game';
+    }
+    
+    let room = Object.values(conn.game).find(room => room.state === 'WAITING' && (text ? room.name === text : true));
+    // m.reply('[WIP Feature]');
+    
     if (room) {
-        m.reply('Partner ditemukan!')
-        room.o = m.chat
-        room.game.playerO = m.sender
-        room.state = 'PLAYING'
+        m.reply('Partner ditemukan!');
+        room.o = m.chat;
+        room.game.playerO = m.sender;
+        room.state = 'PLAYING';
+        
         let arr = room.game.render().map(v => {
             return {
                 X: '❌',
@@ -23,8 +28,9 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
                 7: '7️⃣',
                 8: '8️⃣',
                 9: '9️⃣',
-            }[v]
-        })
+            }[v];
+        });
+        
         let str = `
 Room ID: ${room.id}
 ${arr.slice(0, 3).join('')}
@@ -32,13 +38,19 @@ ${arr.slice(3, 6).join('')}
 ${arr.slice(6).join('')}
 Menunggu @${room.game.currentTurn.split('@')[0]}
 Ketik *nyerah* untuk nyerah
-`.trim()
-        if (room.x !== room.o) await conn.sendButton(room.x, str, author, ['Nyerah', 'nyerah'], m, {
-            mentions: conn.parseMention(str)
-        })
-        await conn.sendButton(room.o, str, author, ['Nyerah', 'nyerah'], m, {
-            mentions: conn.parseMention(str)
-        })
+`.trim();
+        
+        if (room.x !== room.o) {
+            await conn.reply(room.x, str, m);
+        }
+        await conn.reply(room.o, str, m);
+        
+        if (room.game.currentTurn === `@${room.game.playerO.split('@')[0]}`) {
+            await conn.reply(room.o, 'Pilih posisi dengan mengetik nomor (1-9)', m);
+        } else {
+            await conn.reply(room.x, 'Pilih posisi dengan mengetik nomor (1-9)', m);
+        }
+        
     } else {
         room = {
             id: 'tictactoe-' + (+new Date),
@@ -46,16 +58,17 @@ Ketik *nyerah* untuk nyerah
             o: '',
             game: new TicTacToe(m.sender, 'o'),
             state: 'WAITING'
-        }
-        if (text) room.name = text
-        m.reply('Menunggu partner' + (text ? ` mengetik command dibawah ini
-${usedPrefix}${command} ${text}` : ''))
-        conn.game[room.id] = room
+        };
+        if (text) room.name = text;
+        //m.reply('Menunggu partner' + (text ? ` mengetik command dibawah ini\n${usedPrefix}${command} ${text}` : ''));
+      m.reply('Menunggu partner mengetik command dibawah ini\n.ttt atau .tictactoe');
+        conn.game[room.id] = room;
     }
 }
 
-handler.help = ['tictactoe', 'ttt'].map(v => v + ' [custom room name]')
-handler.tags = ['game']
-handler.command = /^(tictactoe|t{3})$/
+handler.help = ['tictactoe', 'ttt'].map(v => v + ' [custom room name]');
+handler.tags = ['game'];
+handler.command = /^(tictactoe|t{3})$/i;
 
-export default handler
+export default handler;
+            
