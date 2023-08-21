@@ -1,10 +1,18 @@
 import { Configuration, OpenAIApi } from 'openai'
-const configuration = new Configuration({ organization: 'KEY-ORG-KAMU', apiKey: 'KEY-OPENAI-APIKEY-KAMU' }); //KEY-OPENAI-APIKEY-KAMU = https://platform.openai.com/account/api-keys , KEY-ORG-KAMU = https://platform.openai.com/account/org-settings
+
+const mySecret = process.env['key-org'] // process.env['key-org'] ubah jadi key-org kamu di openai.com
+const mySecret2 = process.env['key-apikey'] // process.env['key-apikey'] ubah jadi key-APIKEY kamu di openai.com
+
+const configuration = new Configuration({ organization: mySecret, apiKey: mySecret2 });
+// const configuration = new Configuration({ apiKey: mySecret2 });
+
 const openai = new OpenAIApi(configuration);
+
+const Nomor = 'Nomer Kamu'
 
 let handler = async (m, { conn, text, command }) => {
     try {
-        if (!text) throw new Error(`Membuat gambar dari AI.\n\nContoh:\n.img Rumah kayu diatas gunung bersalju\n\n\n\nCreate image from AI\n\nExample:\n.img Wooden house on snow mountain`);
+        if (!text) throw new Error(`Membuat gambar dari AI.\n\nContoh:\n.img Wooden house on snow mountain\n\n\nJika bot AI tidak dapat menjawab, silahkan donasi minimal 1k untuk menghidupkannya kembali.\n\n Dana: ${Nomor}\nGopay: ${Nomor}`);
         
         await m.reply(wait)
         const response = await openai.createImage({
@@ -13,7 +21,9 @@ let handler = async (m, { conn, text, command }) => {
             size: "1024x1024",
         });
         
-        conn.sendButtonImg(m.chat, response.data.data[0].url, 'Done', wm, 'Menu', '.m', m)
+        conn.sendFile(m.chat, response.data.data[0].url, 'image.png', `Done\n\n\nJika bot AI tidak dapat menjawab, silahkan donasi minimal 1k untuk menghidupkannya kembali.\n\n Dana: ${Nomor}\nGopay: ${Nomor}`, m)
+        // Or use conn.reply:
+        // conn.reply(m.chat, `Done\n\n\nJika bot AI tidak dapat menjawab, silahkan donasi minimal 1k untuk menghidupkannya kembali.\n\n Dana: ${Nomor}\nGopay: ${Nomor}`, m);
         
     } catch (error) {
         if (error.response) {
@@ -30,7 +40,7 @@ let handler = async (m, { conn, text, command }) => {
 handler.help = ['ai-image']
 handler.tags = ['internet']
 handler.exp = 0;
-handler.command = /^(dalle|aiimg|aiimage|ai-img|openaiimage|ai-image|img|gambar)$/i
-handler.limit = true 
+handler.command = /^(dalle|aiimg|aiimage|ai-img|openaiimage|ai-image|img)$/i 
 
-export default handler
+export default handler;
+    
