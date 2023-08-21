@@ -1,25 +1,24 @@
 import { format } from 'util'
 
-let debugMode = !1
+let debugMode = false
 
-let winScore = 4999
-let playScore = 99
+let winScore = 10000
+let playScore = 100
 
 export async function before(m) {
     let ok
-    let isWin = !1
-    let isTie = !1
-    let isSurrender = !1
+    let isWin = false
+    let isTie = false
+    let isSurrender = false
     this.game = this.game ? this.game : {}
     let room = Object.values(this.game).find(room => room.id && room.game && room.state && room.id.startsWith('tictactoe') && [room.game.playerX, room.game.playerO].includes(m.sender) && room.state == 'PLAYING')
     if (room) {
-        // m.reply(`[DEBUG]\n${parseInt(m.text)}`)
         if (!/^([1-9]|(me)?nyerah|surr?ender)$/i.test(m.text))
-            return !0
+            return false
         isSurrender = !/^[1-9]$/.test(m.text)
-        if (m.sender !== room.game.currentTurn) { // nek wayahku
+        if (m.sender !== room.game.currentTurn) {
             if (!isSurrender)
-                return !0
+                return false
         }
         if (debugMode)
             m.reply('[DEBUG]\n' + require('util').format({
@@ -33,7 +32,7 @@ export async function before(m) {
                 '-1': 'Posisi Invalid',
                 0: 'Posisi Invalid',
             }[ok])
-            return !0
+            return false
         }
         if (m.sender === room.game.winner)
             isWin = true
@@ -74,12 +73,8 @@ Room ID: ${room.id}
             room[room.game._currentTurn ^ isSurrender ? 'x' : 'o'] = m.chat
         const btn = isTie ? ['TicTacToe', '/ttt'] : ['Nyerah', 'nyerah']
         if (room.x !== room.o)
-            await this.sendButton(room.x, str, author, btn, m, {
-                mentions: this.parseMention(str)
-            })
-        await this.sendButton(room.o, str, author, btn, m, {
-            mentions: this.parseMention(str)
-        })
+            await this.reply(room.x, str, m);
+        await this.reply(room.o, str, m);
         if (isTie || isWin) {
             users[room.game.playerX].exp += playScore
             users[room.game.playerO].exp += playScore
@@ -90,5 +85,5 @@ Room ID: ${room.id}
             delete this.game[room.id]
         }
     }
-    return !0
+    return true;
 }
