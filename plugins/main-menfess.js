@@ -12,8 +12,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     try {
     	let id = + new Date
         let tek = `Hai @${data.jid.split('@')[0]}, kamu menerima pesan Menfess nih.\n\nDari: *${name}*\nPesan: \n${pesan}\n\nMau balas pesan ini kak? bisa kok kak. tinggal ketik pesan kakak lalu kirim, nanti saya sampaikan ke *${name}*.`.trim();
-        let imgr = flaaa.getRandom()
-        await conn.sendButton(data.jid, bottime, tek, `${imgr + 'Menfess'}`, [['BALAS PESAN', '.balasmenfess']], fakes)
+        await conn.reply(data.jid, tek, fakes)
         .then(() => {
             m.reply('Berhasil mengirim pesan menfess.')
             conn.menfess[id] = {
