@@ -37,7 +37,7 @@ let handler = async (m, { conn, text, participants, usedPrefix, command }) => {
     const add = getBinaryNodeChild(response, 'add')
     const participant = getBinaryNodeChildren(response, 'add')
     let anu = participant[0].content.filter(v => v)
-    if (anu[0].attrs.error == 408) conn.sendButton(m.chat, `Tidak dapat menambahkan @${anu[0].attrs.jid.split('@')[0]}!\nKabarnya si @${anu[0].attrs.jid.split('@')[0]} baru keluar dari grup ini :'v`, wm, 'link', usedPrefix + `link`, m)
+    if (anu[0].attrs.error == 408) conn.reply(m.chat, `Tidak dapat menambahkan @${anu[0].attrs.jid.split('@')[0]}!\nMungkin @${anu[0].attrs.jid.split('@')[0]} baru keluar dari grup ini atau dikick`, m)
     for (const user of participant[0].content.filter(item => item.attrs.error == 403)) {
     	const jid = user.attrs.jid
     	const content = getBinaryNodeChild(user, 'add_request')
