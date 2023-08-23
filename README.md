@@ -57,6 +57,8 @@ Install this tool first before running the script
 curl -s https://deb.nodesource.com/setup_19.x | sudo bash
 * apt-get install -y nodejs
 
+----------
+
 ```bash
 git clone https://github.com/ImYanXiao/Elaina-MultiDevice
 cd Elaina-MultiDevice
