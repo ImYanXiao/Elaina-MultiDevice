@@ -1,9 +1,6 @@
 import { dare } from '@bochilteam/scraper'
 
-let handler = async (m, { conn, usedPrefix }) => conn.sendButton(m.chat, await dare(), author, [
-    ['Dare', `${usedPrefix}dare`], 
-    ['Truth', `${usedPrefix}truth`]
-], m)
+let handler = async (m, { conn }) => conn.reply(m.chat, await dare(), m)
 
 handler.help = ['dare']
 handler.tags = ['quotes', 'fun']
