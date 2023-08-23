@@ -51,11 +51,11 @@ Install this tool first before running the script
 
 ## FOR VPS USER
 
-apt update && apt upgrade -y
-apt install nodejs imagemagick ffmpeg -y
-node -v || if the version is still under 17, use this step
+* apt update && apt upgrade -y
+* apt install nodejs imagemagick ffmpeg -y
+* node -v || if the version is still under 17, use this step
 curl -s https://deb.nodesource.com/setup_19.x | sudo bash
-apt-get install -y nodejs
+* apt-get install -y nodejs
 
 ```bash
 git clone https://github.com/ImYanXiao/Elaina-MultiDevice
