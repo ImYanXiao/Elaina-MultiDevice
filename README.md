@@ -8,9 +8,6 @@
 > **Warning**: Jangan Memperjual Belikan Script Ini. 
 
 <h1 align="center">ElainaBOT - MD</h1>
-<p align="center">
-  <a href="https://github.com/ImYanXiao"><img src="http://readme-typing-svg.herokuapp.com?color=FFFFFF&center=true&vCenter=true&multiline=false&lines=Elaina+BOT+Multi+Device;Base+ori+by+BochilGaming;Recode+By+YanXiao;Give+star+and+forks+this+Repo+:D" alt="ʘᴗʘ">
-</p>
 
 <p align="center">
  <a href="#"><img title="ElainaBOT" src="https://img.shields.io/badge/Whatshapp BOT-green?colorA=%23ff0000&colorB=%23017e40&style=for-the-badge"></a>
@@ -21,15 +18,9 @@
 ---------
 
 ### a little about this bot
-- ✔️ | **Simple** 
-- ✔️ | **Button Template** 
-- ✔️ | **Multi Device** 
-- ✔️ | **Button Document(Experiment)** 
----------
-### Some of the features include
+- ✔️ | Simple
 - ✔️ | Menfess
 - ✔️ | AntiCall
-- ✔️ | Game & Rpg Game
 - ✔️ | Nsfw 
 - ✔️ | Sticker 
 - ✔️ | Kerang Ajaib 
@@ -47,48 +38,24 @@
 [![Run on Repl.it](https://repl.it/badge/github/ImYanXiao/Elaina-MultiDevice)](https://repl.it/github/ImYanXiao/Elaina-MultiDevice)
 
 ---------
+## FOR WINDOWS/RDP USER 💻
 
-## TERMUX WITH UBUNTU
-
-```bash
-apt update && apt full-upgrade
-apt install wget curl git proot-distro
-proot-distro install ubuntu
-echo "proot-distro login ubuntu" > $PREFIX/bin/ubuntu
-ubuntu
-```
----------
-
-[ INSTALLING REQUIRED PACKAGES ]
-
-```bash
-ubuntu
-apt update && apt full-upgrade
-apt install wget curl git ffmpeg imagemagick build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev dbus-x11 ffmpeg2theora ffmpegfs ffmpegthumbnailer ffmpegthumbnailer-dbg ffmpegthumbs libavcodec-dev libavcodec-extra libavcodec-extra58 libavdevice-dev libavdevice58 libavfilter-dev libavfilter-extra libavfilter-extra7 libavformat-dev libavformat58 libavifile-0.7-bin libavifile-0.7-common libavifile-0.7c2 libavresample-dev libavresample4 libavutil-dev libavutil56 libpostproc-dev libpostproc55 graphicsmagick graphicsmagick-dbg graphicsmagick-imagemagick-compat graphicsmagick-libmagick-dev-compat groff imagemagick-6.q16hdri imagemagick-common libchart-gnuplot-perl libgraphics-magick-perl libgraphicsmagick++-q16-12 libgraphicsmagick++1-dev
-```
-
----------
-
-[ INSTALLING NODEJS & ELAINABOT-MD]
-
-```bash
-ubuntu
-curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
-apt install -y nodejs gcc g++ make
-git clone https://github.com/ImYanXiao/Elaina-MultiDevice
-cd Elaina-MultiDevice
-npm install
-npm update
-```
-
----------
-
-## FOR WINDOWS/VPS/RDP USER 💻
+Install this tool first before running the script
 
 * Download And Install Git [`Click Here`](https://git-scm.com/downloads)
 * Download And Install NodeJS [`Click Here`](https://nodejs.org/en/download)
 * Download And Install FFmpeg [`Click Here`](https://ffmpeg.org/download.html) (**Don't Forget Add FFmpeg to PATH enviroment variables**)
 * Download And Install ImageMagick [`Click Here`](https://imagemagick.org/script/download.php)
+
+----------
+
+## FOR VPS USER
+
+apt update && apt upgrade -y
+apt install nodejs imagemagick ffmpeg -y
+node -v || if the version is still under 17, use this step
+curl -s https://deb.nodesource.com/setup_19.x | sudo bash
+apt-get install -y nodejs
 
 ```bash
 git clone https://github.com/ImYanXiao/Elaina-MultiDevice
