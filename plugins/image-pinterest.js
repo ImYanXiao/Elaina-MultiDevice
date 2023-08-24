@@ -1,36 +1,29 @@
-import { pinterest } from '@bochilteam/scraper';
-import sharp from 'sharp';
+import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) throw `Example use ${usedPrefix + command} minecraft`;
+  if (!text) throw `Example use ${usedPrefix + command} Kanao Tsuyuri`;
 
-  const maxImages = 10; // ubah mau kirim berapa foto (pake angka)
-  for (let i = 0; i < maxImages; i++) {
-    const json = await pinterest(text);
-    const imageUrl = json.getRandom().replace(/&amp;/g, '&');
+  const maxImages = 15; // Jumlah maksimum gambar yang dikirim
+  const apiUrl = `https://tr.deployers.repl.co/pinhd?q=${encodeURIComponent(text)}`;
 
-    const response = await fetch(imageUrl);
-    const imageBuffer = await response.buffer();
+  try {
+    const response = await axios.get(apiUrl);
+    const imgUrls = response.data.pins;
 
-    const maxWhatsAppWidth = 9999; // Lebar maksimum WhatsApp
-    const metadata = await sharp(imageBuffer).metadata();
-    const imageWidth = metadata.width;
+    for (let i = 0; i < Math.min(maxImages, imgUrls.length); i++) {
+      const imageUrl = imgUrls[i];
 
-    let resizedImage;
-    if (imageWidth > maxWhatsAppWidth) {
-      resizedImage = await sharp(imageBuffer)
-        .resize({ width: maxWhatsAppWidth, withoutEnlargement: true })
-        .toBuffer();
-    } else {
-      resizedImage = imageBuffer;
+      conn.sendFile(m.chat, imageUrl, 'pinterest.jpg', `
+      *Search result*
+->    ${text}
+      `.trim(), m);
     }
-
-    conn.sendFile(m.chat, resizedImage, 'pinterest.jpg', `
-*Hasil pencarian*
-${text}
-`.trim(), m);
+  } catch (error) {
+    console.error('Error fetching images:', error);
+    conn.reply(m.chat, 'Error fetching images', m);
   }
 };
+
 handler.help = ['pinterest <keyword>'];
 handler.tags = ['internet'];
 handler.command = /^(pinterest|pin)$/i;
