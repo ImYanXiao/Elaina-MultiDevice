@@ -5,7 +5,18 @@
 
 ## PENTING
 
-> **Warning**: Jangan Memperjual Belikan Script Ini. 
+> **Warning**: Jangan Memperjual Belikan Script Ini.
+>
+<br />
+
+Jika kalian tidak dapat me-Scan ubah ini "@adiwajshing/baileys": "github:WhiskeySockets/Baileys#master", pada bagian ini [klik disini](https://github.com/ImYanXiao/Elaina-MultiDevice/blob/master/package.json#L42)
+```
+"@adiwajshing/baileys": "github:WhiskeySockets/Baileys#master",
+```
+ubah ke
+```
+"@adiwajshing/baileys": "npm:baileys@^6.0.9",
+```
 
 <h1 align="center">ElainaBOT - MD</h1>
 
