@@ -62,7 +62,7 @@
         "got": "^13.0.0",
         "https": "^1.0.0",
         "human-readable": "^0.2.1",
-        "jimp": "^0.16.1",
+        "jimp": "^0.16.2",
         "jsbarcode": "^3.11.5",
         "jsdom": "^22.1.0",
         "knights-canvas": "^1.3.7-a",
