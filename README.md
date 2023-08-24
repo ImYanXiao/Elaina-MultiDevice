@@ -18,6 +18,16 @@ ubah ke
 "@adiwajshing/baileys": "npm:baileys@^6.0.9",
 ```
 
+kalo error, ketik aja ini (pas udah git clone dan cd)
+```
+rm -rf package-lock.json node_modules/; npm cache clean -f; npm install . -f
+```
+
+update juga NPM nya dengan ketik
+```
+npm install -g npm@latest
+```
+
 <h1 align="center">ElainaBOT - MD</h1>
 
 <p align="center">
