@@ -28,17 +28,24 @@ async function jarak(dari, ke) {
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
     let [dari, ke] = text.split('|');
-    if (!dari || !ke) throw `Ex: ${usedPrefix + command} pekalongan|sukabumi`;
+    if (!dari || !ke) throw `Ex: ${usedPrefix + command} pekalongan|sukabumi\nNote: Diluar pulau tidak bisa seperti ${usedPrefix + command} Jakarta|wajo -> *hanya bisa di dalam pulau*`;
     
+    if (dari.toLowerCase() === ke.toLowerCase()) {
+        conn.reply(m.chat, "hey bung, kau dari kota bodoh mana ?!\nAWOKAWOAKOAK", m);
+        return;
+    }
+
+    conn.reply(m.chat, "Tunggu sebentar yah, sedang diminta peta nya...", m);
+
     let result = await jarak(dari, ke);
 
     if (result.img) {
         let imgBuffer = Buffer.from(result.img, 'base64');
         let resizedImgBuffer = await sharp(imgBuffer).toBuffer();
 
-        conn.sendMessage(m.chat, { image: resizedImgBuffer, caption: result.captions.join('\n') }, { quoted: m });
+        conn.sendMessage(m.chat, { image: resizedImgBuffer, caption: result.captions.join('\n') + `\n\nhttps://www.google.com/maps/dir/${encodeURIComponent(dari)}/${encodeURIComponent(ke)}/` }, { quoted: m });
     } else {
-        m.reply(result.captions.join('\n'));
+        conn.reply(m.chat, result.captions.join('\n') + `\n\nhttps://www.google.com/maps/dir/${encodeURIComponent(dari)}/${encodeURIComponent(ke)}/`, m);
     }
 };
 
