@@ -1,7 +1,7 @@
 {
     "name": "Elaina-BOT",
-    "version": "5.0.0",
-    "description": "RPG BOT Whatsapp",
+    "version": "7.25.1",
+    "description": "BOT Whatsapp",
     "main": "index.js",
     "type": "module",
     "directories": {
