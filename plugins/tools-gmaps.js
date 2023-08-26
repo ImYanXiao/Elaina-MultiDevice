@@ -28,7 +28,7 @@ async function jarak(dari, ke) {
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
     let [dari, ke] = text.split('|');
-    if (!dari || !ke) throw `Ex: ${usedPrefix + command} pekalongan|sukabumi\nNote: Diluar pulau tidak bisa seperti ${usedPrefix + command} Jakarta|wajo -> *hanya bisa di dalam pulau*`;
+    if (!dari || !ke) throw `Ex: ${usedPrefix + command} pekalongan|sukabumi`;
     
     if (dari.toLowerCase() === ke.toLowerCase()) {
         conn.reply(m.chat, "hey bung, kau dari kota bodoh mana ?!\nAWOKAWOAKOAK", m);
