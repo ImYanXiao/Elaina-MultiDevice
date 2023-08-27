@@ -1,45 +1,6 @@
 var handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner }) => {
-	const sections = [
-   {
-	title: `${dmenub} List Options`,
-	rows: [
-	    {title: "✨ | Welcome", rowId: `${usedPrefix + command} welcome`},
-	    {title: "🚫 | Delete", rowId: `${usedPrefix + command} delete`},
-	    {title: "👁 | Antiviewonce", rowId: `${usedPrefix + command} antiviewonce`}, 
-	    {title: "🌎 | Public", rowId: `${usedPrefix + command} public`},
-	{title: "🗣️ | Simi", rowId: `${usedPrefix + command} simi`},
-	{title: "🔞 | Nsfw", rowId: `${usedPrefix + command} nsfw`},
-	{title: "🌟 | PremNsfwChat", rowId: `${usedPrefix + command} premnsfwchat`},
-	{title: "🔗 | Antilink", rowId: `${usedPrefix + command} antilink`},
-	{title: "☎ | AntiCall", rowId: `${usedPrefix + command} anticall`},
-	{title: "🚫 | Antidelete", rowId: `${usedPrefix + command} antidelete`},
-	{title: "📛 | Antitoxic", rowId: `${usedPrefix + command} antitoxic`}, 
-	{title: "📩 | Antispam", rowId: `${usedPrefix + command} antiSpam`}, 
-	{title: "🖼 | Autosticker", rowId: `${usedPrefix + command} autoSticker`}, 
-	{title: "⏏️ | Autolevelup", rowId: `${usedPrefix + command} autolevelup`},
-	{title: "🔎 | Detect", rowId: `${usedPrefix + command} detect`},
-	{title: "📑 | Document", rowId: `${usedPrefix + command} document`},
-	{title: "👤 | WhiteListMyContact", rowId: `${usedPrefix + command} whitelistmycontact`},
-	{title: "❗ | Restrict", rowId: `${usedPrefix + command} restrick`},
-	{title: "😐 | Nyimak", rowId: `${usedPrefix + command} nyimak`},
-	{title: "☑️ | Autoread", rowId: `${usedPrefix + command} autoread`},
-	{title: "💬 | PcOnly", rowId: `${usedPrefix + command} pconly`},
-	{title: "🏢 | GcOnly", rowId: `${usedPrefix + command} gconly`},
-	{title: "📷 | SwOnly", rowId: `${usedPrefix + command} swonly`},
-	{title: "📬 | Getmsg", rowId: `${usedPrefix + command} getmsg`}, 
-	{title: "🎌| AnimeUpdate", rowId: `${usedPrefix + command} autoupnime`}, 
-	]
-    },
-]
-
-// const listMessage = {
-//   text: ' ',
-//   footer: botdate,
-//   title: `*${htki} 𝙾𝙿𝚃𝙸𝙾𝙽𝚂 ${htka}*`,
-//   buttonText: "Click Here!",
-//   sections
-// }
-
+	const sections = "List Options : /n✨ | Welcome/n🚫 | Delete/n👁 | Antiviewonce/n🤖 | Self/n🌎 | Public/🗣️ | Simi/n🔞 | Nsfw/n🌟 | PremNsfwChat/n🔗 | Antilink/n☎ | AntiCall/n🚫 | Antidelete/n📩 | Antispam/n🖼 | Autosticker/n⏏️ | Autolevelup/n🔎 | Detect/n❗ | Restrict/n😐 | Nyimak/n☑️ | Autoread/n💬 | PcOnly/n🏢 | GcOnly/n📷 | SwOnly/n🎌| AnimeUpdate\n"
+     const contoh = sections + usedPrefix + "enable self"
   let isEnable = /true|enable|(turn)?on|1/i.test(command)
   let chat = global.db.data.chats[m.chat]
   let user = global.db.data.users[m.sender]
@@ -130,6 +91,14 @@ var handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
      case 'document':
        chat.useDocument = isEnable
       break;
+      case 'self':
+      isAll = true
+      if (!isROwner) {
+        global.dfail('rowner', m, conn)
+        throw false
+      }
+      global.opts['self'] = isEnable
+      break
     case 'public':
       isAll = true
       if (!isROwner) {
@@ -212,15 +181,6 @@ var handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     //   }
     //   chat.antiToxic = !isEnable
     //   break
-    case 'antitoxic':
-     if (m.isGroup) {
-      if (!(isAdmin || isOwner)) {
-      global.dfail('admin', m, conn)
-      throw false
-     }
-     }
-    chat.antiToxic = isEnable
-     break
     case 'autolevelup':
     isUser = true
     user.autolevelup = isEnable
@@ -288,18 +248,8 @@ var handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       global.opts['swonly'] = isEnable
       break
-      case 'getmsg':
-      if (m.isGroup) {
-        if (!(isAdmin || isOwner)) return global.dfail('admin', m, conn);
-      }
-      chat.getmsg = isEnable
-      break
         default:
-            if (!/[01]/.test(command)) {
-                conn.sendMessage(m.chat, `*${htki} OPTIONS ${htka}*\n🗂️ *Type:* ${type}\n📊 *Status:* Success ✅\n🎚️ *Options:* ${isEnable ? 'Enable' : 'Disable'}\n📣 *For:* ${isAll ? 'This Bot' : isUser ? '' : 'This Chats'}`, { quoted: m });
-                return;
-            }
-            throw false;
+            if (!/[01]/.test(command)) return conn.reply(m.chat, contoh, m) 
     }
     conn.sendMessage(m.chat, `*${htki} OPTIONS ${htka}*\n🗂️ *Type:* ${type}\n📊 *Status:* Success ✅\n🎚️ *Options:* ${isEnable ? 'Enable' : 'Disable'}\n📣 *For:* ${isAll ? 'This Bot' : isUser ? '' : 'This Chats'}`, { quoted: m });
 };
