@@ -20,7 +20,7 @@ ubah ke
 
 kalo error, ketik aja ini (pas udah git clone dan cd)
 ```
-rm -rf package-lock.json node_modules/; npm cache clean -f; npm install . -f
+rm -rf package-lock.json node_modules/; npm cache clean -f; npm install . -f; npm audit fix -f
 ```
 
 update juga NPM nya dengan ketik
