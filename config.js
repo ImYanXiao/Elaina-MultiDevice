@@ -1,6 +1,4 @@
 // S C R I P T  O R I  B Y  Bochilgaming 🔭
-// Ditulis Ulang Oleh ImYanXiao
-// Credits, jangan dihapus atau diubah!
 
 // - - THANKS TO - -
 // • Allah SWT
@@ -16,7 +14,7 @@
 // • Xtreshe (Beban)
 // • Dll
 
-//[!] Jangan Lupa Ganti Ownernya
+//[!] Jangan Lupa Ganti Bagian global.owner
 
 import { watchFile, unwatchFile } from 'fs'
 import chalk from 'chalk'
@@ -46,12 +44,12 @@ let wibh = moment.tz('Asia/Jakarta').format('HH')
     
 /*============== SOCIAL ==============*/
 
-// kalo ga punya ketik "-" atau biarin aja biar ada creditsnya :v
+// kalo ga punya biarin aja biar ada creditsnya :v
 global.sig = 'https://instagram.com/Xiao_yan_21' //Link Instagrammu
 global.sgh = 'https://github.com/ImYanXiao' //Link Githubmu
 global.sgc = 'https://chat.whatsapp.com/DyBMXDw1IshFM9z0ZHZNlR'
 global.sdc = '-' //Isi Pake Link Discordmu Kalo Gada Biarin aja
-global.snh = 'https://nhentai.net/g/HaramTod🗿' //Hmmm, Ini boleh kalian isi terserah :v
+global.snh = 'https://nhentai.net/' //Hmmm, Ini boleh kalian isi terserah :v
 
 /*============== PAYMENT ==============*/
 global.pdana = '085736178354' //Nomor Danamu
@@ -77,26 +75,17 @@ global.prems = [] // Premium user bukan disini nambahinnya, ketik .addprem @user
 global.lolkey = 'apikeymu'
 global.xkey = 'APIKEYMU'
 /*============== API ==============*/
+// Tambahin Rest Apinya Sendiri Krn yg saya hapus apinya sudah Mati
 global.APIs = { // API Prefix
   // name: 'https://website'
   nrtm: 'https://nurutomo.herokuapp.com',
-  xteam: 'https://api.xteam.xyz',
-  zahir: 'https://zahirr-web.herokuapp.com',
-  lol: 'https://api.lolhuman.xyz',
-  ana: 'https://anabotofc.herokuapp.com/',
-  adiisus: 'https://adiixyzapi.herokuapp.com',
-  violetics : 'https://violetics.pw', 
-  males : 'https://malesin.xyz'
+  lol: 'https://api.lolhuman.xyz'
 }
 global.APIKeys = { // APIKey Here
   // 'https://website': 'apikey'
-  'https://api.xteam.xyz': 'APIKEYMU',
-  'https://anabotofc.herokuapp.com/': 'AnaBot',
-  'https://api.lolhuman.xyz': 'Apikeymu',
-  'https://zahirr-web.herokuapp.com': 'zahirgans',
-  'https://violetics.pw': 'beta'
+  'https://api.lolhuman.xyz': 'Apikeymu'
 }
-// Kata APIKEY itu isi dengan apikey lu sendiri, dengan beli ke website itu
+// Kata APIKEY itu isi dengan apikeymu, dengan beli ke website itu
 
 /*============== WATERMARK ==============*/
 global.wm = '                「 ᴇʟᴀɪɴᴀ 𝙱𝙾𝚃 汉  」' //Main Watermark
@@ -105,7 +94,7 @@ global.wm3 = '⫹⫺ ᴇʟᴀɪɴᴀ 𝙱𝙾𝚃'
 global.namedoc = 'Elaina`s Bot' //Main Name Menu Document
 global.botdate = `⫹⫺ Day's: ${week} ${date}`
 global.bottime = `ᴛɪᴍᴇ: ${wktuwib}`
-global.titlebot = '🎋 ┊ 𝗥𝗣𝗚 ʙᴏᴛ ᴡʜᴀᴛsᴀᴘᴘ'
+global.titlebot = '🎋 ┊ sɪᴍᴘʟᴇ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ'
 global.author = global.wm
 
 
