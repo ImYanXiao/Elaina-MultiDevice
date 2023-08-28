@@ -1,12 +1,12 @@
-const { downloadContentFromMessage } = (await import('@adiwajshing/baileys')).default
-let handler = m => m
+let { downloadContentFromMessage } = (await import('@adiwajshing/baileys'));
 
-handler.before = async function (m) {
-    let chat = db.data.chats[m.chat]
+export async function before(m, { isAdmin, isBotAdmin }) {
+ 
+let chat = db.data.chats[m.chat]
     if (/^[.~#/\$,](read)?viewonce/.test(m.text)) return
     if (!chat.viewonce || chat.isBanned) return
-    if (m.mtype == 'viewOnceMessage') {
-        let msg = m.message.viewOnceMessage.message
+    if (m.mtype == 'viewOnceMessageV2') {
+        let msg = m.message.viewOnceMessageV2.message
         let type = Object.keys(msg)[0]
         let media = await downloadContentFromMessage(msg[type], type == 'imageMessage' ? 'image' : 'video')
         let buffer = Buffer.from([])
@@ -20,5 +20,3 @@ handler.before = async function (m) {
         }
     }
 }
-
-export default handler
