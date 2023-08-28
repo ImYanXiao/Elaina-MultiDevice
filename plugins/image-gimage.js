@@ -39,7 +39,7 @@ var handler = async (m, { conn, text, usedPrefix, command }) => {
 📏 *Resolusi HD:* ${resolution_HD}
 🌎 *Sumber:* Google`, m);
 
-            await new Promise(resolve => setTimeout(resolve, 2000)); // kasih jeda berapa detik 1000 -> 2 detik
+            await new Promise(resolve => setTimeout(resolve, 2000)); // kasih jeda berapa detik 1000 -> 1 detik
         } catch (error) {
             console.error('Error fetching image:', error);
             // Skip dan ngelanjutin ke gambar selanjutnya
