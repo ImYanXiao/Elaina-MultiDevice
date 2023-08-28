@@ -74,8 +74,9 @@ Install this tool first before running the script
 
 * apt update && apt upgrade -y
 * apt install nodejs imagemagick ffmpeg -y
-* node -v || if the version is still under 17, use this step
-curl -s https://deb.nodesource.com/setup_19.x | sudo bash
+* node -v 
+* if the version is still under 17, use this step
+* curl -s https://deb.nodesource.com/setup_19.x | sudo bash
 * apt-get install -y nodejs
 
 ----------
