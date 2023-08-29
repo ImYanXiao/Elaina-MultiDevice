@@ -92,14 +92,9 @@ global.loadDatabase = async function loadDatabase() {
 }
 loadDatabase()
 
-global.authFolder = storeSys.fixFileName(`${opts._[0] || ''}sessions`)
     let { state, saveCreds } = await useMultiFileAuthState(path.resolve('./sessions'))
     let { version, isLatest } = await fetchLatestBaileysVersion()
     console.log(`using WA v${version.join('.')}, isLatest: ${isLatest}`)
-/*const store = storeSys.makeInMemoryStore()
-const sess = `${opts._[0] || 'elaina'}.store.json`
-store.readFromFile(sess)
-global.store = store*/
 
 const connectionOptions = {
 	    version,
