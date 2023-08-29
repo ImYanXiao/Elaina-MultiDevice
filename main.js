@@ -107,8 +107,10 @@ const connectionOptions = {
         printQRInTerminal: true,
         auth: state,
         browser: ['Elaina(イレイナ)', 'Safari', '3.1.0'], 
-getMessage: async (key) => (store.loadMessage(key.remoteJid, key.id) || store.loadMessage(key.id) || {}).message,
-// get message diatas untuk mengatasi pesan gagal dikirim, "menunggu pesan", dapat dicoba lagi
+getMessage: async key => {
+			return (await store.loadMessage(key.remoteJid, key.id))?.message || undefined
+		},
+	// get message diatas untuk mengatasi pesan gagal dikirim, "menunggu pesan", dapat dicoba lagi
 	      patchMessageBeforeSending: (message) => {
                 const requiresPatch = !!(
                     message.buttonsMessage 
