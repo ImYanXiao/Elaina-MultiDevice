@@ -37,8 +37,7 @@ import {
 import { Low, JSONFile } from 'lowdb'
 
 import { makeWASocket, protoType, serialize } from './lib/simple.js'
-import storeSys from './lib/store2.js'
-const store = storeSys.makeInMemoryStore()
+
 import {
     mongoDB,
     mongoDBV2
