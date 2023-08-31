@@ -1,55 +1,43 @@
 import fetch from 'node-fetch';
 
-const handler = async (m, { conn, text, command, usedPrefix }) => {
-  if (!text) {
-    throw `_*Masukkan URL yang ingin Anda cek!*_\n_*perintah:*_ ${usedPrefix + command} https://tr.deployers.repl.co\n*_atau_*\n${usedPrefix + command} tr.deployers.repl.co`;
+const handler = async (m, { conn, args, command, usedPrefix }) => {
+  if (!args[0]) {
+    throw `_*Masukkan URL yang ingin Anda cek!*_\n_*Perintah:*_ ${usedPrefix + command} <URL>`;
   }
 
-  const url = `https://tr.deployers.repl.co/cj?u=${encodeURIComponent(text)}`;
+  const url = `https://tr.deployers.repl.co/cj?u=${encodeURIComponent(args[0])}`;
 
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw 'Failed to fetch data.';
+      throw 'Gagal mengambil data.';
     }
 
     const data = await response.json();
-    const mySecret = process.env['nomer']
+    const mySecret = process.env['nomer']; // ganti dengan nomor kalian
 
-    // Reply to the user with all the fetched data
+    // Construct the reply message with improved formatting
     const replyText = `
-Server Scanning at: ${data.current_time}
-URL: ${data.url}
-IP Address: ${data.ip_address}
-Real IP Address: ${data.real_ip_address}
-Result Message: *_${data.result_message}_*
-Donasi: https://tr.deployers.repl.co/images or Dana ${mySecret}
-\n
-===================
+*Hasil Pemindaian Server:*
+- Waktu Pemindaian: ${data.current_time}
+- URL: ${data.url}
+- Alamat IP: ${data.ip_address}
+- Alamat IP Asli: ${data.real_ip_address}
+- Pesan Hasil: _${data.result_message}_
+- Donasi: [Klik di sini](https://tr.deployers.repl.co/images) atau melalui Dana ke ${mySecret}
+
+*Langkah Perlindungan:*
 ${data.how_to_protect}
     `;
-//     const replyText = `
-// Server Scanning at: ${data.current_time}
-// URL: ${data.url}
-// IP Address: ${data.ip_address}
-// Is Vulnerable: *_${data.is_vulnerable}_*
-// Real IP Address: ${data.real_ip_address}
-// Result Message: ${data.result_message}
-// Donasi: https://tr.deployers.repl.co/images or Dana ${mySecret}
-// \n\n
-// ===========================================
-// ${data.how_to_protect}
-//     `;
 
     await conn.reply(m.chat, replyText, m);
   } catch (error) {
     console.error('Error:', error);
-    // Reply to the user with an error message (optional):
-    await conn.reply(m.chat, 'Failed to fetch data.', m);
+    await conn.reply(m.chat, 'Gagal mengambil data.', m);
   }
 };
 
-handler.command = /^(cj|clickjacking|clickjack|clickjacker)?$/i;
+handler.command = /^(cj|clickjacking|clickjack)$/i;
 handler.tags = ['internet'];
 handler.help = ['cj <URL>'];
 
