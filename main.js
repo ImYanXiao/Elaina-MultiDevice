@@ -101,9 +101,10 @@ const connectionOptions = {
         printQRInTerminal: true,
         auth: state,
         browser: ['Elaina(イレイナ)', 'Safari', '3.1.0'], 
-getMessage: async key => {
-			return (await store.loadMessage(key.remoteJid, key.id))?.message || undefined
-		},
+	getMessage: async key => {
+    		const messageData = await store.loadMessage(key.remoteJid, key.id);
+    		return messageData?.message || undefined;
+	},
 	// get message diatas untuk mengatasi pesan gagal dikirim, "menunggu pesan", dapat dicoba lagi
 	      patchMessageBeforeSending: (message) => {
                 const requiresPatch = !!(
