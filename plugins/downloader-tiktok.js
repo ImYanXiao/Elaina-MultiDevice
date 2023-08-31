@@ -9,15 +9,32 @@ var handler = async (m, { conn, args }) => {
   try {
     await conn.reply(m.chat, 'Tunggu sebentar kak, video sedang di download...', m);
 
-    const { thumbnail, video, audio } = await tiktokdl(args[0]);
-    const url = video;
+    const tiktokData = await downloadTikTok(args[0]);
 
-    if (!url) {
-      throw 'Can\'t download video!';
+    if (!tiktokData) {
+      throw 'Gagal mendownload video!';
     }
 
-    await conn.sendMessage(m.chat, { video: { url: url } }, m);
-    await conn.reply(m.chat, 'Ini kak videonya', m);
+    const videoURL = tiktokData.video.noWatermark;
+
+    const videoURLWatermark = tiktokData.video.watermark;
+
+    const ppTiktok = tiktokData.author.avatar;
+
+    const infonya_gan =`Judul: ${tiktokData.title}\nUpload: ${tiktokData.created_at}\n\nSTATUS:\n=====================\nLike = ${tiktokData.stats.likeCount}\nKomen = ${tiktokData.stats.commentCount}\nShare = ${tiktokData.stats.shareCount}\nViews = ${tiktokData.stats.playCount}\nSimpan = ${tiktokData.stats.saveCount}\n=====================\n\nUploader: ${tiktokData.author.name} (${tiktokData.author.unique_id} - https://www.tiktok.com/@${tiktokData.author.unique_id}) \nBio: ${tiktokData.author.signature}\nLagu: ${tiktokData.music.play_url}\nResolusi: ${tiktokData.video.ratio}\nFoto Profile: ${ppTiktok}`;
+
+    if (videoURL || videoURLWatermark) {
+      await conn.sendFile(m.chat, ppTiktok, 'profile.png', 'ini foto profilenya', m);
+      await conn.sendFile(m.chat, videoURL, 'tiktok.mp4', `Ini kak videonya\n\n${infonya_gan}`, m);
+      setTimeout(async () => {
+        await conn.sendFile(m.chat, videoURLWatermark, 'tiktokwm.mp4', `*Ini Versi Watermark*\n\n${infonya_gan}`, m);
+        conn.reply(m.chat, "•⩊• Ini kak Videonya ૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა\nDitonton yah ₍^ >ヮ<^₎", m); 
+      }, 5000);
+
+      // await conn.sendFile(m.chat, videoURLWatermark, 'tiktokwm.mp4', `*Ini Versi Watermark*\n\n${infonya_gan}`, m);
+    } else {
+      throw 'Tidak ada tautan video yang tersedia.';
+    }
   } catch (error) {
     conn.reply(m.chat, `Error: ${error}`, m);
   }
@@ -28,6 +45,18 @@ handler.tags = ['downloader'];
 handler.command = /^t(t|iktok(d(own(load(er)?)?|l))?|td(own(load(er)?)?|l))$/i;
 
 export default handler;
+
+async function downloadTikTok(url) {
+  // Try using tiklydown.eu.org API first
+  let tiklydownAPI = `https://api.tiklydown.eu.org/api/download?url=${url}`;
+  try {
+    let response = await axios.get(tiklydownAPI);
+    return response.data;
+  } catch (error) {
+    // If tiklydown.eu.org API fails, try using tikdown.org/id
+    return tiktokdl(url);
+  }
+}
 
 async function tiktokdl(url) {
   if (!/tiktok/.test(url)) {
