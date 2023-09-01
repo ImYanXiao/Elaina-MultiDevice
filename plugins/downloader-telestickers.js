@@ -1,4 +1,3 @@
-import { stickerTelegram } from '@bochilteam/scraper'
 import axios from 'axios'
 
 var handler = async (m, { conn, args }) => {
@@ -15,11 +14,6 @@ var handler = async (m, { conn, args }) => {
 				conn.sendMessage(m.chat, { sticker: { url: res[i].url }})
 			}
 		}
-	} else if (args && args.join(' ')) {
-		let [query, page] = args.join(' ').split('|')
-		let res = await stickerTelegram(query, page)
-		if (!res.length) throw `Query "${args.join(' ')}" not found`
-		m.reply(res.map(v => `*${v.title}*\n_${v.link}_`).join('\n\n'))
 	} else throw 'Input Query / Telesticker Url'
 }
 handler.help = ['telesticker']
