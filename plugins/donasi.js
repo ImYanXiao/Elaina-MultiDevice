@@ -1,5 +1,6 @@
 let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
     let teks = `
+︵‿︵‿︵‿︵ *DONASI BOT* ︵‿︵‿︵‿︵
 ┌─「 Donasi • Pulsa 」
 │ • *Indosat:* [${global.ppulsa}]
 ❏────
@@ -12,6 +13,8 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
 *ʙᴀᴄᴋ ᴛᴏ ᴀʟʟ ᴍᴇɴᴜ*: .?
 *ᴘɪɴɢ*: .ping
 *ᴄʀᴇᴀᴛᴏʀ*: .creator
+︵‿︵‿︵‿︵︵‿︵‿︵‿︵︵‿︵‿︵‿
+Created by ${global.namebot} 
 `
 
     let you = flaaa.getRandom()
@@ -19,11 +22,10 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
     const templateMessage = {
         image: { url: you + 'Donasi' },
         text: teks,
-        footer: wm,
         headerType: 4
     };
 
-    await conn.sendMessage(m.chat, templateMessage, 'buttonsMessage'); // Use 'buttonsMessage' as the message type
+    await conn.sendMessage(m.chat, templateMessage); 
 };
 
 handler.help = ['donasi'];
