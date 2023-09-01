@@ -10,6 +10,8 @@ TUTOR DAPETIN HOST, ACCESS_KEY, DAN ACCESS_SECRET
 8. pilih Recorded Audio (Audio captured via microphone or noisy audio files)
 9. pilih ini Audio Fingerprinting & Cover Song (Humming) Identification
 10. pilih buckets ACRCloud Music dan centang semua lalu confirm
+
+NOTE: ini berlaku 14 hari, lakukan hal yang berulang kali. disarankan jangan spam atau terlalu ngasal.
 */
 
 import acrcloud from 'acrcloud';
