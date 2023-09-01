@@ -8,8 +8,9 @@ let handler = async (m) => {
     let user = global.db.data.users[who];
     
     let anu = pickRandom(global.bacot);
+    const text = `───────〔 𝗕𝗔𝗖𝗢𝗧 〕───────\n${anu}`;
     const message = {
-        text: `───────〔 𝗕𝗔𝗖𝗢𝗧 〕───────\n${anu}`,
+        text,
         replyTo: m.quoted ? m.quoted : false,
         ephemeral: WA_DEFAULT_EPHEMERAL,
     };
