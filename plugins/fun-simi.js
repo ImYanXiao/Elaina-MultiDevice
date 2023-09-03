@@ -17,7 +17,6 @@ const handler = async (m, { text, args, usedPrefix, command }) => {
     m.reply(data.success);
   } catch (error) {
     console.error('Error:', error);
-    // Reply to the user with an error message or help message if text is empty:
     m.reply(text ? 'Gagal mengambil data.' : error);
   }
 };
