@@ -73,7 +73,7 @@ var handler = async (m, { conn, args }) => {
   }
 
   try {
-    await conn.reply(m.chat, 'Tunggu sebentar kak, video sedang di download...', m);
+    await conn.reply(m.chat, 'Tunggu sebentar kak, video sedang di download... server 1', m);
 
     const tiktokData = await tryServer1(args[0]);
 
@@ -90,7 +90,7 @@ var handler = async (m, { conn, args }) => {
       ppTiktok = tiktokData.author.avatar;
     }
 
-    const infonya_gan = `Judul: ${tiktokData.title}\nUpload: ${tiktokData.created_at}\n\nSTATUS:\n=====================\nLike = ${tiktokData.stats.likeCount}\nKomen = ${tiktokData.stats.commentCount}\nShare = ${tiktokData.stats.shareCount}\nViews = ${tiktokData.stats.playCount}\nSimpan = ${tiktokData.stats.saveCount}\n=====================\n\nUploader: ${tiktokData.author.name || 'Tidak ada informasi penulis'}\nLagu: ${tiktokData.music.play_url}\nResolusi: ${tiktokData.video.ratio}\nFoto Profile: ${ppTiktok}`;
+    const infonya_gan = `Judul: ${tiktokData.title}\nUpload: ${tiktokData.created_at}\n\nSTATUS:\n=====================\nLike = ${tiktokData.stats.likeCount}\nKomen = ${tiktokData.stats.commentCount}\nShare = ${tiktokData.stats.shareCount}\nViews = ${tiktokData.stats.playCount}\nSimpan = ${tiktokData.stats.saveCount}\n=====================\n\nUploader: ${tiktokData.author.name || 'Tidak ada informasi penulis'}\n(${tiktokData.author.unique_id} - https://www.tiktok.com/@${tiktokData.author.unique_id})\nBio: ${tiktokData.author.signature}\nLagu: ${tiktokData.music.play_url}\nResolusi: ${tiktokData.video.ratio}\nFoto Profile: ${ppTiktok}`;
 
     if (videoURL || videoURLWatermark) {
       if (ppTiktok) {
@@ -105,8 +105,9 @@ var handler = async (m, { conn, args }) => {
       throw 'Tidak ada tautan video yang tersedia.';
     }
   } catch (error1) {
-    // jika server 1 gagal, pake server 2
+    // jika server 1 gagal, gunakan server 2
     try {
+      await conn.reply(m.chat, 'Tunggu sebentar kak, video sedang di download... server 2', m);
       const tiktokData2 = await tryServer2(args[0]);
 
       if (!tiktokData2) {
@@ -117,10 +118,11 @@ var handler = async (m, { conn, args }) => {
       const audioURL2 = tiktokData2.audio;
       const thumbnailURL = tiktokData2.thumbnail;
 
-      // pengambilan data server 2
+      // Lakukan apa yang Anda perlukan dengan tiktokData2 dari Server 2 di sini
       await conn.sendFile(m.chat, thumbnailURL, 'thumbnail.jpg', 'Ini thumbnail videonya', m);
       await conn.sendFile(m.chat, videoURL2, 'tiktok2.mp4', 'Ini kak videonya dari Server 2', m);
       await conn.sendFile(m.chat, audioURL2, 'tiktok.mp3', 'Ini kak audionya', m);
+      conn.reply(m.chat, "•⩊• Ini kak Videonya ૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა\nDitonton yah ₍^ >ヮ<^₎", m);
 
     } catch (error2) {
       // Jika server kedua juga gagal, tangani error di sini
@@ -149,8 +151,9 @@ async function tryServer2(url) {
 
   if (response.status === 200) {
     const $ = cheerio.load(response.data);
-    const token = $('[name="_token"]').val();
-
+    // const token = $('[name="_token"]').val();
+    const token = $('#download-form > input[type=hidden]:nth-child(2)').attr('value');
+    
     const param = {
       url: url,
       _token: token,
@@ -183,4 +186,5 @@ async function tryServer2(url) {
 
   throw 'Server 2 failed as well.';
 }
+
 */
