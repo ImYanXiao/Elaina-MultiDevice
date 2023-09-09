@@ -1,27 +1,28 @@
-import cheerio from 'cheerio';
 import fetch from 'node-fetch';
-import { lookup } from 'mime-types';
-import { URL_REGEX } from '@adiwajshing/baileys';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     text = text.endsWith('SMH') ? text.replace('SMH', '') : text;
-    if (!text) throw `Ex: ${usedPrefix + command} https://id.pinterest.com/pin/29414203809412603/`;
-    const urls = text.match(URL_REGEX);
+    if (!text) throw `Ex:\n${usedPrefix + command} https://id.pinterest.com/pin/29414203809412603/`;
+    const urls = text.match(/https?:\/\/[^\s]+/g);
     
     if (urls) {
         for (const url of urls) {
             const res = await pinterest(url);
             
             if (Array.isArray(res)) {
+                // Handle multiple URLs in the response
                 for (const item of res) {
                     if (item.type === 'image' || item.type === 'gif' || item.type === 'video') {
-                        await conn.sendFile(m.chat, item.url, '', `Succes Download: ${await shortUrl(item.url)}`, m);
+                        // Send media with caption using conn.sendFile
+                        await conn.sendFile(m.chat, item.url, '', `Succes Download: ${item.url}`, m);
                     }
                 }
             } else if (res && (res.type === 'image' || res.type === 'gif' || res.type === 'video')) {
-                await conn.sendFile(m.chat, res.url, '', `Succes Download: ${await shortUrl(res.url)}`, m);
+                // Send media with caption using conn.sendFile
+                await conn.sendFile(m.chat, res.url, '', `Succes Download: ${res.url}`, m);
             } else {
-                throw 'huhft... :/';
+                // Handle other types or errors
+                throw 'huhft. :/';
             }
         }
     } else {
@@ -36,7 +37,7 @@ handler.command = /^(downloadpin|downloadpinterest)$/i;
 export default handler;
 
 async function pinterest(query) {
-    if (query.match(URL_REGEX)) {
+    if (query.match(/https?:\/\/[^\s]+/)) {
         let res = await fetch(`https://tr.deployers.repl.co/pindownload?url=${query}`);
         let text = await res.text();
         let urls = extractUrlsFromText(text);
@@ -50,16 +51,16 @@ function extractUrlsFromText(text) {
     if (matches) {
         for (const match of matches) {
             const url = match.match(/"url":"(https?:\/\/[^"]+)"/)[1];
-            const type = url.match(/\.(jpg|jpeg|png|gif|mp4)$/i) ? 'image' : 'video';
+            const type = url.match(/\.(jpg|jpeg|png|gif|mp4)$/i) ? 'image' : 'video'; // Adjust the file extensions as needed
             urls.push({ type, url });
         }
     }
     return urls;
 }
 
-async function shortUrl(url) {
-    return await (await fetch(`https://tinyurl.com/api-create.php?url=${url}`)).text();
-}
+
+
+
 
 
 
