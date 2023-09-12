@@ -6,27 +6,7 @@
 ## PENTING
 
 > **Warning**: Jangan Memperjual Belikan Script Ini.
->
-<br />
 
-Jika kalian tidak dapat me-Scan ubah ini "@adiwajshing/baileys": "github:WhiskeySockets/Baileys#master", pada bagian ini [klik disini](https://github.com/ImYanXiao/Elaina-MultiDevice/blob/master/package.json#L42)
-```
-"@adiwajshing/baileys": "github:WhiskeySockets/Baileys#master",
-```
-ubah ke
-```
-"@adiwajshing/baileys": "npm:baileys@^6.0.9",
-```
-
-kalo error, ketik aja ini (pas udah git clone dan cd)
-```
-rm -rf package-lock.json node_modules/; npm cache clean -f; npm install . -f; npm audit fix -f
-```
-
-update juga NPM nya dengan ketik
-```
-npm install -g npm@latest
-```
 
 <h1 align="center">ElainaBOT - MD</h1>
 
@@ -133,7 +113,10 @@ Set prefix
 * No bot, just print received messages and add users to database
 
 ## `--test`
-* **Development** Testing Mode
+* **Development** Testing Mode *
+
+## `--self`
+* **Only Owner & Bot** 
 
 ---------
 
