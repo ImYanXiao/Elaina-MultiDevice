@@ -133,7 +133,6 @@ const connectionOptions = {
     		return messageData?.message || undefined;
 	},
   generateHighQualityLinkPreview: true, 
-          browser: ['Chrome (Linux)', '', ''],
 	      patchMessageBeforeSending: (message) => {
                 const requiresPatch = !!(
                     message.buttonsMessage 
