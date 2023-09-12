@@ -95,7 +95,7 @@ global.loadDatabase = async function loadDatabase() {
     global.db.chain = chain(db.data)
 }
 loadDatabase()
-const useStore = !process.argv.includes('--no-store')
+const useStore = !process.argv.includes('--use-store')
 const usePairingCode = !process.argv.includes('--use-pairing-code')
 const useMobile = process.argv.includes('--mobile')
 
