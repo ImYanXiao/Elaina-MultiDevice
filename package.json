@@ -39,9 +39,8 @@
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
-        "@adiwajshing/baileys": "npm:baileys@^6.0.9",
-        "@bochilteam/scraper": "^4.2.4",
-        "@vitalets/google-translate-api": "^9.2.0",
+        "@adiwajshing/baileys": "github:Whiskeysockets/Baileys#master",
+        "@bochilteam/scraper": "^4.2.4", 
         "awesome-phonenumber": "^5.10.0",
         "axios": "^1.4.0",
         "brainly-scraper-v2": "^2.2.8",
