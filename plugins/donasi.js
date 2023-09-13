@@ -19,13 +19,7 @@ Created by ${global.namebot}
 
     let you = flaaa.getRandom()
 
-    const templateMessage = {
-        image: { url: you + 'Donasi' },
-        text: teks,
-        headerType: 4
-    };
-
-    await conn.sendMessage(m.chat, templateMessage); 
+    await conn.sendFile(m.chat, you + 'Donasi', 'donasi.jpg', m); 
 };
 
 handler.help = ['donasi'];
