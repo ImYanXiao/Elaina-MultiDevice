@@ -15,7 +15,8 @@ let handler = async (m) => {
         ephemeral: WA_DEFAULT_EPHEMERAL,
     };
       if (m.quoted) {
-        conn.reply(m.chat, message);
+        // conn.reply(m.chat, message);
+        conn.sendMessage(m.chat, message);
     } else {
         conn.sendMessage(m.chat, message);
     }
