@@ -45,35 +45,35 @@ let wibh = moment.tz('Asia/Jakarta').format('HH')
 /*============== SOCIAL ==============*/
 
 // kalo ga punya biarin aja biar ada creditsnya :v
-global.sig = 'https://instagram.com/Xiao_yan_21' //Link Instagrammu
-global.sgh = 'https://github.com/ImYanXiao' //Link Githubmu
-global.sgc = 'https://chat.whatsapp.com/DyBMXDw1IshFM9z0ZHZNlR'
+global.sig = 'https://instagram.com/paer_vaer' //Link Instagrammu
+global.sgh = 'https://github.com/Paeraja' //Link Githubmu
+global.sgc = '-'
 global.sdc = '-' //Isi Pake Link Discordmu Kalo Gada Biarin aja
-global.snh = 'https://nhentai.net/' //Hmmm, Ini boleh kalian isi terserah :v
+global.snh = 'https://nekopoi.net/' //Hmmm, Ini boleh kalian isi terserah :v
 
 /*============== PAYMENT ==============*/
-global.pdana = '085736178354' //Nomor Danamu
-global.ppulsa = '085736178354' //Nomor SimCard Yang Kamu Pake
-global.psaweria = 'https://saweria.com/XiaoYan021' //Link Saweriamu Kalo Nggada Ketik - aja
+global.pgopay = '085863889614' //Nomor Danamu
+global.ppulsa = '085520740137' //Nomor SimCard Yang Kamu Pake
+global.psaweria = '-' //Link Saweriamu Kalo Nggada Ketik - aja
 
 /*============== NOMOR ==============*/
-global.nomorbot = '6281231079387' //Nomor Bot
-global.nomorown = '6285736178354' //Nomor Owner
-global.namebot = 'Elaina BOT' //Nama Bot
-global.nameown = '𝓧𝓲𝓪𝓸 - 𝓨𝓪𝓷' // Nama Owner
+global.nomorbot = '62858469550966' //Nomor Bot
+global.nomorown = '6285520740137' //Nomor Owner
+global.namebot = 'VaerBot' //Nama Bot
+global.nameown = 'Vaer Valvian Cione' // Nama Owner
 
 
 /*============== STAFF ==============*/
 global.owner = [
-  ['6285736178354', '❦ 𝚇 𝚒 𝚊 𝚘 - 𝚈𝚊𝚗? 🎐', true] //Ganti jd nomormu sama Namamu
+  ['6285520740137', 'Vaer Valvian Cione', true] //Ganti jd nomormu sama Namamu
   // [number, dia creator/owner?, dia developer?]
 ] // Put your number here
 global.mods = [] // Want some help?
 global.prems = [] // Premium user bukan disini nambahinnya, ketik .addprem @user 10
 
 
-global.lolkey = 'apikeymu'
-global.xkey = 'APIKEYMU'
+global.Apikey = 'VaerPaer'
+global.xkey = 'VaerPaer'
 /*============== API ==============*/
 // Tambahin Rest Apinya Sendiri Krn yg saya hapus apinya sudah Mati
 global.APIs = { // API Prefix
@@ -83,18 +83,18 @@ global.APIs = { // API Prefix
 }
 global.APIKeys = { // APIKey Here
   // 'https://website': 'apikey'
-  'https://api.lolhuman.xyz': 'Apikeymu'
+  'https://api.openai.com': 'VaerPaer'
 }
 // Kata APIKEY itu isi dengan apikeymu, dengan beli ke website itu
 
 /*============== WATERMARK ==============*/
-global.wm = '                「 ᴇʟᴀɪɴᴀ 𝙱𝙾𝚃 汉  」' //Main Watermark
-global.wm2 = '꒷︶꒷꒥꒷ ‧₊˚ ꒰ฅ˘ᴇʟᴀɪɴᴀ - ᴄʜᴀɴ˘ฅ ꒱ ‧₊˚꒷︶꒷꒥꒷'
-global.wm3 = '⫹⫺ ᴇʟᴀɪɴᴀ 𝙱𝙾𝚃'
-global.namedoc = 'Elaina`s Bot' //Main Name Menu Document
+global.wm = '                VaerBot ' //Main Watermark
+global.wm2 = '︶︶ ꕀ （｡>‿‿<｡ ）𝐖ꫀᥣɕ𖦹ꬺꫀ  𓏳  𝐓ⱺⱺ ♡ ! ꕀ ︶︶'
+global.wm3 = '⫹⫺ VaerBot'
+global.namedoc = 'VaerBot' //Main Name Menu Document
 global.botdate = `⫹⫺ Day's: ${week} ${date}`
 global.bottime = `ᴛɪᴍᴇ: ${wktuwib}`
-global.titlebot = '🎋 ┊ sɪᴍᴘʟᴇ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ'
+global.titlebot = '⚡ ┊ sɪᴍᴘʟᴇ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ'
 global.author = global.wm
 
 
@@ -319,7 +319,7 @@ global.wait = '```「▰▰▰▱▱▱▱▱▱▱」Loading...```'
 global.eror = '```404 error```'
 global.dtu = 'ɪɴꜱᴛᴀɢʀᴀᴍ'
 global.dtc = 'ᴄᴀʟʟ ᴏᴡɴᴇʀ'
-global.phn = '+62 857-3617-8354'
+global.phn = '+62 855-2074-0137'
 
 /*=========== TYPE DOCUMENT ===========*/
 global.dpptx = 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
@@ -337,17 +337,17 @@ global.fpagedoc = '999'
 
 /*=========== HIASAN ===========*/
 // DEFAULT MENU
-global.dmenut = 'ଓ═┅═━–〈' //top
+global.dmenut = '⪨━╼╼═–〈' //top
 global.dmenub = '┊↬' //body
 global.dmenub2 = '┊' //body for info cmd on Default menu
-global.dmenuf = '┗––––––––––✦' //footer
+global.dmenuf = '┗––––––––––✿' //footer
 
 // COMMAND MENU
-global.dashmenu = '┅━━━═┅═❏ *ღ 𝘿𝘼𝙎𝙃𝘽𝙊𝘼𝙍𝘿 ღ* ❏═┅═━━━┅'
+global.dashmenu = '⪨━━━━╼╼═❏ *⛧𝐃𝐀𝐒𝐇𝐁𝐎𝐀𝐑𝐃⛧* ❏═╼╼━━━━⪩'
 global.cmenut = '❏––––––『'                       //top
 global.cmenuh = '』––––––'                        //header
-global.cmenub = '┊❀'                            //body
-global.cmenuf = '┗━═┅═━––––––๑\n'                //footer
+global.cmenub = '┊♬'                            //body
+global.cmenuf = '┗━╼╼═––––––๑\n'                //footer
 global.cmenua = '\n⌕ ❙❘❙❙❘❙❚❙❘❙❙❚❙❘❙❘❙❚❙❘❙❙❚❙❘❙❙❘❙❚❙❘ ⌕\n     ' //after
 global.pmenus = '┊'                              //pembatas menu selector
 
@@ -360,9 +360,9 @@ global.hsquere = ['⛶','❏','⫹⫺']
 
 /*============== STICKER WM ==============*/
 global.stickpack = '.'
-global.stickauth = `☂︎\n𝗘\nl\na\ni\nn\na\n-\n𝗕\n𝗢\n𝗧\n✦\n\n⫹⫺ Whatsapp BOT\nwa.me/${global.nomorbot}`
+global.stickauth = `☆\nV\na\ne\nr\nB\no\nt\n✦\n\n⫹⫺ Whatsapp BOT\nwa.me/${global. 62858469550966}`
 global.packname = 'Sticker Request By '
-global.packname2 = 'ᴄʀᴇᴀᴛᴇᴅ ʙʏ ᴇʟᴀɪɴᴀ ʙᴏᴛᴢ'
+global.packname2 = 'Sticker by VaerBot'
 
 global.multiplier = 38 // The higher, The harder levelup
 
