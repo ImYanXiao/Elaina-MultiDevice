@@ -3,7 +3,8 @@ import axios from 'axios';
 const handler = async (m, { conn, text, command, usedPrefix }) => {
     if (!text) return m.reply(`Gunakan format ${usedPrefix + command} <url>\n\n*Contoh :* ${usedPrefix + command} https://github.com/Xnuvers007\nList:\n${usedPrefix}ss <url> (screenshot via hp)\n${usedPrefix}ssweb <url> (screenshot via tablet)\n${usedPrefix}sstablet <url> (screenshot via tablet)\n${usedPrefix}sspc <url> (screenshot via pc)\n${usedPrefix}sslaptop <url> (screenshot via laptop)\n${usedPrefix}sshp <url> (screenshot via hp)`);
   
-    m.reply("_Loading. . ._");
+    //m.reply("_Loading. . ._");
+    m.reply(wait);
     
     const phone = await ssweb(text, 'phone');
     const desktop = await ssweb(text, 'desktop');
