@@ -27,10 +27,6 @@ ${usedPrefix + command} demote @user`.trim(), m, null, [['Welcome', '#simulate w
         case 'demote':
             act = 'demote'
             break
-/*        case 'delete':
-            deleted = m
-            break
-*/
         default:
             throw eror
     }
@@ -39,11 +35,10 @@ ${usedPrefix + command} demote @user`.trim(), m, null, [['Welcome', '#simulate w
         participants: part,
         action: act
     })
-//    return conn.onDelete(m)
 }
 handler.help = ['simulate <event> [@mention]']
 handler.tags = ['owner']
 handler.rowner = true
 
-handler.command = /^simulate$/i
+handler.command = /^(simulate|simulasi)$/i
 export default handler
