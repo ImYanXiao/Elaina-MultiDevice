@@ -1,6 +1,7 @@
+/*
 import uploadImage from '../lib/uploadImage.js'
 import ocrapi from 'ocr-space-api-wrapper'
-import { MessageType } from '@adiwajshing/baileys'
+
 let handler = async (m, { conn, text }) => {
       let q = m.quoted ? m.quoted : m
     let mime = (q.msg || q).mimetype || ''
@@ -18,3 +19,4 @@ handler.command = /^(ocr|totext)$/i
 handler.limit = true
 
 export default handler
+*/
