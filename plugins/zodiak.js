@@ -35,17 +35,46 @@ const handler = (m, { usedPrefix, command, text }) => {
     const birthday = [tahun + (+ new Date(1970, bulan - 1, tanggal) > + new Date(1970, birth[1] - 1, birth[2])), ...birth.slice(1)];
     const cekusia = bulan === birth[1] && tanggal === birth[2] ? `Selamat ulang tahun yang ke-${age} 🥳` : age;
 
+    const nextBirthday = new Date(tahun, birth[1] - 1, birth[2]);
+    nextBirthday.setFullYear(tahun + (nextBirthday < d));
+    // const timeUntilNextBirthday = nextBirthday - d;
+    const timeUntilNextBirthday = nextBirthday - d - 7 * 60 * 60 * 1000;
+  
+    const daysUntilNextBirthday = Math.floor(timeUntilNextBirthday / (1000 * 60 * 60 * 24));
+    const monthsUntilNextBirthday = Math.floor(daysUntilNextBirthday / 30);
+  
+    const hoursUntilNextBirthday = Math.floor(timeUntilNextBirthday / (1000 * 60 * 60));
+
+    const minutesUntilNextBirthday = Math.floor((timeUntilNextBirthday % (1000 * 60 * 60)) / (1000 * 60));
+
+    const secondsUntilNextBirthday = Math.floor((timeUntilNextBirthday % (1000 * 60)) / 1000);
+
+    const currentHours = d.getHours();
+    const currentMinutes = d.getMinutes();
+    const currentSeconds = d.getSeconds();
+
+    const newTime = new Date(d.getTime() + 7 * 60 * 60 * 1000);
+    const newHours = newTime.getHours();
+    const newMinutes = newTime.getMinutes();
+    const newSeconds = newTime.getSeconds();
+
+    const WaktuSekarangReplit = `${newHours}:${newMinutes}:${newSeconds}`
+    const WaktuSekarang = `${currentHours}:${currentMinutes}:${currentSeconds}`
+
     const teks = `
 Lahir : ${birth.join('-')}
 Ultah Mendatang : ${birthday.join('-')}
 Usia : ${cekusia}
 Zodiak : ${zodiac}
+Waktu Sekarang : ${WaktuSekarangReplit}
+${monthsUntilNextBirthday} bulan ${daysUntilNextBirthday % 30} hari lagi anda ulang tahun 🎂
+${hoursUntilNextBirthday} jam ${minutesUntilNextBirthday} menit ${secondsUntilNextBirthday} detik menuju ulang tahun 🎉
 `.trim();
     m.reply(teks);
 };
 
 handler.help = ['zodiac *2002 02 25*'];
 handler.tags = ['tools'];
-handler.command = /^zodia[kc]$/i;
+handler.command = /^(zodia[kc]|jodiak|rasi|rasibintang)$/i;
 
 export default handler;
