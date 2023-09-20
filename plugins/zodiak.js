@@ -37,6 +37,7 @@ const handler = (m, { usedPrefix, command, text }) => {
 
     const nextBirthday = new Date(tahun, birth[1] - 1, birth[2]);
     nextBirthday.setFullYear(tahun + (nextBirthday < d));
+    // pake kode dibawah jika pakai VPS lokal indonesia
     // const timeUntilNextBirthday = nextBirthday - d;
     const timeUntilNextBirthday = nextBirthday - d - 7 * 60 * 60 * 1000;
   
@@ -59,12 +60,14 @@ const handler = (m, { usedPrefix, command, text }) => {
     const newSeconds = newTime.getSeconds();
 
     const WaktuSekarangReplit = `${newHours}:${newMinutes}:${newSeconds}`
-    const WaktuSekarang = `${currentHours}:${currentMinutes}:${currentSeconds}`
+    // Pake kode dibawah kalo pake VPS
+    // const WaktuSekarang = `${currentHours}:${currentMinutes}:${currentSeconds}`
 
     const teks = `
 Lahir : ${birth.join('-')}
 Ultah Mendatang : ${birthday.join('-')}
-Usia : ${cekusia}
+Usia sekarang : ${cekusia}
+Usia Ultah nanti : ${cekusia + 1}
 Zodiak : ${zodiac}
 Waktu Sekarang : ${WaktuSekarangReplit}
 ${monthsUntilNextBirthday} bulan ${daysUntilNextBirthday % 30} hari lagi anda ulang tahun 🎂
