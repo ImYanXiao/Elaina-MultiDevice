@@ -80,9 +80,6 @@ node .
 
 ## ```Arguments node . [--options] [<session name>]```
 
-## `--self`
-* activate self mode (ignores other)
-
 ## `--pconly`
 * If that chat not from private bot, bot will ignore
 
