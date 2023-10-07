@@ -442,12 +442,12 @@ return conn.relayMessage(m.chat, pre.message, { messageId: pre.key.id })*/
     throw e
   }
 }
-handler.help = ['menu', 'help', '?']
+handler.help = ['menu','allmenu', 'help', '?']
 handler.tags = ['main']
-handler.command = /^(menu|help|\?)$/i
+handler.command = /^(menu|allmenu|help|\?)$/i
 
 handler.register = false
-handler.exp = 3
+handler.exp = 10
 
 export default handler
 
