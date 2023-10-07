@@ -4,7 +4,87 @@ let app = global.app = express()
 
 function connect(PORT) {
 	
-	app.get('/', (req, res) => res.send('Halo Lort'))
+	app.get('/', (req, res) => res.send(`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="10">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elaina-MultiDevice Bot</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #clock-container {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #clock {
+            color: #ff9900; /* Ubah warna jam menjadi oranye */
+            font-weight: bold;
+        }
+
+        #name {
+            font-size: 24px;
+            color: #ff9900;
+        }
+
+        .btn-custom {
+            background-color: green;
+            color: #fff;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock-container">
+        <div id="clock-wib"></div>
+        <div id="clock-wita"></div>
+        <div id="clock-wit"></div>
+        <br />
+        <div id="name">Elaina-MultiDevice</div>
+    </div>
+
+    <div class="container text-center">
+        <a href="https://mykingbee.blogspot.com/" class="btn btn-custom btn-primary" target="_blank">Visit My Website</a>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const options = { hour12: false };
+            const timeStringWIB = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Jakarta' });
+            const timeStringWITA = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Makassar' });
+            const timeStringWIT = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Jayapura' });
+
+            document.getElementById('clock-wib').textContent = timeStringWIB + " (WIB)";
+            document.getElementById('clock-wita').textContent = timeStringWITA + " (WITA)";
+            document.getElementById('clock-wit').textContent = timeStringWIT + " (WIT)";
+        }
+
+        setInterval(updateClock, 1000);
+
+        updateClock();
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+`))
 	
 	app.get('/nowa', async (req, res) => {
 		let q = req.query.number, regex = /x/g
