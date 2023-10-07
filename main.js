@@ -1,13 +1,9 @@
 /* If You Copy, Don`t Delete This Credit!!! 
   Don`t Sell This Script Or I Take Immediately 
   Yang Jual Script Ini Report/Hangusin Aja Akunnya Atau Pukulin ae orangnya
-  Move To Pairing Code
-  Buat Yg Nggk muncul Codenya Itu Disebabkan Oleh Banyaknya Plugins
-  Jika Ingin Mengambil Sesi, Backup Semua File Plugins & Hapus Semua File Plugins
-  Setelah Sudah Kalian Bisa Mengembalikan Semua File Pluginsnya Agar Bisa Dipakai
+  Fix Doesn't Show QrCode & Multi Auth State
   Regards from YanXiao ♡
 */
-
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 import './config.js'
 
@@ -16,6 +12,7 @@ import { platform } from 'process'
 import { fileURLToPath, pathToFileURL } from 'url'
 import { createRequire } from 'module' // Bring in the ability to create the 'require' method
 global.__filename = function filename(pathURL = import.meta.url, rmPrefix = platform !== 'win32') { return rmPrefix ? /file:\/\/\//.test(pathURL) ? fileURLToPath(pathURL) : pathURL : pathToFileURL(pathURL).toString() }; global.__dirname = function dirname(pathURL) { return path.dirname(global.__filename(pathURL, true)) }; global.__require = function require(dir = import.meta.url) { return createRequire(dir) }
+import * as ws from 'ws'
 import {
     readdirSync,
     statSync,
@@ -30,24 +27,23 @@ import lodash from 'lodash'
 import syntaxerror from 'syntax-error'
 import chalk from 'chalk'
 import { tmpdir } from 'os'
-import readline from 'readline'
 import { format } from 'util'
 import pino from 'pino'
 import {
     useMultiFileAuthState,
     DisconnectReason,
-    fetchLatestBaileysVersion, 
-    makeInMemoryStore, 
-    makeCacheableSignalKeyStore, 
-    PHONENUMBER_MCC
-    } from '@adiwajshing/baileys'
+    fetchLatestBaileysVersion 
+   } from '@adiwajshing/baileys'
 import { Low, JSONFile } from 'lowdb'
+
 import { makeWASocket, protoType, serialize } from './lib/simple.js'
+
 import {
     mongoDB,
     mongoDBV2
 } from './lib/mongoDB.js'
 
+const { CONNECTING } = ws
 const { chain } = lodash
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 
@@ -95,44 +91,21 @@ global.loadDatabase = async function loadDatabase() {
     global.db.chain = chain(db.data)
 }
 loadDatabase()
-const useStore = !process.argv.includes('--use-store')
-const usePairingCode = !process.argv.includes('--use-pairing-code')
-const useMobile = process.argv.includes('--mobile')
 
-var question = function(text) {
-            return new Promise(function(resolve) {
-                rl.question(text, resolve);
-            });
-        };
-const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
+    let { state, saveCreds } = await useMultiFileAuthState(path.resolve('./sessions'))
+    let { version, isLatest } = await fetchLatestBaileysVersion()
+    console.log(`using WA v${version.join('.')}, isLatest: ${isLatest}`)
 
-const store = useStore ? makeInMemoryStore({ level: 'silent' }) : undefined
-
-store?.readFromFile('./elaina_store.json')
-// save every 10s
-setInterval(() => {
-	store?.writeToFile('./elaina_store.json')
-}, 10_000)
-
-const { version, isLatest} = await fetchLatestBaileysVersion()
-const { state, saveCreds } = await useMultiFileAuthState('./sessions')
 const connectionOptions = {
-        version,
-        logger: pino({ level: 'silent' }), 
-        printQRInTerminal: !usePairingCode, 
-        browser: ['Chrome (Linux)', '', ''],
-        auth: { 
-         creds: state.creds, 
-         keys: makeCacheableSignalKeyStore(state.keys, pino().child({ 
-             level: 'silent', 
-             stream: 'store' 
-         })), 
-     },
-     getMessage: async key => {
+	    version,
+        printQRInTerminal: true,
+        auth: state,
+        browser: ['Elaina(イレイナ)', 'Safari', '3.1.0'], 
+	getMessage: async key => {
     		const messageData = await store.loadMessage(key.remoteJid, key.id);
     		return messageData?.message || undefined;
 	},
-  generateHighQualityLinkPreview: true, 
+	// get message diatas untuk mengatasi pesan gagal dikirim, "menunggu pesan", dapat dicoba lagi
 	      patchMessageBeforeSending: (message) => {
                 const requiresPatch = !!(
                     message.buttonsMessage 
@@ -154,28 +127,12 @@ const connectionOptions = {
                 }
 
                 return message;
-            }
+            }, 
+      // logger: pino({ level: 'silent' })
 }
 
 global.conn = makeWASocket(connectionOptions)
 conn.isInit = false
-
-if(usePairingCode && !conn.authState.creds.registered) {
-		if(useMobile) throw new Error('Cannot use pairing code with mobile api')
-		const { registration } = { registration: {} }
-		let phoneNumber = ''
-		do {
-			phoneNumber = await question(chalk.blueBright('Input a Valid number start with region code. Example : 62xxx:\n'))
-		} while (!Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v)))
-		rl.close()
-		phoneNumber = phoneNumber.replace(/\D/g,'')
-		console.log(chalk.bgWhite(chalk.blue('Generating code...')))
-		setTimeout(async () => {
-			let code = await conn.requestPairingCode(phoneNumber)
-			code = code?.match(/.{1,4}/g)?.join('-') || code
-			console.log(chalk.black(chalk.bgGreen(`Your Pairing Code : `)), chalk.black(chalk.white(code)))
-		}, 3000)
-	}
 
 if (!opts['test']) {
   (await import('./server.js')).default(PORT)
@@ -221,7 +178,7 @@ async function connectionUpdate(update) {
   if (receivedPendingNotifications) console.log(chalk.yellow('Menunggu Pesan Baru'))
   if (connection == 'close') console.log(chalk.red('⏱️ koneksi terputus & mencoba menyambung ulang...'))
   global.timestamp.connect = new Date
-  if (lastDisconnect && lastDisconnect.error && lastDisconnect.error.output && lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut) {
+  if (lastDisconnect && lastDisconnect.error && lastDisconnect.error.output && lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut && conn.ws.readyState !== CONNECTING) {
     console.log(global.reloadHandler(true))
   } 
   if (global.db.data == null) await global.loadDatabase()
@@ -234,7 +191,11 @@ let isInit = true
 let handler = await import('./handler.js')
 global.reloadHandler = async function (restatConn) {
     try {
+	// Jika anda menggunakan replit, gunakan yang sevenHoursLater dan tambahkan // pada const Handler
+	// Default: server/vps/panel, replit + 7 jam buat jam indonesia
+        // const sevenHoursLater = Date.now() + 7 * 60 * 60 * 1000;
         const Handler = await import(`./handler.js?update=${Date.now()}`).catch(console.error)
+      // const Handler = await import(`./handler.js?update=${sevenHoursLater}`).catch(console.error)
         if (Object.keys(Handler || {}).length) handler = Handler
     } catch (e) {
         console.error(e)
