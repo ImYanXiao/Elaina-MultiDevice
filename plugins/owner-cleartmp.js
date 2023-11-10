@@ -34,7 +34,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
   }
 
   if (deletedFiles.length == 0) {
-    conn.reply(m.chat, 'file tidak ada file yang tersisa di tmp', m);
+    conn.reply(m.chat, 'tidak ada file yang tersisa di tmp', m);
   }
 };
 
