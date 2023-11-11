@@ -1,37 +1,38 @@
 import fetch from 'node-fetch'
 
-let handler = async (m, { conn, usedPrefix, args }) => {
-	
-let caption = 'Silahkan Pilih Type Urlnya kak\nTinyUrl\nLinkPoi\nOuO\nExample : ${usedPrefix}tinyurl https://github.com'
+let handler = async (m, { args, usedPrefix, command }) => {
+    if (!args[0]) return m.reply(`${usedPrefix}${command} https://mykingbee.blogspot.com/`);
 
-if (!args[0]) return m.reply('Linknya mana?')
-if (!args[0].startsWith('https://')) throw 'Masukan Url Dengan Awalan *https://*'
-if (!args[1]) return conn.reply(m.chat, caption, { quoted: m })
+    try {
+        const response = await fetch(`https://tr.deployers.repl.co/short?url=${args[0]}`);
 
-let tesk = '🚀 *ʟɪɴᴋ:* '
-let pros = '_*ᴄ ᴏ ɴ ᴠ ᴇ ʀ ᴛ ɪ ɴ ɢ . . .*_'
-//TINY
-if (args[1] == "tinyurl") {
-	let tiny = await (await fetch(`https://api.lolhuman.xyz/api/shortlink?apikey=${global.lolkey}url=${args[0]}`)).json()
-m.reply(pros).then(_ => conn.reply(m.chat, `${tesk}${tiny.result}`,m))
+        if (response.ok) {
+            const data = await response.json();
+
+            // Extract relevant data from the response
+            const author = data.author;
+            const bitly = data.bitly;
+            const isgd = data.isgd;
+            const ouo = data.ouo;
+            const tinyurl = data.tinyurl;
+            const vgd = data.vgd;
+
+            // Format the data as a list of key-value pairs
+            const formattedData = `Author: ${author}\n\nLink Asli ${args[0]}\n=====SHORT LINK=====\nBitly: ${bitly}\nIsgd: ${isgd}\nOuo: ${ouo}\nTinyURL: ${tinyurl}\nVgd: ${vgd}`;
+
+            // Send the formatted data to m.reply
+            m.reply(formattedData);
+        } else {
+            m.reply('Failed to retrieve data. Please try again later.');
+        }
+    } catch (error) {
+        console.error(error);
+        m.reply('An error occurred. Please try again later.');
+    }
 }
-//--------------
 
-//LINKPOI
-if (args[1] == "linkpoi") {
-	let poi = await(await fetch(`https://linkpoi.ga/api.php?url=${args[0]}`)).json()
-	m.reply(pros).then(_=> conn.reply(m.chat, `${tesk}${poi.shorturl.replace('\/','/')}`,m))
-}
-//------------
+handler.help = ['short <url>'];
+handler.tags = ['internet'];
+handler.command = /^(short|singkatin|singkat|bitly|tinyurl|vgd|ouo|isgd|shortlink|linkshort)$/i;
 
-//OuO
-if (args[1] == "ouo") {
-	let ouo = await (await fetch(`https://api.lolhuman.xyz/api/ouoshortlink?apikey=${global.lolkey}&url=${args[0]}`)).json()
-	m.reply(pros).then(_=> conn.reply(m.chat, `${tesk}${ouo.result}`,m))
-	}
-}
-handler.help = ['short <url> <type>']
-handler.tags = ['internet']
-handler.command = /^(short(url)?)$/i
-
-export default handler
+export default handler;
