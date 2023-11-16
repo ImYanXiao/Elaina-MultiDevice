@@ -1,9 +1,10 @@
 import fetch from 'node-fetch';
 
-let handler = async (m, { args, usedPrefix, command }) => {
+const apiKeys = ['C9eLLoQZvX', 'euhsDaUPzl'];
+
+let handler = async (m, { args, usedPrefix, command, conn }) => {
   if (command === 'convertuang' || command === 'convertuang' ||command === 'kurs' ||command === 'kursuang' || command === 'matauang' || command === 'konversiuang') {
   // if (command.match(/^(convertuang|kurs|kursuang|matauang|konversiuang$/i)) {
-      // Check if there are enough arguments
       if (args.length < 1) {
           throw `Usage: ${usedPrefix}${command} <amount>|<fromCurrency>|<toCurrency>\n\nEx: *${usedPrefix}${command} 13|USD|IDR*\n\nList Currency for example =\n
 USD: Dolar Amerika Serikat (Amerika Serikat)
@@ -72,13 +73,44 @@ dan lain lain (etc.), for more ? check google or https://www.bola.com/ragam/read
             throw 'An error occurred. Please try again later.';
         }
     }
-}
+  else if (command === "text2img" || command === "txt2img" || command === "t2i" || command === "tekskegambar"){
+    if (args.length < 1) {
+      throw 'Masukkan teks yang ingin Anda ubah menjadi gambar.';
+    }
+
+    const apiKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
+    const text = args.join(' ');
+    const apiUrl = `https://api.ibeng.tech/api/ai/text2img?text=${encodeURIComponent(text)}&apikey=${encodeURIComponent(apiKey)}`;
+
+    let imageBuffer;
+
+    do {
+      try {
+        conn.reply(m.chat, 'Sedang membuat gambar...', m);
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+          throw 'Gagal mengambil gambar dari server.';
+        }
+
+        imageBuffer = await response.buffer();
+
+      } catch (error) {
+        console.error(error);
+        // conn.reply(m.chat, 'Gagal membuat gambar. Mencoba lagi...', m);
+      }
+    } while (!imageBuffer);
+
+    conn.sendFile(m.chat, imageBuffer, 'image.png', 'Berikut adalah gambar yang sesuai dengan teks yang Anda masukkan.');
+    };
+  }
 
 handler.help = [
-    'convertuang <amount>|<fromCurrency>|<toCurrency>',
-    'short <url>'
+  '.text2img <teks>',
+  'convertuang <amount>|<fromCurrency>|<toCurrency>',
+  'short <url>'
 ];
-handler.tags = ['currency', 'internet'];
-handler.command = /^(convertuang|kurs|kursuang|matauang|konversiuang|short|singkatin|singkat|bitly|tinyurl|vgd|ouo|isgd|shortlink|linkshort)$/i;
+handler.tags = ['tools', 'currency', 'internet'];
+handler.command = /^(convertuang|kurs|kursuang|matauang|konversiuang|short|singkatin|singkat|bitly|tinyurl|vgd|ouo|isgd|shortlink|linkshort|text2img|txt2img|t2i|tekskegambar)$/i;
 
 export default handler;
