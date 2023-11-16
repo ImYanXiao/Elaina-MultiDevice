@@ -75,7 +75,7 @@ dan lain lain (etc.), for more ? check google or https://www.bola.com/ragam/read
     }
   else if (command === "text2img" || command === "txt2img" || command === "t2i" || command === "tekskegambar"){
     if (args.length < 1) {
-      throw 'Masukkan teks yang ingin Anda ubah menjadi gambar.';
+      throw  `Masukkan teks yang ingin Anda ubah menjadi gambar.\nEx: ${usedPrefix}${command} police girl`;
     }
 
     const apiKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
