@@ -149,14 +149,13 @@ if (command == 'yta', 'ytmp3', 'getaud', 'youtubemp3') {
 }
 
 
-if (command == 'yts', 'ytsearch') {
+if (command == 'yts', 'ytsearch', 'youtubesearch') {
   if (!text) throw `*_Masukkan Judul Video Yang Ingin Kamu Cari!_*\nperintah:\n${usedPrefix + command} Naruto Squad Reaction\n`;
 
   const videoUrl = `https://tr.deployers.repl.co/vid?name=${encodeURIComponent(text)}`;
 
-  // User input for start and end indices
-  const user_input_start = 0; // ini jangan diubah, boleh diubah kalo search nya dimulai dari yang kamu mau
-  const user_input_end = 51; // biar Brutal search nya (max 51)
+  const user_input_start = 0;
+  const user_input_end = 51;
 
   try {
     const response = await fetch(videoUrl);
@@ -169,30 +168,41 @@ if (command == 'yts', 'ytsearch') {
       return;
     }
 
-    // Adjusting the start and end indices based on user input
-    const start = Math.max(0, user_input_start); // Ensuring start is not negative
-    const end = Math.min(videoData.length - 1, user_input_end); // Ensuring end is within the data length
+    const start = Math.max(0, user_input_start);
+    const end = Math.min(videoData.length - 1, user_input_end);
 
     let replyText = '';
     for (let i = start; i <= end; i++) {
       const videoInfo = videoData[i];
-      const name = videoInfo.channel.name;
-      const link = videoInfo.channel.link;
-      const title = videoInfo.title;
-      const type = videoInfo.type;
-      const link_Video = videoInfo.link;
-      const duration = videoInfo.accessibility.duration;
-      const views = videoInfo.viewCount.text;
 
-      replyText += `Video ${i + 1}:\n`;
-      replyText += `duration: ${duration}\n` +
-        `title: ${title}\n` +
-        `link: ${link}\n` +
-        `name: ${name}\n` +
-        `type: ${type}\n` +
-        `link_Video: ${link_Video}\n` +
-        `views: ${views}\n`;
-      replyText += '-'.repeat(30) + '\n';
+      try {
+        if (videoInfo && videoInfo.channel) {
+          const name = videoInfo.channel.name;
+          const link = videoInfo.channel.link;
+
+          replyText += `Video ${i + 1}:\n`;
+          replyText += `name: ${name}\n` +
+            `link: ${link}\n`;
+        } else {
+          replyText += `Video ${i + 1}: Channel information not available\n`;
+        }
+
+        const title = videoInfo.title;
+        const type = videoInfo.type;
+        const link_Video = videoInfo.link;
+        const duration = videoInfo.accessibility.duration;
+        const views = videoInfo.viewCount.text;
+
+        replyText += `duration: ${duration}\n` +
+          `title: ${title}\n` +
+          `type: ${type}\n` +
+          `link_Video: ${link_Video}\n` +
+          `views: ${views}\n`;
+        replyText += '-'.repeat(30) + '\n';
+      } catch (error) {
+        console.error(`Error processing Video ${i + 1}: ${error}`);
+        replyText += `Error processing Video ${i + 1}\n`;
+      }
     }
 
     await m.reply(replyText);
