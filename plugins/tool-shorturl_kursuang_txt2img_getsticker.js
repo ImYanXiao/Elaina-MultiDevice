@@ -1,6 +1,8 @@
 import fetch from 'node-fetch';
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { addExif } from '../lib/sticker.js'
+import { Sticker } from 'wa-sticker-formatter'
 
 const apiKeys = ['C9eLLoQZvX', 'euhsDaUPzl'];
 
@@ -40,7 +42,7 @@ const stickersearch = (text) => {
 };
 
 let handler = async (m, { args, usedPrefix, text, command, conn }) => {
-  const filteredWords = ['seksi', 's3x', 'konten dewasa', 'hentai', 'mesum', 'ahegao', 'fuck', 'sex', 'porn', 'porno', 'ngewe', 'pussy', 'memek', 'meki', 'mmk', 'kontol', 'butt', 'buttocks', 'bra', 'stepmom', 'stepfather', 'BAB1', 'PEL1', 'AASU', 'PEJU', 'P3JU', 'A5UU', 'AA5U', 'MBUT', 'AWUK', 'FUCK', 'JEMB', 'KNTL', 'CRUT', 'NTUT', 'MAT1', 'PCUN', 'G1LA', 'BUTA', 'JLEK', 'CEWE', 'EEWE', 'ANUS', 'SH1T', 'B1CH', 'KL1T', 'CL1T', 'CNTZ', 'CUMS', 'CUNT', 'D1CK', 'DYKE', 'FAGS', 'FAGZ', 'FART', 'F4RT', 'FUKR', 'FUKK', 'GAYS', 'GAYZ', 'HELL', 'JIZZ', 'JISS', 'KNOB', 'KUNT', 'N1GR', 'PUS1', 'SHYT', 'SLUT', 'T1TS', 'VAGS', 'CAWK', 'FCUK', 'LEEC', 'PUSS', 'BUBS', 'TITT', 'WANK', 'DAMN', 'D4MN', 'BUTT', 'NAZ1', 'P1SS', 'PUPS', 'TWAT', 'KENT', 'NTHU', 'NT1L', 'GAWK', 'GAUK', 'GAWU', 'NCUK', 'WDUS', 'TAEK', 'MEK1', 'KERE', 'UP1L', 'ELEK', 'UTEK', 'BJAT', 'ALAY', 'NDAS', 'STFU', 'TEMP', 'KETE', 'ASEM', 'kontl', 'ppk', 'pepek', 'tai', 'ngentod', 'ngentot', 'fucker', 'ngntd', 'ngntot', 'kntol', 'goblok', 'gblk', 'goblog', 'stupid', 'kenthu', 'kentu', 'tits', 'boobs', 'blowjob', 'naked', 'naughty', 'kampret', 'bangsat', 'bangsad', 'bngst', 'asu', 'bujang', 'kimak', 'kimbek', 'lacur', 'pelacur', 'lonte', 'lont', 'bitch', 'fuckyou', 'fucked', 'bokep', 'penis', 'vagina', 'undress', 'undressed', 'pantat', 'pantad'];
+  const filteredWords = ['seksi', 's3x', 'konten dewasa', 'hentai', 'mesum', 'ahegao', 'fuck', 'sex', 'porn', 'porno', 'ngewe', 'pussy', 'memek', 'meki', 'mmk', 'kontol', 'butt', 'buttocks', 'bra', 'stepmom', 'stepfather', 'BAB1', 'PEL1', 'AASU', 'PEJU', 'P3JU', 'A5UU', 'AA5U', 'MBUT', 'AWUK', 'FUCK', 'JEMB', 'KNTL', 'CRUT', 'NTUT', 'MAT1', 'PCUN', 'G1LA', 'BUTA', 'JLEK', 'CEWE', 'EEWE', 'ANUS', 'SH1T', 'B1CH', 'KL1T', 'CL1T', 'CNTZ', 'CUMS', 'CUNT', 'D1CK', 'DYKE', 'FAGS', 'FAGZ', 'FART', 'F4RT', 'FUKR', 'FUKK', 'GAYS', 'GAYZ', 'HELL', 'JIZZ', 'JISS', 'KNOB', 'KUNT', 'N1GR', 'PUS1', 'SHYT', 'SLUT', 'T1TS', 'VAGS', 'CAWK', 'FCUK', 'LEEC', 'PUSS', 'BUBS', 'TITT', 'WANK', 'DAMN', 'D4MN', 'BUTT', 'NAZ1', 'P1SS', 'PUPS', 'TWAT', 'KENT', 'NTHU', 'NT1L', 'GAWK', 'GAUK', 'GAWU', 'NCUK', 'WDUS', 'TAEK', 'MEK1', 'KERE', 'UP1L', 'ELEK', 'UTEK', 'BJAT', 'ALAY', 'NDAS', 'STFU', 'TEMP', 'KETE', 'ASEM', 'kontl', 'ppk', 'pepek', 'tai', 'ngentod', 'ngentot', 'fucker', 'ngntd', 'ngntot', 'kntol', 'goblok', 'gblk', 'goblog', 'stupid', 'kenthu', 'kentu', 'tits', 'boobs', 'blowjob', 'naked', 'naughty', 'kampret', 'bangsat', 'bangsad', 'bngst', 'asu', 'bujang', 'kimak', 'kimbek', 'lacur', 'pelacur', 'lonte', 'lont', 'bitch', 'fuckyou', 'fucked', 'bokep', 'penis', 'vagina', 'undress', 'undressed', 'pantat', 'pantad','breasts','breast'];
 
   if (command === 'convertuang' || command === 'kurs' || command === 'kursuang' || command === 'matauang' || command === 'konversiuang') {
     if (args.length < 1) {
@@ -128,9 +130,11 @@ dan lain lain (etc.), for more ? check google or https://www.bola.com/ragam/read
 
     let imageBuffer;
 
+conn.reply(m.chat, 'Sedang membuat gambar...', m);
+    
     do {
       try {
-        conn.reply(m.chat, 'Sedang membuat gambar...', m);
+        //conn.reply(m.chat, 'Sedang membuat gambar...', m);
         const response = await fetch(apiUrl);
 
         if (!response.ok) {
@@ -158,8 +162,17 @@ dan lain lain (etc.), for more ? check google or https://www.bola.com/ragam/read
 
       m.reply(`*Title:* ${result.title}`);
       for (let stickerUrl of result.sticker_url) {
-        conn.sendFile(m.chat, stickerUrl, 'sticker.jpg', '');
-      }
+      //   conn.sendFile(m.chat, stickerUrl, 'sticker.jpg', '');
+      // }
+            try {
+              let img = await fetch(stickerUrl).then(response => response.buffer());
+              let stiker = await addExif(img, '', '');
+
+              conn.sendFile(m.chat, stiker, 'stickerMessage', { quoted: m });
+            } catch (e) {
+                console.error(e);
+            }
+        }
     } catch (error) {
       console.error(error);
       m.reply('Terjadi kesalahan dalam pencarian sticker.');
