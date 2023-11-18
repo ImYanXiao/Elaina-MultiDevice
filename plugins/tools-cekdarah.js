@@ -62,7 +62,7 @@ Donate: https://tr.deployers.repl.co/images\nDana: ${mySecret}
     }
 };
 
-handler.help = ['.cekdarah tensi|hb'];
+handler.help = ['cekdarah tensi|hb'];
 handler.tags = ['tools'];
 handler.command = /^cekdarah$/i;
 
