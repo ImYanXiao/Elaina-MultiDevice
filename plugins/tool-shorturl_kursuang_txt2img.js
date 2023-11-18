@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 const apiKeys = ['C9eLLoQZvX', 'euhsDaUPzl'];
 
 let handler = async (m, { args, usedPrefix, command, conn }) => {
-  const filteredWords = ['seksi', 'konten dewasa','fuck','sex','porn','porno','ngewe','pussy','memek','meki','mmk','kontol','butt','buttocks','bra','stepmom','stepfather','BAB1', 'PEL1', 'AASU', 'PEJU', 'P3JU', 'A5UU', 'AA5U', 'MBUT','AWUK', 'FUCK', 'JEMB', 'KNTL', 'CRUT', 'NTUT', 'MAT1', 'PCUN','G1LA', 'BUTA', 'JLEK', 'CEWE', 'EEWE', 'ANUS', 'SH1T', 'B1CH','KL1T', 'CL1T', 'CNTZ', 'CUMS', 'CUNT', 'D1CK', 'DYKE', 'FAGS','FAGZ', 'FART', 'F4RT', 'FUKR', 'FUKK', 'GAYS', 'GAYZ', 'HELL','JIZZ', 'JISS', 'KNOB', 'KUNT', 'N1GR', 'PUS1', 'SHYT', 'SLUT','T1TS', 'VAGS', 'CAWK', 'FCUK', 'LEEC', 'PUSS', 'BUBS', 'TITT','WANK', 'DAMN', 'D4MN', 'BUTT', 'NAZ1', 'P1SS', 'PUPS', 'TWAT','KENT', 'NTHU', 'NT1L', 'GAWK', 'GAUK', 'GAWU', 'NCUK', 'WDUS','TAEK', 'MEK1', 'KERE', 'UP1L', 'ELEK', 'UTEK', 'BJAT', 'ALAY','NDAS', 'STFU', 'TEMP', 'KETE', 'ASEM','kontl','ppk','pepek','tai','ngentod','ngentot','fucker','ngntd','ngntot','kntol','goblok','gblk','goblog','stupid','kenthu','kentu','tits','boobs','blowjob','naked','naughty','kampret','bangsat','bangsad','bngst','asu','bujang','kimak','kimbek','lacur','pelacur','lonte','lont','bitch','fuckyou','fucked'];
+  const filteredWords = ['seksi', 'konten dewasa','hentai','mesum','ahegao','fuck','sex','porn','porno','ngewe','pussy','memek','meki','mmk','kontol','butt','buttocks','bra','stepmom','stepfather','BAB1', 'PEL1', 'AASU', 'PEJU', 'P3JU', 'A5UU', 'AA5U', 'MBUT','AWUK', 'FUCK', 'JEMB', 'KNTL', 'CRUT', 'NTUT', 'MAT1', 'PCUN','G1LA', 'BUTA', 'JLEK', 'CEWE', 'EEWE', 'ANUS', 'SH1T', 'B1CH','KL1T', 'CL1T', 'CNTZ', 'CUMS', 'CUNT', 'D1CK', 'DYKE', 'FAGS','FAGZ', 'FART', 'F4RT', 'FUKR', 'FUKK', 'GAYS', 'GAYZ', 'HELL','JIZZ', 'JISS', 'KNOB', 'KUNT', 'N1GR', 'PUS1', 'SHYT', 'SLUT','T1TS', 'VAGS', 'CAWK', 'FCUK', 'LEEC', 'PUSS', 'BUBS', 'TITT','WANK', 'DAMN', 'D4MN', 'BUTT', 'NAZ1', 'P1SS', 'PUPS', 'TWAT','KENT', 'NTHU', 'NT1L', 'GAWK', 'GAUK', 'GAWU', 'NCUK', 'WDUS','TAEK', 'MEK1', 'KERE', 'UP1L', 'ELEK', 'UTEK', 'BJAT', 'ALAY','NDAS', 'STFU', 'TEMP', 'KETE', 'ASEM','kontl','ppk','pepek','tai','ngentod','ngentot','fucker','ngntd','ngntot','kntol','goblok','gblk','goblog','stupid','kenthu','kentu','tits','boobs','blowjob','naked','naughty','kampret','bangsat','bangsad','bngst','asu','bujang','kimak','kimbek','lacur','pelacur','lonte','lont','bitch','fuckyou','fucked','bokep','penis','vagina','undress','undressed','pantat','pantad'];
   
   if (command === 'convertuang' || command === 'convertuang' ||command === 'kurs' ||command === 'kursuang' || command === 'matauang' || command === 'konversiuang') {
   // if (command.match(/^(convertuang|kurs|kursuang|matauang|konversiuang$/i)) {
@@ -104,7 +104,7 @@ dan lain lain (etc.), for more ? check google or https://www.bola.com/ragam/read
     //   conn.reply(m.chat, 'mampos dibanned awowkwkowkw', m);
     //   return; // Keluar dari fungsi jika ditemukan kata-kata yang difilter
     // }
-    const apiUrl = `https://api.ibeng.tech/api/ai/text2img?text=${encodeURIComponent(text)}&apikey=${encodeURIComponent(apiKey)}`;
+    const apiUrl = `https://api.ibeng.tech/api/ai/text2img?text=${encodeURIComponent(lowercaseText)}&apikey=${encodeURIComponent(apiKey)}`;
 
     let imageBuffer;
 
