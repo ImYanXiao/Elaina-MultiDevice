@@ -178,15 +178,68 @@ conn.reply(m.chat, 'Sedang membuat gambar...', m);
       m.reply('Terjadi kesalahan dalam pencarian sticker.');
     }
   }
+  else if(command == "instagramstory","igstory","igstorydl","igs","igh","ighighlight","ighighlights"){
+    try {
+      if (!text) {
+        throw `_Masukkan Link Video IG (BISA HIGHLIGHT DAN CERITA, tapi publik account) Yang Ingin Kamu Cari!_\nperintah:\n${usedPrefix + command} https://www.instagram.com/stories/highlights/17860230305961018/\n`;
+      }
+
+      const baseUrl = `https://tr.deployers.repl.co/igstory?url=${encodeURIComponent(text)}`;
+
+      const response = await fetch(baseUrl);
+
+      if (!response.ok) {
+        throw new Error(`Request failed with status: ${response.status}`);
+      } else {
+        conn.reply(m.chat, "sedang di download...", m);
+      }
+
+      const data = await response.json();
+
+      if (!data || !Array.isArray(data) || data.length === 0) {
+        throw new Error('No video URLs found in the provided Instagram story.');
+      }
+
+      if (data.length === 1) {
+        const videoURL = data[0].url;
+        const caption = `Video URL: ${videoURL}`;
+        await conn.sendFile(m.chat, videoURL, 'video.mp4', caption);
+        console.log(`Sent file: ${videoURL}`);
+      } else {
+        let start = 0;
+        for (const story of data) {
+          if (!story || !story.url) {
+            console.error('Invalid video format for story:', story);
+            continue;
+          }
+
+          const videoURL = story.url;
+          const caption = `Video ${start + 1} URL: ${videoURL}`;
+          await conn.sendFile(m.chat, videoURL, 'video.mp4', caption);
+          console.log(`Sent file: ${videoURL}`);
+          start++;
+        }
+      }
+    } catch (error) {
+      if (error) {
+        throw `_Masukkan Link Video IG (BISA HIGHLIGHT DAN CERITA, tapi publik account) Yang Ingin Kamu Cari!_\nperintah:\n${usedPrefix + command} https://www.instagram.com/stories/highlights/17860230305961018/\n${usedPrefix + command} https://www.instagram.com/stories/instagram/`;
+      } else {
+        console.error(error);
+        conn.reply(m.chat, error.message || 'Failed to download Instagram story videos', m);
+      }
+    }
+    conn.reply(m.chat, `==========================\n\nJika bot AI tidak dapat menjawab, silahkan donasi minimal 1k untuk menghidupkannya kembali.\n\nDana: ${global.nomorown}\nGopay: ${global.nomorown}`, m);
+    };
 };
 
 handler.help = [
   'text2img <teks>',
   'convertuang <amount>|<fromCurrency>|<toCurrency>',
   'short <url>',
-  'caristiker <Query>'
+  'caristiker <Query>',
+  'igs <link Story/Highlight>'
 ];
-handler.tags = ['tools', 'currency', 'internet', 'sticker'];
-handler.command = /^(convertuang|kurs|kursuang|matauang|konversiuang|short|singkatin|singkat|bitly|tinyurl|vgd|ouo|isgd|shortlink|linkshort|text2img|txt2img|t2i|tekskegambar|caristicker|caristiker|getstiker|getsticker)$/i;
+handler.tags = ['tools', 'currency', 'internet', 'sticker', 'downloader'];
+handler.command = /^(convertuang|kurs|kursuang|matauang|konversiuang|short|singkatin|singkat|bitly|tinyurl|vgd|ouo|isgd|shortlink|linkshort|text2img|txt2img|t2i|tekskegambar|caristicker|caristiker|getstiker|getsticker|igs|instagramstory|igstory|igstorydl|igh|ighighlights|ighighlight)$/i;
 
 export default handler;
