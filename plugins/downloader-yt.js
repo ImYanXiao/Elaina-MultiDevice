@@ -215,7 +215,7 @@ if (command == 'yts', 'ytsearch', 'youtubesearch') {
 // Update by Xnuvers007
 
 if (command == 'getvid', 'ytmp4', 'youtubemp4') {
-  if (!args[0]) throw `Ex: ${command} https://www.youtube.com/shorts/Ezzh2joFrzg`;
+  if (!args[0]) throw `Ex: ${usedPrefix}${command} https://www.youtube.com/shorts/Ezzh2joFrzg\n${usedPrefix}${command} https://www.youtube.com/watch?v=Ezzh2joFrzg`;
   const v = args[0];
 
   const resolutions = ["144p", "240p", "360p", "480p", "720p", "1080p", "720p60", "1080p60"];
