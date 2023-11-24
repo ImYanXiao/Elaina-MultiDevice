@@ -215,57 +215,61 @@ if (command == 'yts', 'ytsearch', 'youtubesearch') {
 // Update by Xnuvers007
 
 if (command == 'getvid', 'ytmp4', 'youtubemp4') {
-  if (!args[0]) throw 'Where`s Url?' // Zod
-  const v = args[0]
+  if (!args[0]) throw `Ex: ${command} https://www.youtube.com/shorts/Ezzh2joFrzg`;
+  const v = args[0];
 
-  const resolutions = ["144p", "240p", "360p", "480p", "720p", "1080p"]
-  let qu = args[1] && resolutions.includes(args[1]) ? args[1] : "360p"
-  let q = qu.replace('p', '')
+  const resolutions = ["144p", "240p", "360p", "480p", "720p", "1080p", "720p60", "1080p60"];
 
-  let thumb = {}
+  let yt;
+
   try {
-    const thumb2 = yt.thumbnails[0].url
-    thumb = { jpegThumbnail: thumb2 }
-  } catch (e) {}
-
-  let yt
-  try {
-    yt = await youtubedl(v)
-  } catch {
-    yt = await youtubedlv2(v)
+    yt = await youtubedl(v) || await youtubedlv2(v);
+  } catch (e) {
+    conn.reply(m.chat, e, m);
+    return;
   }
 
-  const title = await yt.title
+  const title = await yt.title;
 
-  let size = ''
-  let dlUrl = ''
-  let selectedResolution = ''
-  let selectedQuality = ''
-  for (let i = resolutions.length - 1; i >= 0; i--) {
-    const res = resolutions[i]
-    if (yt.video[res]) {
-      selectedResolution = res
-      selectedQuality = res.replace('p', '')
-      size = await yt.video[res].fileSizeH
-      dlUrl = await yt.video[res].download()
-      break
+  let success = false;
+  let message = `Permintaan download video YouTube. Sedang diproses, mohon bersabar...\n\n`;
+
+  for (let i = 0; i < resolutions.length; i++) {
+    const res = resolutions[i];
+    try {
+      if (yt.video[res]) {
+        const selectedResolution = res;
+        const selectedQuality = res.replace('p', '');
+        const size = await yt.video[res].fileSizeH;
+        const dlUrl = await yt.video[res].download();
+        message += `▢ Resolution: ${selectedResolution}\n`;
+        message += `▢ Size: ${size}\n`;
+        message += `▢ Video link: ${dlUrl}\n\n`;
+        success = true;
+        await conn.sendFile(m.chat, dlUrl, 'video.mp4', message, m);
+      }
+    } catch (err) {
+      console.log(`Error downloading ${res}: ${err}`);
     }
   }
 
-  if (dlUrl) {
-    await m.reply(`Permintaan download video YouTube. Sedang diproses, mohon bersabar...`)
-
-    await conn.sendMessage(m.chat, { video: { url: dlUrl, caption: title, ...thumb } }, { quoted: m })
-
-    await m.reply(`▢ Title: ${title}
-▢ Resolution: ${selectedResolution}
-▢ Size: ${size}
-▢ Video telah berhasil diunduh!`)
-  } else {
-    await m.reply(`Maaf, video tidak tersedia untuk diunduh.`)
+  if (!success) {
+    for (let i = 0; i < resolutions.length; i++) {
+      const res = resolutions[i];
+      try {
+        if (yt.video[res]) {
+          const dlUrl = await yt.video[res].download();
+          await m.reply(`Silahkan download sendiri disini: ${dlUrl}`);
+        }
+      } catch (err) {
+        console.log(`Error obtaining download link for ${res}: ${err}`);
+      }
+    }
+    const dlUrlFallback = `https://www.ssyoutube.com/watch?v=${yt.videoId}`; // Provide a fallback download link
+    await m.reply(`Maaf, video tidak dapat diunduh. Silakan download secara manual menggunakan link berikut:\n${dlUrlFallback}`);
   }
-}
-}
+};
+
 handler.tags = ['downloader']
 handler.command = ['play', 'ytplay', 'youtubeplay', 'ytlist', 'youtubelist', 'ytl', 'yta', 'ytmp3', 'getaud', 'youtubemp3', 'yts', 'youtubesearch', 'getvid', 'ytmp4', 'youtubemp4']
 handler.limit = true
