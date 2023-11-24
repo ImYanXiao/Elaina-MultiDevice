@@ -58,7 +58,7 @@ if (command == 'play', 'ytplay', 'youtubeplay') {
     conn.reply(m.chat, 'Terjadi kesalahan. Silakan coba lagi nanti.\nNyari yang bener donk...', m);
   }
 }
-};
+// };
 
 
 if (command == 'ytlist', 'youtubelist', 'ytl') {
@@ -269,10 +269,10 @@ if (command == 'getvid', 'ytmp4', 'youtubemp4') {
     await m.reply(`Maaf, video tidak dapat diunduh. Silakan download secara manual menggunakan link berikut:\n${dlUrlFallback}`);
   }
 };
+};
 
 handler.tags = ['downloader']
 handler.command = ['play', 'ytplay', 'youtubeplay', 'ytlist', 'youtubelist', 'ytl', 'yta', 'ytmp3', 'getaud', 'youtubemp3', 'yts', 'youtubesearch', 'getvid', 'ytmp4', 'youtubemp4']
-handler.limit = true
+handler.limit = true // false
 
-export default handler
-
+export default handler;
