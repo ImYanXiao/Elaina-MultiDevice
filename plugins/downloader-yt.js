@@ -214,10 +214,10 @@ if (command == 'yts', 'ytsearch', 'youtubesearch') {
 
 // Update by Xnuvers007
 
-if (command == 'getvid', 'ytmp4', 'youtubemp4') {
-  if (!args[0]) throw `Ex: ${usedPrefix}${command} https://www.youtube.com/shorts/Ezzh2joFrzg\n${usedPrefix}${command} https://www.youtube.com/watch?v=Ezzh2joFrzg`;
-  const v = args[0];
+if (command == 'getvid', 'ytmp4', 'youtubemp4','ytv','youtubevideo') {
+  if (!args[0]) throw `Ex:\n${usedPrefix}${command} https://www.youtube.com/shorts/Ezzh2joFrzg\n${usedPrefix}${command} https://www.youtube.com/watch?v=Ezzh2joFrzg`;
 
+  const v = args[0];
   const resolutions = ["144p", "240p", "360p", "480p", "720p", "1080p", "720p60", "1080p60"];
 
   let yt;
@@ -229,10 +229,11 @@ if (command == 'getvid', 'ytmp4', 'youtubemp4') {
     return;
   }
 
-  const title = await yt.title;
-
   let success = false;
-  let message = `Permintaan download video YouTube. Sedang diproses, mohon bersabar...\n\n`;
+  let message1 = `Permintaan download video YouTube. Sedang diproses, mohon bersabar...`;
+  let message = `Details: \n\n`
+
+  m.reply(message1)
 
   for (let i = 0; i < resolutions.length; i++) {
     const res = resolutions[i];
@@ -254,25 +255,29 @@ if (command == 'getvid', 'ytmp4', 'youtubemp4') {
   }
 
   if (!success) {
+    let dlMessage = `Maaf, video tidak dapat diunduh. Silakan download secara manual menggunakan link berikut:\n\n`;
+
     for (let i = 0; i < resolutions.length; i++) {
       const res = resolutions[i];
       try {
         if (yt.video[res]) {
           const dlUrl = await yt.video[res].download();
-          await m.reply(`Silahkan download sendiri disini: ${dlUrl}`);
+          dlMessage += `▢ Resolution: ${res}\n`;
+          dlMessage += `▢ Video link: ${dlUrl}\n\n`;
         }
       } catch (err) {
         console.log(`Error obtaining download link for ${res}: ${err}`);
       }
     }
-    const dlUrlFallback = `https://www.ssyoutube.com/watch?v=${yt.videoId}`; // Provide a fallback download link
-    await m.reply(`Maaf, video tidak dapat diunduh. Silakan download secara manual menggunakan link berikut:\n${dlUrlFallback}`);
+
+    await m.reply(dlMessage);
   }
 };
+  
 };
 
 handler.tags = ['downloader']
-handler.command = ['play', 'ytplay', 'youtubeplay', 'ytlist', 'youtubelist', 'ytl', 'yta', 'ytmp3', 'getaud', 'youtubemp3', 'yts', 'youtubesearch', 'getvid', 'ytmp4', 'youtubemp4']
+handler.command = ['play', 'ytplay', 'youtubeplay', 'ytlist', 'youtubelist', 'ytl', 'yta', 'ytmp3', 'getaud', 'youtubemp3', 'yts', 'youtubesearch', 'getvid', 'ytmp4', 'youtubemp4','ytv','youtubevideo']
 handler.limit = true // false
 
 export default handler;
