@@ -229,6 +229,8 @@ if (command == 'getvid', 'ytmp4', 'youtubemp4','ytv','youtubevideo') {
     return;
   }
 
+  const title = await yt.title;
+
   let success = false;
   let message1 = `Permintaan download video YouTube. Sedang diproses, mohon bersabar...`;
   let message = `Details: \n\n`
@@ -243,6 +245,7 @@ if (command == 'getvid', 'ytmp4', 'youtubemp4','ytv','youtubevideo') {
         const selectedQuality = res.replace('p', '');
         const size = await yt.video[res].fileSizeH;
         const dlUrl = await yt.video[res].download();
+        message += `▢ Title: ${title}\n`;
         message += `▢ Resolution: ${selectedResolution}\n`;
         message += `▢ Size: ${size}\n`;
         message += `▢ Video link: ${dlUrl}\n\n`;
