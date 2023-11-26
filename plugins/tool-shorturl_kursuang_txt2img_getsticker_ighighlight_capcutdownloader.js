@@ -164,7 +164,7 @@ conn.reply(m.chat, 'Sedang membuat gambar...', m);
       for (let stickerUrl of result.sticker_url) {
       //   conn.sendFile(m.chat, stickerUrl, 'sticker.jpg', '');
       // }
-        conn.sendFile(m.chat, stickerUrl, 'sticker.webp', '');
+        // conn.sendFile(m.chat, stickerUrl, 'sticker.webp', '');
         try {
           let img = await fetch(stickerUrl).then(response => response.buffer());
           let stiker = await addExif(img, '', '');
@@ -254,7 +254,7 @@ _Capcut Downloader By Xnuvers007_
       }
     } catch (error) {
       if (error) {
-        throw `_Masukkan Link Video IG (BISA HIGHLIGHT DAN CERITA, tapi publik account) Yang Ingin Kamu Cari!_\nperintah:\n${usedPrefix + command} https://www.instagram.com/stories/highlights/17860230305961018/\n${usedPrefix + command} https://www.instagram.com/stories/instagram/\n`;
+        throw `_Masukkan Link Video IG (BISA HIGHLIGHT DAN CERITA, tapi publik account) Yang Ingin Kamu Cari!_\nperintah:\n${usedPrefix + command} https://www.instagram.com/stories/highlights/17860230305961018/\n${usedPrefix + command} https://www.instagram.com/stories/instagram/\nHanya bisa Video, kalo Foto kalian bisa ss -__-`;
       } else {
         console.error(error);
         conn.reply(m.chat, error.message || 'Failed to download Instagram story videos', m);
