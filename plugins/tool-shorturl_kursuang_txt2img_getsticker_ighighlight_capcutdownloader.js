@@ -42,7 +42,7 @@ const stickersearch = (text) => {
 };
 
 let handler = async (m, { args, usedPrefix, text, command, conn }) => {
-  const filteredWords = ['seksi', 's3x', 'konten dewasa', 'hentai', 'mesum', 'ahegao', 'fuck', 'sex', 'porn', 'porno', 'ngewe', 'pussy', 'memek', 'meki', 'mmk', 'kontol', 'butt', 'buttocks', 'bra', 'stepmom', 'stepfather', 'BAB1', 'PEL1', 'AASU', 'PEJU', 'P3JU', 'A5UU', 'AA5U', 'MBUT', 'AWUK', 'FUCK', 'JEMB', 'KNTL', 'CRUT', 'NTUT', 'MAT1', 'PCUN', 'G1LA', 'BUTA', 'JLEK', 'CEWE', 'EEWE', 'ANUS', 'SH1T', 'B1CH', 'KL1T', 'CL1T', 'CNTZ', 'CUMS', 'CUNT', 'D1CK', 'DYKE', 'FAGS', 'FAGZ', 'FART', 'F4RT', 'FUKR', 'FUKK', 'GAYS', 'GAYZ', 'HELL', 'JIZZ', 'JISS', 'KNOB', 'KUNT', 'N1GR', 'PUS1', 'SHYT', 'SLUT', 'T1TS', 'VAGS', 'CAWK', 'FCUK', 'LEEC', 'PUSS', 'BUBS', 'TITT', 'WANK', 'DAMN', 'D4MN', 'BUTT', 'NAZ1', 'P1SS', 'PUPS', 'TWAT', 'KENT', 'NTHU', 'NT1L', 'GAWK', 'GAUK', 'GAWU', 'NCUK', 'WDUS', 'TAEK', 'MEK1', 'KERE', 'UP1L', 'ELEK', 'UTEK', 'BJAT', 'ALAY', 'NDAS', 'STFU', 'TEMP', 'KETE', 'ASEM', 'kontl', 'ppk', 'pepek', 'tai', 'ngentod', 'ngentot', 'fucker', 'ngntd', 'ngntot', 'kntol', 'goblok', 'gblk', 'goblog', 'stupid', 'kenthu', 'kentu', 'tits', 'boobs', 'blowjob', 'naked', 'naughty', 'kampret', 'bangsat', 'bangsad', 'bngst', 'asu', 'bujang', 'kimak', 'kimbek', 'lacur', 'pelacur', 'lonte', 'lont', 'bitch', 'fuckyou', 'fucked', 'bokep', 'penis', 'vagina', 'undress', 'undressed', 'pantat', 'pantad','breasts','breast','payudara','telanjang','ngewe','sepong','nyepong','ny3p0ng','nyep0ng','ny3pong'];
+  const filteredWords = ['seksi', 's3x', 'konten dewasa', 'hentai', 'mesum', 'ahegao', 'fuck', 'sex', 'porn', 'porno', 'ngewe', 'pussy', 'memek', 'meki', 'mmk', 'kontol', 'butt', 'buttocks', 'bra', 'stepmom', 'stepfather', 'BAB1', 'PEL1', 'AASU', 'PEJU', 'P3JU', 'A5UU', 'AA5U', 'MBUT', 'AWUK', 'FUCK', 'JEMB', 'KNTL', 'CRUT', 'NTUT', 'MAT1', 'PCUN', 'G1LA', 'BUTA', 'JLEK', 'CEWE', 'EEWE', 'ANUS', 'SH1T', 'B1CH', 'KL1T', 'CL1T', 'CNTZ', 'CUMS', 'CUNT', 'D1CK', 'DYKE', 'FAGS', 'FAGZ', 'FART', 'F4RT', 'FUKR', 'FUKK', 'GAYS', 'GAYZ', 'HELL', 'JIZZ', 'JISS', 'KNOB', 'KUNT', 'N1GR', 'PUS1', 'SHYT', 'SLUT', 'T1TS', 'VAGS', 'CAWK', 'FCUK', 'LEEC', 'PUSS', 'BUBS', 'TITT', 'WANK', 'DAMN', 'D4MN', 'BUTT', 'NAZ1', 'P1SS', 'PUPS', 'TWAT', 'KENT', 'NTHU', 'NT1L', 'GAWK', 'GAUK', 'GAWU', 'NCUK', 'WDUS', 'TAEK', 'MEK1', 'KERE', 'UP1L', 'ELEK', 'UTEK', 'BJAT', 'ALAY', 'NDAS', 'STFU', 'TEMP', 'KETE', 'ASEM', 'kontl', 'ppk', 'pepek', 'tai', 'ngentod', 'ngentot', 'fucker', 'ngntd', 'ngntot', 'kntol', 'goblok', 'gblk', 'goblog', 'stupid', 'kenthu', 'kentu', 'tits', 'boobs', 'blowjob', 'naked', 'naughty', 'kampret', 'bangsat', 'bangsad', 'bngst', 'asu', 'bujang', 'kimak', 'kimbek', 'lacur', 'pelacur', 'lonte', 'lont', 'bitch', 'fuckyou', 'fucked', 'bokep', 'penis', 'vagina', 'undress', 'undressed', 'pantat', 'pantad','breasts','breast','payudara','telanjang','ngewe','sepong','nyepong','ny3p0ng','nyep0ng','ny3pong','sange','horny'];
 
   if (command === 'convertuang' || command === 'kurs' || command === 'kursuang' || command === 'matauang' || command === 'konversiuang') {
     if (args.length < 1) {
@@ -151,7 +151,7 @@ conn.reply(m.chat, 'Sedang membuat gambar...', m);
     conn.sendFile(m.chat, imageBuffer, 'image.png', 'Berikut adalah gambar yang sesuai dengan teks yang Anda masukkan.');
   } else if (command === "caristicker" || command === "caristiker" || command === "getsticker" || command === "getstiker") {
     if (!text) {
-      throw 'Silakan masukkan query pencarian sticker.';
+      throw `Silakan masukkan query pencarian sticker.\n${usedPrefix}${command} Naruto`;
     }
 
     try {
@@ -180,49 +180,20 @@ conn.reply(m.chat, 'Sedang membuat gambar...', m);
       m.reply(`Terjadi kesalahan dalam pencarian sticker: ${error}`);
     }
   }
-    else if(command == "capcut","capcutdownloader"){
-          if (!args[0]) throw `Ex:\n${usedPrefix}${command} https://www.capcut.com/t/Zs82ASjAk/`;
-
-          try {
-
-            let url = `https://tr.deployers.repl.co/capcut?url=${args[0]}`;
-            let response = await fetch(url);
-            let result = await response.json();
-
-            let judul = result.title;
-            let deskripsi = result.description;
-            let pemakai = result.usage;
-            let videourl = result.video_url;
-
-            let capcut = `
-*Title:* ${judul}
-*Description:* ${deskripsi}
-*Usage:* ${pemakai}
-
-_Capcut Downloader By Xnuvers007_
-`  
-            // conn.reply(m.chat, JSON.stringify(result));
-
-            conn.sendFile(m.chat, videourl, judul + '.mp4', capcut, m);
-
-          } catch(error){
-            conn.reply(m.chat, error);
-          }
+  else if (command === "instagramstory" || command === "igstory" || command === "igstorydl" || command === "igs" || command === "ighighlights" || command === "igh" || command === "ighighlight") {
+    if (!text) {
+      conn.reply(m.chat, `_Masukkan Link Video IG (BISA HIGHLIGHT DAN CERITA, tapi publik account) Yang Ingin Kamu Cari!_\nperintah:\n${usedPrefix + command} https://www.instagram.com/stories/highlights/17860230305961018/\n${usedPrefix + command} https://www.instagram.com/stories/instagram/\nHanya bisa Video, kalo Foto kalian bisa ss -__-`, m);
+      return;
     }
-  else if(command == "instagramstory","igstory","igstorydl","igs","ighighlights","igh","ighighlight"){
+
+    const baseUrl = `https://tr.deployers.repl.co/igstory?url=${encodeURIComponent(text)}`;
+
     try {
-      if (!text) {
-        throw `_Masukkan Link Video IG (BISA HIGHLIGHT DAN CERITA, tapi publik account) Yang Ingin Kamu Cari!_\nperintah:\n${usedPrefix + command} https://www.instagram.com/stories/highlights/17860230305961018/\n${usedPrefix + command} https://www.instagram.com/stories/instagram/\nHanya bisa Video, kalo Foto kalian bisa ss -__-`;
-      }
-
-      const baseUrl = `https://tr.deployers.repl.co/igstory?url=${encodeURIComponent(text)}`;
-
       const response = await fetch(baseUrl);
 
       if (!response.ok) {
         throw new Error(`Request failed with status: ${response.status}`);
-      }
-      else {
+      } else {
         conn.reply(m.chat, "sedang di download...", m);
       }
 
@@ -253,15 +224,38 @@ _Capcut Downloader By Xnuvers007_
         }
       }
     } catch (error) {
-      if (error) {
-        throw `_Masukkan Link Video IG (BISA HIGHLIGHT DAN CERITA, tapi publik account) Yang Ingin Kamu Cari!_\nperintah:\n${usedPrefix + command} https://www.instagram.com/stories/highlights/17860230305961018/\n${usedPrefix + command} https://www.instagram.com/stories/instagram/\nHanya bisa Video, kalo Foto kalian bisa ss -__-`;
-      } else {
-        console.error(error);
-        conn.reply(m.chat, error.message || 'Failed to download Instagram story videos', m);
-      }
+      console.error(error);
+      conn.reply(m.chat, `Terjadi kesalahan dalam mengunduh`, m);
     }
-    // conn.reply(m.chat, `==========================\n\nJika bot AI tidak dapat menjawab, silahkan donasi minimal 1k untuk menghidupkannya kembali.\n\nDana: ${global.nomorown}\nGopay: ${global.nomorown}`, m);
-    };
+  } else if (command === "capcut" || command === "capcutdownloader") {
+    if (!args[0]) throw `Ex:\n${usedPrefix}${command} https://www.capcut.com/t/Zs82ASjAk/`;
+
+    try {
+      let url = `https://tr.deployers.repl.co/capcut?url=${args[0]}`;
+      let response = await fetch(url);
+      let result = await response.json();
+
+      let judul = result.title;
+      let deskripsi = result.description;
+      let pemakai = result.usage;
+      let videourl = result.video_url;
+
+      let capcut = `
+  *Title:* ${judul}
+  *Description:* ${deskripsi}
+  *Usage:* ${pemakai}
+
+  _Capcut Downloader By Xnuvers007_
+  `;
+
+      conn.sendFile(m.chat, videourl, judul + '.mp4', capcut, m);
+
+    } catch (error) {
+      console.error(error);
+      conn.reply(m.chat, error.message || 'Failed to download Capcut video', m);
+    }
+  }
+
   await conn.reply(m.chat, `==========================\n\nJika bot AI tidak dapat menjawab, silahkan donasi minimal 1k untuk menghidupkannya kembali.\n\nDana: ${global.nomorown}\nGopay: ${global.nomorown}`, m);
 };
 
