@@ -1,34 +1,52 @@
 import { instagramdl } from '@bochilteam/scraper';
+import fetch from 'node-fetch';
 
-var handler = async (m, { args }) => {
-    if (!args[0]) throw 'Input URL';
+var handler = async (m, { args, conn, usedPrefix, command }) => {
+    if (!args[0]) throw `Ex:\n${usedPrefix}${command} https://www.instagram.com/reel/C0EEgMNSSHw/?igshid=MzY1NDJmNzMyNQ==`;
     try {
         let res = await bochil.snapsave(args[0]);
         let media = await res[0].url;
+      
         const sender = m.sender.split(`@`)[0];
 
+        conn.reply(m.chat, 'Sedang mengunduh video...', m);
+
         if (!res) throw 'Can\'t download the post';
-        conn.sendMessage(m.chat, { video: { url: media } }, m);
+      
+        await conn.sendMessage(m.chat, { video: { url: media }, caption: `ini kak videonya @${sender}`, mentions: [m.sender]}, m);
+      
+      await conn.sendMessage(m.chat, { 
+        document: { url: media }, 
+        mimetype: 'video/mp4', 
+        fileName: `instagram.mp4`,
+        caption: `ini kak videonya @${sender} versi dokumen, agar jernih`, mentions: [m.sender]
+      }, {quoted: m})
 
-        const message = `Video berhasil diunduh, request dari @${sender}`;
-        conn.reply(m.chat, message, m, { mentions: [m.sender] });
     } catch (e) {
-        try {
-            let res2 = await instagramdl(args[0]);
-            let media2 = res2.url;
-            let cap = res2.title;
-            const sender = m.sender.split(`@`)[0];
+      try {
+          let response = await fetch(`https://tr.deployers.repl.co/instagramdl?url=${encodeURIComponent(args[0])}`);
+          let data = await response.json();
 
-            conn.reply(m.chat, 'Sedang mengunduh video...', m);
+          if (data.image && data.video) {
+              const sender = m.sender.split(`@`)[0];
 
-            conn.sendFile(m.chat, media2, 'instagram.mp4', cap, m);
+              conn.reply(m.chat, 'Sedang mengunduh video...', m);
 
+            await conn.sendMessage(m.chat, { video: data.video, caption: `ini kak videonya @${sender}`, mentions: [m.sender] }, m);
+
+            await conn.sendMessage(m.chat, { 
+              document: { url: data.video }, 
+              mimetype: 'video/mp4', 
+              fileName: `instagram.mp4`,
+              caption: `ini kak videonya @${sender} versi dokumen, agar jernih`, mentions: [m.sender]
+            }, {quoted: m})
             
-            const message = `Video berhasil diunduh, request dari @${sender}`;
-            conn.reply(m.chat, message, m, { mentions: [m.sender] });
-        } catch (error) {
-            conn.reply(m.chat, 'Gagal mengunduh video', m);
-        }
+          } else {
+              throw 'Gagal mengunduh video';
+          }
+      } catch (error) {
+          conn.reply(m.chat, 'Gagal mengunduh video', m);
+      }
     }
 };
 
