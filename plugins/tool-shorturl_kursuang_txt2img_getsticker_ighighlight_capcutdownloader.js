@@ -164,11 +164,11 @@ conn.reply(m.chat, 'Sedang membuat gambar...', m);
       for (let stickerUrl of result.sticker_url) {
       //   conn.sendFile(m.chat, stickerUrl, 'sticker.jpg', '');
       // }
-        conn.sendFile(m.chat, stickerUrl, 'sticker.webp', '');
+        // conn.sendFile(m.chat, stickerUrl, 'sticker.webp', '');
             try {
-              let img = await fetch(stickerUrl).then(res => res.buffer());
-              let stiker = await addExif(img);
-              conn.sendFile(m.chat, stiker, 'sticker.webp', '');
+              let img = await fetch(stickerUrl).then(response => response.buffer());
+              let stiker = await addExif(img, '', '');
+              conn.sendFile(m.chat, stiker, 'sticker.webp', { quoted: m });
             } catch (e) {
                 console.error(e);
             }
