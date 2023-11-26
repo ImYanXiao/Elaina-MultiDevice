@@ -44,7 +44,7 @@ let handler = async (m, { conn, text, command, usedPrefix }) => {
     }
   } catch (error) {
     console.error(error)
-    m.reply('Terjadi kesalahan dalam melakukan OCR')
+    m.reply(`Balas gambar dengan perintah ${usedPrefix}${command}`)
   }
 }
 
