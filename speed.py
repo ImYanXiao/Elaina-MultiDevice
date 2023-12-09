@@ -1963,7 +1963,7 @@ def shell():
                 ((results.upload / 1000.0 / 1000.0) / args.units[1],
                  args.units[0]),
                 quiet)
-        printer("\n..................................................\n↬ ᴘᴏᴡᴇʀᴇᴅ ʙʏ *sᴘᴇᴇᴅᴛᴇsᴛ Ookla*\n❖ sᴄʀɪᴘᴛ ᴍᴀᴅᴇ ʙʏ *ɪᴍʏᴀɴxɪᴀᴏ|ᴇʟᴀɪɴᴀ-ʙᴏᴛ*")
+        printer("\n..................................................\n↬ ᴘᴏᴡᴇʀᴇᴅ ʙʏ *sᴘᴇᴇᴅᴛᴇsᴛ Ookla*\n❖ sᴄʀɪᴘᴛ ᴍᴀᴅᴇ ʙʏ *ɪᴍʏᴀɴxɪᴀᴏ|ᴇʟᴀɪɴᴀ-ʙᴏᴛ & Xnuvers007*")
     else:
         printer('Skipping upload test', quiet)
 
