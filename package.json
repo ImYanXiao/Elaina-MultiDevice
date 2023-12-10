@@ -40,8 +40,6 @@
     "license": "GPL-3.0-or-later",
     "dependencies": {
       "@adiwajshing/baileys": "npm:@whiskeysockets/baileys",
-      "@adiwajshing/keyed-db": "^0.2.4",
-      "@ffmpeg-installer/ffmpeg": "^1.1.0",
       "@bochilteam/scraper": "^4.2.4",
       "@vitalets/google-translate-api": "^9.2.0",
       "acrcloud": "^1.4.0",
