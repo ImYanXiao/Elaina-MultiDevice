@@ -3,6 +3,7 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 import { addExif } from '../lib/sticker.js'
 import { Sticker } from 'wa-sticker-formatter'
+import { bioskop, bioskopNow } from '@bochilteam/scraper-others';
 
 const apiKeys = ['C9eLLoQZvX', 'euhsDaUPzl'];
 
@@ -42,6 +43,7 @@ const stickersearch = (text) => {
 };
 
 let handler = async (m, { args, usedPrefix, text, command, conn }) => {
+  const sender = m.sender.split(`@`)[0];
   const filteredWords = ['seksi', 's3x', 'konten dewasa', 'hentai', 'mesum', 'ahegao', 'fuck', 'sex', 'porn', 'porno', 'ngewe', 'pussy', 'memek', 'meki', 'mmk', 'kontol', 'butt', 'buttocks', 'bra', 'stepmom', 'stepfather', 'BAB1', 'PEL1', 'AASU', 'PEJU', 'P3JU', 'A5UU', 'AA5U', 'MBUT', 'AWUK', 'FUCK', 'JEMB', 'KNTL', 'CRUT', 'NTUT', 'MAT1', 'PCUN', 'G1LA', 'BUTA', 'JLEK', 'CEWE', 'EEWE', 'ANUS', 'SH1T', 'B1CH', 'KL1T', 'CL1T', 'CNTZ', 'CUMS', 'CUNT', 'D1CK', 'DYKE', 'FAGS', 'FAGZ', 'FART', 'F4RT', 'FUKR', 'FUKK', 'GAYS', 'GAYZ', 'HELL', 'JIZZ', 'JISS', 'KNOB', 'KUNT', 'N1GR', 'PUS1', 'SHYT', 'SLUT', 'T1TS', 'VAGS', 'CAWK', 'FCUK', 'LEEC', 'PUSS', 'BUBS', 'TITT', 'WANK', 'DAMN', 'D4MN', 'BUTT', 'NAZ1', 'P1SS', 'PUPS', 'TWAT', 'KENT', 'NTHU', 'NT1L', 'GAWK', 'GAUK', 'GAWU', 'NCUK', 'WDUS', 'TAEK', 'MEK1', 'KERE', 'UP1L', 'ELEK', 'UTEK', 'BJAT', 'ALAY', 'NDAS', 'STFU', 'TEMP', 'KETE', 'ASEM', 'kontl', 'ppk', 'pepek', 'tai', 'ngentod', 'ngentot', 'fucker', 'ngntd', 'ngntot', 'kntol', 'goblok', 'gblk', 'goblog', 'stupid', 'kenthu', 'kentu', 'tits', 'boobs', 'blowjob', 'naked', 'naughty', 'kampret', 'bangsat', 'bangsad', 'bngst', 'asu', 'bujang', 'kimak', 'kimbek', 'lacur', 'pelacur', 'lonte', 'lont', 'bitch', 'fuckyou', 'fucked', 'bokep', 'penis', 'vagina', 'undress', 'undressed', 'pantat', 'pantad','breasts','breast','payudara','telanjang','ngewe','sepong','nyepong','ny3p0ng','nyep0ng','ny3pong','sange','horny'];
 
   if (command === 'convertuang' || command === 'kurs' || command === 'kursuang' || command === 'matauang' || command === 'konversiuang') {
@@ -148,7 +150,8 @@ conn.reply(m.chat, 'Sedang membuat gambar...', m);
       }
     } while (!imageBuffer);
 
-    conn.sendFile(m.chat, imageBuffer, 'image.png', 'Berikut adalah gambar yang sesuai dengan teks yang Anda masukkan.');
+    conn.sendFile(m.chat, imageBuffer, 'image.png', `Berikut adalah gambar yang sesuai dengan teks yang Anda masukkan.`);
+    await m.reply("Tuh gambarnya");
   } else if (command === "caristicker" || command === "caristiker" || command === "getsticker" || command === "getstiker") {
     if (!text) {
       throw `Silakan masukkan query pencarian sticker.\n${usedPrefix}${command} Naruto`;
@@ -255,6 +258,28 @@ conn.reply(m.chat, 'Sedang membuat gambar...', m);
       conn.reply(m.chat, error.message || 'Failed to download Capcut video', m);
     }
   }
+  else if (command === 'bioskop') {
+      if (!text) {
+        conn.reply(m.chat, `Mohon berikan nomor halaman. Contoh penggunaan:\n${usedPrefix}${command} 1`, m);
+        return;
+      }
+      const page = text; // || 1;
+      const results = await bioskop(page);
+
+      const formattedResults = results.map(res => {
+        return `Title: ${res.title}\nImage: ${res.img}\nURL: ${res.url}\nGenre: ${res.genre}\nDuration: ${res.duration}\nRelease: ${res.release}\nDirector: ${res.director}\nCast: ${res.cast}\n\n`;
+      }).join('\n');
+
+      await conn.reply(m.chat, formattedResults, m);
+    } else if (command === 'bioskopNow','bioskopnow','bioskopsekarang') {
+      const results = await bioskopNow();
+
+      const formattedResults = results.map(res => {
+        return `Title: ${res.title}\nImage: ${res.img}\nURL: ${res.url}\nGenre: ${res.genre}\nDuration: ${res.duration}\nPlaying At: ${res.playingAt}\n\n`;
+      }).join('\n');
+
+      await conn.reply(m.chat, formattedResults, m);
+    }
 
   await conn.reply(m.chat, `==========================\n\nJika bot AI tidak dapat menjawab, silahkan donasi minimal 1k untuk menghidupkannya kembali.\n\nDana: ${global.nomorown}\nGopay: ${global.nomorown}`, m);
 };
@@ -265,9 +290,11 @@ handler.help = [
   'short <url>',
   'caristiker <Query>',
   'igs <link Story/Highlight>',
-  'capcut <Link Capcut>'
+  'capcut <Link Capcut>',
+  'bioskop [halaman ke-]',
+  'bioskopnow'
 ];
-handler.tags = ['tools', 'currency', 'internet', 'sticker', 'downloader','downloader'];
-handler.command = /^(convertuang|kurs|kursuang|matauang|konversiuang|short|singkatin|singkat|bitly|tinyurl|vgd|ouo|isgd|shortlink|linkshort|text2img|txt2img|t2i|tekskegambar|caristicker|caristiker|getstiker|getsticker|igs|instagramstory|igstory|igstorydl|igh|ighighlights|ighighlight|capcut|capcutdownloader)$/i;
+handler.tags = ['tools', 'currency', 'internet', 'sticker', 'downloader','downloader','internet','internet'];
+handler.command = /^(convertuang|kurs|kursuang|matauang|konversiuang|short|singkatin|singkat|bitly|tinyurl|vgd|ouo|isgd|shortlink|linkshort|text2img|txt2img|t2i|tekskegambar|caristicker|caristiker|getstiker|getsticker|igs|instagramstory|igstory|igstorydl|igh|ighighlights|ighighlight|capcut|capcutdownloader|bioskop|bioskopNow|bioskopnow|bioskopsekarang)$/i;
 
 export default handler;
