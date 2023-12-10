@@ -24,11 +24,28 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       conn.reply(m.chat, result, m);
     } else {
       console.error('API Error:', data.message); // Log the API error message
-      conn.reply(m.chat, 'Maaf, kata tidak ditemukan dalam kamus.', m);
+      throw new Error('API Error');
     }
-  } catch (error) {
-    console.error('Terjadi kesalahan saat mengambil data:', error);
-    conn.reply(m.chat, 'Terjadi kesalahan saat mengambil data.', m);
+  } catch (apiError) {
+    console.error('Error making API request:', apiError);
+
+    try {
+      const res = await kbbi(text);
+      m.reply(`
+      ${res.map(v => `
+      *📌${v.title}*
+      
+      ${v.means.map(v => '- ' + v).join('\n`')}
+      `).join('\n').trim()}
+      
+      Note:
+      p = Partikel: kelas kata yang meliputi kata depan, kata sambung, kata seru, kata sandang, ucapan salam
+      n = Nomina: kata benda
+      `.trim());
+    } catch (scraperError) {
+      console.error('Error using scraper:', scraperError);
+      conn.reply(m.chat, 'Terjadi kesalahan saat mengambil data.', m);
+    }
   }
 };
 
