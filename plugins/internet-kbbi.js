@@ -6,7 +6,7 @@ import fetch from 'node-fetch';
 // const apiKey = process.env.xzn;
 const apiKey = 'APIKEYMU';
 
-const url = 'https://xzn.wtf/api/kbbi';
+const url = 'https://skizo.tech/api/kbbi';
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) {
