@@ -1,5 +1,9 @@
 import express from 'express'
 import fetch from 'node-fetch'
+import axios from 'axios'
+import { exec } from 'child_process';
+// import path from 'path';
+
 let app = global.app = express()
 
 function connect(PORT) {
@@ -10,7 +14,9 @@ function connect(PORT) {
     <meta charset="UTF-8">
     <meta http-equiv="refresh" content="10">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elaina-MultiDevice Bot</title>
+    <link rel="icon" href="https://kepo.xsvs.repl.co/file/VZZgayDPvuHM.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://kepo.xsvs.repl.co/file/VZZgayDPvuHM.ico" type="image/x-icon">
+    <title>Xnuvers007 Bot</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -54,7 +60,7 @@ function connect(PORT) {
         <div id="clock-wita"></div>
         <div id="clock-wit"></div>
         <br />
-        <div id="name">Elaina-MultiDevice</div>
+        <div id="name">Xnuvers007</div>
     </div>
 
     <div class="container text-center">
@@ -85,6 +91,11 @@ function connect(PORT) {
 </body>
 </html>
 `))
+  
+//   app.get('/', (req, res) => {
+//     const indexPath = path.join(__dirname, 'views', 'index.html');
+//     res.sendFile(indexPath);
+// });
 	
 	app.get('/nowa', async (req, res) => {
 		let q = req.query.number, regex = /x/g
@@ -103,19 +114,59 @@ function connect(PORT) {
 		}
 		res.json({ result: array })
 	})
+
+  app.get('/speedtest', (req, res) => {
+      exec('speedtest', (error, stdout, stderr) => {
+          if (error) {
+              res.status(500).send(`<p>Speedtest failed</p><p>Error: ${error.message}</p>`);
+              return;
+          }
+
+          const htmlResponse = `
+              <h2>Speedtest Results</h2>
+              <pre>${stdout}</pre>
+          `;
+
+          res.status(200).send(htmlResponse);
+      });
+  });
+
+  app.get('/ping', (req, res) => {
+    res.status(200).send('Ping successful');
+  });
+
+  app.get('/ping2', async (req, res) => {
+    const pingResults = [];
+
+    for (let i = 0; i < 10; i++) {
+      try {
+        const response = await axios.get(`https://xnuvers007botz.xnuvers007.repl.co`);
+        pingResults.push(`Ping result ${i + 1}: ${response.data} ${response.status}<br />`);
+      } catch (error) {
+        pingResults.push(`Error pinging ${i + 1}: ${error}`);
+      }
+    }
+    res.status(200).send(pingResults.join('\n\n\n'));
+  });
+
 	
 	app.listen(PORT, () => {
-		keepAlive()
+		keepAlive();
 		console.log('App listened on port', PORT)
-	})
+	});
 }
 
 function keepAlive() {
 	let url = `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`
+  let url2 = 'https://xnuvers007botz.xnuvers007.repl.co'
 	if (/(\/\/|\.)undefined\./.test(url)) return
 	setInterval(() => {
 		fetch(url).catch(console.log)
 	}, 30 * 1000)
+  if (/(\/\/|\.)undefined\./.test(url2)) return
+  setInterval(() => {
+    fetch(url).catch(console.log)
+  }, 30 * 1000)
 }
 
 function formatDate(n, locale = 'id') {
