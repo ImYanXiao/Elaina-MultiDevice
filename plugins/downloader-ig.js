@@ -94,7 +94,7 @@ var handler = async (m, { args, conn, usedPrefix, command }) => {
       );
       let data = await response.json();
 
-      if (data.image && data.video) {
+      if (data.image || data.video) {
         const sender = m.sender.split(`@`)[0];
 
         conn.reply(m.chat, "Sedang mengunduh video... pada server 2", m);
