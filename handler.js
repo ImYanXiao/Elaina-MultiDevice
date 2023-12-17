@@ -317,7 +317,8 @@ export async function handler(chatUpdate) {
                 m.isCommand = true
                 let xp = 'exp' in plugin ? parseInt(plugin.exp) : 17 // XP Earning per command
                 if (xp > 200)
-                    m.reply('Ngecit -_-') // Hehehe
+                    // m.reply('Ngecit -_-') // Hehehe
+		    console.log("ngecit -_-");
                 else
                     m.exp += xp
                 if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 1) {
