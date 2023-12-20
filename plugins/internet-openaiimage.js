@@ -1,12 +1,8 @@
-import { Configuration, OpenAIApi } from 'openai'
+import OpenAI from 'openai'
 
-const mySecret = process.env['key-org'] // process.env['key-org'] ubah jadi key-org kamu di openai.com
-const mySecret2 = process.env['key-apikey'] // process.env['key-apikey'] ubah jadi key-APIKEY kamu di openai.com
+const mySecret = process.env['key-apikey'] // process.env['key-apikey'] ubah jadi key-APIKEY kamu di openai.com
 
-const configuration = new Configuration({ organization: mySecret, apiKey: mySecret2 });
-// const configuration = new Configuration({ apiKey: mySecret2 });
-
-const openai = new OpenAIApi(configuration);
+const openai = new OpenAI({ apiKey: mySecret });
 
 const Nomor = 'Nomer Kamu'
 
@@ -15,13 +11,15 @@ let handler = async (m, { conn, text, command }) => {
         if (!text) throw new Error(`Membuat gambar dari AI.\n\nContoh:\n.img Wooden house on snow mountain\n\n\nJika bot AI tidak dapat menjawab, silahkan donasi minimal 1k untuk menghidupkannya kembali.\n\n Dana: ${Nomor}\nGopay: ${Nomor}`);
         
         await m.reply(wait)
-        const response = await openai.createImage({
-            prompt: text,
-            n: 1,
-            size: "1024x1024",
-        });
+        const response = await openai.images.generate({
+  model: "dall-e-2", // dall-e-3 terlalu banyak permintaan jadi sering error
+  prompt: text,
+  n: 1,
+  // quality: 'hd', // jika mau ganti optional, defaultnya adalah standart
+  size: "1024x1024", // Pixel Tersedia 1024x1024, 1024x1792 or 1792x1024
+});
         
-        conn.sendFile(m.chat, response.data.data[0].url, 'image.png', `Done\n\n\nJika bot AI tidak dapat menjawab, silahkan donasi minimal 1k untuk menghidupkannya kembali.\n\n Dana: ${Nomor}\nGopay: ${Nomor}`, m)
+        conn.sendFile(m.chat, response.data[0].url, 'image.png', `Done\n\n\nJika bot AI tidak dapat menjawab, silahkan donasi minimal 1k untuk menghidupkannya kembali.\n\n Dana: ${Nomor}\nGopay: ${Nomor}`, m)
         // Or use conn.reply:
         // conn.reply(m.chat, `Done\n\n\nJika bot AI tidak dapat menjawab, silahkan donasi minimal 1k untuk menghidupkannya kembali.\n\n Dana: ${Nomor}\nGopay: ${Nomor}`, m);
         
