@@ -13,7 +13,7 @@ let handler = async (m, { conn, text, command }) => {
         await m.reply(wait)
         const response = await openai.images.generate({
   model: "dall-e-2", // dall-e-3 terlalu banyak permintaan jadi sering error
-  prompt: "a white siamese cat",
+  prompt: text,
   n: 1,
   // quality: 'hd', // jika mau ganti optional, defaultnya adalah standart
   size: "1024x1024", // Pixel Tersedia 1024x1024, 1024x1792 or 1792x1024
