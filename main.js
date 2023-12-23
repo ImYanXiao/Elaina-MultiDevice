@@ -33,6 +33,7 @@ import { tmpdir } from 'os'
 import readline from 'readline'
 import { format } from 'util'
 import pino from 'pino'
+import ws from 'ws'
 import {
     useMultiFileAuthState,
     DisconnectReason,
@@ -48,6 +49,7 @@ import {
     mongoDBV2
 } from './lib/mongoDB.js'
 
+const { CONNECTING } = ws
 const { chain } = lodash
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 
