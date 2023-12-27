@@ -25,7 +25,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       );
 
       if (response.ok) {
-        conn.reply(
+        await conn.reply(
           m.chat,
           "Tunggu sebentar, sedang mencari keterangan obat...",
           m,
@@ -77,7 +77,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       )}`,
     );
     if (response.ok) {
-      conn.reply(
+      await conn.reply(
         m.chat,
         "Tunggu sebentar, sedang mencari keterangan obat...",
         m,
