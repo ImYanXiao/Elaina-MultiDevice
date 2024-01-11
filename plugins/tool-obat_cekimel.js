@@ -102,7 +102,9 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     )
   ) {
     if (!args[0]) {
-      m.reply("Please provide an email address.");
+      m.reply(
+        `Please provide an email address.\nEx: ${usedPrefix + command} example@example.com`,
+      );
       return;
     }
 
@@ -121,16 +123,16 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     let output = "";
 
     if (json.Data && json.Data.results && json.Data.results.length > 0) {
-      output += `**Data Leaks:**\n`;
+      output += `Data Leaks (KEBOCORAN DATA):\n`;
 
       for (let result of json.Data.results) {
         for (let data of result.data) {
-          output += `**Title:** ${result.title}\n`;
-          output += `**Description:** ${result.description}\n`;
-          output += `**Data Leaked:** ${data["Data yang bocor"]}\n`;
-          output += `**Date of Incident:** ${data["Tanggal Kejadian"]}\n`;
-          output += `**Total Data Leaked:** ${data["Total keseluruhan data yang bocor"]}\n`;
-          output += `**Link:** [${result.title}](${result.link})\n\n`;
+          output += `Title: ${result.title}\n`;
+          output += `Description: ${result.description}\n`;
+          output += `Data Leaked: ${data["Data yang bocor"]}\n`;
+          output += `Date of Incident: ${data["Tanggal Kejadian"]}\n`;
+          output += `Total Data Leaked: ${data["Total keseluruhan data yang bocor"]}\n`;
+          output += `Link: [${result.title}](${result.link})\n\n`;
         }
       }
     } else {
@@ -146,7 +148,7 @@ handler.help = [
   "ktobat <SumberLinkDariCariObat>",
   "cekimel <Email>",
 ];
-handler.tags = ["tool", "tool", "internet"];
+handler.tags = ["tools", "tools", "internet"];
 handler.command =
   /^(cariobat|obat|sakit|penyakit|keteranganobat|penjelasanobat|ktobat|indikasiobat|komposisiobat|dosisobat|ketobat|checkdata|cekimel|cekemail|checkemail|cekdata)$/i;
 
