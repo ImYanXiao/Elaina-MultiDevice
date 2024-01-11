@@ -62,7 +62,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       "indikasiobat",
       "komposisiobat",
       "dosisobat",
-      "ketobat",
+      "ketobat"
     ].includes(command)
   ) {
     if (!args[0])
