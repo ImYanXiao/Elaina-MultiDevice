@@ -1,5 +1,7 @@
 /*
 Yang ngilangin Credits, gw sumpahin bisulan 20 turunan
+
+ubah tr.deployers.repl.co menjadi https://0e87ad76-6c4e-40ff-bb5a-6bbdab145ae2-00-39qk1kw7vab6l.worf.replit.dev
 */
 
 import fetch from "node-fetch";
@@ -60,7 +62,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       "indikasiobat",
       "komposisiobat",
       "dosisobat",
-      "ketobat"
+      "ketobat",
     ].includes(command)
   ) {
     if (!args[0])
@@ -94,12 +96,58 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     } else {
       conn.reply(m.chat, "Tidak ada data keterangan obat yang ditemukan.", m);
     }
+  } else if (
+    ["checkdata", "cekimel", "cekemail", "checkemail", "cekdata"].includes(
+      command,
+    )
+  ) {
+    if (!args[0]) {
+      m.reply("Please provide an email address.");
+      return;
+    }
+
+    let email = args[0].toLowerCase();
+    let apiUrl = `https://0e87ad76-6c4e-40ff-bb5a-6bbdab145ae2-00-39qk1kw7vab6l.worf.replit.dev/checkdata?email=${encodeURIComponent(
+      email,
+    )}`;
+
+    let res = await fetch(apiUrl);
+    if (res.status !== 200) {
+      m.reply("Error fetching data. Please try again later.");
+      return;
+    }
+
+    let json = await res.json();
+    let output = "";
+
+    if (json.Data && json.Data.results && json.Data.results.length > 0) {
+      output += `**Data Leaks:**\n`;
+
+      for (let result of json.Data.results) {
+        for (let data of result.data) {
+          output += `**Title:** ${result.title}\n`;
+          output += `**Description:** ${result.description}\n`;
+          output += `**Data Leaked:** ${data["Data yang bocor"]}\n`;
+          output += `**Date of Incident:** ${data["Tanggal Kejadian"]}\n`;
+          output += `**Total Data Leaked:** ${data["Total keseluruhan data yang bocor"]}\n`;
+          output += `**Link:** [${result.title}](${result.link})\n\n`;
+        }
+      }
+    } else {
+      output += `Your email is secure and not leaked in deep web/dark web.\n`;
+    }
+
+    m.reply(`\`\`\`${output}\`\`\``);
   }
 };
 
-handler.help = ["cariobat <Nama Obat>", "ktobat <SumberLinkDariCariObat>"];
-handler.tags = ["tools", "tool"];
+handler.help = [
+  "cariobat <Nama Obat>",
+  "ktobat <SumberLinkDariCariObat>",
+  "cekimel <Email>",
+];
+handler.tags = ["tool", "tool", "internet"];
 handler.command =
-  /^(cariobat|obat|sakit|penyakit|keteranganobat|penjelasanobat|ktobat|indikasiobat|komposisiobat|dosisobat|ketobat)$/i;
+  /^(cariobat|obat|sakit|penyakit|keteranganobat|penjelasanobat|ktobat|indikasiobat|komposisiobat|dosisobat|ketobat|checkdata|cekimel|cekemail|checkemail|cekdata)$/i;
 
 export default handler;
