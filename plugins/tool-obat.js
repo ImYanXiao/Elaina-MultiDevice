@@ -19,7 +19,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     try {
       const obatName = args.join(" ");
       const response = await fetch(
-        `https://tr.deployers.repl.co/cariobat?obat=${encodeURIComponent(
+        `https://0e87ad76-6c4e-40ff-bb5a-6bbdab145ae2-00-39qk1kw7vab6l.worf.replit.dev/cariobat?obat=${encodeURIComponent(
           obatName,
         )}`,
       );
@@ -40,7 +40,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         const result = data
           .map(
             (item) =>
-              `*Obat:* ${item.alt}\n*Harga:* ${item.harga}\n*Sumber:* ${item.sumber}\n*Gambar Obat:* ${item.fallback_url}`,
+              `*Obat:* ${item.alt}\n\n*Harga:* ${item.harga}\n\n*Sumber:* ${item.sumber}\n\n*Gambar Obat:* ${item.fallback_url}\n\n\n_*NOTE: Created By Xnuvers007 server*_`,
           )
           .join("\n\n");
         conn.reply(m.chat, result, m);
@@ -60,6 +60,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       "indikasiobat",
       "komposisiobat",
       "dosisobat",
+      "ketobat"
     ].includes(command)
   ) {
     if (!args[0])
@@ -72,7 +73,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       );
     const linkSumber = args[0];
     const response = await fetch(
-      `https://tr.deployers.repl.co/keterangan?obat=${encodeURIComponent(
+      `https://0e87ad76-6c4e-40ff-bb5a-6bbdab145ae2-00-39qk1kw7vab6l.worf.replit.dev/keterangan?obat=${encodeURIComponent(
         linkSumber,
       )}`,
     );
@@ -88,18 +89,17 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     const keteranganData = await response.json();
 
     if (keteranganData) {
-      const keteranganResult = `*Aturan Pakai:* ${keteranganData["Aturan Pakai"]}\n*Deskripsi:* ${keteranganData.Deskripsi}\n*Dosis:* ${keteranganData.Dosis}\n*Efek Samping:* ${keteranganData["Efek Samping"]}\n*Golongan Produk:* ${keteranganData["Golongan Produk"]}\n*Indikasi Umum:* ${keteranganData["Indikasi Umum"]}\n*Kemasan:* ${keteranganData.Kemasan}\n*Komposisi:* ${keteranganData.Komposisi}\n*Kontra Indikasi:* ${keteranganData["Kontra Indikasi"]}\n*Manufaktur:* ${keteranganData.Manufaktur}\n*No. Registrasi:* ${keteranganData["No. Registrasi"]}\n*Perhatian:* ${keteranganData.Perhatian}`;
+      const keteranganResult = `*Aturan Pakai:* ${keteranganData["Aturan Pakai"]}\n\n*Deskripsi:* ${keteranganData.Deskripsi}\n\n*Dosis:* ${keteranganData.Dosis}\n\n*Efek Samping:* ${keteranganData["Efek Samping"]}\n\n*Golongan Produk:* ${keteranganData["Golongan Produk"]}\n\n*Indikasi Umum:* ${keteranganData["Indikasi Umum"]}\n\n*Kemasan:* ${keteranganData.Kemasan}\n\n*Komposisi:* ${keteranganData.Komposisi}\n\n*Kontra Indikasi:* ${keteranganData["Kontra Indikasi"]}\n\n*Manufaktur:* ${keteranganData.Manufaktur}\n\n*No. Registrasi:* ${keteranganData["No. Registrasi"]}\n\n*Perhatian:* ${keteranganData.Perhatian}\n\n\n_*NOTE: Created By Xnuvers007 server*_`;
       conn.reply(m.chat, keteranganResult, m);
     } else {
       conn.reply(m.chat, "Tidak ada data keterangan obat yang ditemukan.", m);
     }
-    await conn.reply(m.chat, "Created By Xnuvers007 server", m);
   }
 };
 
 handler.help = ["cariobat <Nama Obat>", "ktobat <SumberLinkDariCariObat>"];
 handler.tags = ["tools", "tool"];
 handler.command =
-  /^(cariobat|obat|sakit|penyakit|keteranganobat|penjelasanobat|ktobat|indikasiobat|komposisiobat|dosisobat)$/i;
+  /^(cariobat|obat|sakit|penyakit|keteranganobat|penjelasanobat|ktobat|indikasiobat|komposisiobat|dosisobat|ketobat)$/i;
 
 export default handler;
