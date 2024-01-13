@@ -29,8 +29,8 @@ var handler = async (m) => {
     }
 };
 
-handler.help = ['testspeed'];
+handler.help = ['testspeed','speedtest'];
 handler.tags = ['info'];
-handler.command = /^(speedtest|teskecepatan|testkecepatan|cekkecepatan|checkserver|cekserver|cekinet|checkinet|cekinternet|checkinternet)$/i
+handler.command = /^(speedtest|teskecepatan|testkecepatan|cekkecepatan|checkserver|cekserver|cekinet|checkinet|cekinternet|checkinternet|testspeed|tesspeed|testspeeds)$/i
 
 export default handler;
