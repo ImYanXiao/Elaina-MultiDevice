@@ -1,3 +1,9 @@
+/*
+Cara penggunaan DotENV, kalian download dulu dotenv npm install dotenv, lalu buat file .env di root, lalu isi kek gini
+xzn=YOUR-APIKEY
+Lalu jalanin deh :)
+*/
+
 import fetch from 'node-fetch';
 import uploadImage from '../lib/uploadImage.js';
 import dotenv from 'dotenv';
@@ -11,13 +17,15 @@ const allowedFilters = [
     "t1",
     "t2",
     "t3",
+    "m1", // m1 error , hapus aja
     "m2",
     "m3",
     "m4",
     "fm1",
     "fm2",
     "fm3",
-    "fm4"
+    "fm4",
+    "gender" // gender error, hapus aja
 ];
 
 let handler = async (m, { conn, usedPrefix, command, args }) => {
@@ -29,11 +37,11 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
 
         // Check if the user provided a filter
         if (!args[0] || !allowedFilters.includes(args[0])) {
-            throw `Kirim/Reply Gambar dengan caption ${usedPrefix + command} namaFilter\nList filter yang tersedia: ${allowedFilters.join(', ')}`;
+            throw `Kirim/Reply Gambar dengan caption ${usedPrefix + command} namaFilter\nList filter yang tersedia: ${allowedFilters.join(', ')}\n\n\`\`\`Contoh: ${usedPrefix + command} ${allowedFilters[0]}\`\`\``;
         }
 
         if (!mime.trim()) {
-            throw `Kirim/Reply Gambar dengan caption ${usedPrefix + command} namaFilter\nList filter yang tersedia: ${allowedFilters.join(', ')}`;
+            throw `Kirim/Reply Gambar dengan caption ${usedPrefix + command} namaFilter\nList filter yang tersedia: ${allowedFilters.join(', ')}\n\n\`\`\`Contoh: ${usedPrefix + command} ${allowedFilters[0]}\`\`\``;
         }
 
         const sender = m.sender.split(`@`)[0];
@@ -46,17 +54,14 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
             let url = await uploadImageWithRetry(media);
 
             if (url) {
-                // Make a request to the server with the specified filter
                 let filter = args[0];
                 let serverUrl = `${server}?url=${url}&apikey=${Xa}&filter=${filter}`;
                 let response = await fetch(serverUrl);
 
                 if (response.ok) {
-                    // Parse the server response
                     let result = await response.json();
 
                     if (result.status === 'true' && result.url) {
-                        // If the response is successful, send the file
                         await conn.sendFile(m.chat, result.url, '', `Ini gambarnya kak @${sender}\n${global.wm}`, m);
                     } else {
                         throw 'Gagal mendapatkan URL gambar dari server';
@@ -108,27 +113,10 @@ async function uploadImageWithRetry(media, maxAttempts = 3) {
     return url;
 }
 
-/* async function fetchResultWithRetry(url, maxAttempts = 3) {
-    let attempts = 0;
-    let hasil;
-
-    while (attempts < maxAttempts) {
-        try {
-            hasil = await (await fetch(`${server}?url=${url}&apikey=${Xa}`)).buffer();
-            if (hasil.length > 0) break;
-        } catch (error) {
-            attempts++;
-        }
-    }
-
-    return hasil;
-}
-*/
-
 handler.help = ['tocartoon','jadikartun'];
 handler.tags = ['anime', 'ai'];
 handler.command = /^(jadikartun|tocartoon)$/i;
-handler.register = true
+
 handler.limit = 8;
 
 export default handler;
