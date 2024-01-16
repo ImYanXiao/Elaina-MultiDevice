@@ -122,7 +122,7 @@ const connectionOptions = {
         version,
         logger: pino({ level: 'silent' }), 
         printQRInTerminal: !usePairingCode, 
-        browser: ['Mac OS', 'chrome', '120.0.6099.203'],
+        browser: ['Mac OS', 'safari', '5.1.10'],
         auth: { 
          creds: state.creds, 
          keys: makeCacheableSignalKeyStore(state.keys, pino().child({ 
