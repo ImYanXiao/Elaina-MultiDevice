@@ -2,6 +2,11 @@
 Cara penggunaan DotENV, kalian download dulu dotenv npm install dotenv, lalu buat file .env di root, lalu isi kek gini
 xzn=YOUR-APIKEY
 Lalu jalanin deh :)
+minta apikey disini
++212 706-611366
++62 823-3103-3919
++62 822-5608-0304
++62 857-5141-4996
 */
 
 import fetch from 'node-fetch';
