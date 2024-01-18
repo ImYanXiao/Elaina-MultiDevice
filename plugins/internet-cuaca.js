@@ -9,7 +9,8 @@ let handler = async (m, {
         throw `Penggunaan:\n${usedPrefix + command} <teks>\n\nContoh:\n${usedPrefix + command} Jakarta`;
     }
 
-    await m.reply(`${global.wait}`)
+    await m.reply(`${global.wait}`);
+    let teksenc = encodeURIComponent(text);
 
     let res = await fetch(API('https://api.openweathermap.org', '/data/2.5/weather', {
         q: text,
@@ -49,7 +50,7 @@ let handler = async (m, {
     let seaLevelPressure = json.main.sea_level !== undefined ? json.main.sea_level + ' hPa' : 'Tidak Tersedia';
 
     m.reply(`
-🤩 Koordinat: ${json.coord.lat}, ${json.coord.lon} https://www.google.com/maps/place/${json.name}/@${json.coord.lat},${json.coord.lon}
+🤩 Koordinat: ${json.coord.lat}, ${json.coord.lon} https://www.google.com/maps/place/${teksenc}/@${json.coord.lat},${json.coord.lon}
 🌍 Lokasi: ${json.name}, ${json.sys.country}
 🌦️ Cuaca: ${json.weather[0].description}, intinya: ${json.weather[0].main}
 🌡️ Suhu saat ini: ${json.main.temp} °C
