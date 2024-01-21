@@ -41,6 +41,7 @@
     "dependencies": {
       "@adiwajshing/baileys": "github:WhiskeySockets/Baileys#master",
       "@bochilteam/scraper": "^4.2.4",
+      "@distube/ytdl-core": "^4.13.3",
       "@vitalets/google-translate-api": "^9.2.0",
       "acrcloud": "^1.4.0",
       "awesome-phonenumber": "^5.10.0",
