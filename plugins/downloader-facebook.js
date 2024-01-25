@@ -13,12 +13,12 @@ async function getFinalUrl(url) {
 
 var handler = async (m, { args, conn, usedPrefix, command }) => {
     if (!args[0]) {
-        throw `Input URL\nEx: ${usedPrefix + command} https://www.facebook.com/groups/175204112986693/permalink/1621191825054574/?mibextid=Nif5oz\n\n*Peringatan:* Dilarang menggunakan link fb.watch, karena tidak dapat diakses langsung. Harap salin link tersebut, buka browser, dan tempelkan di sana. Salin link yang diakses dan gunakan di sini.`;
+        throw `Input URL\nEx: ${usedPrefix + command} https://www.facebook.com/groups/175204112986693/permalink/1621191825054574/?mibextid=Nif5oz\n\n*Peringatan:* Dilarang menggunakan link fb.watch, karena tidak dapat diakses langsung. Harap salin link tersebut, buka browser, dan tempelkan di sana. Salin link yang diakses dan gunakan di sini.\n\nTutor: https://i.ibb.co/tPwcCLj/image-1.png`;
     }
 
     try {
         if (args[0].includes('fb.watch')) {
-            throw '*Dilarang menggunakan link fb.watch. Harap salin link tersebut, buka browser, dan tempelkan di sana. Salin link yang diakses dan gunakan di sini.*';
+            throw '*Dilarang menggunakan link fb.watch. Harap salin link tersebut, buka browser, dan tempelkan di sana. Salin link yang diakses dan gunakan di sini.*\n\nTutor: https://i.ibb.co/tPwcCLj/image-1.png';
         }
 
         const res = await fetch(args[0]);
