@@ -7,8 +7,10 @@ var handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) {
     throw `*[❗] Example: ${
       usedPrefix + command
-    } https://www.tiktok.com/@omagadsus/video/7025456384175017243?is_from_webapp=1`;
+    } https://www.tiktok.com/@tuanliebert/video/7313159590349212934?is_from_webapp=1&sender_device=pc`;
   }
+
+  const sender = m.sender.split(`@`)[0];
 
   try {
     await conn.reply(
@@ -142,7 +144,83 @@ var handler = async (m, { conn, args, usedPrefix, command }) => {
         m
       );
     } catch (error2) {
-      conn.reply(m.chat, `Error: ${error2}`, m);
+      // Server 2 failed, try Server 3
+      try {
+        await conn.reply(
+          m.chat,
+          "Tunggu sebentar kak, video sedang di download... server 3",
+          m
+        );
+
+        const tiktokData3 = await tryServer3(args[0]);
+
+        if (!tiktokData3) {
+          throw "Gagal mendownload video!";
+        }
+
+        const { data  } = tiktokData3;
+
+        const {
+          title,
+          play,
+          size,
+          wm_size,
+          hd_size,
+          play_count,
+          comment_count,
+          share_count,
+          download_count,
+          collect_count,
+          create_time,
+        } = data;
+      
+        const musicInfo = tiktokData3.data.music_info;
+        const { play: musicPlay, title: musicTitle } = musicInfo;
+      
+        const sizeInMB = (sizeInBytes) => (sizeInBytes / (1024 * 1024)).toFixed(2);
+      
+        const sizeInMB_size = sizeInMB(size);
+        const sizeInMB_wm_size = sizeInMB(wm_size);
+        const sizeInMB_hd_size = sizeInMB(hd_size);
+      
+        const pesan = `Judul = ${title}\nView = ${play_count}\nKomen = ${comment_count}\nShare = ${share_count}\nDownload = ${download_count}\nSimpan = ${collect_count}\nUpload = ${create_time}`;
+      
+        await conn.sendFile(
+          m.chat,
+          play,
+          'tiktok3.mp4',
+          `*TANPA WATERMARK*\nUkuran: ${sizeInMB_size} MB\n\n${pesan}`,
+          m
+        );
+        await conn.sendFile(
+          m.chat,
+          data.wmplay,
+          'tiktokwm3.mp4',
+          `*WATERMARK*\nUkuran: ${sizeInMB_wm_size} MB\n\n${pesan}`,
+          m
+        );
+        await conn.sendFile(
+          m.chat,
+          data.hdplay,
+          'tiktokhd3.mp4',
+          `*HD No Watermark (TANPA WATERMARK)*\nUkuran: ${sizeInMB_hd_size} MB\n\n${pesan}`,
+          m
+        );
+        await conn.sendFile(
+          m.chat,
+          musicPlay,
+          'tiktokmp3.mp3',
+          `*MUSIC*\nJudul: ${musicTitle}`,
+          m
+        );
+        await conn.reply(
+          m.chat,
+          "•⩊• Ini kak Videonya ૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა\nDitonton yah ₍^ >ヮ<^₎",
+          m
+        );
+      } catch (error3) {
+        conn.reply(m.chat, `Error: ${error3}`, m);
+      }
     }
   }
 };
@@ -174,6 +252,35 @@ async function tryServer1(url) {
   }
 }
 
+async function tryServer3(url) {
+  // Try using skizo.tech API as Server 3
+  try {
+    let skizoTechAPI = 'https://skizo.tech/api/tiktok';
+    let response = await axios.post(skizoTechAPI, {
+      'url': `${url}`
+    }, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0',
+        'Accept': '*/*',
+        'Accept-Language': 'id,en-US;q=0.7,en;q=0.3',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Referer': 'https://tiktok.vihangayt.me/',
+        'Content-Type': 'application/json',
+        'Authorization': 'https://skizo.tech',
+        'Origin': 'https://tiktok.vihangayt.me',
+        'Connection': 'keep-alive',
+        'Sec-Fetch-Dest': 'empty',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'cross-site',
+        'TE': 'trailers'
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
 
 async function convertVideoToMp3(videoUrl, outputFileName) {
   return new Promise((resolve, reject) => {
@@ -187,6 +294,7 @@ async function convertVideoToMp3(videoUrl, outputFileName) {
 
 handler.help = ["tiktok"].map((v) => v + " <url>");
 handler.tags = ["downloader"];
+handler.exp = 500
 handler.command = /^t(t|iktok(d(own(load(er)?)?|l))?|td(own(load(er)?)?|l))$/i;
 
 export default handler;
