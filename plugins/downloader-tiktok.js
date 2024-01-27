@@ -1,6 +1,7 @@
 import axios from "axios";
 import ffmpeg from "fluent-ffmpeg";
 import fs from "fs/promises";
+import { tiktokdl } from "@bochilteam/scraper-sosmed";
 
 var handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) {
