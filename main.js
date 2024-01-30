@@ -157,6 +157,7 @@ const connectionOptions = {
 
                 return message;
             }
+	connectTimeoutMs: 60000, defaultQueryTimeoutMs: 0, generateHighQualityLinkPreview: true, syncFullHistory: true, markOnlineOnConnect: true
 }
 
 global.conn = makeWASocket(connectionOptions)
