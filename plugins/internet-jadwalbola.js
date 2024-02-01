@@ -1,32 +1,34 @@
 // sebenernya masih adalagi liga italia, spanyol, champions, jerman, prancis. tapi memang belom dapet/ada jadwalnya jadi yang tersedia jadwalnya itu baru indonesia atau inggris
 // sering sering aja cek https://tr.deployers.repl.co/jadwal-pertandingan .
 // terimakasih.
+// ubah tr.deployers.repl.co menjadi https://0e87ad76-6c4e-40ff-bb5a-6bbdab145ae2-00-39qk1kw7vab6l.worf.replit.dev/
 
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, command }) => {
-  let res = await fetch('https://tr.deployers.repl.co/jadwal-pertandingan');
+  let res = await fetch('https://0e87ad76-6c4e-40ff-bb5a-6bbdab145ae2-00-39qk1kw7vab6l.worf.replit.dev/jadwal-pertandingan');
   if (res.status !== 200) throw await res.text();
   let json = await res.json();
-  
+  await m.reply('bentar dulu yakk...')
+
   if (!Array.isArray(json) || json.length === 0) {
     throw new Error('No data found');
   }
-  
+
   let output = '';
-  
+
   for (let i = 0; i < json.length; i++) {
     let data = json[i].data;
-    
+
     if (typeof data === 'string') {
-      output += `*_${json[i].judul}:_*\n${data}\n\n`;
+      output += `${json[i].judul}:\n\n==========================\n${data}\n\n--------------------------------\n\n`;
     } else if (Array.isArray(data)) {
-      let matchInfo = data.join('\n');
-      output += `*_${json[i].judul}:_*\n${matchInfo}\n\n`;
+      let matchInfo = data.join('\n\n');
+      output += `${json[i].judul}:\n\n==========================\n${matchInfo}\n\n----------------------------\n\n`;
     }
   }
-  
-  m.reply(output);
+
+  m.reply(`\`\`\`${output}\`\`\``);
 };
 
 handler.help = ['jadwalbola'];

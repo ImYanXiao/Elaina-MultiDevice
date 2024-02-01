@@ -33,6 +33,7 @@ import { tmpdir } from 'os'
 import readline from 'readline'
 import { format } from 'util'
 import pino from 'pino'
+import ws from 'ws'
 import {
     useMultiFileAuthState,
     DisconnectReason,
@@ -48,6 +49,7 @@ import {
     mongoDBV2
 } from './lib/mongoDB.js'
 
+const { CONNECTING } = ws
 const { chain } = lodash
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 
@@ -120,7 +122,7 @@ const connectionOptions = {
         version,
         logger: pino({ level: 'silent' }), 
         printQRInTerminal: !usePairingCode, 
-        browser: ['Chrome (Linux)', '', ''],
+        browser: ['Mac OS', 'safari', '5.1.10'],
         auth: { 
          creds: state.creds, 
          keys: makeCacheableSignalKeyStore(state.keys, pino().child({ 
@@ -154,7 +156,8 @@ const connectionOptions = {
                 }
 
                 return message;
-            }
+            }, 
+	connectTimeoutMs: 60000, defaultQueryTimeoutMs: 0, generateHighQualityLinkPreview: true, syncFullHistory: true, markOnlineOnConnect: true
 }
 
 global.conn = makeWASocket(connectionOptions)
