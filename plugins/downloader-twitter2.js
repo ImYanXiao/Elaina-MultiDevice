@@ -10,12 +10,12 @@ let handler = async (m, {
     command
 }) => {
     if (!text) {
-        return m.reply(`Masukkan Link:\n${usedPrefix + command} https://twitter.com/kegblgnunfaedh/status/1747862212725862428/`)
+        return m.reply(`Masukkan Link:\n${usedPrefix + command} https://twitter.com/kegblgnunfaedh/status/1747862212725862428/`);
     }
 
     const sender = m.sender.split(`@`)[0];
 
-    let url = `https://twitsave.com/info?url=${text}`
+    let url = `https://twitsave.com/info?url=${text}`;
     let headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
@@ -28,7 +28,7 @@ let handler = async (m, {
         'Sec-Fetch-Site': 'none',
         'Sec-Fetch-User': '?1',
         'TE': 'trailers'
-    }
+    };
 
     let res = await fetch(url, {
         method: 'GET',
@@ -39,11 +39,15 @@ let handler = async (m, {
     if (res.status !== 200) {
         throw new Error(`HTTP status ${res.status}`);
     }
-    
-    await m.reply("Maaf kalau spam, karena memungkinkan user mendownload dari semua server, karena ada server yang bisa saja mati.");
 
     let body = await res.text();
     const $ = cheerio.load(body);
+
+    if ($('div.bg-white.dark\\:bg-slate-800.shadow-md.rounded.border-slate-200.p-5 div.flex.w-full.justify-center.items-start div.flex div.text-xl.text-center:contains("Sorry, we could not find any video on this tweet. It may also be a tweet from a private account.")').length > 0) {
+        return conn.reply(m.chat, "Sorry, we could not find any video on this tweet. It may also be a tweet from a private account.", m);
+    }
+
+    await m.reply("Maaf kalau spam, karena memungkinkan user mendownload dari semua server, karena ada server yang bisa saja mati.");
 
     const filteredHrefs = $('a[href^="https://twitsave.com/download?file="]').map((index, element) => {
         return $(element).attr('href');
@@ -53,12 +57,10 @@ let handler = async (m, {
         const response = await fetch(href);
         return response.redirected ? response.url : href;
     }));
-    
+
     let server = 0;
 
     for (const finalURL of finalURLs) {
-        // Bodo amat, gw kirim semua file downloadnya dari berbagai server
-        // await conn.sendFile(m.chat, finalURL, 'filename.mp4', 'File caption');
         server++;
         await conn.sendMessage(m.chat, {
                 video: {
@@ -72,8 +74,8 @@ let handler = async (m, {
     }
 };
 
-handler.help = ['twitsave', 'xdl','x','twitdl','twitterdownloader','txdl'].map(v => v + ' <url>');
-handler.tags = ['downloader','twitter','internet'];
-handler.command = /^(twitsave|x|twitdl|xdl|twitterdownloader|txdl)$/i
+handler.help = ['twitsave', 'xdl', 'x', 'twitdl', 'twitterdownloader', 'txdl'].map(v => v + ' <url>');
+handler.tags = ['downloader', 'twitter', 'internet'];
+handler.command = /^(twitsave|x|twitdl|xdl|twitterdownloader|txdl)$/i;
 
 export default handler;
