@@ -51,6 +51,7 @@
       "cfonts": "^3.2.0",
       "chalk": "^5.3.0",
       "cheerio": "^1.0.0-rc.12",
+      "cheerio-without-node-native": "^0.20.2",
       "colors": "^1.4.0",
       "deepai": "^1.0.23",
       "dhn-api": "^1.1.3",
