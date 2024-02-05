@@ -1,3 +1,9 @@
+/*
+* This is credit: Xnuvers007, ImYanXiao and fdown.net
+* 𝕏𝕟𝕦𝕧𝕖𝕣𝕤𝟘𝟘𝟟
+* https://github.com/Xnuvers007
+*/
+
 import fetch from 'node-fetch';
 import cheerio from 'cheerio-without-node-native';
 
