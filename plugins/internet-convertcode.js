@@ -14,19 +14,7 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
     }
 
     const headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0',
-    'Accept': 'application/json, text/plain, */*',
-    'Accept-Language': 'id,en-US;q=0.7,en;q=0.3',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImMwYWQ5YzY1YzEzMGM1QGNhc2hiZW50aWVzLmNvbSIsImlhdCI6MTcwNzE1OTgwN30.y1EpKl7B67N5NPE8cpxG0OHGPnI32YxrjWdeDV57-wo',
-    'Origin': 'https://codeconverter.com',
-    'Connection': 'keep-alive',
-    'Referer': 'https://codeconverter.com/',
-    'Sec-Fetch-Dest': 'empty',
-    'Sec-Fetch-Mode': 'cors',
-    'Sec-Fetch-Site': 'same-site',
-    'TE': 'trailers'
+    'Content-Type': 'application/json'
     };
 
     const json_data = {
