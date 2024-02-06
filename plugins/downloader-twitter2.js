@@ -1,4 +1,5 @@
 // https://saweria.co/xnuvers007
+// Credit: Xnuvers007
 
 import fetch from 'node-fetch';
 import cheerio from 'cheerio-without-node-native';
@@ -17,19 +18,12 @@ let handler = async (m, {
 
     let url = `https://twitsave.com/info?url=${text}`;
     
-    let headers = {
+        let headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-        'Accept-Language': 'id,en-US;q=0.7,en;q=0.3',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Connection': 'keep-alive',
-        'Upgrade-Insecure-Requests': '1',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'none',
-        'Sec-Fetch-User': '?1',
-        'TE': 'trailers'
+        'Connection': 'keep-alive'
     };
+
 
     try {
         let res = await fetch(url, {
@@ -46,7 +40,6 @@ let handler = async (m, {
         const $ = cheerio.load(body);
 
         if ($('div.bg-white.dark\\:bg-slate-800.shadow-md.rounded.border-slate-200.p-5 div.flex.w-full.justify-center.items-start div.flex div.text-xl.text-center:contains("Sorry, we could not find any video on this tweet. It may also be a tweet from a private account.")').length > 0) {
-            // If the first server returns a specific error, switch to the second server
             conn.reply(m.chat, "Sorry, we could not find any video on this tweet. It may also be a tweet from a private account.\nfrom https://twitsave.com *WAITING FOR SERVER 2* using https://ssstwitter.com", m);
             return handleSecondServer(m, conn, text, sender);
         }
@@ -81,18 +74,7 @@ let handler = async (m, {
     }
 };
 
-// Function to handle the second server
 async function handleSecondServer(m, conn, text, sender) {
-    const cookies = {
-        'PHPSESSID': 'u4t24ud7hqvdtmgfthu8g77ig2',
-        '__cflb': '04dToTykDEJ51J1cp6RBBEjtYw7AgvGNzqxzkXL9eM',
-        '_ga_RCQKEYPTD1': 'GS1.1.1706907874.1.0.1706907979.60.0.0',
-        '_ga': 'GA1.1.78712569.1706907872',
-        '__gads': 'ID=0a734b31f1b5fe80:T=1706907866:RT=1706907866:S=ALNI_MZK8FDYhpNBXlXRg7op7hfjC9LF-w',
-        '__gpi': 'UID=00000cf71d1155c2:T=1706907866:RT=1706907866:S=ALNI_MZmQxGkb5i09Zd2rQsBrfjjcLge_Q',
-        '__eoi': 'ID=3f3a7bd96bcefda6:T=1706907866:RT=1706907866:S=AA-AfjZ5Toraqi7VqTVBC9xDysho',
-        'FCNEC': '%5B%5B%22AKsRol_C3YSw1aHCsDEkMPsv3yLzz0IyE2POIHxgVQJjG7EziWra1UvsvqoAXjGsZbcozQEJHq9yU77mA4d8pAWE8Ym098FGCWBWxTr13-jS8SsdvPtkU-YODlfgDeVLQngivaIv2n5JVxjpHoR22V2oKi2c8KBWmg%3D%3D%22%5D%5D',
-    };
 
     const headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0',
@@ -121,7 +103,7 @@ async function handleSecondServer(m, conn, text, sender) {
             method: 'POST',
             headers: {
                 ...headers,
-                'Cookie': Object.entries(cookies).map(([key, value]) => `${key}=${value}`).join('; ')
+                //'Cookie': Object.entries(cookies).map(([key, value]) => `${key}=${value}`).join('; ')
             },
             body: new URLSearchParams(data),
         });
@@ -134,12 +116,10 @@ async function handleSecondServer(m, conn, text, sender) {
             const encodedUrl = $(element).attr('href').split('ssstwitter/')[1];
             const decodedUrl = Buffer.from(encodedUrl, 'base64').toString('utf-8');
 
-            // Sending the file
             conn.sendFile(m.chat, decodedUrl, 'twitter.mp4', `By: @${sender}`, m, false, {
                 asDocument: true
             });
 
-            // Sending a message with the video URL
             conn.sendMessage(m.chat, {
                 video: {
                     url: decodedUrl
@@ -153,7 +133,6 @@ async function handleSecondServer(m, conn, text, sender) {
     }
 }
 
-// Function to generate a random alphanumeric string
 function generateRandomAlphanumericString(length = 10) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
@@ -163,7 +142,6 @@ function generateRandomAlphanumericString(length = 10) {
     return result;
 }
 
-// Function to generate a random numeric string
 function generateRandomNumericString(length = 10) {
     const characters = '0123456789';
     let result = '';
