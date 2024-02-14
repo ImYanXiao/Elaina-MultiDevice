@@ -6,6 +6,8 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!text) {
       return conn.reply(m.chat, `Silakan coba lagi, teks jangan kosong.\n*Ex: ${usedPrefix + command} berikan saya kodingan python kalkulator!*`, m);
     }
+      
+    conn.reply(m.chat, "Mohon tunggu sebentar\n"+wait, m);
 
     const response = await fetch(`https://aemt.me/gemini?text=${encodeURIComponent(text)}`);
     if (!response.ok) {
@@ -29,6 +31,7 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
 handler.help = ['gemini <Query>'];
 handler.tags = ['tools','internet'];
 handler.limit = 2;
+handler.register = true;
 
 handler.command = /^(bard|gemini?)$/i;
 
