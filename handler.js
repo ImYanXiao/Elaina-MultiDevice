@@ -139,8 +139,6 @@ export async function handler(chatUpdate) {
         }
         if (opts['nyimak'])
             return
-        if (!m.fromMe && opts['self'])
-            return
         if (opts['pconly'] && m.chat.endsWith('g.us'))
             return
         if (opts['gconly'] && !m.chat.endsWith('g.us'))
