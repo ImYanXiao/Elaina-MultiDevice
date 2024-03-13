@@ -1,16 +1,44 @@
-import { webp2png } from '../lib/webp2mp4.js'
-var handler = async (m, { conn, usedPrefix, command }) => {
-    if (!m.quoted) throw `Reply sticker with command *${usedPrefix + command}*`
-    const q = m.quoted ? m.quoted : m
-    let name = await conn.getName(m.sender) 
-    let mime = q.mediaType || ''
-    if (!/sticker/.test(mime)) throw `Reply sticker with command *${usedPrefix + command}*`
-    let media = await q.download()
-    let out = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
-    await conn.sendFile(m.chat, out, 'out.png', 'Request By ' + name, m)
-}
-handler.help = ['toimg (reply)']
-handler.tags = ['sticker']
-handler.command = ['toimg']
+import sharp from 'sharp';
 
-export default handler
+const TIMEOUT = 10000; // 10 detik
+
+let handler = async (m, { conn, usedPrefix, command }) => {
+  const notStickerMessage = `Reply sticker dengan command *${usedPrefix + command}*`;
+
+  if (!m.quoted) throw notStickerMessage;
+
+  const q = m.quoted || m;
+  const mime = q.mimetype || '';
+
+  if (!/image\/webp/.test(mime)) throw notStickerMessage;
+
+  try {
+    // Download sticker
+    const media = await q.download();
+
+    // Dekoding WebP tanpa webp-js
+    const decodedBuffer = await sharp(media).toFormat('png').toBuffer();
+
+    // Send PNG image
+    if (decodedBuffer.length > 0) {
+      await conn.sendFile(m.chat, decodedBuffer, 'out.png', '*DONE (≧ω≦)ゞ*', m);
+    } else {
+      throw 'Gagal mengonversi stiker menjadi gambar.';
+    }
+  } catch (error) {
+    console.error(error);
+    if (error.message === 'Timeout of 10000ms exceeded') {
+      m.reply('Proses konversi terlalu lama. Silakan coba lagi.');
+    } else {
+      m.reply(`Terjadi kesalahan: ${error.message}`);
+    }
+  }
+};
+
+handler.help = ['toimg (reply)'];
+handler.tags = ['sticker'];
+handler.command = ['toimg'];
+
+handler.register = true;
+
+export default handler;
