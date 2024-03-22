@@ -12,6 +12,7 @@
     "scripts": {
         "start": "node index.js",
         "test": "node test.js",
+        "mongodb": "node . --db 'url mongodbmu'",
         "test2": "nodemon index.js"
     },
     "keywords": [
