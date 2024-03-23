@@ -42,6 +42,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
 handler.help = ["toramexp"];
 handler.tags = ["game"];
-handler.command = /^(toramexp)$/i;
+handler.command = /^(toram(exp|onlineexp|farm)?|toe)$/i;
 
 export default handler;
