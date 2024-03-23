@@ -25,7 +25,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
     const data = response.data;
 
-    let message = `Scrape: ${data.url + "\nServer : " + data.server}\n\nExp Required: ${data.Exp_Required}\n\nMonsters:\n`;
+    let message = `*GAME NAME : ToramOnline (FREE)*\nGoogle Playstore: https://play.google.com/store/apps/details?id=com.asobimo.toramonline\nSteam: https://store.steampowered.com/app/1827180/Toram_Online/\nScrape: ${data.url + "\nServer : " + data.server}\n\nExp Required: ${data.Exp_Required}\n\nMonsters:\n`;
     data.Monsters.forEach((monster) => {
       message += `- Monster: ${monster.Monster}\n  Level: ${monster.Level}\n  Location: ${monster.Location}\n  EXP: ${monster.EXP}\n\n`;
     });
