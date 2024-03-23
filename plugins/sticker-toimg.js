@@ -17,8 +17,11 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     const media = await q.download();
 
     // Dekoding WebP tanpa webp-js
-    const decodedBuffer = await sharp(media).toFormat('png').toBuffer();
-
+    const decodedBuffer = await sharp(media).toFormat('png')
+      .resize(4096, 4096) // gambar jadi di tingkatkan resolusi jadi 4K
+      .png({ quality: 100, progressive: true, compressionLevel: 9 }) // Kompresi minimum tapi kualitas nya op cuy :V
+      .toBuffer(); // biasalah jadi buffer bjir
+      
     // Send PNG image
     if (decodedBuffer.length > 0) {
       await conn.sendFile(m.chat, decodedBuffer, 'out.png', '*DONE (≧ω≦)ゞ*', m);
@@ -38,7 +41,6 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 handler.help = ['toimg (reply)'];
 handler.tags = ['sticker'];
 handler.command = ['toimg'];
-
-handler.register = true;
+handler.exp = 1500
 
 export default handler;
