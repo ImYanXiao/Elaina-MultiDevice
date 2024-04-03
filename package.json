@@ -4,6 +4,9 @@
     "description": "BOT Whatsapp",
     "main": "index.js",
     "type": "module",
+    "engines": { 
+    "node": "v21.7.1" 
+    },
     "directories": {
         "lib": "lib",
         "src": "src",
