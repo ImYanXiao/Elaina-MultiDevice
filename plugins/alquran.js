@@ -4,8 +4,7 @@ const maxRetries = 3;
 const retryDelay = 10000; // jeda 10 detik
 
 let handler = async (m, { args, usedPrefix, command }) => {
-    const daftarsurah = `
-contoh:
+    const daftarsurah = `contoh:
 .alquran 1 2
 
 maka hasilnya adalah surah Al-Fatihah ayat 2 beserta audionya, & ayatnya 1 saja
