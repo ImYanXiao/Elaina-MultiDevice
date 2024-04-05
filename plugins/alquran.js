@@ -408,8 +408,8 @@ English: ${api[args[0] - 1].ayahs[args[1] - 1].translation.en}
   
 *Tafsir: ${api[args[0] - 1].ayahs[args[1] - 1].tafsir.id}*
 `.trim();
-    m.reply(mes);
-    conn.sendFile(m.chat, api[args[0] - 1].ayahs[args[1] - 1].audio.url, '', `( Q.S ${api[args[0] - 1].asma.id.short} (${api[args[0] - 1].asma.ar.short}) : ${api[args[0] - 1].ayahs[args[1] - 1].number.insurah} )`, m);
+    await m.reply(mes);
+    await conn.sendFile(m.chat, api[args[0] - 1].ayahs[args[1] - 1].audio.url, '', `( Q.S ${api[args[0] - 1].asma.id.short} (${api[args[0] - 1].asma.ar.short}) : ${api[args[0] - 1].ayahs[args[1] - 1].number.insurah} )`, m);
 }
 
 handler.help = ['alquran']
