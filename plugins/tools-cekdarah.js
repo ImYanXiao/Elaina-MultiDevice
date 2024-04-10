@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 const translateResult = async (hasil) => {
     const fromLang = 'en';
     const toLang = 'id';
-    const url = `https://tr.deployers.repl.co/translate?from=${fromLang}&to=${toLang}&text=${encodeURIComponent(hasil)}`;
+    const url = `https://bioskop-six.vercel.app/translate?from=${fromLang}&to=${toLang}&text=${encodeURIComponent(hasil)}`;
 
     try {
         const response = await fetch(url);
@@ -15,16 +15,16 @@ const translateResult = async (hasil) => {
     }
 };
 
-const handler = async (m, { conn, args }) => {
+const handler = async (m, { conn, args, usedPrefix, command }) => {
     if (args.length < 1) {
-        throw 'Masukkan data tensi dan hb dengan format: .cekdarah tensi|hb';
+        throw `Masukkan data tensi dan hb dengan format: ${usedPrefix + command} tensi|hb`;
     }
 
     // Mendapatkan data tensi dan hb dari argumen
     const [tensi, hb] = args[0].split('|');
 
     // Membuat URL dengan menggunakan data tensi dan hb
-    const url = `https://tr.deployers.repl.co/bp?tensi=${tensi}&hb=${hb}`;
+    const url = `https://bioskop-six.vercel.app/bp?tensi=${tensi}&hb=${hb}`;
 
     try {
         // Melakukan permintaan HTTP GET ke URL
@@ -43,7 +43,7 @@ const handler = async (m, { conn, args }) => {
 
         // Menampilkan data yang diambil sebagai balasan
       
-        const mySecret = "NOMER KALIAN"
+        const mySecret = process.env['nomer']
       
         const caption = `
 Author: ${author}\n
@@ -52,7 +52,7 @@ _Hasil: ${hasil}_
 Hb: ${hbValue}
 Tensi: ${tensiValue}\n
 Parameter: ${parameter}\n\n
-Donate: https://tr.deployers.repl.co/images\nDana: ${mySecret}
+Donate: https://bioskop-six.vercel.app/images\nDana: ${mySecret}
         `;
 
         conn.reply(m.chat, caption, m);
