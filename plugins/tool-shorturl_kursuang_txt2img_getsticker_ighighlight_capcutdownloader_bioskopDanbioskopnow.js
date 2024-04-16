@@ -107,7 +107,7 @@ dan lain lain (etc.), for more ? check google or https://www.bola.com/ragam/read
     if (!args[0]) throw `${usedPrefix}${command} https://mykingbee.blogspot.com/`;
 
     try {
-      const response = await fetch(`https://tr.deployers.repl.co/short?url=${args[0]}`);
+      const response = await fetch(`https://bioskop-six.vercel.app/short?url=${args[0]}`);
 
       if (response.ok) {
         const data = await response.json();
@@ -247,7 +247,7 @@ conn.reply(m.chat, 'Sedang membuat gambar...', m);
     if (!args[0]) throw `Ex:\n${usedPrefix}${command} https://www.capcut.com/t/Zs82ASjAk/`;
 
     try {
-      let url = `https://tr.deployers.repl.co/capcut?url=${args[0]}`;
+      let url = `https://bioskop-six.vercel.app/capcut?url=${args[0]}`;
       let response = await fetch(url);
       let result = await response.json();
 
