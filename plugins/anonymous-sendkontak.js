@@ -14,8 +14,9 @@ async function handler(m, { command, conn, text }) {
 ➔ Nama: ${name}`
     this.reply(m.chat, 'Sedang Menggirimkan Kontak...')
 	if (other) this.reply(other, `Partner mengirimkan kontak kepadamu`)
-	if (other) this.sendFile(other, await conn.profilePictureUrl(m.sender, 'image').catch(_ => './src/avatar_contact.png'), '', `${htki} ᴀɴᴏɴʏᴍᴏᴜs ᴄʜᴀᴛs ${htka}\n' + tks, 0,  { mentionedJid: [m.sender]})
+	if (other) this.sendFile(other, await conn.profilePictureUrl(m.sender, 'image').catch(_ => './src/avatar_contact.png'), '', `${htki} ᴀɴᴏɴʏᴍᴏᴜs ᴄʜᴀᴛs ${htka}\n` + tks, 0,  { mentionedJid: [m.sender]})
 }
+
 handler.help = ['sendkontak']
 handler.tags = 'anonymous'
 handler.command = /^(sendkontak)$/i
