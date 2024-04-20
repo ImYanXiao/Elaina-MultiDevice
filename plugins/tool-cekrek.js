@@ -1,28 +1,5 @@
 import fetch from 'node-fetch';
 
-const normalizeAccountNumber = (accountNumber) => {
-  // Menghapus semua strip (-) dan spasi
-  const noDashSpaceNumber = accountNumber.replace(/[-\s]/g, '');
-    
-  // Jika nomor dimulai dengan +62, menggantinya dengan +62
-  if (noDashSpaceNumber.startsWith('+62')) {
-    return noDashSpaceNumber;
-  }
-  
-  // Jika nomor dimulai dengan 0 atau 8, atau panjangnya 10 digit
-  if (noDashSpaceNumber.startsWith('0') || noDashSpaceNumber.startsWith('8') || noDashSpaceNumber.length === 10) {
-    return '+62' + noDashSpaceNumber.substring(1);
-  }
-  
-  // Jika nomor dimulai dengan +62
-  if (noDashSpaceNumber.startsWith('62')) {
-    return '+62' + noDashSpaceNumber.substring(2);
-  }
-  
-  // Mengembalikan nomor yang tidak berubah jika tidak sesuai dengan format di atas
-  return accountNumber;
-}
-
 var handler = async (m, { conn, args, usedPrefix , command }) => {
   const codebanks = `
 name = bank_code
@@ -186,12 +163,11 @@ UOB/CITI CC = uob_cc
 Wokee/Bukopin = bukopin
 `;
     
-  if (args.length < 2) throw `*_Masukan Kode Bank dan Nomor Rekening!_*\nContoh: *cekrek dana 08123456789*\nContoh: *${usedPrefix + command} bank_kode rekening \n\n${codebanks}`;
+  if (args.length < 2) throw `*_Masukan Kode Bank dan Nomor Rekening!_*\nContoh: \n > *${usedPrefix + command} dana 08123456789*\n > *${usedPrefix + command} dana 628123456789*\n > *${usedPrefix + command} dana +628123456789*\n > *${usedPrefix + command} bca 6812345678*\nContoh: _*${usedPrefix + command} bank_kode rekening*_ \n\n\`\`\`${codebanks}\`\`\``;
 
   const bankCode = args[0];
-  //const accountNumber = args.slice(1).join('|');
-  const accountNumber = normalizeAccountNumber(args.slice(1).join(' '));
-    
+  const accountNumber = args.slice(1).join(' ');
+
   const currentTime = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
   const currentTime2 = new Date().toLocaleString('en-US', { timeZone: 'Asia/Makassar' });
   const currentTime3 = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jayapura' });
