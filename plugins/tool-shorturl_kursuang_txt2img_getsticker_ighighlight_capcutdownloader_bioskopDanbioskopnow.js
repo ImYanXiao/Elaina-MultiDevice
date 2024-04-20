@@ -117,7 +117,8 @@ dan lain lain (etc.), for more ? check google or https://www.bola.com/ragam/read
         const ouo = data.ouo;
         const tinyurl = data.tinyurl;
         const vgd = data.vgd;
-        const formattedData = `Author: ${author}\n\nLink Asli ${args[0]}\n=====SHORT LINK=====\nBitly: ${bitly}\nIsgd: ${isgd}\nOuo: ${ouo}\nTinyURL: ${tinyurl}\nVgd: ${vgd}`;
+        const shorterme = data.shorterme
+        const formattedData = `Author: ${author}\n\nLink Asli ${args[0]}\n=====SHORT LINK=====\nBitly: ${bitly}\nIsgd: ${isgd}\nOuo: ${ouo}\nTinyURL: ${tinyurl}\nVgd: ${vgd}\nShorterme: ${shorterme}`;
         m.reply(formattedData);
       } else {
         m.reply('Failed to retrieve data. Please try again later.');
