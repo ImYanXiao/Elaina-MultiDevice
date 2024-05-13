@@ -1,3 +1,5 @@
+// APIKEY Pastebin By Xnuvers007
+
 import fetch from 'node-fetch';
 import os from 'os';
 
@@ -37,7 +39,5 @@ var handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.help = ['paste <text/code>', 'pastebin <text/code>'];
 handler.tags = ['info', 'tool', 'internet'];
 handler.command = /^(pastebin|paste)$/i;
-
-export default handler;
 
 export default handler;
