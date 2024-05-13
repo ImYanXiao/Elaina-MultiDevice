@@ -34,8 +34,10 @@ var handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 };
 
-handler.command = 'pastebin';
-handler.help = ['pastebin'];
-handler.tags = ['python'];
+handler.help = ['paste <text/code>', 'pastebin <text/code>'];
+handler.tags = ['info', 'tool', 'internet'];
+handler.command = /^(pastebin|paste)$/i;
+
+export default handler;
 
 export default handler;
