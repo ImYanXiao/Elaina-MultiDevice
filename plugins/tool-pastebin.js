@@ -38,6 +38,7 @@ var handler = async (m, { conn, text, usedPrefix, command }) => {
 
 handler.help = ['paste <text/code>', 'pastebin <text/code>'];
 handler.tags = ['info', 'tool', 'internet'];
-handler.command = /^(pastebin|paste)$/i;
+// handler.command = /^(pastebin|paste)$/i;
+handler.command = /^(paste(bin)?)$/i;
 
 export default handler;
