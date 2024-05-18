@@ -72,7 +72,7 @@ handler.all = async function (m) {
 					mediaUrl: sgc,
 					description: wm3,
 					previewType: "PHOTO",
-					thumbnail: await (await fetch(pic)).buffer(),
+					thumbnail: await (await fetch(pp)).buffer(),
 					sourceUrl: "https://github.com/ImYanXiao"			
 				}
 			}
