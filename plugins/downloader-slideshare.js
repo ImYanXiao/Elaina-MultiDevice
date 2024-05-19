@@ -2,12 +2,14 @@ import fetch from 'node-fetch';
 
 const handler = async (m, { conn, args, command, usedPrefix }) => {
     if (args.length < 1) {
-        conn.reply(m.chat, `Silakan berikan URL SlideShare\nContoh: \n *${usedPrefix + command} LINKNYA*`, m);
+        conn.reply(m.chat, `> Silakan berikan URL SlideShare\n\nContoh: \n*${usedPrefix + command} LINKNYA*\n*${usedPrefix + command} https://www.slideshare.net/StevanyStevany/materi-lengkap-tentang-power-point*`, m);
         return;
     }
     
     const url = args[0];
     const filetypes = ['pdf', 'pptx'];
+    
+    m.reply(`> ${wait}`);
 
     try {
         for (const filetype of filetypes) {
