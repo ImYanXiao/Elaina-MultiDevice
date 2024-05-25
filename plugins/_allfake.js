@@ -6,7 +6,6 @@ import fs from 'fs'
 import fetch from 'node-fetch'
 import axios from 'axios'
 import moment from 'moment-timezone'
-import knights from 'knights-canvas'
 
 let handler = m => m
 handler.all = async function (m) {
@@ -26,6 +25,7 @@ handler.all = async function (m) {
 		// Module 
 		global.fetch = (await import('node-fetch')).default
 		global.bochil = await import('@bochilteam/scraper')
+                global.fs = fs
 		
                 // Function
                 global.pickRandom = function pickRandom(list) {
@@ -52,8 +52,6 @@ handler.all = async function (m) {
 	}
 }
 
-		const _uptime = process.uptime() * 1000
-        
 		// ucapan ini mah
 		global.ucapan = ucapan()
 		
@@ -63,6 +61,7 @@ handler.all = async function (m) {
      		// externalAdReply atau text with thumbnail. gatau bahasa Inggris? coba translate!
 		global.adReply = {
 			contextInfo: {
+				mentionedJid:[m.sender], 
 				forwardingScore: 9999,
 				//isForwarded: true, // ini biar ada tulisannya diteruskan berkali-kali, jika ingin di hilangkan ganti true menjadi false
 				externalAdReply: { // Bagian ini sesuka kalian berkreasi :'v
