@@ -39,13 +39,17 @@ coded by https://github.com/Xnuvers007 [Xnuvers007]
     text = text;
   }
 
-  let _url = new URL(text);
+/*  let _url = new URL(text);
   let url = global.API(
     _url.origin,
     _url.pathname,
     Object.fromEntries(_url.searchParams.entries()),
     "APIKEY",
   );
+  */
+
+  let _url = new URL(text);
+  let url = _url.href;
 
   // mengkonfigurasi seberapa banyak melakukan redirect, misal url di short sebanyak 1000 maka melakukan redirect 1000 kali (optional: 999999)
 
