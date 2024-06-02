@@ -14,11 +14,13 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 			stiker = await addExif(img, packname || '', author || '')
 		} else if (/image/g.test(mime)) {
 			let img = await q.download?.()
-			stiker = await createSticker(img, false, packname, author)
-		} else if (/video/g.test(mime)) {
-		//	if ((q.msg || q).seconds > 10) throw 'Max 10 seconds!'
+			stiker = await createSticker(img, false, packname || global.packname, conn.getName(m.sender) || author)
+		} else if (/jpeg/g.test(mime)) {
 			let img = await q.download?.()
-			stiker = await mp4ToWebp(img, { pack: packname, author: author })
+			stiker = await createSticker(img, false, packname || global.packname, conn.getName(m.sender) || author)
+		} else if (/video/g.test(mime)) {
+			let img = await q.download?.()
+			stiker = await mp4ToWebp(img, { pack: global.packname, author: author })
 		} else if (args[0] && isUrl(args[0])) {
 			stiker = await createSticker(false, args[0], '', author, 20)
 		} else throw `Reply an image/video/sticker with command ${usedPrefix + command}`
@@ -29,9 +31,9 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 		m.reply(stiker)
 	}
 }
-handler.help = ['sticker']
+handler.help = ['stiker (caption|reply media)']
 handler.tags = ['sticker']
-handler.command = /^s(tic?ker)?(gif)?(wm)?$/i
+handler.command = /^s(tc)?(tic?ker)?(gif)?(wm)?$/i
 
 export default handler
 
