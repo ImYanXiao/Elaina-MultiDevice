@@ -122,6 +122,8 @@ const connectionOptions = {
         version,
         logger: pino({ level: 'silent' }), 
         printQRInTerminal: !usePairingCode, 
+	// Optional If Linked Device Could'nt Connected
+	// browser: ['Mac OS', 'chrome', '125.0.6422.53']
         browser: ['Mac OS', 'safari', '5.1.10'],
         auth: { 
          creds: state.creds, 
@@ -262,8 +264,8 @@ global.reloadHandler = async function (restatConn) {
         const Handler = await import(`./handler.js?update=${Date.now()}`).catch(console.error)*/
     try {
 	// Jika anda menggunakan replit, gunakan yang sevenHoursLater dan tambahkan // pada const Handler
-	// Default: server/vps/panel, replit + 7 jam buat jam indonesia
-        // const sevenHoursLater = Date.now() + 7 * 60 * 60 * 1000;
+	// Default: server/vps/panel, replit + 7 jam buat jam indonesia Jika Tidak Faham Pakai Milidetik 3600000 = 1 Jam Dan Kalikan 7 = 25200000
+        // const sevenHoursLater = Dateindonesia 7 * 60 * 60 * 1000;
         const Handler = await import(`./handler.js?update=${Date.now()}`).catch(console.error)
       // const Handler = await import(`./handler.js?update=${sevenHoursLater}`).catch(console.error)
         if (Object.keys(Handler || {}).length) handler = Handler
