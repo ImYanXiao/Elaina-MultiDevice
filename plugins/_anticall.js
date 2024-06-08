@@ -13,7 +13,7 @@ export async function all(m) {
 	
 	if (m.messageStubType === (WAMessageStubType.CALL_MISSED_VOICE || WAMessageStubType.CALL_MISSED_VIDEO )) {
 	    await delay(1000) 
-		await conn.reply(m.chat, `Kamu Diblokir Karena Menelpon Bot!!`, fakes)
+		await conn.reply(m.chat, `Kamu Diblokir Karena Menelpon Bot!!`, m)
 		return conn.updateBlockStatus(m.chat, "block") 
 	}
 }
