@@ -1,5 +1,6 @@
 import { youtubedl, youtubedlv2, youtubeSearch } from '@bochilteam/scraper';
 import fetch from 'node-fetch';
+import ytdl from 'ytdl-core'
 
 var handler = async (m, { conn, args, command, text, usedPrefix }) => {
 
@@ -42,11 +43,11 @@ if (command == 'play', 'ytplay', 'youtubeplay') {
       },
     });
 
-    const yt = await youtubedl(url).catch(async (_) => await youtubedlv2(url));
-    const link = await yt.audio['128kbps'].download();
+    const yt = await ytdl.getInfo(url, { lang: 'id' });
+    const link = ytdl.chooseFormat(yt.formats, { format: '320', filter: 'videoandaudio' });
     let doc = {
       audio: {
-        url: link,
+        url: link.url,
       },
       mimetype: 'audio/mp4',
       fileName: `${title}`,
@@ -121,27 +122,25 @@ function getPlaylistInfo(playlistData) {
 
 if (command == 'yta', 'ytmp3', 'getaud', 'youtubemp3') {
   if (!args[0]) throw 'Urlnya Mana Banh? >:('
-  let q = '128kbps'
   let v = args[0]
 
   // Ambil info dari video
   const yt = await youtubedl(v).catch(async () => await  youtubedlv2(v))
-  const dl_url = await yt.audio[q].download()
+  const data = await ytdl.getInfo(v, { lang: 'id' });
+  const dl = ytdl.chooseFormat(data.formats, { format: '320', filter: 'videoandaudio' });
   const ttl = await yt.title
-  const size = await yt.audio[q].fileSizeH
 
   await m.reply('Permintaan download audio/mp3 youtube sedang diproses, mohon bersabar...')
 
   // Tampilkan informasi file beserta thumbnail
   const info = `
 ▢ Judul: ${ttl}
-▢ Ukuran: ${size}
 ▢ Link YouTube: ${v}
 ▢ Credits by Xnuvers007, https://github.com/Xnuvers007`
 
   // Kirim pesan dan file audio ke user
   await conn.sendMessage(m.chat, { 
-    document: { url: dl_url }, 
+    document: { url: dl.url }, 
     mimetype: 'audio/mpeg', 
     fileName: `${ttl}.mp3`,
     caption: info
