@@ -44,6 +44,7 @@ import {
     } from '@adiwajshing/baileys'
 import { Low, JSONFile } from 'lowdb'
 import { makeWASocket, protoType, serialize } from './lib/simple.js'
+import { cloudDBAdapter } from './lib/cloudDBAdapter.js'
 import {
     mongoDB,
     mongoDBV2
@@ -97,7 +98,6 @@ global.loadDatabase = async function loadDatabase() {
     global.db.chain = chain(db.data)
 }
 loadDatabase()
-const useStore = !process.argv.includes('--use-store')
 const usePairingCode = !process.argv.includes('--use-pairing-code')
 const useMobile = process.argv.includes('--mobile')
 
@@ -107,14 +107,6 @@ var question = function(text) {
             });
         };
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
-
-const store = useStore ? makeInMemoryStore({ level: 'silent' }) : undefined
-
-store?.readFromFile('./elaina_store.json')
-// save every 10s
-setInterval(() => {
-	store?.writeToFile('./elaina_store.json')
-}, 10_000)
 
 const { version, isLatest} = await fetchLatestBaileysVersion()
 const { state, saveCreds } = await useMultiFileAuthState('./sessions')
@@ -203,17 +195,29 @@ function clearTmp() {
   })
 }
 
-function clearSessions(folder = 'sessions') {
-	let filename = []
-	readdirSync(folder).forEach(file => filename.push(join(folder, file)))
-	return filename.map(file => {
-		let stats = statSync(file)
-		if (stats.isFile() && (Date.now() - stats.mtimeMs >= 1000 * 60 * 120)) { // 1 hours
-			console.log('Deleted sessions', file)
-			return unlinkSync(file)
-		}
-		return false
-	})
+async function clearSessions(folder = './sessions') {
+  try {
+    const filenames = await readdirSync(folder);
+    const deletedFiles = await Promise.all(filenames.map(async (file) => {
+      try {
+        const filePath = path.join(folder, file);
+        const stats = await statSync(filePath);
+        if (stats.isFile() && file !== 'creds.json') {
+          await unlinkSync(filePath);
+          console.log('Deleted session:'.main, filePath.info);
+          return filePath;
+        }
+      } catch (err) {
+        console.error(`Error processing ${file}: ${err.message}`);
+      }
+    }));
+    return deletedFiles.filter((file) => file !== null);
+  } catch (err) {
+    console.error(`Error in Clear Sessions: ${err.message}`);
+    return [];
+  } finally {
+    setTimeout(() => clearSessions(folder), 1 * 3600000); // 1 Hours
+  }
 }
 
 async function connectionUpdate(update) {
