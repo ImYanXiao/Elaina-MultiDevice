@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 let timeout = 120000
 let poin = 4999
 let handler = async (m, { conn, command, usedPrefix }) => {
-let imgr = flaaa.getRandom()
+let imgr = global.flaaa
 
     conn.susunkata = conn.susunkata ? conn.susunkata : {}
     let id = m.chat
