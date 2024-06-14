@@ -17,9 +17,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
 Created by ${global.namebot} 
 `
 
-    let you = flaaa.getRandom()
-
-    await conn.sendFile(m.chat, you + 'Donasi', 'donasi.jpg', m); 
+    await conn.sendFile(m.chat, flaaa + 'Donasi', 'donasi.jpg', m); 
 };
 
 handler.help = ['donasi'];
