@@ -15,11 +15,9 @@ handler.all = async function (m) {
 		pp = await this.profilePictureUrl(m.sender, 'image')
 	} catch (e) {
 	} finally {
-		
-                //global.bg = await (await fetch(img)).buffer()
 		global.doc = pickRandom(["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/msword", "application/pdf", "application/vnd.android.package-archive", "application/zip"])
-		global.pic = hwaifu.getRandom()
-		global.fla = flaaa.getRandom()
+		global.pic = JSON.parse(fs.readFileSync('./lib/waifu.json)
+		global.fla = JSON.parse(fs.readFileSync('./lib/flaming.json') 
                 global.social = pickRandom([global.sgh, global.sig, global.snh, global.sgc]) 
 
 		// Module 
@@ -29,11 +27,11 @@ handler.all = async function (m) {
 		
                 // Function
                 global.pickRandom = function pickRandom(list) {
-  return list[Math.floor(list.length * Math.random())]
-}
-
+                return list[Math.floor(list.length * Math.random())]
+		}
+					
                 global.getBuffer = async function getBuffer(url, options) {
-	try {
+	        try {
 		options ? options : {}
 		var res = await axios({
 			method: "get",
@@ -47,10 +45,10 @@ handler.all = async function (m) {
 			responseType: 'arraybuffer'
 		})
 		return res.data
-	} catch (e) {
+	        } catch (e) {
 		console.log(`Error : ${e}`)
-	}
-}
+	        }
+                }
 
 		// ucapan ini mah
 		global.ucapan = ucapan()
