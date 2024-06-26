@@ -16,7 +16,7 @@ handler.all = async function (m) {
 	} catch (e) {
 	} finally {
 		global.doc = pickRandom(["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/msword", "application/pdf", "application/vnd.android.package-archive", "application/zip"])
-		global.pic = JSON.parse(fs.readFileSync('./lib/waifu.json')) 
+		global.waifu = JSON.parse(fs.readFileSync('./lib/waifu.json')) 
 		global.flaa = JSON.parse(fs.readFileSync('./lib/flaming.json')) 
                 global.social = pickRandom([global.sgh, global.sig, global.snh, global.sgc]) 
                 global.pic = pickRandom(waifu) 
