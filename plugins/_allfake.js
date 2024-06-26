@@ -17,9 +17,11 @@ handler.all = async function (m) {
 	} finally {
 		global.doc = pickRandom(["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/msword", "application/pdf", "application/vnd.android.package-archive", "application/zip"])
 		global.pic = JSON.parse(fs.readFileSync('./lib/waifu.json')) 
-		global.flaaa = JSON.parse(fs.readFileSync('./lib/flaming.json')) 
+		global.flaa = JSON.parse(fs.readFileSync('./lib/flaming.json')) 
                 global.social = pickRandom([global.sgh, global.sig, global.snh, global.sgc]) 
-
+                global.pic = pickRandom(waifu) 
+		global.flaaa = pickRandom(flaa) 
+		
 		// Module 
 		global.fetch = (await import('node-fetch')).default
 		global.bochil = await import('@bochilteam/scraper')
