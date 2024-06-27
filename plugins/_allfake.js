@@ -60,8 +60,7 @@ handler.all = async function (m) {
          
      		// externalAdReply atau text with thumbnail. gatau bahasa Inggris? coba translate!
 		global.adReply = {
-			contextInfo: {
-				mentionedJid:[m.sender], 
+			contextInfo: { 
 				forwardingScore: 9999,
 				//isForwarded: true, // ini biar ada tulisannya diteruskan berkali-kali, jika ingin di hilangkan ganti true menjadi false
 				externalAdReply: { // Bagian ini sesuka kalian berkreasi :'v
