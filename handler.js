@@ -116,7 +116,7 @@ export async function handler(chatUpdate) {
                     expired: 0,
                     autoSticker: false,
                     premium: false,
-	                premiumTime: false,
+	            premiumTime: false,
                     premnsfw: false, 
                 }
             let settings = global.db.data.settings[this.user.jid]
@@ -484,7 +484,7 @@ export async function participantsUpdate({ id, participants, action }) {
                 .setBackground("https://telegra.ph/file/0db212539fe8a014017e3.jpg")
                 .toAttachment()
                             
-return this.sendMessage(m.chat, {text: text, contextInfo:{ mentionedJid: [m.sender] , externalAdReply: { showAdAttribution: true,
+return this.sendMessage(m.chat, {text: text, contextInfo:{ mentionedJid: [user] , externalAdReply: { showAdAttribution: true,
 mediaType:  1,
 thumbnail: action === 'add' ? wel.toBuffer() : lea.toBuffer(), 
 title: action === 'add' ? 'Welcome To ' + nickgc : 'Leaving From ' + nickgc, 
