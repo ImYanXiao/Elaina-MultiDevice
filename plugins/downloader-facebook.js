@@ -11,13 +11,13 @@ let handler = async (m, { conn, args }) => {
 
     try {
         const url = args[0];
-        const apiUrl = `https://aemt.me/download/fbdl?url=${url}`;
+        const apiUrl = `https://widipe.com/download/fbdl?url=${url}`;
         let response = await fetch(apiUrl);
         let result = await response.json();
 
         if (!result || !result.status || !result.result || (!result.result.HD && !result.result.Normal_video)) {
             // Try the second API if the first one fails
-            const backupApiUrl = `https://aemt.me/download/fbdown?url=${url}`;
+            const backupApiUrl = `https://widipe.com/download/fbdown?url=${url}`;
             response = await fetch(backupApiUrl);
             result = await response.json();
 
