@@ -1,7 +1,7 @@
 var handler = async (m, { conn, usedPrefix, command, text }) => {
 try {
             if (!text) return m.reply(`Chat dengan AI.\n\nContoh:\n${usedPrefix}${command} Apa itu resesi`);
-            const data = await fetch('https://aemt.me/gpt4?text=' + text) 
+            const data = await fetch('https://widipe.com/gpt4?text=' + text) 
             const json = await data.json()
           conn.reply(m.chat, json.result.trim(), m)
           } catch (error) {
