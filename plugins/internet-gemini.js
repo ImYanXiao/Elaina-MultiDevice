@@ -9,7 +9,7 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
       
     conn.reply(m.chat, "Mohon tunggu sebentar\n"+wait, m);
 
-    const response = await fetch(`https://aemt.me/gemini?text=${encodeURIComponent(text)}`);
+    const response = await fetch(`https://widipe.com/gemini?text=${encodeURIComponent(text)}`);
     if (!response.ok) {
       return conn.reply(m.chat, 'Tidak dapat memproses permintaan Anda saat ini.', m);
     }
