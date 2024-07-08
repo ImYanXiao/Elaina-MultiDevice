@@ -17,7 +17,7 @@ Ketik ${usedPrefix}teka untuk bantuan
 Bonus: ${poin} XP
 `.trim()
     conn.tebakkata[id] = [
-        await conn.sendFile(m.chat, fla + 'Tebak Kata', '', caption, m),
+        await conn.sendFile(m.chat, flaa + 'Tebak Kata', '', caption, m),
         json, poin,
         setTimeout(() => {
             if (conn.tebakkata[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tebakkata[id][0])
