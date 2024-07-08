@@ -125,7 +125,6 @@ if (command == 'yta', 'ytmp3', 'getaud', 'youtubemp3') {
   let v = args[0]
 
   // Ambil info dari video
-  const yt = await youtubedl(v).catch(async () => await  youtubedlv2(v))
   const data = await ytdl.getInfo(v, { lang: 'id' });
   const dl = ytdl.chooseFormat(data.formats, { format: '320', filter: 'videoandaudio' });
   const ttl = await yt.title
