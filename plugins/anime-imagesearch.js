@@ -1,5 +1,6 @@
-//Dont delete this credit!!!
-//Script by ShirokamiRyzen
+// Don't delete this credit!!!
+// Script by ShirokamiRyzen
+// updated by Xnuvers007
 
 import fetch from 'node-fetch';
 import uploadImage from '../lib/uploadImage.js';
@@ -10,24 +11,25 @@ let handler = async (m, { conn, usedPrefix, command }) => {
         let mime = (q.msg || q).mimetype || '';
         if (!mime) throw `Kirim/Reply Gambar dengan caption ${usedPrefix + command}`;
 
-        m.reply(wait);
+        m.reply('Tunggu sebentar...');
 
         let media = await q.download();
         let url = await uploadImage(media);
         let hasil = await fetch(`https://api.trace.moe/search?cutBorders&url=${encodeURIComponent(url)}`);
+
         let response = await hasil.json();
 
         if (response && response.result && response.result.length > 0) {
-            let firstResult = response.result[0];
+            for (let result of response.result) {
+                let filename = result.filename;
+                let episode = result.episode ? result.episode : 'N/A';
+                let similarity = Math.round(result.similarity * 100);
+                let videoURL = result.video;
 
-            let filename = firstResult.filename;
-            let episode = firstResult.episode;
-            let similarity = Math.round(firstResult.similarity * 100);
-            let videoURL = firstResult.video;
+                let caption = `Name: ${filename}\nEpisode: ${episode}\nSimilarity: ${similarity}%`;
 
-            let caption = `Name: ${filename}\nEpisode: ${episode}\n\nSimilarity: ${similarity}%`;
-
-            await conn.sendFile(m.chat, videoURL, filename, caption, m);
+                await conn.sendFile(m.chat, videoURL, filename, caption, m);
+            }
         } else {
             m.reply('No result found');
         }
@@ -41,11 +43,10 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     }
 };
 
-handler.help = ['animesearch']
-handler.tags = ['anime']
-handler.command = /^(animesearch)$/i
+handler.help = ['animesearch'];
+handler.tags = ['anime'];
+handler.command = /^(animesearch|wait|whatisthisanime|whatanime|animewhat)$/i;
 
-handler.register = true
-handler.limit = false
+handler.limit = 2;
 
-export default handler
+export default handler;
