@@ -83,7 +83,7 @@ function getPlaylistInfo(playlistData) {
 
   if (!text) throw `*_Masukan Judul Playlist Yang Ingin Kamu Cari!_*\nperintah:\n${usedPrefix + command} Kanao Tsuyuri\n`;
 
-  const playlistUrl = `https://tr.deployers.repl.co/playlist?name=${encodeURIComponent(text)}`;
+  const playlistUrl = `https://bioskop-six.vercel.app/playlist?name=${encodeURIComponent(text)}`;
   const user_input_start = 0; // bebas diubah dimulai dari berapa
   const user_input_end = 51; // bebas diubah (max 51)
 
@@ -150,7 +150,7 @@ if (command == 'yta', 'ytmp3', 'getaud', 'youtubemp3') {
 if (command == 'yts', 'ytsearch', 'youtubesearch') {
   if (!text) throw `*_Masukkan Judul Video Yang Ingin Kamu Cari!_*\nperintah:\n${usedPrefix + command} Naruto Squad Reaction\n`;
 
-  const videoUrl = `https://tr.deployers.repl.co/vid?name=${encodeURIComponent(text)}`;
+  const videoUrl = `https://bioskop-six.vercel.app/vid?name=${encodeURIComponent(text)}`;
 
   const user_input_start = 0;
   const user_input_end = 51;
