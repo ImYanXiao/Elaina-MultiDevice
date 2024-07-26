@@ -1,3 +1,5 @@
+// Xnuvers007
+
 import fetch from 'node-fetch';
 import uploadImage from '../lib/uploadImage.js';
 
@@ -53,7 +55,7 @@ let handler = async (m, { usedPrefix, command, text }) => {
 
     } catch (error) {
         if (error.message.startsWith('Kirim/Reply Gambar')) {
-            m.reply(`Kirim/Reply Gambar dengan caption ${usedPrefix + command}\nAtau\n${usedPrefix + command} https://ppcexpo.com/blog/wp-content/uploads/2020/11/what-is-a-meta-search-engine-.jpg`);
+            m.reply(`Kirim/Reply Gambar dengan caption ${usedPrefix + command}\nAtau\n${usedPrefix + command} https://ppcexpo.com/blog/wp-content/uploads/2020/11/what-is-a-meta-search-engine-.jpg\n\n> *Apa itu exiftool ?* _ExifTool adalah alat untuk membaca, menulis, dan mengedit metadata dalam file gambar dan media, termasuk informasi tentang kamera, pengaturan pemotretan, lokasi GPS, ukuran gambar, dan aplikasi yang digunakan untuk mengedit. Metadata ini mencakup detail teknis seperti model kamera, aperture, dan resolusi, serta informasi tambahan seperti keterangan dan kata kunci. ExifTool mendukung berbagai format file seperti JPEG, PNG, GIF, dan WEBP, dan sering digunakan dalam analisis gambar dan manipulasi file untuk mengelola data yang tertanam._`);
         } else if (error.message === 'URL-nya mana?') {
             m.reply('URL-nya mana?');
         } else {
