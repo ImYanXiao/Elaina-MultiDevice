@@ -5,6 +5,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     return m.reply(`Masukkan koordinat dengan format: ${usedPrefix + command} latitude|longitude\n\nUntuk mengetahui kiblat, izinkan lokasi pada website ini https://gps-coordinates.org/`);
   }
 
+  await m.reply(wait);
+
   text = text.replace(/,/g, '.');
 
   let [latitude, longitude] = text.split('|').map(coord => coord.trim());
