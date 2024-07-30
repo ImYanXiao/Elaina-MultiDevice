@@ -2,12 +2,13 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
     let teks = `
 ︵‿︵‿︵‿︵ *DONASI BOT* ︵‿︵‿︵‿︵
 ┌─「 Donasi • Pulsa 」
-│ • *Indosat:* [${global.ppulsa}]
+│ • *Three:* [${global.ppulsa}]
 ❏────
 
 ┌─「 Donasi • Non Pulsa 」
 │ • *Dana:* [${global.pdana}]
 │ • *Saweria:* [${global.psaweria}]
+│ • *QR:* [https://bioskop-six.vercel.app/images]
 ❏────
 
 *ʙᴀᴄᴋ ᴛᴏ ᴀʟʟ ᴍᴇɴᴜ*: .?
@@ -16,8 +17,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
 ︵‿︵‿︵‿︵︵‿︵‿︵‿︵︵‿︵‿︵‿
 Created by ${global.namebot} 
 `
-
-    await conn.sendFile(m.chat, flaaa + 'Donasi', 'donasi.jpg', m); 
+        await conn.sendFile(m.chat, ` ${flaaa} Donasi ke ${namebot}`, 'donasi.jpg', `${teks}`, m); 
 };
 
 handler.help = ['donasi'];
