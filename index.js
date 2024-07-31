@@ -47,12 +47,12 @@ function start(file) {
   p.on('exit', (_, code) => {
     isRunning = false
     console.error('[❗]Exited with code:', code)
-    if (code !== 0) return start(file)
+    if (code !== 0) return start(file);
     watchFile(args[0], () => {
-      unwatchFile(args[0])
-      start(file)
-    })
-  })
+      unwatchFile(args[0]);
+      start(file);
+    });
+  });
   let opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
   if (!opts['test'])
     if (!rl.listenerCount()) rl.on('line', line => {
