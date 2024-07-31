@@ -152,7 +152,7 @@ export async function handler(chatUpdate) {
         const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
         const isPrems = isROwner || db.data.users[m.sender].premiumTime > 0
 	if (!isOwner && !m.fromMe && opts['self']) return;
-        if (opts['queque'] && m.text && !(isMods || isPrems)) {
+        if (m.text && !(isMods || isPrems)) {
             let queque = this.msgqueque, time = 1000 * 5
             const previousID = queque[queque.length - 1]
             queque.push(m.id || m.key.id)
@@ -388,7 +388,7 @@ export async function handler(chatUpdate) {
     } catch (e) {
         console.error(e)
     } finally {
-        if (opts['queque'] && m.text) {
+        if (m.text) {
             const quequeIndex = this.msgqueque.indexOf(m.id || m.key.id)
             if (quequeIndex !== -1)
                 this.msgqueque.splice(quequeIndex, 1)
