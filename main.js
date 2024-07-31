@@ -8,7 +8,9 @@
   Regards from YanXiao ♡
 */
 
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+//process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '1';
+
 import './config.js'
 
 import path, { join } from 'path'
@@ -24,7 +26,11 @@ import {
     readFileSync,
     watch
 } from 'fs'
-import yargs from 'yargs'
+
+import yargs from 'yargs/yargs';
+import { hideBin } from 'yargs/helpers';
+const argv = yargs(hideBin(process.argv)).argv;
+
 import { spawn } from 'child_process'
 import lodash from 'lodash'
 import syntaxerror from 'syntax-error'
