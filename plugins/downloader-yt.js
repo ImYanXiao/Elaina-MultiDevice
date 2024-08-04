@@ -1,6 +1,6 @@
-import { youtubedl, youtubedlv2, youtubeSearch } from '@bochilteam/scraper';
+import { youtubeSearch } from '@bochilteam/scraper';
 import fetch from 'node-fetch';
-import ytdl from 'ytdl-core'
+import { youtubedl } from '../lib/youtube.js'
 
 var handler = async (m, { conn, args, command, text, usedPrefix }) => {
 
@@ -43,11 +43,11 @@ if (command == 'play', 'ytplay', 'youtubeplay') {
       },
     });
 
-    const yt = await ytdl.getInfo(url, { lang: 'id' });
-    const link = ytdl.chooseFormat(yt.formats, { format: '320', filter: 'videoandaudio' });
+    const yt = await youtubedl(url)
+    const link = await yt.resultUrl.audio[0].download() 
     let doc = {
       audio: {
-        url: link.url,
+        url: link, 
       },
       mimetype: 'audio/mp4',
       fileName: `${title}`,
@@ -121,13 +121,14 @@ function getPlaylistInfo(playlistData) {
 };
 
 if (command == 'yta', 'ytmp3', 'getaud', 'youtubemp3') {
-  if (!args[0]) throw 'Urlnya Mana Banh? >:('
+  if (!args[0]) m.reply('Urlnya Mana Banh? >:(') 
   let v = args[0]
+  if (!args.includes('https://')) return m.reply('Invalid Url!') 
 
   // Ambil info dari video
-  const data = await ytdl.getInfo(v, { lang: 'id' });
-  const dl = ytdl.chooseFormat(data.formats, { format: '320', filter: 'videoandaudio' });
-  const ttl = await yt.title
+  const data = await youtubedl(args[0]) 
+  const dl = await data.resultUrl.audio[0].download() 
+  const ttl = await data.result.title
 
   await m.reply('Permintaan download audio/mp3 youtube sedang diproses, mohon bersabar...')
 
@@ -139,7 +140,7 @@ if (command == 'yta', 'ytmp3', 'getaud', 'youtubemp3') {
 
   // Kirim pesan dan file audio ke user
   await conn.sendMessage(m.chat, { 
-    document: { url: dl.url }, 
+    document: { url: dl }, 
     mimetype: 'audio/mpeg', 
     fileName: `${ttl}.mp3`,
     caption: info
@@ -221,7 +222,7 @@ if (command == 'getvid', 'ytmp4', 'youtubemp4','ytv','youtubevideo') {
   let yt;
 
   try {
-    yt = await youtubedl(v) || await youtubedlv2(v);
+    yt = await bochil.youtubedl(v) || await bochil.youtubedlv2(v);
   } catch (e) {
     conn.reply(m.chat, e, m);
     return;
