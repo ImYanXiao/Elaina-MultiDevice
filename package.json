@@ -40,7 +40,7 @@
     "license": "GPL-3.0-or-later",
     "dependencies": {
       "@adiwajshing/baileys": "npm:@whiskeysockets/baileys",
-      "@bochilteam/scraper": "^4.2.4",
+      "@bochilteam/scraper": "^5.0.1",
       "@ibaraki-douji/pixivts": "^2.4.1",
       "@distube/ytdl-core": "^4.13.3",
       "@vitalets/google-translate-api": "^9.2.0",
@@ -51,7 +51,7 @@
       "canvas": "^2.11.2",
       "cfonts": "^3.2.0",
       "chalk": "^5.3.0",
-      "cheerio": "^1.0.0-rc.12",
+      "cheerio": "^1.0.0",
       "cheerio-without-node-native": "^0.20.2",
       "colors": "^1.4.0",
       "deepai": "^1.0.23",
@@ -99,7 +99,6 @@
       "ws": "^8.13.0",
       "xmldom": "^0.6.0",
       "yargs": "^17.7.2",
-      "ytdl-core": "^4.11.5",
       "zs-extract": "^1.4.2"
     }
 }
