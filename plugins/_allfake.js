@@ -61,7 +61,9 @@ handler.all = async function (m) {
         console.log('Modules imported successfully');
     } catch (e) {
         console.error(`Error importing modules: ${e}`);
-        return;
+        global.fs = {};
+        global.fetch = {};
+	global.bochil = {};
     }
     
 		global.ucapan = ucapan()
