@@ -1,6 +1,5 @@
 // Script coded by github.com/Xnuvers007
-import { instagramdl } from "@bochilteam/scraper";
-import { savefrom, snapsave } from "@bochilteam/scraper-sosmed";
+import { instagramdl, snapsave, savefrom } from "@bochilteam/scraper";
 import fetch from "node-fetch";
 import ffmpeg from "fluent-ffmpeg";
 import fs from "fs/promises";
