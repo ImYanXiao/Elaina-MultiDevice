@@ -93,11 +93,18 @@ handler.all = async function (m) {
         
    try { 
         global.doc = pickRandom(["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/msword", "application/pdf", "application/vnd.android.package-archive", "application/zip"])
-		global.waifu = JSON.parse(fs.readFileSync('./lib/waifu.json')) 
-		global.flaa = JSON.parse(fs.readFileSync('./lib/flaming.json')) 
-        gobal.social = pickRandom([global.sgh, global.sig, global.snh, global.sgc]) 
-        global.pic = pickRandom(waifu) 
-		global.flaaa = pickRandom(flaa) 
+		
+        global.social = pickRandom([global.sgh, global.sig, global.snh, global.sgc]) 
+        try {
+    global.flaa = JSON.parse(fs.readFileSync('./lib/flaming.json'));
+    global.waifu = JSON.parse(fs.readFileSync('./lib/waifu.json'));
+    global.pic = pickRandom(global.waifu); // pastikan waifu didefinisikan
+    global.flaaa = pickRandom(global.flaa); // pastikan flaas didefinisikan
+} catch (e) {
+    console.error(`Error initializing global variables: ${e}`);
+}
+
+
 		
 		global.fakeig = {
          contextInfo: { externalAdReply: { showAdAttribution: true,
