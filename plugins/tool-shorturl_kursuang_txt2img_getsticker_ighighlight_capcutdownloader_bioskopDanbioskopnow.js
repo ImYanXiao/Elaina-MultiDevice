@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import axios from 'axios';
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 import { addExif } from '../lib/sticker.js'
 import { Sticker } from 'wa-sticker-formatter'
 import { bioskop, bioskopNow } from '@bochilteam/scraper-others';
