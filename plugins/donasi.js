@@ -17,7 +17,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
 ︵‿︵‿︵‿︵︵‿︵‿︵‿︵︵‿︵‿︵‿
 Created by ${global.namebot} 
 `
-        await conn.sendFile(m.chat, ` ${flaaa} Donasi ke ${namebot}`, 'donasi.jpg', `${teks}`, m); 
+        await conn.sendFile(m.chat, global.flaaa + `Donasi ke ${namebot}`, 'donasi.jpg', `${teks}`, m); 
 };
 
 handler.help = ['donasi'];
