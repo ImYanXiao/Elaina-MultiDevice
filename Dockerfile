@@ -10,7 +10,7 @@ RUN apt-get update && \
 
 COPY package.json .
 
-RUN npm i && npm i -g qrcode-terminal
+RUN npm i 
 
 COPY . .
 
