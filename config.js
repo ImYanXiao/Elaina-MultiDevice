@@ -73,6 +73,7 @@ global.prems = [] // Premium user bukan disini nambahinnya, ketik .addprem @user
 
 
 global.lolkey = 'apikeymu'
+global.googlegemini = 'silahkan diisi token masing masing' // https://aistudio.google.com/app/apikey
 /*============== API ==============*/
 // Tambahin Rest Apinya Sendiri Krn yg saya hapus apinya sudah Mati
 global.APIs = { // API Prefix
