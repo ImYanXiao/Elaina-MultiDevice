@@ -41,6 +41,7 @@
     "dependencies": {
       "@adiwajshing/baileys": "npm:@whiskeysockets/baileys",
       "@bochilteam/scraper": "^5.0.1",
+      "@distube/ytdl-core": "*", 
       "@ibaraki-douji/pixivts": "^2.4.1",
       "@vitalets/google-translate-api": "^9.2.0",
       "acrcloud": "^1.4.0",
