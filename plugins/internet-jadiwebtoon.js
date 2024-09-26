@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import uploadImage from '../lib/uploadImage.js';
+import { uploadToPomf2 } from '../lib/uploadImage.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -27,7 +27,7 @@ let handler = async (m, {
         const sender = m.sender.split(`@`)[0];
         m.reply('Gambar sudah terdownload\nMengupload ke server');
         let url;
-        url = await uploadImage(media);
+        url = await uploadToPomf2(media);
         let res = await fetch(`${server}?url=${url}&apikey=${Xa}`);
         
         if (res.ok) {
