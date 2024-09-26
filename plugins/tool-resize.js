@@ -1,8 +1,8 @@
-// MADE BY KORONEOFC (JANGAN DIHAPUS !!!)
+// MADE BY Hiro (JANGAN DIHAPUS !!!)
 
 
 import jimp from "jimp"
-import uploadImage from "../lib/uploadImage.js"
+import { uploadToPomf2 } from "../lib/uploadImage.js"
 import uploadFile from "../lib/uploadFile.js"
 
 let handler = async (m, { conn, usedPrefix, args}) => {
@@ -18,7 +18,7 @@ if (!mime) throw "where the media?"
 let media = await q.download()
 let isMedia = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
 if (!isMedia) throw `Mime ${mime} tidak didukung`
-let link = await (isMedia ? uploadImage : uploadImage)(media)
+let link = await (isMedia ? uploadToPomf2 : uploadToPomf2)(media)
 
 let source = await jimp.read(await link)
 let size = {
@@ -32,7 +32,7 @@ let size = {
                    },
             }
 let compres = await conn.resize(link, towidth - 0, toheight - 0)
-let linkcompres = await (isMedia ? uploadImage : uploadImage)(compres)
+let linkcompres = await (isMedia ? uploadToPomf2 : uploadToPomf2)(compres)
 
 conn.sendFile(m.chat, compres, null, `*${htki} COMPRESS RESIZE ${htka}*
 
