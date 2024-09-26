@@ -1,7 +1,7 @@
 // Xnuvers007
 
 import fetch from 'node-fetch';
-import uploadImage from '../lib/uploadImage.js';
+import { uploadToPomf2 } from '../lib/uploadImage.js';
 
 let handler = async (m, { usedPrefix, command, text }) => {
     m.reply(`Tunggu sebentar...${wait}`);
@@ -19,7 +19,7 @@ let handler = async (m, { usedPrefix, command, text }) => {
             }
 
             media = await q.download();
-            url = await uploadImage(media);
+            url = await uploadToPomf2(media);
         }
 
         if (!url) throw new Error('URL-nya mana?');
