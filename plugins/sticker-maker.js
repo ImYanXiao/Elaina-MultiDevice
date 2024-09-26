@@ -1,4 +1,4 @@
-import uploadImage from '../lib/uploadImage.js';
+import { uploadToPomf2 } from '../lib/uploadImage.js';
 import { sticker } from '../lib/sticker.js';
 import MessageType from '@adiwajshing/baileys';
 
@@ -29,7 +29,7 @@ ${usedPrefix + command} wasted
     if (!/image\/(jpe?g|png)/.test(mime)) throw '✳️ Format tidak didukung (format di dukung: jpg, jpeg, png';
 
     let img = await q.download();
-    let url = await uploadImage(img);
+    let url = await uploadToPomf2(img);
     if (!/^https?:\/\//.test(url)) url = 'https://' + url;
 
     let apiUrl = global.API('https://some-random-api.com/canvas/', encodeURIComponent(effect), { avatar: url });
