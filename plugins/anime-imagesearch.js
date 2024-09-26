@@ -3,7 +3,7 @@
 // updated by Xnuvers007
 
 import fetch from 'node-fetch';
-import uploadImage from '../lib/uploadImage.js';
+import { uploadToPomf2 } from '../lib/uploadImage.js';
 
 let handler = async (m, { conn, usedPrefix, command }) => {
     try {
@@ -14,7 +14,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
         m.reply('Tunggu sebentar...');
 
         let media = await q.download();
-        let url = await uploadImage(media);
+        let url = await uploadToPomf2(media);
         let hasil = await fetch(`https://api.trace.moe/search?cutBorders&url=${encodeURIComponent(url)}`);
 
         let response = await hasil.json();
