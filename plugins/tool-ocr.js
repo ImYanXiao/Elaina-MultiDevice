@@ -1,4 +1,4 @@
-import uploadImage from '../lib/uploadImage.js'
+import { uploadToPomf2 } from '../lib/uploadImage.js'
 import ocrapi from 'ocr-space-api-wrapper'
 const { MessageType } = (await import('@adiwajshing/baileys')).default
 
@@ -20,7 +20,7 @@ let handler = async (m, { conn, text, command, usedPrefix }) => {
     if (!/image\/(jpe?g|png)/.test(mime)) throw `Jenis ${mime} tidak didukung`
 
     let img = await q.download()
-    let url = await uploadImage(img)
+    let url = await uploadToPomf2(img)
 
     m.reply('tunggu sebentar...')
 
