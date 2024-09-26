@@ -1,4 +1,4 @@
-import uploadImage from '../lib/uploadImage.js'
+import { uploadToPomf2 } from '../lib/uploadImage.js'
 import { sticker } from '../lib/sticker.js'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
@@ -9,7 +9,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!mime) throw `balas gambar dengan perintah\n\n${usedPrefix + command} <${atas ? atas : 'teks atas'}>|<${bawah ? bawah : 'teks bawah'}>\n${usedPrefix + command} <|${bawah ? bawah : 'teks bawah'}>\n${usedPrefix + command} <${atas ? atas : 'teks atas'}>`
     
     let img = await q.download()
-    let url = await uploadImage(img)
+    let url = await uploadToPomf2(img)
     
     if (!atas && bawah) {
         atas = ' '
