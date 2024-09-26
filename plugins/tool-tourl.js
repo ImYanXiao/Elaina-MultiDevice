@@ -1,5 +1,5 @@
 import uploadFile from '../lib/uploadFile.js'
-import uploadImage from '../lib/uploadImage.js'
+import { uploadToPomf2 } from '../lib/uploadImage.js'
 import fetch from 'node-fetch'
 
 let handler = async (m) => {
@@ -11,7 +11,7 @@ let name = await conn.getName(who)
   if (!mime) throw 'No media found'
   let media = await q.download()
   let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
-  let link = await (isTele ? uploadImage : uploadFile)(media)
+  let link = await (isTele ? uploadToPomf2 : uploadFile)(media)
   let caption = `📮 *L I N K :*
 ${link}
 📊 *S I Z E :* ${media.length} Byte
