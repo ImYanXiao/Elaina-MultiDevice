@@ -46,13 +46,19 @@ function start(file) {
       case 'uptime':
         p.send(process.uptime());
         break;
+      default:
+          console.warn('[⚠️ UNRECOGNIZED MESSAGE]', data);
     }
   });
 
   p.on('exit', (_, code) => {
     isRunning = false;
-    console.error('[❗]Exited with code:', code);
-    if (code !== 0) return start(file);
+    console.error('[❗] Exited with code:', code);
+    if (code !== 0) {
+      console.log('[🔄 Restarting worker due to non-zero exit code...');
+      return start(file);
+    }
+    
     watchFile(args[0], () => {
       unwatchFile(args[0]);
       start(file);
