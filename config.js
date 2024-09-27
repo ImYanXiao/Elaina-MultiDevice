@@ -23,9 +23,15 @@ import moment from 'moment-timezone'
 
 /*============= WAKTU =============*/
 let wibh = moment.tz('Asia/Jakarta').format('HH')
-    let wibm = moment.tz('Asia/Jakarta').format('mm')
-    let wibs = moment.tz('Asia/Jakarta').format('ss')
-    let wktuwib = `${wibh} H ${wibm} M ${wibs} S`
+    // let wibm = moment.tz('Asia/Jakarta').format('mm')
+    // let wibs = moment.tz('Asia/Jakarta').format('ss')
+    // let wktuwib = `${wibh} H ${wibm} M ${wibs} S`
+
+    let wktuwib = moment.tz('Asia/Jakarta').format('HH H mm M ss S');
+
+    let wktuwita = moment.tz('Asia/Makassar').format('HH H mm M ss S');
+
+    let wktuwit = moment.tz('Asia/Jayapura').format('HH H mm M ss S');
     
     let d = new Date(new Date + 3600000)
     let locale = 'id'
@@ -39,7 +45,7 @@ let wibh = moment.tz('Asia/Jakarta').format('HH')
       day: 'numeric',
       month: 'long',
       year: 'numeric'
-    })
+    });
       
     
 /*============== SOCIAL ==============*/
@@ -57,16 +63,16 @@ global.ppulsa = '-' //Nomor SimCard Yang Kamu Pake
 global.psaweria = 'https://saweria.com/XiaoYan021' //Link Saweriamu Kalo Nggada Ketik - aja
 
 /*============== NOMOR ==============*/
-global.nomorbot = '6281231079387' //Nomor Bot
-global.nomorown = '6285736178354' //Nomor Owner
+global.nomorbot = '-' //Nomor Bot
+global.nomorown = '-' //Nomor Owner
 global.namebot = 'Elaina BOT' //Nama Bot
 global.nameown = '-' // Nama Owner
 
 
 /*============== STAFF ==============*/
 global.owner = [
-  ['6285736178354', '❦ 𝚇 𝚒 𝚊 𝚘 - 𝚈𝚊𝚗? 🎐', true] //Ganti jd nomormu sama Namamu
-  // [number, dia creator/owner?, dia developer?]
+  ['-', 'Developer Owner', true] //Ganti jd nomormu sama Namamu
+  // [number, dia creator/owner?, dia developer?] ex= [62123456789, true, false]
 ] // Put your number here
 global.mods = [] // Want some help?
 global.prems = [] // Premium user bukan disini nambahinnya, ketik .addprem @user 10
@@ -92,8 +98,8 @@ global.wm = '                「 ᴇʟᴀɪɴᴀ 𝙱𝙾𝚃 汉  」' //Main W
 global.wm2 = '꒷︶꒷꒥꒷ ‧₊˚ ꒰ฅ˘ᴇʟᴀɪɴᴀ - ᴄʜᴀɴ˘ฅ ꒱ ‧₊˚꒷︶꒷꒥꒷'
 global.wm3 = '⫹⫺ ᴇʟᴀɪɴᴀ 𝙱𝙾𝚃'
 global.namedoc = 'Elaina`s Bot' //Main Name Menu Document
-global.botdate = `⫹⫺ Day's: ${week} ${date}`
-global.bottime = `ᴛɪᴍᴇ: ${wktuwib}`
+global.botdate = `⫹⫺ Day's: ${week} ${date}\nWeton: ${weton}`
+global.bottime = `⫹⫺ᴛɪᴍᴇ: \nWIB: ${wktuwib}\nWITA: ${wktuwita}\nWIT: ${wktuwit}`
 global.titlebot = '🎋 ┊ sɪᴍᴘʟᴇ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ'
 global.author = global.namedoc
 
