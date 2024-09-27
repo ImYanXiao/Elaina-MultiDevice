@@ -22,7 +22,7 @@ import { fileURLToPath } from 'url'
 import moment from 'moment-timezone'
 
 /*============= WAKTU =============*/
-let wibh = moment.tz('Asia/Jakarta').format('HH')
+    // let wibh = moment.tz('Asia/Jakarta').format('HH')
     // let wibm = moment.tz('Asia/Jakarta').format('mm')
     // let wibs = moment.tz('Asia/Jakarta').format('ss')
     // let wktuwib = `${wibh} H ${wibm} M ${wibs} S`
