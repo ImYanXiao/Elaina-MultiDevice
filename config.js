@@ -94,13 +94,13 @@ global.APIKeys = { // APIKey Here
 // Kata APIKEY itu isi dengan apikeymu, dengan beli ke website itu
 
 /*============== WATERMARK ==============*/
-global.wm = '                「 ᴇʟᴀɪɴᴀ 𝙱𝙾𝚃 汉  」' //Main Watermark
-global.wm2 = '꒷︶꒷꒥꒷ ‧₊˚ ꒰ฅ˘ᴇʟᴀɪɴᴀ - ᴄʜᴀɴ˘ฅ ꒱ ‧₊˚꒷︶꒷꒥꒷'
-global.wm3 = '⫹⫺ ᴇʟᴀɪɴᴀ 𝙱𝙾𝚃'
+global.wm = '                「 Elaina 𝙱𝙾𝚃 汉  」' //Main Watermark
+global.wm2 = '꒷︶꒷꒥꒷ ‧₊˚ ꒰ฅ˘Elaina - Chan˘ฅ ꒱ ‧₊˚꒷︶꒷꒥꒷'
+global.wm3 = '⫹⫺ Elaina 𝙱𝙾𝚃'
 global.namedoc = 'Elaina`s Bot' //Main Name Menu Document
 global.botdate = `⫹⫺ Day's: ${week} ${date}\nWeton: ${weton}`
-global.bottime = `⫹⫺ᴛɪᴍᴇ: \nWIB: ${wktuwib}\nWITA: ${wktuwita}\nWIT: ${wktuwit}`
-global.titlebot = '🎋 ┊ sɪᴍᴘʟᴇ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ'
+global.bottime = `⫹⫺TIME: \nWIB: ${wktuwib}\nWITA: ${wktuwita}\nWIT: ${wktuwit}`
+global.titlebot = '🎋 ┊ Simple WhatsApp Bot'
 global.author = global.namedoc
 
 
