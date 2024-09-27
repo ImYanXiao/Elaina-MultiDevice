@@ -72,7 +72,7 @@ global.nameown = '-' // Nama Owner
 /*============== STAFF ==============*/
 global.owner = [
   ['-', 'Developer Owner', true] //Ganti jd nomormu sama Namamu
-  // [number, dia creator/owner?, dia developer?] ex= [62123456789, true, false]
+  // [number, dia creator/owner?, dia developer?] ex= [62123456789, "siapa kek", false]
 ] // Put your number here
 global.mods = [] // Want some help?
 global.prems = [] // Premium user bukan disini nambahinnya, ketik .addprem @user 10
