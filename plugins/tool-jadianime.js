@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import uploadImage from '../lib/uploadImage.js'
+import { uploadToPomf2 } from '../lib/uploadImage.js'
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -66,7 +66,7 @@ async function uploadImageWithRetry(media, maxAttempts = 3) {
 
     while (attempts < maxAttempts) {
         try {
-            url = await uploadImage(media);
+            url = await uploadToPomf2(media);
             break;
         } catch (error) {
             attempts++;
