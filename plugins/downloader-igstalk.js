@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
-import * as axios from 'axios';
-import cheerio from 'cheerio';
+import axios from 'axios';
+import * as cheerio from 'cheerio';
 
 async function igstalk(Username) {
   try {
