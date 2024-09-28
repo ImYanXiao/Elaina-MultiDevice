@@ -179,6 +179,17 @@ if(usePairingCode && !conn.authState.creds.registered) {
 			console.log(chalk.black(chalk.bgGreen(`Your Pairing Code : `)), chalk.black(chalk.white(code)))
 		}, 3000)
 	}
+async function resetLimit() {
+  try {
+    let list = Object.entries(global.db.data.users);
+    let lim = 25; // Nilai limit default yang ingin di-reset
+
+    list.map(([user, data], i) => {
+      // Hanya reset limit jika limit saat ini <= 25
+      if (data.limit <= lim) {
+        data.limit = lim;
+      }
+    });
 
 if (!opts['test']) {
   (await import('./server.js')).default(PORT)
