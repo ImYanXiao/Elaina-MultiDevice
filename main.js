@@ -401,16 +401,18 @@ async function _quickTest() {
         return Promise.race([
             new Promise(resolve => {
                 p.on('close', code => {
-                    resolve(code !== 127)
-                })
+                    resolve(code !== 127);
+                });
             }),
             new Promise(resolve => {
-                p.on('error', _ => resolve(false))
+                p.on('error', _ => resolve(false));
             })
-        ])
-    }))
-    let [ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find] = test
-    console.log(test)
+        ]);
+    }));
+
+    let [ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find] = test;
+    console.log(test);
+
     let s = global.support = {
         ffmpeg,
         ffprobe,
@@ -419,23 +421,23 @@ async function _quickTest() {
         magick,
         gm,
         find
-    }
-    // require('./lib/sticker').support = s
-    Object.freeze(global.support)
+    };
+
+    Object.freeze(global.support);
 
     if (!s.ffmpeg) {
-        conn.logger.warn(`Silahkan install ffmpeg terlebih dahulu agar bisa mengirim video`)
+        conn.logger.warn(`Silahkan install ffmpeg terlebih dahulu agar bisa mengirim video`);
     }
 
     if (s.ffmpeg && !s.ffmpegWebp) {
-        conn.logger.warn('Sticker Mungkin Tidak Beranimasi tanpa libwebp di ffmpeg (--enable-ibwebp while compiling ffmpeg)')
+        conn.logger.warn('Sticker Mungkin Tidak Beranimasi tanpa libwebp di ffmpeg (--enable-libwebp while compiling ffmpeg)');
     }
 
     if (!s.convert && !s.magick && !s.gm) {
-        conn.logger.warn('Fitur Stiker Mungkin Tidak Bekerja Tanpa imagemagick dan libwebp di ffmpeg belum terinstall (pkg install imagemagick)')
+        conn.logger.warn('Fitur Stiker Mungkin Tidak Bekerja Tanpa imagemagick dan libwebp di ffmpeg belum terinstall (pkg install imagemagick)');
     }
-
 }
+
 _quickTest()
     .then(() => conn.logger.info('☑️ Quick Test Done , nama file session ~> creds.json'))
-    .catch(console.error)
+    .catch(console.error);
