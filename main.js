@@ -190,8 +190,12 @@ async function resetLimit() {
         data.limit = lim;
       }
     });
-  } catch (e) {
-    console.error(e);
+
+    // logs bahwa reset limit telah sukses
+    console.log(`Success Auto Reset Limit`) 
+  } finally {
+    // Setel ulang fungsi reset setiap 24 jam (1 hari)
+    setInterval(() => resetLimit(), 1 * 86400000);
   }
 }
 
