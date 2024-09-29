@@ -190,6 +190,10 @@ async function resetLimit() {
         data.limit = lim;
       }
     });
+  } catch (e) {
+    console.error(e);
+  }
+}
 
 if (!opts['test']) {
   (await import('./server.js')).default(PORT)
