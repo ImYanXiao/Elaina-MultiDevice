@@ -65,9 +65,16 @@ export async function before(m, { isAdmin, isBotAdmin }) {
     if (m.mtype == 'viewOnceMessageV2') {
         let msg = m.message.viewOnceMessageV2.message;
         let type = Object.keys(msg)[0];
-        let media = await downloadContentFromMessage(msg[type], type === 'imageMessage' ? 'image' : type === 'videoMessage' ? 'video' : 'audio');
-        let buffer = Buffer.from([]);
+        let media;
+        if (type === 'imageMessage') {
+            media = await downloadContentFromMessage(msg[type], 'image');
+        } else if (type === 'videoMessage') {
+            media = await downloadContentFromMessage(msg[type], 'video');
+        } else if (type === 'audioMessage') {
+            media = await downloadContentFromMessage(msg[type], 'audio');
+        }
 
+        let buffer = Buffer.from([]);
         for await (const chunk of media) {
             buffer = Buffer.concat([buffer, chunk]);
         }
