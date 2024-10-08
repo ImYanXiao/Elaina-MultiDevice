@@ -15,7 +15,7 @@ handler.help = ['kick', '-'].map(v => 'o' + v + ' @user')
 handler.tags = ['owner']
 handler.command = /^(okick|o-)$/i
 
-handler.admin = true
+handler.rowner = true
 handler.group = true
 handler.botAdmin = true
 
