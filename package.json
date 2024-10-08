@@ -10,10 +10,10 @@
         "plugins": "plugins"
     },
     "scripts": {
-        "start": "node index.js",
-        "test": "node test.js", 
-        "test2": "nodemon index.js"
-    },
+    "start": "node index.js",
+    "test": "node test.js", 
+    "dev": "nodemon --experimental-specifier-resolution=node index.js"
+    }, 
     "keywords": [
         "termux-whatsapp-bot",
         "whatsapp-bot",
