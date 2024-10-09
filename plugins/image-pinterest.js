@@ -1,4 +1,4 @@
-import axios from 'axios';
+/*import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) throw `Example use ${usedPrefix + command} Kanao Tsuyuri`;
@@ -29,3 +29,4 @@ handler.tags = ['internet'];
 handler.command = /^(pinterest|pin)$/i;
 
 export default handler;
+*/
