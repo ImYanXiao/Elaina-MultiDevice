@@ -211,71 +211,68 @@ if (command == 'yts', 'ytsearch', 'youtubesearch') {
   }
 };
 
-// Update by Xnuvers007
-
 if (command == 'getvid', 'ytmp4', 'youtubemp4','ytv','youtubevideo') {
   if (!args[0]) throw `Ex:\n${usedPrefix}${command} https://www.youtube.com/shorts/Ezzh2joFrzg\n${usedPrefix}${command} https://www.youtube.com/watch?v=Ezzh2joFrzg`;
 
-  const v = args[0];
-  const resolutions = ["144p", "240p", "360p", "480p", "720p", "1080p", "720p60", "1080p60"];
-
+  const v = args[0]
   let yt;
 
   try {
-    yt = await bochil.youtubedl(v) || await bochil.youtubedlv2(v);
+    yt = await youtubedl(v);
   } catch (e) {
     conn.reply(m.chat, e, m);
     return;
   }
 
-  const title = await yt.title;
+  const title = yt.result.title;
+  const videoLinks = yt.resultUrl.video;
+  
+  const qualityValue = (quality) => {
+    const match = quality.match(/(\d+)/);
+    return match ? parseInt(match[0]) : 0;
+  };
+
+  videoLinks.sort((a, b) => qualityValue(b.quality) - qualityValue(a.quality));
 
   let success = false;
   let message1 = `Permintaan download video YouTube. Sedang diproses, mohon bersabar...`;
-  let message = `Details: \n\n`
+  let message = `Details: \n\n`;
 
-  m.reply(message1)
+  m.reply(message1);
 
-  for (let i = 0; i < resolutions.length; i++) {
-    const res = resolutions[i];
-    try {
-      if (yt.video[res]) {
-        const selectedResolution = res;
-        const selectedQuality = res.replace('p', '');
-        const size = await yt.video[res].fileSizeH;
-        const dlUrl = await yt.video[res].download();
-        message += `▢ Title: ${title}\n`;
-        message += `▢ Resolution: ${selectedResolution}\n`;
-        message += `▢ Size: ${size}\n`;
-        message += `▢ Video link: ${dlUrl}\n\n`;
-        success = true;
-        await conn.sendFile(m.chat, dlUrl, 'video.mp4', message, m);
-      }
-    } catch (err) {
-      console.log(`Error downloading ${res}: ${err}`);
-    }
+  const highestQualityVideo = videoLinks[0];
+
+  try {
+    const size = highestQualityVideo.size || 'Unknown size';
+    const dlUrl = await highestQualityVideo.download();
+
+    message += `▢ Title: ${title}\n`;
+    message += `▢ Resolution: ${highestQualityVideo.quality}\n`;
+    message += `▢ Size: ${size}\n`;
+    message += `▢ Video link: ${dlUrl}\n\n`;
+    success = true;
+
+    await conn.sendFile(m.chat, dlUrl, 'video.mp4', message, m);
+  } catch (err) {
+    console.log(`Error downloading ${highestQualityVideo.quality}: ${err}`);
   }
 
   if (!success) {
     let dlMessage = `Maaf, video tidak dapat diunduh. Silakan download secara manual menggunakan link berikut:\n\n`;
 
-    for (let i = 0; i < resolutions.length; i++) {
-      const res = resolutions[i];
+    for (const video of videoLinks) {
       try {
-        if (yt.video[res]) {
-          const dlUrl = await yt.video[res].download();
-          dlMessage += `▢ Resolution: ${res}\n`;
-          dlMessage += `▢ Video link: ${dlUrl}\n\n`;
-        }
+        const dlUrl = await video.download();
+        dlMessage += `▢ Resolution: ${video.quality}\n`;
+        dlMessage += `▢ Video link: ${dlUrl}\n\n`;
       } catch (err) {
-        console.log(`Error obtaining download link for ${res}: ${err}`);
+        console.log(`Error obtaining download link for ${video.quality}: ${err}`);
       }
     }
 
     await m.reply(dlMessage);
   }
-};
-  
+ }
 };
 
 handler.tags = ['downloader']
