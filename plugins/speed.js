@@ -1,4 +1,4 @@
-import { cpus as _cpus } from 'os';
+import { cpus as _cpus, freemem, platform, hostname } from 'os'; // Add freemem, platform, and hostname
 import osu from 'node-os-utils';
 import fetch from 'node-fetch';
 import { performance } from 'perf_hooks';
@@ -82,8 +82,10 @@ const handler = async (m, { conn }) => {
   const drivePer = driveInfo.usedPercentage !== NotDetect ? `${driveInfo.usedPercentage}%` : NotDetect;
   const ramTotal = `${memInfo.totalMemMb} MB`;
   const ramUsed = `${memInfo.usedMemMb} MB`;
-  const netsIn = `${netInfo.total.inputMb} MB`;
-  const netsOut = `${netInfo.total.outputMb} MB`;
+  
+  // Fix: Check if netInfo.total exists to prevent TypeError
+  const netsIn = netInfo?.total?.inputMb !== undefined ? `${netInfo.total.inputMb} MB` : NotDetect;
+  const netsOut = netInfo?.total?.outputMb !== undefined ? `${netInfo.total.outputMb} MB` : NotDetect;
 
   const { ip, country, cc } = await (await fetch("https://api.myip.com")).json();
   const date = new Date(new Date() + 3600000);
@@ -122,8 +124,8 @@ ${muptime}
 - *s ᴇ ʀ ᴠ ᴇ ʀ* -
 *🛑 Rᴀᴍ:* ${ramUsed} / ${ramTotal} (${(parseFloat(memInfo.usedMemMb) && parseFloat(memInfo.totalMemMb)) ? Math.round(100 * (memInfo.usedMemMb / memInfo.totalMemMb)) + '%' : NotDetect})
 *🔵 FʀᴇᴇRᴀᴍ:* ${format(freemem())}
-*🔭 ᴘʟᴀᴛғᴏʀᴍ:* ${os.platform()}
-*🧿 sᴇʀᴠᴇʀ:* ${os.hostname()}
+*🔭 ᴘʟᴀᴛғᴏʀᴍ:* ${platform()}
+*🧿 sᴇʀᴠᴇʀ:* ${hostname()}
 *💻 ᴏs:* ${osu.os.platform()}
 *📍 ɪᴘ:* ${ip}
 *🌎 ᴄᴏᴜɴᴛʀʏ:* ${country}
