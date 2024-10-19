@@ -28,8 +28,9 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
             if (url) {
                 m.reply('Gambar berhasil diupload\nGambar sedang dibuat\n\n*TUNGGU 30 detik - 5 menit*')
                 let hasil = await fetchResultWithRetry(url);
+                
                 if (hasil) {
-                    await conn.sendFile(m.chat, hasil, '', `Ini gambarnya kak @${sender}\n${global.wm}`, m);
+                    await conn.sendFile(m.chat, hasil, 'anime-result.jpg', `Ini gambarnya kak @${sender}\n${global.wm}`, m);
                 } else {
                     throw 'Gagal mendapatkan jawaban dari server';
                 }
@@ -82,7 +83,8 @@ async function fetchResultWithRetry(url, maxAttempts = 3) {
 
     while (attempts < maxAttempts) {
         try {
-            hasil = await (await fetch(`${server}?url=${url}&apikey=${Xa}`)).buffer();
+            let response = await fetch(`${server}?url=${url}&apikey=${Xa}`);
+            hasil = await response.buffer();
             if (hasil.length > 0) break;
         } catch (error) {
             attempts++;
@@ -96,9 +98,7 @@ handler.help = ['toanime'];
 handler.tags = ['anime', 'ai'];
 handler.command = /^(toanime|jadianime)$/i;
 handler.register = true;
-handler.fail = true
-// handler.premium = true
-
+handler.fail = true;
 handler.limit = 4;
 
 export default handler;
