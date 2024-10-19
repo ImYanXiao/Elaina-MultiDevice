@@ -16,21 +16,19 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const Xa = process.env.xzn;
-const server = 'https://skizo.tech/api/aitoonme';
+const server = 'https://skizo.tech/api/toonme';
 
 const allowedFilters = [
     "t1",
     "t2",
     "t3",
-    "m1", // m1 error , hapus aja
     "m2",
     "m3",
     "m4",
     "fm1",
     "fm2",
     "fm3",
-    "fm4",
-    "gender" // gender error, hapus aja
+    "fm4"
 ];
 
 let handler = async (m, { conn, usedPrefix, command, args }) => {
@@ -56,17 +54,20 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
 
         if (media) {
             m.reply('Gambar berhasil diunduh\nGambar sedang di upload');
-            let url = await uploadImageWithRetry(media);
+            let url = await uploadImageWithRetry(media); // Menggunakan uploadImageWithRetry yang sudah didefinisikan
 
             if (url) {
+                // Make a request to the server with the specified filter
                 let filter = args[0];
                 let serverUrl = `${server}?url=${url}&apikey=${Xa}&filter=${filter}`;
                 let response = await fetch(serverUrl);
 
                 if (response.ok) {
+                    // Parse the server response
                     let result = await response.json();
 
                     if (result.status === 'true' && result.url) {
+                        // If the response is successful, send the file
                         await conn.sendFile(m.chat, result.url, '', `Ini gambarnya kak @${sender}\n${global.wm}`, m);
                     } else {
                         throw 'Gagal mendapatkan URL gambar dari server';
@@ -122,6 +123,6 @@ handler.help = ['tocartoon','jadikartun'];
 handler.tags = ['anime', 'ai'];
 handler.command = /^(jadikartun|tocartoon)$/i;
 
-handler.limit = 8;
+handler.limit = 3;
 
 export default handler;
