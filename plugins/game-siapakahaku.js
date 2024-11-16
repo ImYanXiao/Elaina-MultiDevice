@@ -1,4 +1,4 @@
-import { siapakahaku } from '@bochilteam/scraper';
+//import { siapakahaku } from '@bochilteam/scraper';
 
 let timeout = 130000;
 let poin = 10000;
@@ -9,7 +9,7 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.siapakahaku[id][0]);
         throw false;
     }
-    const json = await siapakahaku();
+    const json = await bochil.siapakahaku();
     
     let who = m.sender;
     let name = conn.getName(who);
