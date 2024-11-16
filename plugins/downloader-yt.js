@@ -1,4 +1,4 @@
-import { youtubeSearch } from '@bochilteam/scraper';
+//import { youtubeSearch } from '@bochilteam/scraper';
 import fetch from 'node-fetch';
 import { youtubedl } from '../lib/youtube.js'
 
@@ -12,7 +12,7 @@ if (command == 'play', 'ytplay', 'youtubeplay') {
 
     conn.reply(m.chat, 'Tunggu sebentar, sedang dicari dan diunduh...', m);
 
-    let search = await youtubeSearch(text);
+    let search = await bochil.youtubeSearch(text);
 
     if (!search || !search.video || !search.video[0]) {
       throw 'Video Tidak Ditemukan, Coba Judul Lain';
