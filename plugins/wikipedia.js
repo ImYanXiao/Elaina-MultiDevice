@@ -1,7 +1,7 @@
-import { wikipedia } from '@bochilteam/scraper'
+//import { wikipedia } from '@bochilteam/scraper'
 let handler = async (m, { text, usedPrefix, command }) => {
   if (!text) throw `Contoh penggunaan ${usedPrefix}${command} Minecraft`
-  let json = await wikipedia(text)
+  let json = await bochil.wikipedia(text)
   m.reply(`
 *${json.title}*
 ${json.img}
