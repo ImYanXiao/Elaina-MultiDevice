@@ -1,6 +1,6 @@
-import { bucin } from '@bochilteam/scraper'
+//import { bucin } from '@bochilteam/scraper'
 
-var handler = async (m, { conn }) => conn.reply(m.chat, await bucin(), m)
+var handler = async (m, { conn }) => conn.reply(m.chat, await bochil.bucin(), m)
 
 handler.help = ['bucin']
 handler.tags = ['quotes']
