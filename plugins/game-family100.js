@@ -1,4 +1,4 @@
-import { family100 } from '@bochilteam/scraper'
+//import { family100 } from '@bochilteam/scraper'
 const winScore = 4999
 
 async function handler(m) {
@@ -8,7 +8,7 @@ async function handler(m) {
         this.reply(m.chat, 'Masih ada kuis yang belum terjawab di chat ini', this.game[id].msg)
         throw false
     }
-    const json = await family100()
+    const json = await bochil.family100()
     let caption = `
 *Soal:* ${json.soal}
 Terdapat *${json.jawaban.length}* jawaban${json.jawaban.find(v => v.includes(' ')) ? `
