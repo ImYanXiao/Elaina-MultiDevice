@@ -1,4 +1,4 @@
-import { caklontong } from '@bochilteam/scraper';
+//import { caklontong } from '@bochilteam/scraper';
 
 let timeout = 130000;
 let poin = 10000;
@@ -9,7 +9,7 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.caklontong[id][0]);
         throw false;
     }
-    let json = await caklontong();
+    let json = await bochil.caklontong();
     
     // Get user's profile picture and other details
     let who = m.sender;
