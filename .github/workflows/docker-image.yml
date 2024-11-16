@@ -1,0 +1,31 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout code
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2. Build image Docker
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag elaina-bot-image:latest
+
+    # 3. Run container from image
+    - name: Run the Docker container
+      run: docker run -d -p 3000:3000 --name elaina-bot-container elaina-bot-image:latest
+    # 4. Debugging - Checking logs container
+    - name: Check Docker Logs
+      run: docker logs elaina-bot-container
+
+    # 5. Debugging - All list container
+    - name: List running containers
+      run: docker ps -a
