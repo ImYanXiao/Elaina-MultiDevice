@@ -1,6 +1,6 @@
-import { dare } from '@bochilteam/scraper'
+//import { dare } from '@bochilteam/scraper'
 
-let handler = async (m, { conn }) => conn.reply(m.chat, await dare(), m)
+let handler = async (m, { conn }) => conn.reply(m.chat, await bochil.dare(), m)
 
 handler.help = ['dare']
 handler.tags = ['quotes', 'fun']
