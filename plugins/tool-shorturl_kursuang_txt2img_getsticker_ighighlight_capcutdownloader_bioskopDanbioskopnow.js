@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { addExif } from '../lib/sticker.js'
 import { Sticker } from 'wa-sticker-formatter'
-import { bioskop, bioskopNow } from '@bochilteam/scraper-others';
+//import { bioskop, bioskopNow } from '@bochilteam/scraper-others';
 
 const apiKeys = ['C9eLLoQZvX', 'euhsDaUPzl'];
 
@@ -278,7 +278,7 @@ conn.reply(m.chat, 'Sedang membuat gambar...', m);
         return;
       }
       const page = text; // || 1;
-      const results = await bioskop(page);
+      const results = await bochil.bioskop(page);
 
       const formattedResults = results.map(res => {
         return `Title: ${res.title}\nImage: ${res.img}\nURL: ${res.url}\nGenre: ${res.genre}\nDuration: ${res.duration}\nRelease: ${res.release}\nDirector: ${res.director}\nCast: ${res.cast}\n\n`;
@@ -286,7 +286,7 @@ conn.reply(m.chat, 'Sedang membuat gambar...', m);
 
       await conn.reply(m.chat, formattedResults, m);
     } else if (command === 'bioskopNow','bioskopnow','bioskopsekarang') {
-      const results = await bioskopNow();
+      const results = await bochil.bioskopNow();
 
       const formattedResults = results.map(res => {
         return `Title: ${res.title}\nImage: ${res.img}\nURL: ${res.url}\nGenre: ${res.genre}\nDuration: ${res.duration}\nPlaying At: ${res.playingAt}\n\n`;
