@@ -5,6 +5,8 @@ import fs from 'fs'
 import fetch from 'node-fetch'
 import axios from 'axios'
 import moment from 'moment-timezone'
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 
 function pickRandom(list) {
     return list[Math.floor(list.length * Math.random())];
@@ -57,11 +59,11 @@ handler.all = async function (m) {
         console.log('Importing modules...');
         global.fs = await import('fs');
         global.fetch = (await import('node-fetch')).default;
-        global.bochil = await import('@bochilteam/scraper');
+        global.bochil = require('@bochilteam/scraper');
         console.log('Modules imported successfully');
     } catch (e) {
         console.error(`Error importing modules: ${e}`);
-	global.bochil = {};
+	//global.bochil = {};
     }
     
 		global.ucapan = ucapan()
