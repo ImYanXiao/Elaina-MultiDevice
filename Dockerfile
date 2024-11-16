@@ -4,8 +4,8 @@ FROM node:18
 WORKDIR /usr/src/app
 
 # Copy package files and install dependencies
-COPY package.json package-lock.json ./
-RUN npm ci
+COPY package.json ./
+RUN npm install
 
 # Install system dependencies
 RUN apt-get update && \
@@ -17,7 +17,7 @@ RUN apt-get update && \
 COPY . .
 
 # Expose the required port
-EXPOSE 5000
+EXPOSE 3000
 
 # Command to run the application
 CMD ["node", "index.js"]
