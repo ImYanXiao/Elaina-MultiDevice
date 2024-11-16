@@ -1,4 +1,4 @@
-import { tebakkata } from '@bochilteam/scraper'
+//import { tebakkata } from '@bochilteam/scraper'
 
 let timeout = 120000
 let poin = 6999
@@ -9,7 +9,7 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakkata[id][0])
         throw false
     }
-    const json = await tebakkata()
+    const json = await bochil.tebakkata()
     let caption = `
 ${json.soal}
 Timeout *${(timeout / 1000).toFixed(2)} detik*
