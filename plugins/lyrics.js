@@ -1,4 +1,4 @@
-import { lyrics, lyricsv2 } from '@bochilteam/scraper';
+//import { lyrics, lyricsv2 } from '@bochilteam/scraper';
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
@@ -9,10 +9,10 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     let result;
 
     try {
-      result = await lyricsv2(artistAndSong);
+      result = await bochil.lyricsv2(artistAndSong);
     } catch (err1) {
       try {
-        result = await lyrics(artistAndSong);
+        result = await bochil.lyrics(artistAndSong);
       } catch (err2) {
         const server = await fetch(`https://vihangayt.me/search/lyrics?q=${encodeURIComponent(artistAndSong)}`);
         const data = await server.json();
