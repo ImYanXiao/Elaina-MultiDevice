@@ -1,10 +1,10 @@
-import { googleImage } from '@bochilteam/scraper';
+//import { googleImage } from '@bochilteam/scraper';
 import sharp from 'sharp';
 
 var handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Gunakan contoh ${usedPrefix}${command} Kanao Tsuyuri`;
 
-    const res = await googleImage(text);
+    const res = await bochil.googleImage(text);
     let images = res;
     conn.reply("Tunggu Sebentar...")
 
