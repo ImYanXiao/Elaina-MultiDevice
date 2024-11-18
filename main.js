@@ -163,21 +163,10 @@ const connectionOptions = {
 global.conn = makeWASocket(connectionOptions)
 conn.isInit = false
 
-if(usePairingCode && !conn.authState.creds.registered) {
-		if(useMobile) throw new Error('Cannot use pairing code with mobile api')
-		const { registration } = { registration: {} }
-		let phoneNumber = ''
-		do {
-			phoneNumber = await question(chalk.blueBright('Input a Valid number start with region code. Example : 62xxx:\n'))
-		} while (!Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v)))
-		rl.close()
-		phoneNumber = phoneNumber.replace(/\D/g,'')
-		console.log(chalk.bgWhite(chalk.blue('Generating code...')))
-		setTimeout(async () => {
-			let code = await conn.requestPairingCode(phoneNumber)
-			code = code?.match(/.{1,4}/g)?.join('-') || code
-			console.log(chalk.black(chalk.bgGreen(`Your Pairing Code : `)), chalk.black(chalk.white(code)))
-		}, 3000)
+if (usePairingCode && !conn.authState.creds.registered) {
+		const phoneNumber = await question('Please enter your phone number:\n')
+		const code = await conn.requestPairingCode(phoneNumber)
+		console.log(chalk.black(chalk.bgGreen(`Your Pairing Code : `)), chalk.black(chalk.white(code)))
 	}
 async function resetLimit() {
   try {
