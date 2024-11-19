@@ -1,22 +1,13 @@
-// Code by Xnuvers007
-// https://github.com/Xnuvers007/
-
-import { areJidsSameUser } from '@adiwajshing/baileys'
-
-let handler = async (m, { conn, participants, isAdmin }) => {
+var handler = async (m, { conn, participants, isAdmin }) => {
     if (!isAdmin) {
         return m.reply('Perintah ini hanya dapat digunakan oleh admin grup')
     }
-
-    let users = m.mentionedJid.filter(u => !areJidsSameUser(u, conn.user.id))
-    let kickedUser = []
-    for (let user of users)
-        if (user.endsWith('@s.whatsapp.net') && !(participants.find(v => areJidsSameUser(v.id, user)) || { admin: true }).admin) {
-            const res = await conn.groupParticipantsUpdate(m.chat, [user], "remove")
-            kickedUser.concat(res)
-            await delay(1 * 1000)
-        }
-    m.reply(`Mampos Dikick Kau ${kickedUser.map(v => '@' + v.split('@')[0])}`, null, { mentions: kickedUser })
+    
+    let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : text ? (text.replace(/\D/g, '') + '@s.whatsapp.net') : ''
+		if (!who || who == m.sender) throw 'Reply / tag yang ingin di kick'
+		if (participants.filter(v => v.id == who).length == 0) throw `Target tidak berada dalam Grup !`
+		await conn.groupParticipantsUpdate(m.chat, [who], 'remove') 
+    m.reply(`Success`)
 }
 
 handler.help = ['kick'].map(v => v + ' @user')
