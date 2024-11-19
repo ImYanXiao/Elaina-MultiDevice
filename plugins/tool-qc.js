@@ -1,57 +1,61 @@
-import { sticker } from '../lib/sticker.js'
+import { Sticker, StickerTypes } from 'wa-sticker-formatter'
 import axios from 'axios'
-
-const handler = async (m, { conn, args }) => {
-    let text;
-    if (args.length >= 1) {
-        text = args.slice(0).join(" ");
-    } else if (m.quoted && m.quoted.text) {
-        text = m.quoted.text;
-    } else throw "Input teks atau reply teks yang ingin dijadikan quote!";
-    if (!text) return m.reply('masukan text');
-    if (text.length > 100) return m.reply('Maksimal 100 Teks!');
-
-    const randomColor = ['#000000'];
-
-    const apiColor = randomColor[Math.floor(Math.random() * randomColor.length)];
-
-    const pp = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://telegra.ph/file/320b066dc81928b782c7b.png');
-
-    const obj = {
-        "type": "quote",
-        "format": "png",
-        "backgroundColor": apiColor,
-        "width": 512,
-        "height": 768,
-        "scale": 2,
-        "messages": [{
-            "entities": [],
-            "avatar": true,
-            "from": {
-                "id": 1,
-                "name": m.name,
-                "photo": {
-                    "url": pp
-                }
-            },
-            "text": text,
-            "replyMessage": {}
-        }]
-    };
-
-    const json = await axios.post('https://quote.btch.bz/generate', obj, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-
-    const buffer = Buffer.from(json.data.result.image, 'base64');
-    const stiker = await sticker(buffer, false, global.stickpack, global.stickauth);
-    if (stiker) return conn.sendFile(m.chat, stiker, 'Quotely.webp', '', m);
+var handler = async (m, { conn, text }) => {
+if (!text) return m.reply("Textnya Mana Banh? ")
+if (text.length > 50) return m.reply('Maximal 50 Text')
+            var teks = text
+			let pp;
+			try {
+				pp = await conn.profilePictureUrl(m.sender, "image");
+			}
+			catch (e) {
+				pp = "https://artikel.rumah123.com/wp-content/uploads/sites/41/2023/09/12160753/gambar-foto-profil-whatsapp-kosong.jpg"
+			}
+			let ren = ["#FFFFFF", "#000000"];
+			let has = ren[Math.floor(Math.random() * ren.length)];
+			let tname = m.name
+			let req = {
+				type: "quote",
+				format: "png",
+				backgroundColor: has,
+				width: 512,
+				height: 512,
+				scale: 3,
+				messages: [
+					{
+						avatar: true,
+						from: {
+							first_name: tname,
+							language_code: "en",
+							name: tname,
+							photo: {
+								url: pp,
+							},
+						},
+						text: teks, 
+						replyMessage: {},
+              },
+            ],
+			};
+			let res = await axios.post("https://bot.lyo.su/quote/generate", req);
+			let img = Buffer.alloc(res.data.result.image.length, res.data.result.image, "base64");
+			let sticker = new Sticker(img, {
+				pack: packname,
+				author: tname, 
+				type: StickerTypes.FULL,
+				categories: ['🤩', '🎉'],
+				id: '12345', 
+				quality: 85,
+				background: 'transparent'
+			})
+			const buffer = await sticker.toBuffer()
+			conn.sendMessage(m.chat, {
+				sticker: buffer
+			}, {
+				quoted: m
+			})
 }
-
-handler.help = ['qc']
+handler.help = ['quotly']
 handler.tags = ['sticker']
-handler.command = /^(qc)$/i
-
+handler.command = ['quickchat', 'qc', 'quotly']
 export default handler
