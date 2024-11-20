@@ -1,8 +1,8 @@
 import jimp from 'jimp';
 
 let handler = async (m, { conn, text }) => {
-    let img = await jimp.read('https://i.imgur.com/nav6WWX.png');
-    let who = m.mentionedJid?.[0] || m.quoted?.sender || m.sender;
+    let img = await jimp.read('https://pomf2.lain.la/f/ptc9y1yp.jpg');
+    let who = m.mentionedJid?.[0] ? m.quoted.sender : m.sender;
 
     // apakah ada yang diTAG
     if (who) {
@@ -11,7 +11,7 @@ let handler = async (m, { conn, text }) => {
             avatar = await jimp.read(await conn.profilePictureUrl(who, 'image'));
         } catch (error) {
             // Gunakan gambar default jika tidak dapat mengakses gambar profil
-            avatar = await jimp.read('https://i.imgur.com/IwR8ShH.png');
+            avatar = await jimp.read('https://pomf2.lain.la/f/34z41gv.jpg');
         }
 
         let bonk = await img.composite(avatar.resize(128, 128), 120, 90, {
