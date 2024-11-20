@@ -87,9 +87,9 @@ let handler = async (m, {
     }
 };
 
-handler.help = ['hd', 'remini', 'jernih', 'hade', 'hd2', 'jernih2'];
+handler.help = ['remini', 'hd2', 'jernih2'];
 handler.tags = ['ai'];
-handler.command = /^(remini|hd|jernih|hade|hd2|jernih2)$/i;
+handler.command = /^(remini|hd2|jernih2)$/i;
 handler.register = false;
 handler.limit = true;
 handler.disable = false;
