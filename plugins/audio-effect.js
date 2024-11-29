@@ -28,8 +28,27 @@ let handler = async (m, { conn, args, __dirname, usedPrefix, command }) => {
             pitch: '-filter:a "asetrate=44100*1.25,atempo=1.25"',
             highpass: '-filter:a "highpass=f=500"',
             lowpass: '-filter:a "lowpass=f=500"',
-            underwater: '-af "asetrate=44100*0.5,atempo=2,lowpass=f=300"'
+            underwater: '-af "asetrate=44100*0.5,atempo=2,lowpass=f=300"',
+            echo: '-map 0 -c:v "copy" -af "aecho=0.6:0.3:1000:0.5"',
+            tremolo: '-filter:a "tremolo=0.5:1000"',
+            pitchshift: '-filter:a "asetrate=44100*0.8,atempo=0.8"',
+            echo2: '-af "aecho=0.9:0.9:1000:0.5"',
+            chipmunk: '-filter:a "asetrate=44100*1.5,atempo=1.5"',
+            man: '-filter_complex "aphaser=type=all:stages=12:gain=0.2"',
+            female: '-filter_complex "aphaser=type=all:stages=12:gain=0.2,asetrate=48000"',
+            echo3: '-af "aecho=0.9:0.8:1000:0.5"',
+            pitchshift2: '-filter:a "asetrate=44100*0.75,atempo=0.75"',
         };
+
+        // Handle the "listeffectaudio" command
+        if (command === 'listeffectaudio' || command === "listeffectvn" || command === "listefekvn" || command === "listefekaudio") {
+            let listMessage = "Berikut adalah efek audio yang tersedia dan cara penggunaannya:\n\n";
+            for (let effect in effects) {
+                listMessage += `*${effect}* - Penggunaan: ${usedPrefix}${effect} [audio atau voice note]\n`;
+            }
+            m.reply(listMessage);
+            return;
+        }
 
         set = effects[command];
 
@@ -42,7 +61,7 @@ let handler = async (m, { conn, args, __dirname, usedPrefix, command }) => {
                 unlinkSync(media);
                 if (err) {
                     console.error(stderr);
-                    throw `_*Error processing audio!*_`;
+                    throw `_*Kesalahan saat memproses audio!*_`;
                 }
                 let buff = readFileSync(filename);
                 conn.sendFile(m.chat, buff, ran, null, m, true, {
@@ -52,16 +71,16 @@ let handler = async (m, { conn, args, __dirname, usedPrefix, command }) => {
                 unlinkSync(filename);
             });
         } else {
-            throw `*[❗ɴᴏᴛᴇ ] Reply audio atau vn kamu yang akan dimodifikasi, menggunakan perintah ${usedPrefix + command}*`;
+            throw `*[❗ɴᴏᴛᴇ ] Balas audio atau voice note untuk menerapkan efek, menggunakan perintah ${usedPrefix + command}*`;
         }
     } catch (e) {
         throw e;
     }
 };
 
-handler.help = ['bass', 'blown', 'deep', 'earrape', 'fast', 'fat', 'nightcore', 'reverse', 'robot', 'slow', 'smooth', 'tupai', 'reverb', 'chorus', 'flanger', 'distortion', 'pitch', 'highpass', 'lowpass', 'underwater'].map(v => v + ' [vn]');
+handler.help = ['bass', 'blown', 'deep', 'earrape', 'fast', 'fat', 'nightcore', 'reverse', 'robot', 'slow', 'smooth', 'tupai', 'reverb', 'chorus', 'flanger', 'distortion', 'pitch', 'highpass', 'lowpass', 'underwater', 'echo', 'tremolo', 'pitchshift', 'echo2', 'chipmunk', 'echo3', 'pitchshift2', 'listeffectaudio'];
 handler.tags = ['audio'];
-handler.command = /^(bass|blown|deep|earrape|fast|fat|nightcore|reverse|robot|slow|smooth|tupai|reverb|chorus|flanger|distortion|pitch|highpass|lowpass|underwater)$/i;
+handler.command = /^(bass|blown|deep|earrape|fast|fat|nightcore|reverse|robot|slow|smooth|tupai|reverb|chorus|flanger|distortion|pitch|highpass|lowpass|underwater|echo|tremolo|pitchshift|echo2|chipmunk|echo3|pitchshift2|listeffectaudio|listeffectvn|listefekvn|listefekaudio)$/i;
 
 export default handler;
 
