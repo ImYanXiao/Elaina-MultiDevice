@@ -40,9 +40,9 @@ function tts(text, lang = 'id') {
   return new Promise((resolve, reject) => {
     try {
       let tts = gtts(lang);
-      let filePath = join(global.__dirname, '../tmp', `${Date.now()}.wav`);
+      let filePath = join(global.__dirname(import.meta.url), '../tmp', (1 * new Date) + '.wav')
       tts.save(filePath, text, () => {
-        resolve(filePath);
+        resolve(filePath); 
       });
     } catch (e) {
       reject(e);
