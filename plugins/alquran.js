@@ -411,8 +411,8 @@ English: ${api[args[0] - 1].ayahs[args[1] - 1].translation.en}
     await conn.sendFile(m.chat, api[args[0] - 1].ayahs[args[1] - 1].audio.url, '', `( Q.S ${api[args[0] - 1].asma.id.short} (${api[args[0] - 1].asma.ar.short}) : ${api[args[0] - 1].ayahs[args[1] - 1].number.insurah} )`, m);
 }
 
-handler.help = ['alquran']
-handler.tags = ['quran']
-handler.command = ['alquran']
+handler.help = ['alquran'];
+handler.tags = ['quran'];
+handler.command = ['alquran', 'quran', 'qur\'an'];
 
 export default handler;
