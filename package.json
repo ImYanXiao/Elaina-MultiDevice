@@ -66,6 +66,7 @@
       "got": "^13.0.0",
       "https": "^1.0.0",
       "human-readable": "^0.2.1",
+      "ig-downloader": "^1.1.4",
       "jimp": "^0.16.2",
       "jsbarcode": "^3.11.5",
       "jsdom": "^22.1.0",
