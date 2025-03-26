@@ -204,7 +204,7 @@ let tags = {
       before,
       ...Object.keys(tags).map(tag => {
         return header.replace(/%category/g, tags[tag]) + '\n' + [
-          ...help.filter(menu => menu.tags && menu.tags.includes(tag) && menu.help).map(menu => {
+          ...help.filter(menu => menu.tags && menu.tags.includes(tag) && Array.isArray(menu.help)).map(menu => {
             return menu.help.map(help => {
               return body.replace(/%cmd/g, menu.prefix ? help : '%_p' + help)
                 .replace(/%islimit/g, menu.limit ? llim : '')
