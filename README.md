@@ -154,6 +154,16 @@ conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', 'https://github.com/Boc
 
 ---------
 
+### SC ERROR / GABISA KONEK
+1. pada folder plugins ini diubah menjadi nama folder yang berbeda/baru, contoh: plugins => pluginslama
+2. buatlah folder plugins baru (catatan, ini adalah folder kosong) contoh : plugins
+3. lalu restart server / cpanel yang dimana folder plugins ini kosong.
+4. masukan nomor, dll. seperti biasa
+5. setelah konek/tersambung, cek bagian perangkat tertaut, apakah ada tulisan menyinkronkan, jika ada, maka tunggu. (catatan, ini hal penting bahwa perangkat tertaut harus ada 1 yang kosong, max 5)
+6. setelah sudah, hapus folder plugins dan rename folder pluginslama menjadi plugins
+
+---------
+
 ## ```Thanks to ✨```
 * [`Allah SWT`]
 * [`My parents`]
