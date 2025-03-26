@@ -27,12 +27,14 @@ import moment from 'moment-timezone'
     // let wibs = moment.tz('Asia/Jakarta').format('ss')
     // let wktuwib = `${wibh} H ${wibm} M ${wibs} S`
 
-    let wktuwib = moment.tz('Asia/Jakarta').format('HH H mm M ss S');
+    let wktuwib = moment.tz('Asia/Jakarta').format('HH:mm:ss') + ' WIB';
 
-    let wktuwita = moment.tz('Asia/Makassar').format('HH H mm M ss S');
+    let wktuwita = moment.tz('Asia/Makassar').format('HH:mm:ss') + ' WITA';
 
-    let wktuwit = moment.tz('Asia/Jayapura').format('HH H mm M ss S');
-    
+    let wktuwit = moment.tz('Asia/Jayapura').format('HH:mm:ss') + ' WIT';
+
+    global.gabung = wktuwib+'\n'+wktuwita+'\n'+wktuwit;
+
     let d = new Date(new Date + 3600000)
     let locale = 'id'
     // d.getTimeZoneOffset()
