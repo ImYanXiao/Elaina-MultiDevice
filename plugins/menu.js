@@ -26,7 +26,7 @@ const defaultMenu = {
 ⬡│☂︎ *Tanggal:* %week %weton
 ⬡│☂︎ *Date:* %date
 ⬡│☂︎ *Tanggal Islam:* %dateIslamic
-┬│☂︎ *Waktu:* %time
+┬│☂︎ *Waktu:* ${global.gabung}
 │╰────────────────···
 ┠─────═[ INFO BOT ]═─────⋆
 │╭────────────────···
