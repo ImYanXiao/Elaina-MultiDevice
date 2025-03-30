@@ -132,7 +132,7 @@ const connectionOptions = {
      },
      getMessage: async key => {
     		const messageData = await store.loadMessage(key.remoteJid, key.id);
-    		return messageData?.message || undefined;
+    		return messageData?.message || '';
 	},
   generateHighQualityLinkPreview: true, 
 	      patchMessageBeforeSending: (message) => {
