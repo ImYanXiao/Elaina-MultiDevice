@@ -45,6 +45,7 @@ const {
     DisconnectReason,
     fetchLatestBaileysVersion, 
     makeInMemoryStore, 
+    jidNormalizedUser,
     makeCacheableSignalKeyStore, 
     PHONENUMBER_MCC
     } = await import('@adiwajshing/baileys') 
@@ -131,7 +132,8 @@ const connectionOptions = {
          })), 
      },
      getMessage: async key => {
-    		const messageData = await store.loadMessage(key.remoteJid, key.id);
+	     	const jid = jidNormalizedUser(key.remoteJid);
+    		const messageData = await store.loadMessage(jid, key.id);
     		return messageData?.message || '';
 	},
   generateHighQualityLinkPreview: true, 
