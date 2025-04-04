@@ -1,36 +1,42 @@
-import { downloadContentFromMessage } from '@adiwajshing/baileys';
+// Created by Xnuvers007
+import path from 'path';
 
 let handler = async (m, { conn, usedPrefix, command }) => {
-  if (!m.quoted) throw `Send/Reply Images with the caption ${usedPrefix+command}`;
+    if (!m.quoted) return m.reply(`Mohon balas file yang ingin Anda lihat. \n${usedPrefix+command}\n> Cihuyyy, Created by ${global.namebot + ' - '+ global.nameown}`);
 
-  if (m.quoted.mtype !== 'viewOnceMessageV2' || m.quoted.mtype !== 'viewOnceMessage') {
-    throw 'Ini bukan pesan view-once.';
-  }
+    const isViewOnce = m.quoted?.viewOnce === true;
 
-  let msg = m.quoted.message;
+    if (isViewOnce) {
+        try {
+            const media = await m.quoted.download();
+            if (!media) return m.reply("Gagal mengambil file. Silakan coba lagi.");
 
-  console.log(msg.message?.extendedTextMessage?.contextInfo?.quotedMessage?.viewOnceMessage);
-  console.log(msg.message?.extendedTextMessage?.contextInfo?.quotedMessage?.viewOnceMessageV2?.message);
+            let fileType = m.quoted.mimetype || '';
+            let fileExt = fileType.split('/')[1] || 'file';
+            let msg = await m.getQuotedObj()?.message;
+            let type = Object.keys(msg)[0];
 
-  let type = Object.keys(msg)[0];
-   
-  let media = await downloadContentFromMessage(msg[type], type === 'imageMessage' ? 'image' : 'video');
-
-  let buffer = Buffer.from([]);
-
-  for await (const chunk of media) {
-    buffer = Buffer.concat([buffer, chunk]);
-  }
-
-  if (/video/.test(type)) {
-    return conn.sendFile(m.chat, buffer, 'media.mp4', msg[type].caption || '', m);
-  } else if (/image/.test(type)) {
-    return conn.sendFile(m.chat, buffer, 'media.jpg', msg[type].caption || '', m);
-  }
+            if (fileType.startsWith('image')) {
+                await conn.sendFile(m.chat, media, `retrieved.${fileExt}`, msg[type]?.caption, m);
+            } else if (fileType.startsWith('video')) {
+                await conn.sendFile(m.chat, media, `retrieved.${fileExt}`, msg[type]?.caption, m);
+            } else if (fileType.startsWith('audio')) {
+                await conn.sendFile(m.chat, media, `retrieved.${fileExt}`, msg[type]?.caption, m, { asDocument: false });
+            } else if (fileType === 'image/webp') {
+                await conn.sendMessage(m.chat, { sticker: media }, { quoted: m });
+            } else {
+                await conn.sendFile(m.chat, media, `retrieved.${fileExt}`, msg[type]?.caption, m, { asDocument: true });
+            }
+        } catch {
+            m.reply("Terjadi kesalahan saat mengambil file.");
+        }
+    } else {
+        m.reply("Ini bukan pesan view-once.");
+    }
 };
 
-handler.help = ['readviewonce'];
+handler.help = ['readviewonce','read'];
 handler.tags = ['tools'];
-handler.command = /^retrieve|readviewonce|rvo/i;
+handler.command = /^(retrieve|readviewonce|rvo|sekali(liat|lihat)|satu(kali(lihat|liat))?)$/i;
 
 export default handler;
