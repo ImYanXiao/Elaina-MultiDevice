@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return false">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="30">
+    <link rel="icon" href="https://i.pinimg.com/736x/e9/78/73/e9787301feb580e6bf88c711c8d2df0a.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="https://i.pinimg.com/736x/e9/78/73/e9787301feb580e6bf88c711c8d2df0a.jpg" type="image/x-icon">
+    <title>Xnuvers007 Bot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --accent-color: #ff006e;
+            --dark-bg: #0f0f1a;
+            --card-bg: rgba(25, 25, 36, 0.6);
+            --text-color: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+            position: relative;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-30px) translateX(15px);
+            }
+            50% {
+                transform: translateY(-15px) translateX(-15px);
+            }
+            75% {
+                transform: translateY(30px) translateX(5px);
+            }
+        }
+        
+        .container {
+            max-width: 90%;
+            width: 900px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .dashboard {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .dashboard::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.03) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            z-index: 0;
+        }
+        
+        .dashboard-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 12px;
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-title {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .logo-subtitle {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .clock-grid {
+            display: flex;
+            padding: 25px;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .clock-card {
+            flex: 1;
+            background: rgba(15, 15, 25, 0.4);
+            border-radius: 12px;
+            padding: 18px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .clock-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .clock-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .clock-card:hover::after {
+            opacity: 1;
+        }
+        
+        .clock-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            margin-bottom: 10px;
+        }
+        
+        .clock-icon i {
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+        
+        .clock-title {
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .clock-display {
+            font-size: 28px;
+            font-weight: 300;
+            margin-top: 5px;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .clock-display:after {
+            content: attr(data-zone);
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            font-size: 13px;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 25px;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            position: relative;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(58, 134, 255, 0.3);
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .btn:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .digital {
+            font-family: 'Courier New', monospace;
+            font-weight: 500;
+        }
+        
+        .info-section {
+            padding: 0 25px 15px;
+        }
+        
+        .info-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .info-card {
+            background: rgba(15, 15, 25, 0.4);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .fact-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--accent-color);
+        }
+        
+        .fact-text {
+            font-size: 13px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .date-card {
+            background: rgba(15, 15, 25, 0.4);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .date-display {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .weather-section {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .weather-card {
+            flex: 1;
+            background: rgba(15, 15, 25, 0.4);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .weather-city {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .weather-temp {
+            font-size: 24px;
+            font-weight: 300;
+            margin: 5px 0;
+        }
+        
+        .weather-desc {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .quote-section {
+            padding: 15px 25px 25px;
+        }
+        
+        .quote-card {
+            background: rgba(15, 15, 25, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .quote-text {
+            font-size: 14px;
+            line-height: 1.6;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 10px;
+        }
+        
+        .quote-author {
+            font-size: 12px;
+            text-align: right;
+            color: var(--accent-color);
+        }
+        
+        .quote-icon {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.1;
+            top: 10px;
+            left: 10px;
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .clock-grid, .weather-section {
+                flex-direction: column;
+            }
+            
+            .clock-card {
+                margin-bottom: 10px;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        .xnuvers007 {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="dashboard">
+            <div class="dashboard-header">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="logo-text">
+                        <div class="logo-title">Xnuvers007</div>
+                        <div class="logo-subtitle">Time Management System</div>
+                    </div>
+                </div>
+                <div class="date-card">
+                    <div class="date-display" id="current-date"></div>
+                </div>
+            </div>
+            
+            <div class="clock-grid">
+                <div class="clock-card">
+                    <div class="clock-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="clock-title">Western Indonesia</div>
+                    <div id="clock-wib" class="clock-display digital" data-zone="WIB"></div>
+                    <div class="fact-text" style="margin-top:10px; font-size:11px;">Jakarta, Sumatera, Java</div>
+                </div>
+                
+                <div class="clock-card">
+                    <div class="clock-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <div class="clock-title">Central Indonesia</div>
+                    <div id="clock-wita" class="clock-display digital" data-zone="WITA"></div>
+                    <div class="fact-text" style="margin-top:10px; font-size:11px;">Bali, Sulawesi, Kalimantan</div>
+                </div>
+                
+                <div class="clock-card">
+                    <div class="clock-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="clock-title">Eastern Indonesia</div>
+                    <div id="clock-wit" class="clock-display digital" data-zone="WIT"></div>
+                    <div class="fact-text" style="margin-top:10px; font-size:11px;">Papua, Maluku Islands</div>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-title">Interesting Facts</div>
+                <div class="info-card">
+                    <div class="fact-title">Did You Know?</div>
+                    <div class="fact-text" id="random-fact">Indonesia spans three time zones across its 17,000+ islands, making it one of the most diverse archipelagos in the world.</div>
+                </div>
+            </div>
+            
+            <div class="quote-section">
+                <div class="quote-card">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <div class="quote-text" id="random-quote">Waktu adalah hal yang paling berharga yang dapat dibelanjakan seseorang.</div>
+                    <div class="quote-author" id="quote-author">- Theophrastus</div>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <a href="https://mykingbee.blogspot.com/" class="btn btn-primary xnuvers007" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-globe"></i>
+                    Visit Blog
+                </a>
+                <button class="btn btn-secondary" id="change-quote">
+                    <i class="fas fa-random"></i>
+                    Change Quote
+                </button>
+                <button class="btn btn-secondary" id="change-fact">
+                    <i class="fas fa-lightbulb"></i>
+                    New Fact
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const colors = ['#3a86ff', '#8338ec', '#ff006e', '#fb5607'];
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random properties
+                const size = Math.random() * 15 + 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.background = color;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+        
+        // Clock functionality
+        function updateClock() {
+            const now = new Date();
+            const optionsTime = { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit',
+                hour12: false
+            };
+            
+            const optionsDate = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            
+            const timeStringWIB = now.toLocaleTimeString('en-US', { ...optionsTime, timeZone: 'Asia/Jakarta' });
+            const timeStringWITA = now.toLocaleTimeString('en-US', { ...optionsTime, timeZone: 'Asia/Makassar' });
+            const timeStringWIT = now.toLocaleTimeString('en-US', { ...optionsTime, timeZone: 'Asia/Jayapura' });
+            const dateString = now.toLocaleDateString('en-US', optionsDate);
+            
+            document.getElementById('clock-wib').textContent = timeStringWIB;
+            document.getElementById('clock-wita').textContent = timeStringWITA;
+            document.getElementById('clock-wit').textContent = timeStringWIT;
+            document.getElementById('current-date').textContent = dateString;
+        }
+        
+        // Update clock immediately and every second
+        updateClock();
+        setInterval(updateClock, 1000);
+        
+        // Random quotes
+        const quotes = [
+            {
+                text: "Waktu adalah hal yang paling berharga yang dapat dibelanjakan seseorang.",
+                author: "Theophrastus"
+            },
+            {
+                text: "Jangan menunggu. Waktunya tidak akan pernah tepat.",
+                author: "Napoleon Hill"
+            },
+            {
+                text: "Waktu yang hilang tidak akan pernah ditemukan lagi.",
+                author: "Benjamin Franklin"
+            },
+            {
+                text: "Cara terbaik untuk memprediksi masa depan adalah dengan menciptakannya.",
+                author: "Abraham Lincoln"
+            },
+            {
+                text: "Kita mungkin kecewa jika gagal, tetapi kita pasti menyesal jika tidak mencoba.",
+                author: "Beverly Sills"
+            },
+            {
+                text: "Kesuksesan bukanlah kunci kebahagiaan. Kebahagiaan adalah kunci kesuksesan.",
+                author: "Albert Schweitzer"
+            },
+            {
+                text: "Hidup itu seperti bersepeda. Untuk menjaga keseimbangan, kamu harus terus bergerak.",
+                author: "Albert Einstein"
+            },
+            {
+                text: "Jangan biarkan kesulitan menghentikanmu. Kesulitan adalah bagian dari perjalanan menuju kesuksesan.",
+                author: "Zig Ziglar"
+            },
+            {
+                text: "Jika kamu bisa memimpikannya, kamu bisa mewujudkannya.",
+                author: "Walt Disney"
+            },
+            {
+                text: "Hal terbaik untuk dilakukan dengan hidupmu adalah memberikan sesuatu yang berarti bagi orang lain.",
+                author: "Winston Churchill"
+            },
+            {
+                text: "Kesuksesan tidak diukur dari apa yang kamu capai, tetapi dari hambatan yang kamu atasi.",
+                author: "Booker T. Washington"
+            },
+            {
+                text: "Keberhasilan adalah kemampuan untuk pergi dari kegagalan ke kegagalan tanpa kehilangan semangat.",
+                author: "Winston Churchill"
+            },
+            {
+                text: "Satu-satunya cara untuk melakukan pekerjaan hebat adalah dengan mencintai apa yang kamu kerjakan.",
+                author: "Steve Jobs"
+            },
+            {
+                text: "Tidak ada yang lebih memuaskan selain mengetahui bahwa kamu telah melakukan yang terbaik.",
+                author: "John Wooden"
+            },
+            {
+                text: "Jangan pernah menyerah, karena kamu tidak pernah tahu seberapa dekatnya kamu dengan keberhasilan.",
+                author: "Thomas Edison"
+            },
+            {
+                text: "Apa yang kamu lakukan hari ini dapat mempengaruhi hidupmu di masa depan.",
+                author: "Zig Ziglar"
+            },
+            {
+                text: "Kegagalan adalah kesempatan untuk memulai lagi dengan lebih cerdas.",
+                author: "Henry Ford"
+            },
+            {
+                text: "Lakukan hari ini apa yang orang lain tidak mau lakukan, dan kamu akan hidup nanti seperti yang orang lain tidak bisa hidup.",
+                author: "Jerry Rice"
+            },
+            {
+                text: "Keberhasilan adalah hasil dari keputusan yang tepat, dan keputusan yang tepat dibuat dengan pengetahuan yang baik.",
+                author: "Brian Tracy"
+            },
+            {
+                text: "Yang kita takutkan bukanlah bahwa kita tidak cukup mampu, tetapi bahwa kita terlalu mampu.",
+                author: "Marianne Williamson"
+            },
+            {
+                text: "Lakukan apa yang kamu bisa dengan apa yang kamu punya di tempat di mana kamu berada.",
+                author: "Theodore Roosevelt"
+            },
+            {
+                text: "Sukses bukan tentang berapa banyak uang yang kamu hasilkan, tetapi tentang perbedaan yang kamu buat dalam hidup orang lain.",
+                author: "Michelle Obama"
+            },
+            {
+                text: "Tidak ada yang tidak mungkin. Semua hal bisa dicapai jika kamu cukup berusaha.",
+                author: "Barack Obama"
+            },
+            {
+                text: "Kesuksesan terbesar bukanlah pada saat kita tidak pernah jatuh, tetapi pada saat kita bangkit kembali setelah jatuh.",
+                author: "Nelson Mandela"
+            },
+            {
+                text: "Waktu adalah uang, tetapi waktu yang dihabiskan dengan cinta dan kebahagiaan jauh lebih berharga.",
+                author: "Unknown"
+            },
+            {
+                text: "Bukan waktu yang hilang, tetapi apa yang kita lakukan dengan waktu yang ada.",
+                author: "Unknown"
+            },
+            {
+                text: "Jangan hanya menunggu kesempatan datang, ciptakan kesempatan itu sendiri.",
+                author: "Unknown"
+            },
+            {
+                text: "Ketika kamu merasa lelah dan ingin menyerah, ingatlah mengapa kamu memulainya.",
+                author: "Unknown"
+            },
+            {
+                text: "Kamu tidak perlu melihat seluruh tangga, cukup langkah pertama saja.",
+                author: "Martin Luther King Jr."
+            },
+            {
+                text: "Jangan takut gagal, karena kegagalan adalah batu loncatan menuju keberhasilan.",
+                author: "Unknown"
+            },
+            {
+                text: "Orang yang berhasil adalah mereka yang bisa bangkit kembali setelah jatuh.",
+                author: "Unknown"
+            },
+            {
+                text: "Bekerja keras dalam diam, biarkan kesuksesan yang berbicara.",
+                author: "Frank Ocean"
+            },
+            {
+                text: "Keberhasilan tidak datang dengan mudah, tetapi dengan tekad dan kerja keras.",
+                author: "Unknown"
+            },
+            {
+                text: "Jadilah perubahan yang ingin kamu lihat di dunia.",
+                author: "Mahatma Gandhi"
+            },
+            {
+                text: "Keberanian bukanlah ketiadaan rasa takut, tetapi kemampuan untuk menghadapinya.",
+                author: "Nelson Mandela"
+            },
+            {
+                text: "Buatlah setiap hari berarti. Jangan biarkan waktu berlalu begitu saja.",
+                author: "Unknown"
+            },
+            {
+                text: "Kehidupanmu adalah hasil dari keputusan yang kamu buat, bukan dari apa yang terjadi padamu.",
+                author: "Stephen R. Covey"
+            },
+            {
+                text: "Lakukan yang terbaik hari ini, karena esok belum tentu ada.",
+                author: "Unknown"
+            },
+            {
+                text: "Sukses adalah perjalanan, bukan tujuan akhir.",
+                author: "Arthur Ashe"
+            },
+            {
+                text: "Langkah kecil yang kamu ambil sekarang akan menentukan langkah besar di masa depan.",
+                author: "Unknown"
+            },
+            {
+                text: "Hidup yang penuh tujuan adalah hidup yang kaya, bukan hanya dalam hal materi, tetapi dalam pengalaman.",
+                author: "Unknown"
+            },
+            {
+                text: "Banyak orang gagal karena mereka berhenti mencoba ketika mereka hampir mencapai kesuksesan.",
+                author: "Thomas Edison"
+            },
+            {
+                text: "Apapun yang kamu lakukan, lakukan dengan penuh gairah dan cinta.",
+                author: "Oprah Winfrey"
+            },
+            {
+                text: "Kebahagiaan adalah jalan, bukan tujuan.",
+                author: "Unknown"
+            },
+            {
+                text: "Tidak ada yang lebih kuat daripada tekad yang bulat untuk sukses.",
+                author: "Unknown"
+            },
+            {
+                text: "Keberhasilan adalah hasil dari tindakan yang tepat yang dilakukan dengan konsisten.",
+                author: "Unknown"
+            },
+            {
+                text: "Jika kamu tidak bisa terbang, berlarilah. Jika kamu tidak bisa berlari, berjalanlah. Jika kamu tidak bisa berjalan, merangkaklah. Apapun yang kamu lakukan, kamu harus terus maju.",
+                author: "Martin Luther King Jr."
+            },
+            {
+                text: "Cinta adalah kekuatan yang lebih kuat daripada kekuasaan dan kekayaan.",
+                author: "Mahatma Gandhi"
+            }
+        ];
+
+        // Indonesian facts
+        const facts = [
+            "Indonesia spans three time zones across its 17,000+ islands, making it one of the most diverse archipelagos in the world.",
+            "Indonesia has more than 700 languages spoken across its islands, making it one of the most linguistically diverse countries.",
+            "The world's largest flower, Rafflesia Arnoldii, can be found in the rainforests of Indonesia. It can grow up to 3 feet in diameter.",
+            "Indonesia is home to Komodo dragons, the largest living species of lizard, which can only be found in Komodo National Park.",
+            "The Indonesian capital, Jakarta, is one of the fastest-sinking cities in the world, with some parts sinking up to 25cm per year.",
+            "Lake Toba in North Sumatra is the largest volcanic lake in the world, formed after a supervolcanic eruption about 75,000 years ago.",
+            "Indonesia is home to around 10% of the world’s species, despite making up only about 1.3% of the world’s land area.",
+            "Papua is the second largest island in the world, after Greenland, and is home to many indigenous tribes that preserve their traditional cultures.",
+            "Indonesia has more than 17,000 islands, with about 6,000 of them uninhabited.",
+            "Indonesia is a major exporter of palm oil, coffee, and rubber, and is one of the world’s largest producers of these commodities.",
+            "Indonesia is the largest producer of geothermal energy, thanks to its position along the Pacific Ring of Fire, which is a zone of high volcanic activity.",
+            "Bali is a globally recognized tourist destination known for its rich culture, stunning beaches, and vibrant arts scene.",
+            "Indonesia has more active volcanoes than any other country in the world, with over 130 active volcanoes.",
+            "The traditional martial art Pencak Silat originated from Indonesia and is a UNESCO recognized cultural heritage.",
+            "Indonesia is one of the largest tropical rainforests in the world, home to endangered species like the orangutan and Sumatran tiger.",
+            "Indonesia’s Borobudur temple, located in Java, is the largest Buddhist monument in the world and a UNESCO World Heritage site.",
+            "Komodo National Park, located in Indonesia’s Nusa Tenggara region, is one of the world’s most famous nature reserves and the only place where Komodo dragons live in the wild.",
+            "Indonesia has one of the largest Muslim populations in the world, with around 87% of the population practicing Islam.",
+            "Lake Toba, located in North Sumatra, is not only the largest volcanic lake in the world but also the site of a catastrophic eruption 75,000 years ago.",
+            "Indonesia has one of the most extensive coral reef systems, which are a haven for marine life and attract divers from all over the world.",
+            "Indonesia’s rich colonial history includes being a former Dutch colony for over 300 years, influencing its architecture, cuisine, and society.",
+            "The country gained its independence from the Dutch on August 17, 1945, led by founding father Sukarno, marking the birth of the modern nation.",
+            "The island of Java, which is the most populous island in the world, contains Indonesia's capital city, Jakarta, and is known for its dense population and rich culture.",
+            "Indonesia is the world's fourth most populous country, with over 270 million people living across the archipelago.",
+            "The Indonesian currency is the Rupiah (IDR), and its economy is one of the largest in Southeast Asia.",
+            "Indonesia is home to the unique cultural practice of Batik, a traditional textile art that has been recognized by UNESCO as part of the world’s cultural heritage.",
+            "The famous Borobudur temple in Central Java is one of the Seven Wonders of the World, representing the pinnacle of ancient Indonesian architecture.",
+            "The country has a diverse culinary heritage, with famous dishes like Nasi Goreng, Satay, and Gado-Gado originating from different regions of the archipelago.",
+            "Indonesia has over 300 distinct ethnic groups, with the Javanese, Sundanese, and Balinese being the largest ethnic communities.",
+            "The island of Sumatra is home to the Sumatran orangutan, one of the most critically endangered species on Earth.",
+            "Indonesia is a major transit point for migrating birds, thanks to its position along the East Asia-Australasia Flyway, which is the longest migration route for birds.",
+            "Indonesia has several UNESCO World Heritage Sites, including the cultural landscapes of Bali, the rainforests of Sumatra, and the ancient temples of Prambanan.",
+            "The Dutch East India Company (VOC) played a significant role in shaping Indonesia’s early economy, trading spices and other commodities during the colonial era.",
+            "Indonesia has a long history of maritime navigation, with evidence of advanced shipbuilding techniques dating back to ancient times.",
+            "Indonesia is known for its traditional wooden houses, such as the Rumah Adat, which vary significantly across regions and ethnic groups.",
+            "Indonesia's rainforests are home to diverse wildlife, including the endangered Sumatran tiger, the Javan rhinoceros, and the critically endangered orangutans.",
+            "Indonesia’s annual cultural festivals, such as the Bali Arts Festival and the Toraja funeral ceremonies, attract tourists from around the world.",
+            "Indonesia has some of the world’s most beautiful beaches, including those on the islands of Bali, Lombok, and Raja Ampat, known for their crystal-clear waters and coral reefs.",
+            "The Indonesian people celebrate several religious holidays, with the most widely observed being Ramadan, Eid al-Fitr, and Nyepi (Balinese Day of Silence).",
+            "Indonesia is home to the famous Dieng Plateau in Central Java, known for its temples, volcanic craters, and colorful lakes.",
+            "The Mentawai Islands off the coast of Sumatra are famous for their unique culture and the indigenous Mentawai people, known for their tattoo art and traditional lifestyles.",
+            "Indonesia is one of the world’s top producers of textiles, including traditional fabrics such as Batik and Ikat, each of which represents a unique regional tradition.",
+            "Indonesia has one of the highest rates of biodiversity on Earth, including unique species such as the Javan leopard and the Bali mynah bird.",
+            "The island of Borneo, shared by Indonesia, Malaysia, and Brunei, is home to some of the world’s oldest tropical rainforests and the endangered Bornean orangutan.",
+            "The Indonesian archipelago is a key part of the Pacific Ring of Fire, meaning the country is prone to frequent volcanic eruptions and earthquakes.",
+            "Indonesia's unique cuisine varies widely by region, with each island offering a distinct flavor profile. Popular dishes include Nasi Goreng, Rendang, and Sate.",
+            "Indonesia is home to the Toraja people, famous for their elaborate funeral rituals, which include intricate ceremonies and the construction of traditional wooden houses called Tongkonan.",
+            "Mount Merapi, located on the island of Java, is one of the most active volcanoes in the world and has erupted several times in recent decades.",
+            "The city of Yogyakarta is known as the cultural capital of Indonesia, offering a rich history, including the nearby Prambanan Temple and the Sultan’s Palace (Keraton).",
+            "The Riau Archipelago is known for its historical significance during the trade routes between Asia and Europe, as well as its thriving fishing communities."
+        ];
+        
+        function changeQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById('random-quote').textContent = quotes[randomIndex].text;
+            document.getElementById('quote-author').textContent = '- ' + quotes[randomIndex].author;
+        }
+        
+        function changeFact() {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            document.getElementById('random-fact').textContent = facts[randomIndex];
+        }
+        
+        document.getElementById('change-quote').addEventListener('click', changeQuote);
+        document.getElementById('change-fact').addEventListener('click', changeFact);
+    </script>
+</body>
+</html>

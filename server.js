@@ -2,73 +2,19 @@ import express from 'express';
 import fetch from 'node-fetch';
 import axios from 'axios';
 import { exec } from 'child_process';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 let app = global.app = express();
 
 function connect(PORT) {
-    app.get('/', (req, res) => res.send(`<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="10">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://kepo.xsvs.repl.co/file/VZZgayDPvuHM.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="https://kepo.xsvs.repl.co/file/VZZgayDPvuHM.ico" type="image/x-icon">
-    <title>Xnuvers007 Bot</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #1a1a1a;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        #clock {
-            color: #ff9900;
-            font-weight: bold;
-        }
-        .btn-custom {
-            background-color: green;
-            color: #fff;
-            border: none;
-        }
-    </style>
-</head>
-<body>
-    <div id="clock-container">
-        <div id="clock-wib"></div>
-        <div id="clock-wita"></div>
-        <div id="clock-wit"></div>
-        <div id="name">Xnuvers007</div>
-    </div>
-    <div class="container text-center">
-        <a href="https://mykingbee.blogspot.com/" class="btn btn-custom btn-primary" target="_blank">Visit My Website</a>
-    </div>
-    <script>
-        function updateClock() {
-            const now = new Date();
-            const options = { hour12: false };
-            const timeStringWIB = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Jakarta' });
-            const timeStringWITA = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Makassar' });
-            const timeStringWIT = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Jayapura' });
-            document.getElementById('clock-wib').textContent = timeStringWIB + " (WIB)";
-            document.getElementById('clock-wita').textContent = timeStringWITA + " (WITA)";
-            document.getElementById('clock-wit').textContent = timeStringWIT + " (WIT)";
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
-`));
+    app.get('/', (req, res) => {
+        const indexPath = path.join(__dirname, 'views', 'index.html');
+        res.sendFile(indexPath);
+    });
 
     app.get('/nowa', async (req, res) => {
         const q = req.query.number;
@@ -111,7 +57,7 @@ function connect(PORT) {
 
     app.get('/ping2', async (req, res) => {
         const pingResults = [];
-        const url = 'https://xnuvers007botz.xnuvers007.repl.co';
+        const url = 'https://mykingbee.blogspot.com/';
 
         for (let i = 0; i < 10; i++) {
             try {
@@ -131,11 +77,15 @@ function connect(PORT) {
 }
 
 function keepAlive() {
-    const url = `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`;
+    let url = 'https://github.com/imyanxiao';
+    let url2 = 'https://github.com/xnuvers007';
     if (/(\/\/|\.)undefined\./.test(url)) return;
-
     setInterval(() => {
         fetch(url).catch(console.log);
+    }, 30 * 1000);
+    if (/(\/\/|\.)undefined\./.test(url2)) return;
+    setInterval(() => {
+        fetch(url2).catch(console.log);
     }, 30 * 1000);
 }
 
