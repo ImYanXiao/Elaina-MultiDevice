@@ -47,7 +47,8 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       userInfo: getUserInfo()
     };
 
-    const now = moment().add(12, 'hours');
+    // const now = moment().add(12, 'hours');
+    const now = moment();
     const timeInfo = {
       date: now.format('YYYY-MM-DD'),
       time: now.format('HH:mm:ss'),
