@@ -26,7 +26,7 @@ const defaultMenu = {
 ⬡│☂︎ *Tanggal:* %week %weton
 ⬡│☂︎ *Date:* %date
 ⬡│☂︎ *Tanggal Islam:* %dateIslamic
-┬│☂︎ *Waktu:* ${global.gabung}
+┬│☂︎ *Waktu:* ${gabung}
 │╰────────────────···
 ┠─────═[ INFO BOT ]═─────⋆
 │╭────────────────···
@@ -156,13 +156,38 @@ let tags = {
    
 
  /**************************** TIME *********************/
- let wib = moment.tz('Asia/Jakarta').format('HH:mm:ss')
+ /*
+    let wib = moment.tz('Asia/Jakarta').format('HH:mm:ss')
     let wibh = moment.tz('Asia/Jakarta').format('HH')
     let wibm = moment.tz('Asia/Jakarta').format('mm')
     let wibs = moment.tz('Asia/Jakarta').format('ss')
     let wit = moment.tz('Asia/Jayapura').format('HH:mm:ss')
     let wita = moment.tz('Asia/Makassar').format('HH:mm:ss')
     let wktuwib = `${wibh} H ${wibm} M ${wibs} S`
+*/
+    
+let wib = new Intl.DateTimeFormat('id-ID', {
+  timeZone: 'Asia/Jakarta',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+}).format(new Date());
+
+let wit = new Intl.DateTimeFormat('id-ID', {
+  timeZone: 'Asia/Jayapura',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+}).format(new Date());
+
+let wita = new Intl.DateTimeFormat('id-ID', {
+  timeZone: 'Asia/Makassar',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+}).format(new Date());
+
+let gabung = `${wib} WIB\n${wita} WITA\n${wit} WIT`;
  
  let mode = global.opts['self'] ? 'Private' : 'Publik'
     let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
@@ -258,7 +283,7 @@ let tags = {
   "jpegThumbnail": fs.readFileSync('./thumbnail.jpg'),
     },
   "title": `${ucapan()}`,
-  "description": '𝗧 𝗜 𝗠 𝗘 : ' + wktuwib,
+  "description": '𝗧 𝗜 𝗠 𝗘 : ' + gabung,
   "currencyCode": "US",
   "priceAmount1000": "100",
   "retailerId": wm,
