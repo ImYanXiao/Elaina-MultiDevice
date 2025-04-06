@@ -119,12 +119,14 @@ if (!existsSync(CACHE_DIR)) {
     mkdirSync(CACHE_DIR);
 }
 
-const rateLimiter = new RateLimiter(15, 180000);
+const rateLimiter = new RateLimiter(5, 180000);
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) {
         return m.reply(`⚠️ Masukkan domain yang ingin dicek!\n\n📝 *Contoh*: ${usedPrefix + command} example.com\n\n💡 *Tips*: Gunakan domain tanpa "http://" atau "https://"`);
     }
+
+    m.reply(`Jika lama, silakan spam saja ${usedPrefix+command}`);
 
     text = text.trim().toLowerCase();
     if (text.startsWith('http://') || text.startsWith('https://')) {
