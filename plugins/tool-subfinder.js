@@ -125,9 +125,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) {
         return m.reply(`⚠️ Masukkan domain yang ingin dicek!\n\n📝 *Contoh*: ${usedPrefix + command} example.com\n\n💡 *Tips*: Gunakan domain tanpa "http://" atau "https://"`);
     }
-
-    m.reply(`Jika lama, silakan spam saja ${usedPrefix+command}`);
-
+    
     text = text.trim().toLowerCase();
     if (text.startsWith('http://') || text.startsWith('https://')) {
         text = text.replace(/^https?:\/\//, '');
@@ -145,7 +143,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 
     const startTime = Date.now();
-    const startMsg = await m.reply(`🔍 *Mencari subdomain untuk:* \`${text}\`\n\n⚙️ Memeriksa multiple sources...`);
+    const startMsg = await m.reply(`🔍 *Mencari subdomain untuk:* \`${text}\`\n\n⚙️ Memeriksa multiple sources...\n\n*Jika lama, silakan spam saja ${usedPrefix+command+' '+text}*`);
 
     try {
         const domainHash = getDomainHash(text);
@@ -221,7 +219,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             resultMessage += `📋 *Daftar lengkap:*\n\n${formatted}`;
         }
 
-        await conn.sendFile(m.chat, fileName, fileName, `🌐 Daftar lengkap ${subdomains.length} subdomain untuk ${text}\n📅 ${date.toLocaleDateString()}\n\n${resultMessage}`, m, true);
+        await conn.sendFile(m.chat, fileName, fileName, `🌐 Daftar lengkap ${subdomains.length} subdomain untuk ${text}\n📅 ${date.toLocaleDateString()} \n\n${resultMessage}`, m, true);
         unlinkSync(fileName);
         // await conn.sendMessage(m.chat, { text: resultMessage }, { quoted: startMsg });
 
