@@ -12,6 +12,8 @@ const __dirname = dirname(__filename);
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Masukkan URL Instagram yang valid!\nContoh: ${usedPrefix + command} https://www.instagram.com/p/DIEfajkh8ES/\n${usedPrefix + command} https://www.instagram.com/p/DGzYXixzH6c/`;
 
+    text = text.trim().split('?')[0].replace(/\/+$/, '');
+    
     const instagramUrlRegex = /^(https?:\/\/)?(www\.)?instagram\.com\/(p|reel|tv)\/[a-zA-Z0-9_-]+\/?$/;
     if (!instagramUrlRegex.test(text)) {
         throw `URL tidak valid!\nPastikan kamu menggunakan link Instagram yang benar.\nContoh: ${usedPrefix + command} https://www.instagram.com/p/DIEfajkh8ES/\n${usedPrefix + command} https://www.instagram.com/p/DGzYXixzH6c/`;
