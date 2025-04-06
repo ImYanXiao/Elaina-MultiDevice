@@ -51,6 +51,7 @@ async function getSubdomains(domain) {
     ];
 
     const subdomains = new Set();
+    const stats = {};
     
     await Promise.allSettled(sources.map(async (source) => {
         try {
@@ -64,15 +65,26 @@ async function getSubdomains(domain) {
             }
 
             const data = await response.json();
+            const initialCount = subdomains.size;
             source.parser(data, domain, subdomains);
+            const newCount = subdomains.size - initialCount;
+
+            stats[source.url] = {
+                total: newCount,
+                url: source.url,
+            };
+
         } catch (err) {
             console.error(`Error fetching from source:`, err.message);
+            stats[source.url] = {
+                total: 0,
+                error: err.message,
+            };
         }
     }));
 
     const domainPattern = new RegExp(`(?:^|\\.)${domain.replace(/\./g, '\\.')}$`);
-
-    return Array.from(subdomains).filter(sub => domainPattern.test(sub));
+    return { subdomains: Array.from(subdomains).filter(sub => domainPattern.test(sub)), stats };
 }
 
 function crtShParser(data, domain, subdomains) {
@@ -107,29 +119,30 @@ if (!existsSync(CACHE_DIR)) {
     mkdirSync(CACHE_DIR);
 }
 
-const rateLimiter = new RateLimiter(10, 180000);
+const rateLimiter = new RateLimiter(15, 180000);
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) {
-        return m.reply(`⚠️ Masukkan domain yang ingin dicek!\n\n📝 *Contoh*: ${usedPrefix + command} example.com\n\n💡 *Tips*: Gunakan domain tanpa "http://" atau "https://"`);  
+        return m.reply(`⚠️ Masukkan domain yang ingin dicek!\n\n📝 *Contoh*: ${usedPrefix + command} example.com\n\n💡 *Tips*: Gunakan domain tanpa "http://" atau "https://"`);
     }
-    
+
     text = text.trim().toLowerCase();
     if (text.startsWith('http://') || text.startsWith('https://')) {
         text = text.replace(/^https?:\/\//, '');
         text = text.split('/')[0];
     }
-    
+
     if (!validateDomain(text)) {
         return m.reply(`❌ Format domain tidak valid!`);
     }
-    
+
     const userId = m.sender;
     if (!rateLimiter.isAllowed(userId)) {
         const waitTime = Math.ceil(rateLimiter.getTimeUntilNextAllowed(userId) / 1000);
         return m.reply(`⏳ Mohon tunggu ${waitTime} detik sebelum melakukan pencarian lagi.`);
     }
 
+    const startTime = Date.now();
     const startMsg = await m.reply(`🔍 *Mencari subdomain untuk:* \`${text}\`\n\n⚙️ Memeriksa multiple sources...`);
 
     try {
@@ -137,6 +150,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         const cacheFile = join(CACHE_DIR, `${domainHash}.json`);
         let subdomains = [];
         let cachedResult = false;
+        let stats = {};
 
         if (existsSync(cacheFile)) {
             unlinkSync(cacheFile);
@@ -146,6 +160,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
                 const now = new Date();
                 if ((now.getTime() - cacheTime.getTime()) < 24 * 60 * 60 * 1000) {
                     subdomains = cacheData.subdomains;
+                    stats = cacheData.stats;
                     cachedResult = true;
                 }
             } catch (e) {
@@ -154,16 +169,22 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         }
 
         if (!cachedResult) {
-            subdomains = await getSubdomains(text);
+            const result = await getSubdomains(text);
+            subdomains = result.subdomains;
+            stats = result.stats;
+
             writeFileSync(cacheFile, JSON.stringify({
                 domain: text,
                 subdomains: subdomains,
+                stats: stats,
                 timestamp: new Date().toISOString()
             }));
         }
 
+        const executionTime = ((Date.now() - startTime) / 1000).toFixed(2);
+
         if (subdomains.length === 0) {
-            return conn.reply(m.chat, `📢 *Hasil Pencarian*\n\n❌ Tidak ditemukan subdomain untuk \`${text}\``, m);
+            return conn.reply(m.chat, `📢 *Hasil Pencarian*\n\n❌ Tidak ditemukan subdomain untuk \`${text}\`\n⏱️ Waktu eksekusi: ${executionTime} detik`, m);
         }
 
         const date = new Date();
@@ -174,13 +195,22 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         const fileContent = subdomains.join('\n');
         writeFileSync(fileName, fileContent);
 
-        const previewLimit = 15;
+        const previewLimit = 20;
         const displayedSubdomains = subdomains.slice(0, previewLimit);
         const formatted = displayedSubdomains.map((sub, i) => `${i + 1}. ${sub}`).join('\n');
 
         let resultMessage = `🌐 *Hasil Pencarian Subdomain*\n\n`;
         resultMessage += `📋 Ditemukan *${subdomains.length}* subdomain untuk \`${text}\`\n`;
-        resultMessage += cachedResult ? `ℹ️ *Data dari cache (< 24 jam)*\n\n` : `\n`;
+        resultMessage += cachedResult ? `ℹ️ *Data dari cache (< 24 jam)*\n\n` : `⏱️ *Waktu eksekusi*: ${executionTime} detik\n\n`;
+
+        resultMessage += `📊 *Statistik Sumber Data:*\n`;
+        for (const [source, stat] of Object.entries(stats)) {
+            resultMessage += `  - ${source}: ${stat.total || 0} subdomain ditemukan\n`;
+        }
+        resultMessage += `\n`;
+        resultMessage += `📅 *Tanggal:* ${date.toLocaleDateString()}\n`
+        resultMessage += `⏰ *Waktu:* ${date.toLocaleTimeString()}\n\n`;
+        resultMessage += `💾 *File hasil pencarian telah disimpan sebagai:* ${fileName}\n\n`;
 
         if (subdomains.length > previewLimit) {
             resultMessage += `📋 *Menampilkan ${previewLimit} dari ${subdomains.length} subdomain:*\n\n${formatted}\n\n`;
@@ -189,9 +219,9 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             resultMessage += `📋 *Daftar lengkap:*\n\n${formatted}`;
         }
 
-        await conn.sendFile(m.chat, fileName, fileName, `🌐 Daftar lengkap ${subdomains.length} subdomain untuk ${text}\n📅 ${date.toLocaleDateString()}`, m, true);
+        await conn.sendFile(m.chat, fileName, fileName, `🌐 Daftar lengkap ${subdomains.length} subdomain untuk ${text}\n📅 ${date.toLocaleDateString()}\n\n${resultMessage}`, m, true);
         unlinkSync(fileName);
-        await conn.sendMessage(m.chat, { text: resultMessage }, { quoted: startMsg });
+        // await conn.sendMessage(m.chat, { text: resultMessage }, { quoted: startMsg });
 
     } catch (err) {
         console.error('Subdomain check error:', err);
