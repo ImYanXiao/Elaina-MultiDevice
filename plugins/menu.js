@@ -211,7 +211,7 @@ let gabung = `${wib} WIB\n${wita} WITA\n${wit} WIT`;
         premium: plugin.premium,
         enabled: !plugin.disabled,
       }
-    })
+    });
     let groups = {}
     for (let tag in tags) {
       groups[tag] = []
