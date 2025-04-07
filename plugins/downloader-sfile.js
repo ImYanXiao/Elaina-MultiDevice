@@ -62,7 +62,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     //} else if (command.match(/^(sfile|sfiledl)$/i)) {
   } else if (command === "sfile" || command === "sfiledl") {
     if (!input)
-      throw `Example:\n${usedPrefix}${command} https://sfile.mobi/xxxxx`;
+      throw `Example:\n${usedPrefix}${command} https://sfile.mobi/xxxxx\n\nTry: \n${usedPrefix}trendsfile\n${usedPrefix}sfilesearch`;
 
     try {
       const res = await fetch(input, { headers, timeout: 10000 });
