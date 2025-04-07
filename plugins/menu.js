@@ -294,8 +294,8 @@ let gabung = `${wib} WIB\n${wita} WITA\n${wit} WIT`;
   }
   }
   
-    let urls = pickRandom(['https://telegra.ph/file/035e524939ab0294ba91f.jpg', 'https://telegra.ph/file/96b2275d3b14d071290bc.jpg', 'https://telegra.ph/file/2c6b7660bc6126404a9bb.jpg', 'https://telegra.ph/file/c635bf577bb9d59a3e00b.jpg', 'https://telegra.ph/file/be8dd52f6363f9e9f5a60.jpg', 'https://telegra.ph/file/02e53361b9dc946f63c8d.jpg', 'https://telegra.ph/file/298ed2f1bba17aeb64ca8.jpg', 'https://telegra.ph/file/be2a18221974147f66ea0.jpg'])
-    const pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => 'https://telegra.ph/file/24fa902ead26340f3df2c.png')
+    let urls = pickRandom(['./src/gambar/gambar1.jpg', './src/gambar/gambar2.jpg', './src/gambar/gambar3.jpg', './src/gambar/gambar4.jpg', './src/gambar/gambar5.jpg', './src/gambar/gambar6.jpg', './src/gambar/gambar7.jpg', './src/gambar/gambar8.jpg'])
+    const pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => './src/gambar/gambar9.jpg')
     
     //FAKE TROLI
 

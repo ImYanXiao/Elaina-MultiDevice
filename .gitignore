@@ -7,6 +7,20 @@ tmp/
 package-lock.json
 /tmp/
 
+.idea/
+*.sublime-workspace
+*.sublime-project
+.DS_Store
+.AppleDouble
+.LSOverride
+.webpack/
+.babel_cache/
+sentry.properties
+.jest/
+.mocha/
+.npm/
+
+
 # Created by https://www.toptal.com/developers/gitignore/api/node,visualstudiocode,git,linux,windows,python,executable,replit,ssh
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,visualstudiocode,git,linux,windows,python,executable,replit,ssh
 
