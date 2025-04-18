@@ -10,6 +10,30 @@ import fs from 'fs'
 import fetch from 'node-fetch'
 const { generateWAMessageFromContent, proto, getDevice } = (await import('@adiwajshing/baileys')).default
 
+let wib = new Intl.DateTimeFormat('id-ID', {
+  timeZone: 'Asia/Jakarta',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+}).format(new Date());
+
+let wit = new Intl.DateTimeFormat('id-ID', {
+  timeZone: 'Asia/Jayapura',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+}).format(new Date());
+
+let wita = new Intl.DateTimeFormat('id-ID', {
+  timeZone: 'Asia/Makassar',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+}).format(new Date());
+
+let gabung = `${wib} WIB\n${wita} WITA\n${wit} WIT`;
+
+
 const defaultMenu = {
   before: `
 ╭─────═[ INFO USER ]═─────⋆
@@ -165,30 +189,7 @@ let tags = {
     let wita = moment.tz('Asia/Makassar').format('HH:mm:ss')
     let wktuwib = `${wibh} H ${wibm} M ${wibs} S`
 */
-    
-let wib = new Intl.DateTimeFormat('id-ID', {
-  timeZone: 'Asia/Jakarta',
-  hour: '2-digit',
-  minute: '2-digit',
-  second: '2-digit',
-}).format(new Date());
-
-let wit = new Intl.DateTimeFormat('id-ID', {
-  timeZone: 'Asia/Jayapura',
-  hour: '2-digit',
-  minute: '2-digit',
-  second: '2-digit',
-}).format(new Date());
-
-let wita = new Intl.DateTimeFormat('id-ID', {
-  timeZone: 'Asia/Makassar',
-  hour: '2-digit',
-  minute: '2-digit',
-  second: '2-digit',
-}).format(new Date());
-
-let gabung = `${wib} WIB\n${wita} WITA\n${wit} WIT`;
- 
+     
  let mode = global.opts['self'] ? 'Private' : 'Publik'
     let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
     let { age, exp, limit, level, role, registered, money} = global.db.data.users[m.sender]
@@ -294,8 +295,11 @@ let gabung = `${wib} WIB\n${wita} WITA\n${wit} WIT`;
   }
   }
   
-    let urls = pickRandom(['./src/gambar/gambar1.jpg', './src/gambar/gambar2.jpg', './src/gambar/gambar3.jpg', './src/gambar/gambar4.jpg', './src/gambar/gambar5.jpg', './src/gambar/gambar6.jpg', './src/gambar/gambar7.jpg', './src/gambar/gambar8.jpg'])
+    let urls = pickRandom(['./thumbnail.jpg','./src/gambar/gambar1.jpg', './src/gambar/gambar2.jpg', './src/gambar/gambar3.jpg', './src/gambar/gambar4.jpg', './src/gambar/gambar5.jpg', './src/gambar/gambar6.jpg', './src/gambar/gambar7.jpg', './src/gambar/gambar8.jpg'])
     const pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => './src/gambar/gambar9.jpg')
+
+    global.flaa = JSON.parse(fs.readFileSync('./lib/flaming.json'));
+    global.flaaa = pickRandom(global.flaa);
     
     //FAKE TROLI
 
@@ -352,13 +356,46 @@ let gabung = `${wib} WIB\n${wita} WITA\n${wit} WIT`;
     })*/
     
     //------------------ DOCUMENT
-    let d1 = 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
-    let d2 = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-    let d3  = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    let d4 = 'application/pdf'
-    let d5 = 'application/vnd.android.package-archive'
-    let d6 = 'application/zip'
-    let td = `${pickRandom([d1,d2,d3,d4,d5,d6])}`
+    // let d1 = 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+    // let d2 = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    // let d3  = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    // let d4 = 'application/pdf'
+    // let d5 = 'application/vnd.android.package-archive'
+    // let d6 = 'application/zip'
+    // let td = `${pickRandom([d1,d2,d3,d4,d5,d6])}`
+
+    const tipemime = [
+      'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/pdf',
+      'application/vnd.android.package-archive',
+      'application/zip',
+      'application/msword',
+      'application/vnd.ms-excel',
+      'application/vnd.ms-powerpoint',
+      'audio/mpeg',
+      'audio/mp3',
+      'audio/mp4',
+      'audio/ogg',
+      'audio/wav',
+      'image/jpeg',
+      'image/png',
+      'image/gif',
+      'image/webp',
+      'image/jpg',
+      'application/x-rar-compressed',
+      'application/x-zip-compressed',
+      'application/x-7z-compressed',
+      'application/x-tar',
+      'application/x-shockwave-flash',
+      'application/json',
+      'application/xml',
+      'application/x-www-form-urlencoded',
+      'text/plain'
+    ]
+
+    let td = `${pickRandom(tipemime)}`;
     
    //~~~Source : https://github.com/Rlxfly
     //------- MENU LOCATION
