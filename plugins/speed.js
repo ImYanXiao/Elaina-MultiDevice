@@ -1,4 +1,4 @@
-import { cpus as _cpus, freemem, platform, hostname } from 'os'; // Add freemem, platform, and hostname
+import os, { cpus as _cpus, freemem, platform, hostname } from 'os';
 import osu from 'node-os-utils';
 import fetch from 'node-fetch';
 import { performance } from 'perf_hooks';
@@ -82,8 +82,6 @@ const handler = async (m, { conn }) => {
   const drivePer = driveInfo.usedPercentage !== NotDetect ? `${driveInfo.usedPercentage}%` : NotDetect;
   const ramTotal = `${memInfo.totalMemMb} MB`;
   const ramUsed = `${memInfo.usedMemMb} MB`;
-  
-  // Fix: Check if netInfo.total exists to prevent TypeError
   const netsIn = netInfo?.total?.inputMb !== undefined ? `${netInfo.total.inputMb} MB` : NotDetect;
   const netsOut = netInfo?.total?.outputMb !== undefined ? `${netInfo.total.outputMb} MB` : NotDetect;
 
