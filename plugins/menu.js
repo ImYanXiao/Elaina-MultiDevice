@@ -338,7 +338,12 @@ let tags = {
     }
     }
     }
-    await conn.reply(m.chat, '*Tunggu Sebentar Kak. . .*', m)
+	  
+    const loadingMsg = await conn.reply(m.chat, '*Tunggu Sebentar Kak. . .*');
+    conn.sendMessage(m.chat, { delete: loadingMsg.key });
+    // buat edit
+    // await conn.sendMessage(m.chat, {text: `ini dia menu nya kak!\nterima kasih sudah menunggu`, edit: loadingMsg});
+	  
     
     //------------------< MENU >----------------
     
