@@ -122,7 +122,7 @@ const { version, isLatest} = await fetchLatestBaileysVersion()
 const { state, saveCreds } = await useMultiFileAuthState('./sessions')
 const connectionOptions = {
         version,
-        logger: pino({ level: 'silent' }), 
+        logger: pino({ level: 'fatal' }), 
         printQRInTerminal: !usePairingCode, 
 	// Optional If Linked Device Could'nt Connected
 	// browser: ['Mac OS', 'chrome', '125.0.6422.53']
