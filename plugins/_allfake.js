@@ -67,8 +67,9 @@ handler.all = async function (m) {
     global.adReply = {
         contextInfo: {
             forwardingScore: 9999,
+	    isForwarded:true, 
             externalAdReply: {
-                showAdAttribution: true,
+                //showAdAttribution: true,
                 title: global.ucapan,
                 body: wm,
                 mediaUrl: sgc,
