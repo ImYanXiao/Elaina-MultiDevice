@@ -445,12 +445,13 @@ return conn.relayMessage(m.chat, pre.message, { messageId: pre.key.id })*/
             caption: text.trim(), 
             contextInfo: {
               mentionedJid:[m.sender], 
-              forwardingScore: '9999999',
+              forwardingScore: 256, // Forwarded Many Times
+              isForwarded:true, // False if u not want see
               externalAdReply: {
                 mediaType: 1,
                 previewType:"pdf", 
                 renderLargerThumbnail: true,
-                showAdAttribution: true,
+                //showAdAttribution: true,
                 sourceUrl: global.social, 
                 thumbnail:fs.readFileSync('./thumbnail.jpg'),
                 title:'ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ ᴛᴏᴅᴀʏ?', 
