@@ -1,3 +1,36 @@
+/*
+Mimetype yang bisa dibaca gemini ini
+PNG - image/png
+JPEG - image/jpeg
+WEBP - image/webp
+HEIC - image/heic
+HEIF - image/heif
+video/mp4
+video/mpeg
+video/mov
+video/avi
+video/x-flv
+video/mpg
+video/webm
+video/wmv
+video/3gpp
+WAV - audio/wav
+MP3 - audio/mp3
+AIFF - audio/aiff
+AAC - audio/aac
+OGG Vorbis - audio/ogg
+FLAC - audio/flac
+PDF - application/pdf
+JavaScript - application/x-javascript, text/javascript
+Python - application/x-python, text/x-python
+TXT - text/plain
+HTML - text/html
+CSS - text/css
+Markdown - text/md
+CSV - text/csv
+XML - text/xml
+RTF - text/rtf
+*/
 import { fileTypeFromBuffer } from "file-type";
 import { GoogleGenAI } from "@google/genai";
 let handler = async (m, { conn, text, usedPrefix, command }) => {
