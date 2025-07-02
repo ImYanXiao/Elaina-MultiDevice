@@ -36,7 +36,7 @@ import { GoogleGenAI } from "@google/genai";
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw(`Contoh:\n${usedPrefix}${command} Halo?`);
     m.react("🕒")
-    const ai = new GoogleGenAI({ apiKey: "AIzaSyBCgCNpdMqP3HtGB_0nsyEH4YA5a0M3Czk" }); // Kalo mau work, pake API key sendiri https://aistudio.google.com/app/apikey
+    const ai = new GoogleGenAI({ apiKey: `${googlegemini}` });
     const response = await ai.models.generateContent({
     model: "gemini-2.5-flash",
     contents: `${text}`,
