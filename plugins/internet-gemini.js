@@ -1,38 +1,39 @@
-import fetch from 'node-fetch';
+import { fileTypeFromBuffer } from "file-type";
+import { GoogleGenAI } from "@google/genai";
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+    if (!text) throw(`Contoh:\n${usedPrefix}${command} Halo?`);
+    m.react("🕒")
+    const ai = new GoogleGenAI({ apiKey: "AIzaSyB3Q74etnADQ_qSX3OJtzTnteGh-fd4df8" });
+    const response = await ai.models.generateContent({
+    model: "gemini-2.5-flash",
+    contents: `${text}`,
+  });
+    let q = m.quoted ? m.quoted : m
+    let hehe = await fileTypeFromBuffer(await q.download())
+  let mime = (q.msg || q).mimetype || ''
+  if (!mime) throw `[ GEMINI - AI ]\n\n${response.text}`
+  let media = await q.download()
+  let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
+  const base64ImageFile = Buffer.from(media).toString("base64")
+ const contents = [
+  {
+    inlineData: {
+      mimeType: hehe.mime,
+      data: base64ImageFile,
+    },
+  },
+  { text: `${text}` },
+];
 
-const handler = async (m, { conn, args, usedPrefix, command }) => {
-  try {
-    const text = args?.join(' ');
-    if (!text) {
-      return conn.reply(m.chat, `Silakan coba lagi, teks jangan kosong.\n*Ex: ${usedPrefix + command} berikan saya kodingan python kalkulator!*`, m);
-    }
-      
-    conn.reply(m.chat, "Mohon tunggu sebentar\n"+wait, m);
-
-    const response = await fetch(`https://widipe.com/gemini?text=${encodeURIComponent(text)}`);
-    if (!response.ok) {
-      return conn.reply(m.chat, 'Tidak dapat memproses permintaan Anda saat ini.', m);
-    }
-
-    const data = await response.json();
-    const result = data?.result;
-
-    if (!result) {
-      return conn.reply(m.chat, 'Tidak dapat memproses permintaan Anda saat ini.', m);
-    }
-
-    conn.reply(m.chat, result, m);
-  } catch (error) {
-    console.error('Error:', error);
-    conn.reply(m.chat, 'Terjadi kesalahan saat memproses permintaan Anda.', m);
-  }
-};
-
-handler.help = ['gemini <Query>'];
-handler.tags = ['tools','internet'];
-handler.limit = 2;
-handler.register = true;
-
-handler.command = /^(bard|gemini?)$/i;
-
-export default handler;
+const response2 = await ai.models.generateContent({
+  model: "gemini-2.5-flash",
+  contents: contents,
+});
+let yayaya = `[ GEMINI - AI ]\n\n${response2.text}`
+  m.reply(yayaya)
+}
+handler.help = ['gemini']
+handler.tags = ['ai']
+handler.command = /^(gemini|bard)$/i
+handler.limit = true
+export default handler
