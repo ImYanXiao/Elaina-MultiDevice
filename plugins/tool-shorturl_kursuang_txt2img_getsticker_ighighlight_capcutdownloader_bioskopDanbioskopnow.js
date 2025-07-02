@@ -4,6 +4,25 @@ import * as cheerio from 'cheerio';
 import { addExif } from '../lib/sticker.js'
 import { Sticker } from 'wa-sticker-formatter'
 //import { bioskop, bioskopNow } from '@bochilteam/scraper-others';
+async function buwatgambar(prompt) {
+  try {
+    let { data } = await axios.post("https://api-preview.chatgot.io/api/v1/deepimg/flux-1-dev", {
+      prompt,
+      size: "1024x1024",
+      device_id: `dev-${Math.floor(Math.random() * 1000000)}`
+    }, {
+      headers: {
+        "Content-Type": "application/json",
+        Origin: "https://deepimg.ai",
+        Referer: "https://deepimg.ai/"
+      }
+    })
+    return data?.data?.images?.[0]?.url || null
+  } catch (err) {
+    console.error(err.response ? err.response.data : err.message)
+    return null
+  }
+}
 
 const apiKeys = ['C9eLLoQZvX', 'euhsDaUPzl'];
 
@@ -128,44 +147,17 @@ dan lain lain (etc.), for more ? check google or https://www.bola.com/ragam/read
       throw 'An error occurred. Please try again later.';
     }
   } else if (command === "text2img" || command === "txt2img" || command === "t2i" || command === "tekskegambar") {
-    if (args.length < 1) {
-      throw `Masukkan teks yang ingin Anda ubah menjadi gambar.\nEx: ${usedPrefix}${command} police girl\n\n*DILARANG BERBAU PORNO/SARA*`;
-    }
+    if (!text) return m.reply("Masukkan prompt gambar.")
 
-    const apiKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
-    const lowercaseText = args.join(' ').toLowerCase();
+  m.reply("Sedang memproses gambar, mohon tunggu...")
 
-    if (filteredWords.some(word => lowercaseText.includes(word.toLowerCase()))) {
-      conn.reply(m.chat, "tidak diizinkan. Akan dibanned", m);
-      let users = db.data.users;
-      users[m.sender].banned = true;
-      return; // Keluar dari fungsi setelah melakukan banned
-    }
+  let gambarnyah = await buwatgambar(text)
+  if (!gambarnyah) return m.reply("gagal membuat gambarnya coba ganti prompt nya")
 
-    const apiUrl = `https://api.ibeng.tech/api/ai/text2img?text=${encodeURIComponent(lowercaseText)}&apikey=${encodeURIComponent(apiKey)}`;
-
-    let imageBuffer;
-
-conn.reply(m.chat, 'Sedang membuat gambar...', m);
-    
-    do {
-      try {
-        //conn.reply(m.chat, 'Sedang membuat gambar...', m);
-        const response = await fetch(apiUrl);
-
-        if (!response.ok) {
-          throw 'Gagal mengambil gambar dari server.';
-        }
-
-        imageBuffer = await response.buffer();
-
-      } catch (error) {
-        console.error(error);
-      }
-    } while (!imageBuffer);
-
-    conn.sendFile(m.chat, imageBuffer, 'image.png', `Berikut adalah gambar yang sesuai dengan teks yang Anda masukkan.`);
-    await m.reply("Tuh gambarnya");
+  await conn.sendMessage(m.chat, { 
+    image: { url: gambarnyah }, 
+    caption: `Gambar berhasil dibuat!\n Dengan Prompt: ${text}` 
+  }, { quoted: m });
   } else if (command === "caristicker" || command === "caristiker" || command === "getsticker" || command === "getstiker") {
     if (!text) {
       throw `Silakan masukkan query pencarian sticker.\n${usedPrefix}${command} Naruto`;
