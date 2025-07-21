@@ -5,13 +5,37 @@
 
 ## PENTING
 
-> **Warning**: Jangan Memperjual Belikan Script Ini.
+> ⚠️ **Peringatan**  
+> Dilarang memperjualbelikan script ini dalam bentuk apa pun.
 
-And
+---
 
-> **Perhatian**: Script ini menggunakan baileys dari @rexxhayanasi/elaina-bail, jika ada erorr import baileys blablabla form blablabal ganti aja di plugins dll menjadi @rexxhayanasi/elaina-bail
-INFORMASI BAILEYS:
-[!][npm]("https://npmjs.com/package/@rexxhayanasi/elaina-bail")
+> 🔔 **Informasi Penting**  
+> Script ini menggunakan Baileys versi modifikasi dari [`@rexxhayanasi/elaina-bail`](https://www.npmjs.com/package/@rexxhayanasi/elaina-bail).
+> 
+> Jika kamu mengalami error seperti:
+> 
+> ```
+> Cannot find module 'baileys'
+> ```
+> atau
+> 
+> ```
+> Cannot import blablabla from 'baileys'
+> ```
+> 
+> Silakan ubah semua penggunaan di file seperti `plugins`, `handler`, dan lainnya menjadi:
+> 
+> ```js
+> import blablabla from '@rexxhayanasi/elaina-bail'
+> ```
+> 
+> Sesuaikan dengan struktur dan kebutuhan script kamu.
+
+---
+
+📦 **Paket Baileys yang digunakan**  
+[![npm version](https://img.shields.io/npm/v/@rexxhayanasi/elaina-bail?color=green&label=elaina-bail&logo=npm)](https://www.npmjs.com/package/@rexxhayanasi/elaina-bail)
 
 
 <h1 align="center">ElainaBOT - MD</h1>
