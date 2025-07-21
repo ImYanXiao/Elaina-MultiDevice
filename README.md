@@ -7,6 +7,12 @@
 
 > **Warning**: Jangan Memperjual Belikan Script Ini.
 
+And
+
+> **Perhatian**: Script ini menggunakan baileys dari @rexxhayanasi/elaina-bail, jika ada erorr import baileys blablabla form blablabal ganti aja di plugins dll menjadi @rexxhayanasi/elaina-bail
+INFORMASI BAILEYS:
+[!][npm]("https://npmjs.com/package/@rexxhayanasi/elaina-bail")
+
 
 <h1 align="center">ElainaBOT - MD</h1>
 
