@@ -42,6 +42,7 @@
         "@adiwajshing/baileys": "npm:baileys@^6.7.18", 
         "@bochilteam/scraper": "^5.0.1",
         "@distube/ytdl-core": "*",
+        "@google/genai": "^0.13.0",
         "@ibaraki-douji/pixivts": "^2.4.1",
         "@vitalets/google-translate-api": "^9.2.0",
         "acrcloud": "^1.4.0",
