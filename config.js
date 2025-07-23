@@ -78,7 +78,7 @@ global.owner = [
 ] // Put your number here
 global.mods = [] // Want some help?
 global.prems = [] // Premium user bukan disini nambahinnya, ketik .addprem @user 10
-
+global.moderatorgh = [ '085282530851', 'RexxHayanasi', true]
 
 global.lolkey = 'apikeymu'
 global.googlegemini = 'silahkan diisi token masing masing' // https://aistudio.google.com/app/apikey
