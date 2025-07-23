@@ -10,7 +10,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     let tujuan = [
         `${global.nomorown}@s.whatsapp.net`,
-        ...(global.moderationgh || []) 
+        ...(global.moderatorgh || []) 
     ]
 
     for (let jid of tujuan) {
