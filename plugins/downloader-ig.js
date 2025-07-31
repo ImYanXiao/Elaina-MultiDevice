@@ -1,5 +1,8 @@
 import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
+import ffmpeg from 'fluent-ffmpeg';
+import fs from 'fs/promises';
+import path from 'path';
 
 const instagramCache = new Map();
 const CACHE_DURATION = 5 * 60 * 1000; // 5 menit
@@ -75,67 +78,81 @@ async function fetchInstagramHtml(instagramUrl) {
 function getCachedData(url) {
   const cached = instagramCache.get(url);
   if (!cached) return null;
-  
   const now = Date.now();
   if (now - cached.timestamp > CACHE_DURATION) {
     instagramCache.delete(url);
     return null;
   }
-  
   return cached.data;
 }
 
 function setCachedData(url, data) {
   instagramCache.set(url, {
-    data: data,
+    data,
     timestamp: Date.now()
   });
 }
 
+async function convertVideoToMp3(videoUrl, outputFileName) {
+  return new Promise((resolve, reject) => {
+    ffmpeg(videoUrl)
+      .noVideo()
+      .toFormat("mp3")
+      .on("end", () => resolve())
+      .on("error", (err) => reject(err))
+      .save(outputFileName);
+  });
+}
+
 let handler = async (m, { args, conn }) => {
-    const url = args[0];
+  const url = args[0];
 
-    if (!url) {
-      return conn.reply(m.chat, '⚠️ Kamu belum memasukkan URL. Contoh: *.ig https://www.instagram.com/p/DJ_zzh_SQM-/', m);
-    }
+  if (!url) {
+    return conn.reply(m.chat, '⚠️ Kamu belum memasukkan URL. Contoh: *.ig https://www.instagram.com/p/DJ_zzh_SQM-/', m);
+  }
 
-    if (!/^https?:\/\/(www\.)?instagram\.com/.test(url)) {
-      return conn.reply(m.chat, '❌ URL tidak valid. Harap masukkan URL dari *Instagram* saja.', m);
-    }
+  if (!/^https?:\/\/(www\.)?instagram\.com/.test(url)) {
+    return conn.reply(m.chat, '❌ URL tidak valid. Harap masukkan URL dari *Instagram* saja.', m);
+  }
 
   try {
     let data = getCachedData(url);
-    
+
     if (data) {
-      console.log('Menggunakan data dari cache untuk URL:', url);
       conn.reply(m.chat, '📁 Menggunakan data tersimpan...', m);
     } else {
-      console.log('Mengambil data baru untuk URL:', url);
       data = await fetchInstagramHtml(url);
-      
       if (!data.length) return conn.reply(m.chat, 'Media tidak ditemukan.', m);
-      
       setCachedData(url, data);
       conn.reply(m.chat, 'Mengirimkan media Instagram...', m);
     }
 
-    for (const item of data) {
+    for (const [index, item] of data.entries()) {
       const mediaList = [item.download_url, item.fullscreen_url, item.media_src];
+      
       for (const mediaUrl of mediaList) {
         if (!mediaUrl) continue;
         try {
           await conn.sendFile(m.chat, mediaUrl, 'instagram_media', '', m);
+
+          if (item.media_type === 'video') {
+            const mp3FileName = path.resolve(`./tmp_audio_${Date.now()}_${index}.mp3`);
+            await convertVideoToMp3(mediaUrl, mp3FileName);
+            await conn.sendFile(m.chat, mp3FileName, 'audio.mp3', 'Berikut adalah audio dari video.', m);
+            await fs.unlink(mp3FileName);
+          }
+          
           break;
         } catch (e) {
           console.error(`Gagal mengirim file: ${mediaUrl}`, e);
         }
       }
     }
-  }
-  catch (error) {
+  } catch (error) {
     console.error('Error fetching Instagram data:', error);
     conn.reply(m.chat, 'Terjadi kesalahan saat mengambil data Instagram.', m);
   }
+
   return m.reply('Selesai!');
 };
 
