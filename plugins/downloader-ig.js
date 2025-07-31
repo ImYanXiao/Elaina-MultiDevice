@@ -1,108 +1,146 @@
-import { IgDownloader } from 'ig-downloader';
-import ffmpeg from 'fluent-ffmpeg';
-import fs from 'fs/promises';
+import fetch from 'node-fetch';
+import * as cheerio from 'cheerio';
 
-var handler = async (m, { args, conn, usedPrefix, command }) => {
-  if (!args[0]) throw `Ex:\n${usedPrefix}${command} https://www.instagram.com/reel/C0EEgMNSSHw/?igshid=MzY1NDJmNzMyNQ==`;
+const instagramCache = new Map();
+const CACHE_DURATION = 5 * 60 * 1000; // 5 menit
 
-  const instagramUrlRegex = /^(https?:\/\/)?(www\.)?instagram\.com/i;
-  if (!instagramUrlRegex.test(args[0])) {
-    let peringatan = `Harap masukkan link Instagram yang valid.\nContoh: ${usedPrefix}${command} https://www.instagram.com/reel/C0zv5N7ShOs/?utm_source=ig_web_copy_link`;
-    return conn.reply(m.chat, peringatan ,m);
-  }
-
-  try {
-    const data = await IgDownloader(args[0]);
-
-    if (!data) throw "Gagal mengambil data dari Instagram.";
-
-    const captionText = data?.edge_media_to_caption?.edges[0]?.node?.text || "Tidak ada caption.";
-    const sender = m.sender.split('@')[0];
-
-    const media = data.video_url || data.display_url;
-    const thumbnail = data.thumbnail_src || data.display_url;
-    const viewcount = data.video_view_count || 0;
-    const playcount = data.video_play_count || 0;
-    const durasi = data.video_duration || "Tidak diketahui";
-    const likes = data?.edge_media_preview_like?.count || 0;
-    const { username, is_verified, full_name, profile_pic_url, edge_followed_by } = data.owner;
-    const postingan = data.owner.edge_owner_to_timeline_media.count || 0;
-    const followerCount = edge_followed_by?.count || "Tidak diketahui";
-    const { height, width } = data.dimensions || {};
-
-    if (!media) throw "Gagal menemukan media untuk diunduh.";
-
-    const messages = `*${full_name} (@${username})*${is_verified ? " ✓" : ""}
-📸 Postingan: ${postingan}
-👤 Pengikut: ${followerCount}
-👁️ Dilihat: ${viewcount}
-🎥 Diputar: ${playcount}
-👍 Suka: ${likes}
-⏱️ Durasi: ${durasi}
-📏 Dimensi: ${height || "?"}x${width || "?"}
-
-📝 Caption: ${captionText}`;
-
-    await conn.sendFile(m.chat, thumbnail, "thumbnail.jpg", messages, m);
-
-    await conn.sendMessage(m.chat,
-     {
-        image: { url: profile_pic_url },
-        caption: `Profil @${username} (${full_name})${is_verified ? " ✓" : ""}`,
-        mentions: [m.sender],
-      },m
-    );
-
-    await conn.sendMessage(m.chat,
-      {
-        video: { url: media },
-        caption: `Ini videonya kak @${sender}\n\n${messages}`,
-        mentions: [m.sender],
-      },m
-    );
-
-    await conn.sendMessage(m.chat,
-      {
-        document: { url: media },
-        mimetype: "video/mp4",
-        fileName: `instagram.mp4`,
-        caption: `Ini versi dokumen agar kualitas lebih jernih kak @${sender}\n\n${messages}`,
-        mentions: [m.sender],
-      },
-      { quoted: m }
-    );
-
-    if (media.includes(".mp4")) {
-      const mp3FileName = `suara.mp3`;
-      await convertVideoToMp3(media, mp3FileName);
-
-      await conn.sendFile(m.chat,
-        mp3FileName,
-        mp3FileName,
-        `Ini suaranya kak @${sender} dalam format MP3.`,
-        m
-      );
-
-      await fs.unlink(mp3FileName);
+async function getCsrfToken() {
+  const res = await fetch('https://snapinsta.biz/wp-json/token/v1/csrf-token', {
+    headers: {
+      Accept: 'application/json',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+      Referer: 'https://snapinsta.biz/',
+      Origin: 'https://snapinsta.biz',
+      'X-Requested-With': 'XMLHttpRequest'
     }
-  } catch (error) {
-    console.error("Error:", error);
-    conn.reply(m.chat, `❌ Gagal mengunduh media: ${error}`, m);
-  }
-};
+  });
+  const json = await res.json();
+  if (!json.token) throw new Error('CSRF token not found');
+  console.log('Got CSRF token:', json.token);
+  return json.token;
+}
 
-async function convertVideoToMp3(videoUrl, outputFileName) {
-  return new Promise((resolve, reject) => {
-    ffmpeg(videoUrl)
-      .toFormat("mp3")
-      .on("end", () => resolve())
-      .on("error", (err) => reject(err))
-      .save(outputFileName);
+async function fetchInstagramHtml(instagramUrl) {
+  const csrfToken = await getCsrfToken();
+
+  const postUrl = 'https://snapinsta.biz/ajax-handler.php';
+  const params = new URLSearchParams({
+    action: 'fetch_instagram',
+    url: instagramUrl,
+    csrf_token: csrfToken
+  });
+
+  const res = await fetch(postUrl, {
+    method: 'POST',
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+      Referer: 'https://snapinsta.biz/',
+      Origin: 'https://snapinsta.biz',
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      'X-Requested-With': 'XMLHttpRequest'
+    },
+    body: params
+  });
+
+  const json = await res.json();
+
+  if (!json.success) {
+    console.error('Response error:', json);
+    throw new Error('Request failed or no data found');
+  }
+
+  const $ = cheerio.load(json.data.html);
+  const results = [];
+
+  $('.result-item').each((i, el) => {
+    const media = $(el).find('.result-media img').attr('src') || null;
+    const isVideo = $(el).find('.result-type i').hasClass('fa-video');
+    const fullscreenUrl = $(el).find('.result-fullscreen').attr('data-url') || null;
+    let downloadUrl = $(el).find('.download-button').attr('href') || null;
+    if (downloadUrl && !downloadUrl.startsWith('http')) {
+      downloadUrl = 'https://snapinsta.biz' + downloadUrl;
+    }
+
+    results.push({
+      media_src: media,
+      media_type: isVideo ? 'video' : 'image',
+      fullscreen_url: fullscreenUrl,
+      download_url: downloadUrl
+    });
+  });
+
+  return results;
+}
+
+function getCachedData(url) {
+  const cached = instagramCache.get(url);
+  if (!cached) return null;
+  
+  const now = Date.now();
+  if (now - cached.timestamp > CACHE_DURATION) {
+    instagramCache.delete(url);
+    return null;
+  }
+  
+  return cached.data;
+}
+
+function setCachedData(url, data) {
+  instagramCache.set(url, {
+    data: data,
+    timestamp: Date.now()
   });
 }
 
-handler.help = ["instagram"];
-handler.tags = ["downloader"];
-handler.command = /^(ig(dl)?|instagram(dl)?)$/i;
+let handler = async (m, { args, conn }) => {
+    const url = args[0];
+
+    if (!url) {
+      return conn.reply(m.chat, '⚠️ Kamu belum memasukkan URL. Contoh: *.ig https://www.instagram.com/p/DJ_zzh_SQM-/', m);
+    }
+
+    if (!/^https?:\/\/(www\.)?instagram\.com/.test(url)) {
+      return conn.reply(m.chat, '❌ URL tidak valid. Harap masukkan URL dari *Instagram* saja.', m);
+    }
+
+  try {
+    let data = getCachedData(url);
+    
+    if (data) {
+      console.log('Menggunakan data dari cache untuk URL:', url);
+      conn.reply(m.chat, '📁 Menggunakan data tersimpan...', m);
+    } else {
+      console.log('Mengambil data baru untuk URL:', url);
+      data = await fetchInstagramHtml(url);
+      
+      if (!data.length) return conn.reply(m.chat, 'Media tidak ditemukan.', m);
+      
+      setCachedData(url, data);
+      conn.reply(m.chat, 'Mengirimkan media Instagram...', m);
+    }
+
+    for (const item of data) {
+      const mediaList = [item.download_url, item.fullscreen_url, item.media_src];
+      for (const mediaUrl of mediaList) {
+        if (!mediaUrl) continue;
+        try {
+          await conn.sendFile(m.chat, mediaUrl, 'instagram_media', '', m);
+          break;
+        } catch (e) {
+          console.error(`Gagal mengirim file: ${mediaUrl}`, e);
+        }
+      }
+    }
+  }
+  catch (error) {
+    console.error('Error fetching Instagram data:', error);
+    conn.reply(m.chat, 'Terjadi kesalahan saat mengambil data Instagram.', m);
+  }
+  return m.reply('Selesai!');
+};
+
+handler.help = ['instagram'];
+handler.tags = ['downloader'];
+handler.command = /^(ig(dl)?|instagram)$/i;
 
 export default handler;
