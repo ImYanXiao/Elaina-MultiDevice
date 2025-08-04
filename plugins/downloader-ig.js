@@ -104,15 +104,99 @@ async function convertVideoToMp3(videoUrl, outputFileName) {
   });
 }
 
+/*
+async function upscaleVideoToHD(inputUrl, outputPath) {
+  return new Promise((resolve, reject) => {
+    ffmpeg(inputUrl)
+      //.videoFilters('scale=1920:1080') // 1080p // scale=1920:1080 // scale=1280:720 // 720p
+      .videoFilters('scale=1920:1080')
+      .outputOptions('-preset fast')
+      .on('end', () => resolve())
+      .on('error', err => reject(err))
+      .save(outputPath);
+  });
+}
+*/
+
+// bisaaaaaaaa
+
+/*
+async function upscaleVideoToHD(inputUrl, outputPath) {
+  return new Promise((resolve, reject) => {
+    // Filter Cerdas:
+    // Mengecek rasio aspek video (iw = input width, ih = input height).
+    // 'if(gt(a,1), 1280, -2)': Jika video landscape (aspect ratio > 1), set lebarnya 1280.
+    // 'if(gt(a,1), -2, 1280)': Jika video portrait/persegi (aspect ratio <= 1), set tingginya 1280.
+    // Ini memastikan dimensi terpanjang video mendekati 1280px.
+    const complexFilter = "scale='if(gt(a,1),1280,-2)':'if(gt(a,1),-2,1280)'";
+
+    ffmpeg(inputUrl)
+      .videoFilters(complexFilter)
+      .outputOptions('-preset fast')
+      .on('end', () => {
+        console.log('Video upscaling finished successfully.');
+        resolve();
+      })
+      .on('error', err => {
+        console.error('Error during video upscaling:', err);
+        reject(err);
+      })
+      .save(outputPath);
+  });
+}
+*/
+
+async function upscaleVideoToHD(inputUrl, outputPath) {
+  return new Promise((resolve, reject) => {
+    // --- PENGATURAN UNTUK KUALITAS HD SEBENARNYA ---
+
+    // 1. Target Resolusi 1080p
+    // Dimensi terpanjang video akan dibuat menjadi 1920px.
+    const resolutionFilter = "scale='if(gt(a,1),1920,-2)':'if(gt(a,1),-2,1920)'";
+
+    // 2. Video Bitrate (SANGAT PENTING)
+    // Menentukan kualitas gambar. '5M' artinya 5 Megabits per second.
+    // Cukup baik untuk video 1080p. Anda bisa naikkan ke '8M' jika hasilnya masih kurang.
+    const videoBitrate = '5M';
+
+    // 3. Preset Encoding
+    // 'medium' adalah default FFmpeg, keseimbangan baik antara kecepatan dan kualitas.
+    // 'fast' (yang Anda gunakan sebelumnya) lebih cepat tapi kualitas lebih rendah.
+    // 'slow' akan lebih baik lagi kualitasnya tapi prosesnya jauh lebih lama.
+    const encodingPreset = 'veryslow'; // medium
+
+    console.log('Starting HD upscaling with high quality settings...');
+
+    ffmpeg(inputUrl)
+      .videoFilters(resolutionFilter) // Terapkan filter resolusi 1080p
+      .outputOptions([
+        '-preset', encodingPreset, // Gunakan preset kualitas medium
+        '-b:v', videoBitrate,     // Set video bitrate ke 5M
+        '-maxrate', '5M',         // Batas atas bitrate
+        '-bufsize', '10M'         // Ukuran buffer untuk bitrate
+      ])
+      .on('end', () => {
+        console.log('High-quality video upscaling finished successfully.');
+        resolve();
+      })
+      .on('error', err => {
+        console.error('Error during high-quality video upscaling:', err);
+        reject(err);
+      })
+      .save(outputPath);
+  });
+}
+
 let handler = async (m, { args, conn }) => {
   const url = args[0];
+  const sender = m.sender.split(`@`)[0];
 
   if (!url) {
-    return conn.reply(m.chat, '⚠️ Kamu belum memasukkan URL. Contoh: *.ig https://www.instagram.com/p/DJ_zzh_SQM-/', m);
+    return conn.reply(m.chat, '⚠️ Kamu belum memasukkan URL. Contoh: *.ig https://www.instagram.com/p/DJ_zzh_SQM-/ ' + `@${sender}`, m);
   }
 
   if (!/^https?:\/\/(www\.)?instagram\.com/.test(url)) {
-    return conn.reply(m.chat, '❌ URL tidak valid. Harap masukkan URL dari *Instagram* saja.', m);
+    return conn.reply(m.chat, '❌ URL tidak valid. Harap masukkan URL dari *Instagram* saja. ' + `@${sender}`, m);
   }
 
   try {
@@ -122,9 +206,9 @@ let handler = async (m, { args, conn }) => {
       conn.reply(m.chat, '📁 Menggunakan data tersimpan...', m);
     } else {
       data = await fetchInstagramHtml(url);
-      if (!data.length) return conn.reply(m.chat, 'Media tidak ditemukan.', m);
+      if (!data.length) return conn.reply(m.chat, `Media tidak ditemukan kak @${sender}.`, m);
       setCachedData(url, data);
-      conn.reply(m.chat, 'Mengirimkan media Instagram...', m);
+      conn.reply(m.chat, `Mengirimkan media Instagram... kak @${sender}`, m);
     }
 
     for (const [index, item] of data.entries()) {
@@ -134,12 +218,40 @@ let handler = async (m, { args, conn }) => {
         if (!mediaUrl) continue;
         try {
           await conn.sendFile(m.chat, mediaUrl, 'instagram_media', '', m);
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '');
+        const formattedTime = now.toTimeString().slice(0,5).replace(':', '');
+        const dynamicFileName = `instagramDL-Xnuvers007-${formattedDate}${formattedTime}.mp4`;
+
+        await conn.sendMessage(m.chat, {
+          document: { url: mediaUrl },
+          mimetype: "video/mp4",
+          fileName: dynamicFileName,
+          caption: `🎥 Ini videonya kak @${sender}!\n\n📥 Powered by Xnuvers007`,
+          mentions: [m.sender],
+        }, m);
 
           if (item.media_type === 'video') {
             const mp3FileName = path.resolve(`./tmp_audio_${Date.now()}_${index}.mp3`);
             await convertVideoToMp3(mediaUrl, mp3FileName);
+              
+            const hdVideoPath = path.resolve(`./tmp_hd_${Date.now()}_${index}.mp4`);
+            await upscaleVideoToHD(mediaUrl, hdVideoPath);
+              
+            await conn.sendFile(m.chat, hdVideoPath, 'video_hd.mp4', 'Berikut adalah versi HD dari video.', m);
+             
+            await conn.sendMessage(m.chat, {
+          document: { url: hdVideoPath },
+          mimetype: "video/mp4",
+          fileName: `HD_${dynamicFileName}`,
+          caption: `🎥 Ini video HD-nya kak @${sender}!\n\n📥 Powered by Xnuvers007`,
+          mentions: [m.sender],
+        }, m);
+              
             await conn.sendFile(m.chat, mp3FileName, 'audio.mp3', 'Berikut adalah audio dari video.', m);
+              
             await fs.unlink(mp3FileName);
+            await fs.unlink(hdVideoPath);
           }
           
           break;
@@ -153,7 +265,7 @@ let handler = async (m, { args, conn }) => {
     conn.reply(m.chat, 'Terjadi kesalahan saat mengambil data Instagram.', m);
   }
 
-  return m.reply('Selesai!');
+  return m.reply(`Selesai! kak @${sender}`);
 };
 
 handler.help = ['instagram'];
