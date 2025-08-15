@@ -1,64 +1,52 @@
-import sharp from 'sharp';
-import { webp2png } from '../lib/webp2mp4.js';
-import fs from 'fs';
+import fs from 'fs'
+import path from 'path'
+import sharp from 'sharp'
+import baileys from '@adiwajshing/baileys'
+const { downloadMediaMessage, proto } = baileys
 
-const TIMEOUT = 20000; // 20 detik
+const tmpFile = (ext = '.png') => path.join('./tmp/', `${Date.now()}-${Math.random().toString(36).slice(2)}${ext}`)
 
 let handler = async (m, { conn, usedPrefix, command }) => {
-  const notStickerMessage = `Reply sticker dengan command *${usedPrefix + command}*`;
-    
+  const notStickerMessage = `Reply stiker dengan command *${usedPrefix + command}*`;
+  const wait = '⏳ Sedang mengonversi stiker ke gambar...';
+  const name = await conn.getName(m.sender);
+  const acumalaka = m.sender.split(`@`)[0];
+
   if (!m.quoted) throw notStickerMessage;
 
-  const q = m.quoted || m;
+  const q = m.quoted;
   const mime = q.mimetype || '';
 
-  if (!/image\/webp/.test(mime)) {
-    try {
-      const name = await conn.getName(m.sender);
-      const media = await q.download();
-      const out = await webp2png(media).catch(_ => null) || Buffer.alloc(0);
-      await conn.sendFile(m.chat, out, 'out.png', 'Request By ' + name, m);
+  if (!/image\/webp/.test(mime)) throw 'Yang direply bukan stiker!';
 
-      if (fs.existsSync(out || 'out.png' || './tmp/out.png' || `./tmp/${out}`)) {
-        await fs.promises.unlink(out || 'out.png' || './tmp/out.png' || `./tmp/${out}`);
-      }
-    } catch (error) {
-      console.error(error);
-      m.reply(`Terjadi kesalahan: ${notStickerMessage}`);
-    }
-  } else {
-    try {
-      const media = await q.download();
-      m.reply("Gambar telah diunduh dan OTW dijadikan gambar.");
+  try {
+    m.reply(wait);
 
-      const decodedBuffer = await sharp(media).toFormat('png')
-        .resize(4096, 4096)
-        .png({ quality: 100, progressive: true, compressionLevel: 9 })
-        .toBuffer();
+    const vM = q.vM || q.fakeObj;
+//      console.log(JSON.stringify(vM.message, null, 2));
 
-      if (decodedBuffer.length > 0) {
-        await conn.sendFile(m.chat, decodedBuffer, 'out.png', '*DONE (≧ω≦)ゞ*', m);
+    if (!vM) throw 'Pesan tidak lengkap untuk diunduh.';
+//      console.log(JSON.stringify(vM.message, null, 2));
 
-        if (fs.existsSync('out.png' || './tmp/out.png')) {
-          await fs.promises.unlink('out.png' || './tmp/out.png');
-        }
-      } else {
-        throw 'Gagal mengonversi stiker menjadi gambar.';
-      }
-    } catch (error) {
-      console.error(error);
-      if (error.message.includes('Timeout')) {
-        m.reply('Proses konversi terlalu lama. Silakan coba lagi.');
-      } else {
-        m.reply(`Terjadi kesalahan: ${notStickerMessage}`);
-      }
-    }
+    const media = await downloadMediaMessage(vM, 'buffer', {}, { logger: console });
+    if (!media) throw 'Gagal mengunduh media.';
+
+    const outPath = tmpFile('.png');
+    await sharp(media).toFormat('png').toFile(outPath);
+
+    await conn.sendFile(m.chat, outPath, 'out.png', `*Sukses mengonversi stiker ke gambar!*\n\n> Request By @${name}`, m);
+
+    if (fs.existsSync(outPath)) await fs.promises.unlink(outPath);
+  } catch (err) {
+    console.error(err);
+    m.reply('Gagal mengonversi stiker menjadi gambar.');
   }
 };
 
-handler.help = ['toimg (reply)'];
+handler.help = ['toimg'];
 handler.tags = ['sticker'];
-handler.command = ['toimg', 'toimage', 'kegambar', 'toimages', 'keimg', 'keimages', 'togambar'];
-handler.exp = 1500;
+handler.command = ['toimg'];
+handler.register = true;
+handler.limit = true;
 
 export default handler;
