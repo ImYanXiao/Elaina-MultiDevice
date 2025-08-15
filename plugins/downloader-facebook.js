@@ -5,117 +5,48 @@
  */
 
 import fetch from 'node-fetch';
-import cheerio from 'cheerio-without-node-native';
-import {
-    toPTT
-} from '../lib/converter.js';
 
-const handler = async (m, {
-    conn,
-    args,
-    usedPrefix,
-    command
-}) => {
-
-    const sender = m.sender.split(`@`)[0];
-
+let handler = async (m, { conn, args, usedPrefix, command }) => {
     try {
-        if (!args[0] || !/^https?:\/\//i.test(args[0])) {
-            return conn.reply(m.chat, `URL tidak valid. Harap berikan URL Facebook Watch yang valid.\nContoh: ${usedPrefix + command} https://www.facebook.com/share/r/tcbnAb4uEft3kjMJ/?mibextid=D5vuiz`, m);
+        const url = args[0];
+        if (!url) {
+            return conn.reply(m.chat, `Please provide a valid Facebook video URL.\nUsage: ${usedPrefix + command} <URL>`, m);
         }
+        const ServerURL = `https://tooly.chative.io/facebook/video`
+        const HEADERS = {
+            accept: 'application/json, text/plain, */*',
+            origin: 'https://chative.io',
+            referer: 'https://chative.io/',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+        };
 
-        const response = await fetch('https://fdown.net/download.php', {
-            method: 'POST',
-            body: new URLSearchParams({
-                'URLz': args[0]
-            }),
+        const response = await fetch(`${ServerURL}?url=${encodeURIComponent(url)}`, {
+            method: 'GET',
+            headers: HEADERS,
         });
-
-        m.reply('Mohon tunggu...'+wait);
-
-        const html = await response.text();
-        const $ = cheerio.load(html);
-
-        const title = $('.lib-row.lib-header').text().trim();
-        const description = $('.lib-row.lib-desc').text().trim();
-
-        const mp4Links = $('a[href*=".mp4"]').map((i, el) => $(el).attr('href')).get();
-
-        if (mp4Links.length === 0) {
-            return conn.reply(m.chat, 'Tidak ditemukan video MP4 dalam URL yang diberikan.', m);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-
-        let sdLink = mp4Links[0];
-        let hdLink = mp4Links.length > 1 ? mp4Links[1] : mp4Links[0];
-
-        const sizeSD = (await fetch(sdLink).then(res => res.buffer())).length;
-        const sizeHD = (await fetch(hdLink).then(res => res.buffer())).length;
-
-        let sdWarning = '';
-        let hdWarning = '';
-
-        if (sizeSD < sizeHD) {
-            sdWarning = 'File SD akan diunduh dan dikirimkan karena lebih kecil dari HD';
-            conn.reply(m.chat, sdWarning, m);
-        } else {
-            hdWarning = 'File HD akan diunduh dan dikirimkan karena lebih kecil dari SD';
-            conn.reply(m.chat, hdWarning, m);
+        const data = await response.json();
+        if (!data || !data.success || !data.title || !data.videos) {
+            throw new Error('No video found or invalid URL provided.');
         }
-
-        for (let index = 0; index < mp4Links.length; index++) {
-            const link = mp4Links[index];
-            const buffer = await fetch(link).then(res => res.buffer());
-            const resolution = index === 0 ? 'SD' : 'HD';
-            const caption = `Resolusi: (${resolution})\n${title}\n\n${description}\nURL dari pengguna: ${args[0]}`;
-            await conn.sendMessage(
-                m.chat, {
-                    video: buffer,
-                    mimetype: "video/mp4",
-                    fileName: `video_${index + 1}.mp4`,
-                    caption: `Ini video Anda @${sender} \n${caption}`,
-                    mentions: [m.sender],
-                }, {
-                    quoted: m
-                },
-            );
-            await conn.sendMessage(
-                m.chat, {
-                    document: buffer,
-                    mimetype: "video/mp4",
-                    fileName: `video_${index + 1}.mp4`,
-                    caption: `Ini video Anda @${sender} *VERSI DOKUMEN* \n${caption}`,
-                    mentions: [m.sender],
-                }, {
-                    quoted: m
-                },
-            );
+        const caption = `*Title:* ${data.title}'}`;
+        for (const [resolusi, detail] of  Object.entries(data.videos)) {
+            const videoUrl = detail.url || null;
+            const videoSize = detail.size || 'Unknown size';
+            caption += `\n*Resolution:* ${resolusi.toUpperCase()}\n*Size:* ${videoSize}\n*Quality:* ${videoQuality}`;
+            if (videoUrl) {
+                await conn.sendFile(m.chat, videoUrl, `${data.title}.mp4`, caption, m);
+            } else {
+                conn.reply(m.chat, `No video found for resolution: ${resolusi}`, m);
+            }
         }
-
-        const audioBuffer = await fetch(sdLink).then(res => res.buffer());
-
-        let audio = await toPTT(audioBuffer, 'mp4');
-        if (!audio.data) throw 'Tidak dapat mengonversi media ke audio';
-        conn.sendFile(m.chat, audio.data, 'audio.mp3', '', m, true, {
-            mimetype: 'audio/mp3'
-        });
-        await conn.sendMessage(
-            m.chat, {
-                audio: audioBuffer,
-                mimetype: "mpeg/mp3",
-                fileName: `audio.mp3`,
-                caption: ``,
-                mentions: [m.sender],
-            }, {
-                quoted: m
-            },
-        );
 
     } catch (error) {
-        console.error('Kesalahan Fetch:', error);
-        conn.reply(m.chat, 'Terjadi kesalahan saat memproses permintaan Anda.' + error, m);
+        conn.reply(m.chat, `Error: ${error}`, m);
     }
-};
-
+}
 handler.help = ['fbdownload <url>'];
 handler.tags = ['downloader'];
 handler.command = /^(fbdownload|fb(dl)?)$/i;
