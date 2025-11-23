@@ -124,25 +124,77 @@ Open the package.json file and fill in your mongodb url in the `mongodb: --db mo
 ## ```How To Customise Message Display```
 ```js
 // Syntax
-conn.sendButton(
-      jid, // jid of the user to send the message to
-      text, // text to send
-      foooter, // footer to send
-      buffer, // buffer to send (optional), if you want to send button image, location, etc
-      buttons, // buttons to send, example [['text1', 'id1'], ['text2', 'id2']]
-      quoted, // quoted message to send (optional)
-      options // options to send, example { asLocation: true }
-)
+Gunakan import generateWAMessageFromContent / proto
 
-// example 
-conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', null, [
-      ['Hello', 'hello'], ['Bye', 'bye']
-])
-// example button location
-conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', 'https://github.com/BochilGaming', 
-      [['Hello', 'hello'], ['Bye', 'bye']], 
-      null, { asLocation: true }
-)
+> let { proto, generateWAMessageFromContent } = require('@adiwajshing/baileys')
+
+let msg = generateWAMessageFromContent(m.chat, {
+  viewOnceMessage: {
+    message: {
+        "messageContextInfo": {
+          "deviceListMetadata": {},
+          "deviceListMetadataVersion": 2
+        },
+        interactiveMessage: proto.Message.InteractiveMessage.create({
+          body: proto.Message.InteractiveMessage.Body.create({
+            text: "test"
+          }),
+          footer: proto.Message.InteractiveMessage.Footer.create({
+            text: "test"
+          }),
+          header: proto.Message.InteractiveMessage.Header.create({
+            title: "test",
+            subtitle: "test",
+            hasMediaAttachment: false
+          }),
+          nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+            buttons: [
+              {
+                "name": "single_select",
+                "buttonParamsJson": "{\"title\":\"title\",\"sections\":[{\"title\":\"title\",\"highlight_label\":\"label\",\"rows\":[{\"header\":\"header\",\"title\":\"title\",\"description\":\"description\",\"id\":\".play\"},{\"header\":\"header\",\"title\":\"title\",\"description\":\"description\",\"id\":\".play\"}]}]}"
+              },
+              {
+                "name": "quick_reply",
+                "buttonParamsJson": "{\"display_text\":\"quick_reply\",\"id\":\".play dj tor monitor ketua\"}"
+              },
+              {
+                 "name": "cta_url",
+                 "buttonParamsJson": "{\"display_text\":\"url\",\"url\":\"https://majotabi.jp\",\"merchant_url\":\"https://www.google.com\"}"
+              },
+              {
+                 "name": "cta_call",
+                 "buttonParamsJson": "{\"display_text\":\"call\",\"id\":\"085921655444\"}"
+              },
+              {
+                 "name": "cta_copy",
+                 "buttonParamsJson": "{\"display_text\":\"copy\",\"id\":\"123456789\",\"copy_code\":\"message\"}"
+              },
+              {
+                 "name": "cta_reminder",
+                 "buttonParamsJson": "{\"display_text\":\"cta_reminder\",\"id\":\"message\"}"
+              },
+              {
+                 "name": "cta_cancel_reminder",
+                 "buttonParamsJson": "{\"display_text\":\"cta_cancel_reminder\",\"id\":\"message\"}"
+              },
+              {
+                 "name": "address_message",
+                 "buttonParamsJson": "{\"display_text\":\"address_message\",\"id\":\"indonesia\"}"
+              },
+              {
+                 "name": "send_location",
+                 "buttonParamsJson": ""
+              }
+           ],
+          })
+        })
+    }
+  }
+}, {})
+
+await conn.relayMessage(msg.key.remoteJid, msg.message, {
+  messageId: msg.key.id
+})
 ```
 ---------
 
@@ -170,7 +222,7 @@ conn.sendButton(m.chat, 'Hello world!', '@BochilGaming', 'https://github.com/Boc
 * [`All Friends`]
 * [`All Contributors`]
 * [`All Creator Bot`]
-* [`Whiskeysockets/Baileys`](https://github.com/WhiskeySockets/Baileys)
+* [`@rexxhayanasi/elaina-baileys`](https://npmjs.com/package/@rexxhayanasi/elaina-baileys)
 * [`Nurutomo`](https://github.com/Nurutomo)
 * [`BochilGaming`](https://github.com/bochilgaming)
 * [`Fokus ID`](https://github.com/Fokusdotid) 
