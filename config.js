@@ -2,7 +2,7 @@
 
 /* =============== Thanks to ===========*/
 /*
-+ Xnevereus07
++ Xnuvers007
 + ImYanXiao
 + RexxHayanasi
 + Api Developer 
