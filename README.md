@@ -27,7 +27,7 @@
 
 ---
 
-## ✨ Tentang ElainaBOT
+## ✨ Tentang Elaina - MultiDevice
 
 Elaina MultiDevice adalah WhatsApp Bot Multi Device berbasis **Baileys** dengan tampilan modern, stabil, dan modular. Cocok untuk personal maupun komunitas.
 
