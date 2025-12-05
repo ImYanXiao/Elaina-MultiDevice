@@ -1,3 +1,0 @@
-hidden = [".config", "package-lock.json","sessions","database.json","/tmp/","tmp"]
-language = "nix"
-run = "node ."
