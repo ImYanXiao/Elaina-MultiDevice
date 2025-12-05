@@ -78,7 +78,7 @@ node -v
 Jika NodeJS di bawah v17:
 
 ```bash
-curl -s https://deb.nodesource.com/setup_19.x | sudo bash
+curl -s https://deb.nodesource.com/setup_21.x | sudo bash
 apt install -y nodejs
 ```
 
