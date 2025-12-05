@@ -44,9 +44,9 @@ ElainaBOT adalah WhatsApp Bot Multi Device berbasis **Baileys** dengan tampilan 
 
 ---
 
-## 🧠 Tech Stack
+## 🧠 Information Script
 
-- NodeJS v18+
+- NodeJS v20+
 - Baileys MD
 - FFmpeg
 - ImageMagick
