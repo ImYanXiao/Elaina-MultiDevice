@@ -2,7 +2,7 @@
 
 <img src="https://telegra.ph/file/37df69a78afb6e010282d.jpg" width="100%"/>
 
-<h1>ElainaBOT - Multi Device</h1>
+<h1>Elaina - Multi Device</h1>
 <p>Elegant • Powerful • Stable WhatsApp Bot</p>
 
 ![Stars](https://img.shields.io/github/stars/ImYanXiao/Elaina-MultiDevice?style=flat-square)
@@ -29,7 +29,7 @@
 
 ## ✨ Tentang ElainaBOT
 
-ElainaBOT adalah WhatsApp Bot Multi Device berbasis **Baileys** dengan tampilan modern, stabil, dan modular. Cocok untuk personal maupun komunitas.
+Elaina MultiDevice adalah WhatsApp Bot Multi Device berbasis **Baileys** dengan tampilan modern, stabil, dan modular. Cocok untuk personal maupun komunitas.
 
 ---
 
