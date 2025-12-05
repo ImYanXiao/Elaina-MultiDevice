@@ -182,5 +182,5 @@ Terima kasih kepada semua pihak yang telah berkontribusi dan mendukung pengemban
 ---
 
 ### ✨ ElainaBOT — Modern WhatsApp Automation  
-**Made with ❤️ using Baileys Multi Device**
+**Made with ❤️ by contributors and developers**
 </div>
