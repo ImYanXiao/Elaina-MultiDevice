@@ -28,7 +28,7 @@ async function runUpdater() {
     }
 
     try {
-        const updaterPath = new URL('./lib/checkupdate.js', import.meta.url)
+        const updaterPath = new URL('./lib/system.js', import.meta.url)
         const { default: checkUpdate } = await import(updaterPath)
         await checkUpdate()
     } catch (e) {
