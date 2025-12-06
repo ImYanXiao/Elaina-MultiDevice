@@ -26,18 +26,18 @@ jobs:
       - name: 🔍 Instal npm-check-updates
         run: npm install -g npm-check-updates
 
-      - name: 🔄 Cek & update @adiwajshing/baileys (jika tersedia)
+      - name: 🔄 Cek & update @rexxhayanasi/elaina-baileys (jika tersedia)
         id: ncu
         run: |
           echo "Menjalankan npm-check-updates..."
-          ncu '/@adiwajshing\/baileys/' -u > result.txt
+          ncu '/@rexxhayanasi\/elaina-baileys/' -u > result.txt
           cat result.txt
           
-          if grep -q '@adiwajshing/baileys' result.txt; then
+          if grep -q '@rexxhayanasi/elaina-baileys' result.txt; then
             echo "UPDATE_FOUND=true" >> "$GITHUB_OUTPUT"
             npm install
           else
-            echo "✅ Tidak ada pembaruan tersedia untuk @adiwajshing/baileys."
+            echo "✅ Tidak ada pembaruan tersedia untuk @rexxhayanasi/elaina-baileys."
             echo "UPDATE_FOUND=false" >> "$GITHUB_OUTPUT"
           fi
 
@@ -50,10 +50,10 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore(deps): update @adiwajshing/baileys ke versi terbaru"
-          title: "chore(deps): 🔄 update @adiwajshing/baileys"
+          commit-message: "chore(deps): update @rexxhayanasi/elaina-baileys ke versi terbaru"
+          title: "chore(deps): 🔄 update @rexxhayanasi/elaina-baileys"
           body: |
-            🤖 Pull request ini dibuat secara otomatis untuk memperbarui dependency **@adiwajshing/baileys** ke versi terbaru dari NPM.
+            🤖 Pull request ini dibuat secara otomatis untuk memperbarui dependency **@rexxhayanasi/elaina-baileys** ke versi terbaru dari NPM.
 
             📦 Diperbarui menggunakan [npm-check-updates](https://github.com/raineorshine/npm-check-updates)
 
@@ -61,8 +61,6 @@ jobs:
 
             ✍️ Dibuat & dikelola oleh: **Xnuvers007**
 
-            Jika semuanya terlihat baik, silakan **merge** pull request ini untuk menjaga bot tetap up-to-date.
-
-          branch: auto/update-baileys
+          branch: auto/update-elaina-baileys
           base: master
           delete-branch: true
