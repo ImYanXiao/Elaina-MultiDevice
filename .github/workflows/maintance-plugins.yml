@@ -1,7 +1,9 @@
 name: Backup & Clear Plugins Folder
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - master  # <-- ganti dengan branch target kamu
 
 jobs:
   backup-and-clear:
@@ -11,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          ref: master  
+          ref: master  # <-- pastikan sama dengan branch target
 
       - name: Backup plugins folder
         run: |
@@ -40,4 +42,4 @@ jobs:
           git add plugins
           git add BP-Plugins-* || echo "No backup folder to add"
           git commit -m "Backup plugins and clear plugins folder" || echo "No changes to commit"
-          git push origin main  # <-- push ke branch yang sama
+          git push origin main
