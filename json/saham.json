@@ -1,0 +1,71 @@
+{
+    "cooldown": 0,
+    "item": {
+        "AMMN": {
+            "name": "AMMN",
+            "hargaBefore": 116250,
+            "harga": 116250,
+            "stock": 100000000,
+            "rise": ["naik", "stay", "stay", "stay", "stay", "turun"],
+            "volumeBuy": 0,
+            "volumeSell": 0,
+            "trade": [],
+            "marketcap": 0
+        },
+        "BBCA": {
+            "name": "BBCA",
+            "hargaBefore": 93250,
+            "harga": 93250,
+            "stock": 150000000,
+            "rise": ["naik", "stay", "stay", "stay", "stay", "stay", "turun"],
+            "volumeBuy": 0,
+            "volumeSell": 0,
+            "trade": [],
+            "marketcap": 0
+        },
+        "BBNI": {
+            "name": "BBNI",
+            "hargaBefore": 47000,
+            "harga": 47000,
+            "stock": 200000000,
+            "rise": ["naik", "stay", "stay", "stay", "stay", "turun"],
+            "volumeBuy": 0,
+            "volumeSell": 0,
+            "trade": [],
+            "marketcap": 0
+        },
+        "CUAN": {
+            "name": "CUAN",
+            "hargaBefore": 78000,
+            "harga": 78000,
+            "stock": 150000000,
+            "rise": ["naik", "stay", "stay", "stay", "stay", "stay", "turun"],
+            "volumeBuy": 0,
+            "volumeSell": 0,
+            "trade": [],
+            "marketcap": 0
+        },
+        "BBRI": {
+            "name": "BBRI",
+            "hargaBefore": 45610,
+            "harga": 45610,
+            "stock": 200000000,
+            "rise": ["naik", "stay", "stay", "stay", "turun"],
+            "volumeBuy": 0,
+            "volumeSell": 0,
+            "trade": [],
+            "marketcap": 0
+        },
+        "MSTI": {
+            "name": "MSTI",
+            "hargaBefore": 15000,
+            "harga": 15000,
+            "stock": 300000000,
+            "rise": ["naik", "stay", "stay", "turun"],
+            "volumeBuy": 0,
+            "volumeSell": 0,
+            "trade": [],
+            "marketcap": 0
+        }
+    }
+}

@@ -1,0 +1,60 @@
+{
+    "cooldown": 0,
+    "item": {
+        "bitcoin": {
+            "name": "Bitcoin",
+            "hargaBefore": 5666,
+            "harga": 5666,
+            "stock": 10000,
+            "rise": ["naik", "stay", "stay", "stay", "stay", "turun"],
+            "volumeBuy": 0,
+            "volumeSell": 0,
+            "trade": [],
+            "marketcap": 0
+        },
+        "polygon": {
+            "name": "Polygon",
+            "hargaBefore": 1222,
+            "harga": 1222,
+            "stock": 10000,
+            "rise": ["naik", "stay", "stay", "stay", "stay", "turun"],
+            "volumeBuy": 0,
+            "volumeSell": 0,
+            "trade": [],
+            "marketcap": 0
+        },
+        "dogecoin": {
+            "name": "Dogecoin",
+            "hargaBefore": 122,
+            "harga": 122,
+            "stock": 10000,
+            "rise": ["naik", "stay", "stay", "stay", "stay", "turun"],
+            "volumeBuy": 0,
+            "volumeSell": 0,
+            "trade": [],
+            "marketcap": 0
+        },
+        "etherium": {
+            "name": "Etherium",
+            "hargaBefore": 4561,
+            "harga": 4561,
+            "stock": 10000,
+            "rise": ["naik", "stay", "stay", "stay", "stay", "turun"],
+            "volumeBuy": 0,
+            "volumeSell": 0,
+            "trade": [],
+            "marketcap": 0
+        },
+        "solana": {
+            "name": "Solana",
+            "hargaBefore": 4561,
+            "harga": 4561,
+            "stock": 10000,
+            "rise": ["naik", "stay", "stay", "stay", "stay", "turun"],
+            "volumeBuy": 0,
+            "volumeSell": 0,
+            "trade": [],
+            "marketcap": 0
+        }
+    }
+}
