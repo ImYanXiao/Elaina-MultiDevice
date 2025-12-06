@@ -1,7 +1,7 @@
 console.log('🕖 Starting...')
 
 import { join, dirname } from 'path'
-import { createRequire } from "module"
+import { createRequire } from 'module'
 import { fileURLToPath } from 'url'
 import { setupMaster, fork } from 'cluster'
 import { watchFile, unwatchFile } from 'fs'
@@ -14,6 +14,13 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const require = createRequire(__dirname)
 const { say } = cfonts
 const rl = createInterface(process.stdin, process.stdout)
+
+function isWIBMidnight() {
+    const now = new Date()
+    const utc = now.getTime() + now.getTimezoneOffset() * 60000
+    const wib = new Date(utc + 7 * 3600000)
+    return wib.getHours() === 0
+}
 
 async function runUpdater() {
     const originalLog = console.log
@@ -30,8 +37,17 @@ async function runUpdater() {
     try {
         const updaterPath = new URL('./lib/system.js', import.meta.url)
         const { default: checkUpdate } = await import(updaterPath)
-        await checkUpdate()
+
+        if (global.config.cekupdate && isWIBMidnight()) {
+            await checkUpdate()
+        } else {
+            await checkUpdate()
+        }
     } catch (e) {
+        logs.push({
+            waktu: new Date().toLocaleTimeString(),
+            pesan: 'NODE CHECK FAILED ' + e.message
+        })
         originalLog('[SYSTEM] Gagal menjalankan updater:', e.message)
     }
 
@@ -41,8 +57,6 @@ async function runUpdater() {
         originalLog('\n=== UPDATE LOG TABLE ===')
         console.table(logs)
         originalLog('=== END UPDATE LOG ===\n')
-    } else {
-        originalLog('\n=== TIDAK ADA UPDATE ===\n')
     }
 }
 
@@ -130,6 +144,14 @@ function start(file) {
     }
 }
 
+async function countdown(sec) {
+    for (let i = sec; i >= 1; i--) {
+        process.stdout.write(`\r⏳ Starting in ${i}...   `)
+        await new Promise(r => setTimeout(r, 1000))
+    }
+    console.log('\n')
+}
+
 await runUpdater()
-await new Promise(resolve => setTimeout(resolve, 5000))
+await countdown(7)
 start('main.js')
