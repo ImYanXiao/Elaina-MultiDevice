@@ -15,11 +15,14 @@ const require = createRequire(__dirname)
 const { say } = cfonts
 const rl = createInterface(process.stdin, process.stdout)
 
-function isWIBMidnight() {
+function getWIBTime() {
     const now = new Date()
     const utc = now.getTime() + now.getTimezoneOffset() * 60000
-    const wib = new Date(utc + 7 * 3600000)
-    return wib.getHours() === 0
+    return new Date(utc + 7 * 3600000)
+}
+
+function isWIBMidnight() {
+    return getWIBTime().getHours() === 0
 }
 
 async function runUpdater() {
@@ -38,11 +41,22 @@ async function runUpdater() {
         const updaterPath = new URL('./lib/system.js', import.meta.url)
         const { default: checkUpdate } = await import(updaterPath)
 
-        if (global.config.cekupdate && isWIBMidnight()) {
-            await checkUpdate()
-        } else {
+        logs.push({
+            waktu: new Date().toLocaleTimeString(),
+            pesan: 'NODE CHECK START'
+        })
+
+        await checkUpdate()
+
+        logs.push({
+            waktu: new Date().toLocaleTimeString(),
+            pesan: 'NODE CHECK OK'
+        })
+
+        if (global.config.cekupdate === true && isWIBMidnight()) {
             await checkUpdate()
         }
+
     } catch (e) {
         logs.push({
             waktu: new Date().toLocaleTimeString(),
@@ -53,11 +67,9 @@ async function runUpdater() {
 
     console.log = originalLog
 
-    if (logs.length) {
-        originalLog('\n=== UPDATE LOG TABLE ===')
-        console.table(logs)
-        originalLog('=== END UPDATE LOG ===\n')
-    }
+    originalLog('\n=== UPDATE LOG TABLE ===')
+    console.table(logs)
+    originalLog('=== END UPDATE LOG ===\n')
 }
 
 say(global.config.namebot, {
@@ -146,10 +158,10 @@ function start(file) {
 
 async function countdown(sec) {
     for (let i = sec; i >= 1; i--) {
-        process.stdout.write(`\r⏳ Starting in ${i}...   `)
+        console.log(`⏳ Starting in ${i}...`)
         await new Promise(r => setTimeout(r, 1000))
     }
-    console.log('\n')
+    console.log('')
 }
 
 await runUpdater()
