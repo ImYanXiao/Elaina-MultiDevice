@@ -131,5 +131,5 @@ function start(file) {
 }
 
 await runUpdater()
-await new Promise(resolve => setTimeout(resolve, 7000))
+await new Promise(resolve => setTimeout(resolve, 5000))
 start('main.js')
