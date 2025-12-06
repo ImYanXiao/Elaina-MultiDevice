@@ -25,36 +25,14 @@ import { format } from 'util';
 import { makeWASocket, protoType, serialize } from './lib/simple.js';
 import { Low, JSONFile } from 'lowdb'
 import pino from 'pino';
-const { useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, makeCacheableSignalKeyStore } = await import('@rexxhayanasi/elaina-baileys');
-const PHONENUMBER_MCC = {
-    "62": "Indonesia",
-    "1": "USA",
-    "91": "India",
-    "44": "United Kingdom",
-    "81": "Japan",
-    "49": "Germany",
-    "33": "France",
-    "55": "Brazil",
-    "86": "China",
-    "7": "Russia",
-    "82": "South Korea",
-    "39": "Italy",
-    "34": "Spain",
-    "90": "Turkey",
-    "61": "Australia",
-    "27": "South Africa",
-    "234": "Nigeria",
-    "353": "Ireland",
-    "48": "Poland"
-};
+const { useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, makeCacheableSignalKeyStore, PHONENUMBER_MCC } = await import('@rexxhayanasi/elaina-baileys');
+
 const { CONNECTING } = ws;
 const { chain } = lodash;
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000;
 
 protoType();
 serialize();
-
-// Helpers aman
 
 global.decodeSender = (m, conn) => {
   try { return (conn?.decodeJid ? conn.decodeJid(m.sender) : m.sender) } catch { return m.sender }
