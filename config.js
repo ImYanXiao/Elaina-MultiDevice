@@ -66,7 +66,7 @@ global.config = {
     namebot: "Elaina - MultiDevice",
     
     /*============== PAIRING ==============*/
-    pairingNumber: "6287853413319", // Nomor Bot yang mau di pairing
+    pairingNumber: "-", // Nomor Bot yang mau di pairing
     pairingAuth: true, // False kalau mau via QR Code [ Ga disaranin Jadiin False ]
 
     /*============== API ==============*/
@@ -84,7 +84,7 @@ global.config = {
 
     /*============== TEXT ==============*/
     watermark: 'Elaina - MultiDevice',
-    author: 'Sans Mahiru',
+    author: 'ImYanXiao',
     loading: 'Silahkan ditunggu...',
     errorMsg: 'Error :)',
 
