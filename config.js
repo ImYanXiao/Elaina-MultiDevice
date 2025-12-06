@@ -44,6 +44,8 @@ global.ucapan = function() {
 }
 
 global.config = {
+  /*============== INFO AUTO UPDATE GITHUB ==============*/
+    cekupdate: false,
     /*============== INFO LINK ==============*/
     instagram: 'https://instagram.com/',
     github: 'https://github.com/',
