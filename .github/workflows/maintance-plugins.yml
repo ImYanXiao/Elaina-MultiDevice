@@ -1,0 +1,43 @@
+name: Backup & Clear Plugins Folder
+
+on:
+  workflow_dispatch:
+
+jobs:
+  backup-and-clear:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: master  
+
+      - name: Backup plugins folder
+        run: |
+          if [ -d "./plugins" ]; then
+            TIMESTAMP=$(date +'%Y%m%d_%H%M%S')
+            BACKUP_FOLDER="BP-Plugins-$TIMESTAMP"
+            cp -r ./plugins "./$BACKUP_FOLDER"
+            echo "✅ Backup plugins folder to $BACKUP_FOLDER"
+          else
+            echo "⚠️ Folder plugins not found. Skipping backup."
+          fi
+
+      - name: Clear plugins folder
+        run: |
+          if [ -d "./plugins" ]; then
+            rm -rf ./plugins/*
+            echo "✅ Cleared all files in plugins folder"
+          else
+            echo "⚠️ Folder plugins not found. Nothing to clear."
+          fi
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add plugins
+          git add BP-Plugins-* || echo "No backup folder to add"
+          git commit -m "Backup plugins and clear plugins folder" || echo "No changes to commit"
+          git push origin main  # <-- push ke branch yang sama
