@@ -28,7 +28,8 @@ async function runUpdater() {
     }
 
     try {
-        const checkUpdate = require('./lib/checkupdate')
+        const updaterPath = new URL('./lib/checkupdate.js', import.meta.url)
+        const { default: checkUpdate } = await import(updaterPath)
         await checkUpdate()
     } catch (e) {
         originalLog('[SYSTEM] Gagal menjalankan updater:', e.message)
@@ -130,4 +131,5 @@ function start(file) {
 }
 
 await runUpdater()
+await new Promise(resolve => setTimeout(resolve, 7000))
 start('main.js')
