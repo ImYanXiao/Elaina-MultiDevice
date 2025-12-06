@@ -135,7 +135,7 @@ if (global.config.pairingAuth && !conn.authState.creds.registered) {
         phoneNumber = global.config.pairingNumber.replace(/[^0-9]/g, '')
 
         if (!Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v))) {
-            console.log(chalk.bgBlack(chalk.redBright("Start with your country's WhatsApp code, Example : 62xxx")))
+            console.log(chalk.bgBlack(chalk.redBright("Start with your country's WhatsApp code in config.js")))
             process.exit(0)
         }
     } else {
@@ -143,9 +143,9 @@ if (global.config.pairingAuth && !conn.authState.creds.registered) {
         phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
 
         if (!Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v))) {
-            console.log(chalk.bgBlack(chalk.redBright("Start with your country's WhatsApp code, Example : 62xxx")))
+            console.log(chalk.bgBlack(chalk.redBright("Masukan Nomer pairing mu di config.js")))
 
-            phoneNumber = await question(chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number : `)))
+            phoneNumber = await question(chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number in config.js : `)))
             phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
             rl.close()
         }
