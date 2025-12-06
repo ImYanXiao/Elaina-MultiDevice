@@ -42,4 +42,4 @@ jobs:
           git add plugins
           git add BP-Plugins-* || echo "No backup folder to add"
           git commit -m "Backup plugins and clear plugins folder" || echo "No changes to commit"
-          git push origin main
+          git push origin master
