@@ -174,8 +174,7 @@ Terima kasih kepada semua pihak yang telah berkontribusi dan mendukung pengemban
 - Allah SWT  
 - Orang Tua  
 - All Contributors  
-- Nurutomo  
-- BochilGaming  
+- Nurutomo 
 - Fokus ID  
 - @rexxhayanasi/elaina-baileys  
 
