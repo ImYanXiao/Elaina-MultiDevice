@@ -1,5 +1,3 @@
-console.log('🕖 Starting...')
-
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { setupMaster, fork } from 'cluster'
@@ -15,7 +13,7 @@ const { say } = cfonts
 const rl = createInterface(process.stdin, process.stdout)
 
 async function runUpdaterByConfig() {
-  if (global.config.cekupdate !== true) return
+  if (!global.config.cekupdate) return
   const logs = []
   const originalLog = console.log
   console.log = (...args) => {
@@ -45,28 +43,29 @@ function delayWithCountdown(seconds) {
   return new Promise(resolve => {
     let s = seconds
     const timer = setInterval(() => {
-      process.stdout.write(`\r⏳ Starting in ${s} seconds... `)
+      process.stdout.write(`\r⏳ Starting in ${s} second${s !== 1 ? 's' : ' '}...   `)
       s--
       if (s < 0) {
         clearInterval(timer)
-        console.log('\n')
+        process.stdout.write('\n')
         resolve()
       }
     }, 1000)
   })
 }
 
-say(global.config.namebot, {
-  font: 'pallet',
-  align: 'center',
-  colors: ['white']
-})
-
-say(`⧻ ${global.config.namebot} by ${global.config.author}`, { 
-  font: 'console',
-  align: 'center',
-  colors: ['white']
-})
+function displayBotName() {
+  say(global.config.namebot, {
+    font: 'pallet',
+    align: 'center',
+    colors: ['white']
+  })
+  say(`⧻ ${global.config.namebot} by ${global.config.author}`, {
+    font: 'console',
+    align: 'center',
+    colors: ['white']
+  })
+}
 
 let isRunning = false
 
@@ -74,33 +73,12 @@ function start(file) {
   if (isRunning) return
   isRunning = true
   const args = [join(__dirname, file), ...process.argv.slice(2)]
-  say([process.argv[0], ...args].join(' '), {
-    font: 'console',
-    align: 'center',
-    colors: ['magenta']
-  })
-  say('⸙ MEMUAT SOURCE...', {
-    font: 'console',
-    align: 'center',
-    colors: ['blue']
-  })
-  say('⸙ MEMUAT PLUGINS...', {
-    font: 'console',
-    align: 'center',
-    colors: ['blue']
-  })
-  say('✅ DONE !', {
-    font: 'console',
-    align: 'center',
-    colors: ['green']
-  })
   setupMaster({
     exec: args[0],
     args: args.slice(1),
   })
   const p = fork()
   p.on('message', data => {
-    console.log('[RECEIVED]', data)
     switch (data) {
       case 'reset':
         p.process.kill()
@@ -115,8 +93,7 @@ function start(file) {
   p.on('exit', (_, code) => {
     isRunning = false
     if (code == 'SIGKILL' || code == 'SIGABRT') return start(file)
-    console.error('[❗] Exited with code:', code)
-    if (code === 0) return
+    if (code !== 0) console.error('[❗] Exited with code:', code)
     watchFile(args[0], () => {
       unwatchFile(args[0])
       start(file)
@@ -131,5 +108,6 @@ function start(file) {
 }
 
 await runUpdaterByConfig()
+displayBotName()
 await delayWithCountdown(7)
 start('main.js')
