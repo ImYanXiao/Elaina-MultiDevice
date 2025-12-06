@@ -8,7 +8,7 @@ import cfonts from 'cfonts'
 import { createInterface } from 'readline'
 import yargs from 'yargs'
 import './config.js'
-import checkUpdate from './system.js'
+import checkUpdate from '.lib/system.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const { say } = cfonts
