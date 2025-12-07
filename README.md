@@ -12,9 +12,6 @@
 ![Node](https://img.shields.io/badge/NodeJS-v18+-brightgreen?style=flat-square)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-blue?style=flat-square)
 
-<a href="https://github.com/ImYanXiao">
-  <img src="https://img.shields.io/badge/Creator-ImYanXiao-black?style=for-the-badge&logo=github">
-</a>
 
 </div>
 
