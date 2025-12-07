@@ -1,4 +1,4 @@
-const { proto, generateWAMessage, areJidsSameUser } = (await import('@rexxhayanasi/elaina-bail')).default
+const { proto, generateWAMessage, areJidsSameUser } = (await import('@rexxhayanasi/elaina-baileys')).default
 
 export async function before(m, chatUpdate) {
     if (m.isBaileys || m.fromMe) return
