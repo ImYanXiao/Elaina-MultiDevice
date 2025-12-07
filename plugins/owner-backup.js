@@ -4,7 +4,7 @@ import archiver from 'archiver'
 let handler = async (m, { conn }) => {
     m.reply('Tunggu sebentar, sedang menyiapkan backup...')
 
-    const zipPath = './Elaina - AI Backup.zip'
+    const zipPath = './Elaina - MultiDevice Backup.zip'
     const output = fs.createWriteStream(zipPath)
     const archive = archiver('zip', { zlib: { level: 9 } })
 
@@ -14,10 +14,10 @@ let handler = async (m, { conn }) => {
             await conn.sendMessage(chatId, {
                 document: zipFile,
                 mimetype: 'application/zip',
-                fileName: 'Elaina - AI Backup.zip'
+                fileName: 'Elaina - MultiDevice Backup.zip'
             }, { quoted: m })
 
-            fs.unlinkSync(zipPath) // hapus zip setelah dikirim
+            fs.unlinkSync(zipPath) 
         } catch (err) {
             console.error(err)
             m.reply('❌ Gagal mengirim file ZIP.')
@@ -39,6 +39,6 @@ let handler = async (m, { conn }) => {
 
 handler.help = ['getbp']
 handler.tags = ['owner']
-handler.command = /^(getbp)$/i
+handler.command = /^(getbp|getbackup)$/i
 handler.mods = true
 export default handler
