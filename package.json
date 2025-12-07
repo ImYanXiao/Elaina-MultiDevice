@@ -39,7 +39,7 @@
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
-        "@rexxhayanasi/elaina-baileys": "^1.0.8", 
+        "@rexxhayanasi/elaina-baileys": "^1.0.9", 
         "@bochilteam/scraper": "^5.0.1",
         "@distube/ytdl-core": "*",
         "@google/genai": "^0.13.0",
