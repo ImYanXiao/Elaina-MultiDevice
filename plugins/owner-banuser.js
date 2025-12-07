@@ -1,8 +1,7 @@
-import { areJidsSameUser } from '@rexxhayanasi/elaina-bail'
+import { areJidsSameUser } from '@rexxhayanasi/elaina-baileys'
 
 let handler = async (m, { conn, isOwner, isAdmin, args }) => {
-  // Hanya Owner (lebih aman). Ubah ke (isOwner || isAdmin) jika mau admin juga.
-  if (!isOwner) return m.reply('Command ini hanya dapat digunakan oleh *Owner* !!')
+ if (!isOwner) return m.reply('Command ini hanya dapat digunakan oleh *Owner* !!')
 
   if (!args.length && !m.mentionedJid && !m.quoted)
     return m.reply('Tolong sebutkan user/nomor yang ingin dibanned.\nContoh: #ban 62812xxxxx 3')
@@ -16,8 +15,6 @@ let handler = async (m, { conn, isOwner, isAdmin, args }) => {
       args.pop()
     }
   }
-
-  // Helper normalisasi JID (mengikuti handler.js)
   const nz = global.normalizeJid
     ? (v) => global.normalizeJid(v)
     : (v) => {
@@ -31,16 +28,14 @@ let handler = async (m, { conn, isOwner, isAdmin, args }) => {
   const groupMetadata = m.isGroup ? (conn.chats[m.chat]?.metadata || await conn.groupMetadata(m.chat).catch(() => null)) : null
   const resolveFromParticipants = (key) => {
     if (!groupMetadata) return key
-    // Cari peserta berdasarkan id/lid/jid lalu pakai .jid yang “real”
     const p = groupMetadata.participants?.find(
-      x => x.id === key || x.lid === key || x.jid === key
+      x => x.jid === key || x.lid === key || x.iid === key
     )
     return p?.jid || key
   }
 
   let targets = []
 
-  // Dari tag
   if (m.mentionedJid?.length) targets.push(...m.mentionedJid)
 
   // Dari quoted
@@ -59,8 +54,6 @@ let handler = async (m, { conn, isOwner, isAdmin, args }) => {
     const j = nz(a)
     if (j) targets.push(j)
   }
-
-  // Bersihkan & hindari memban bot sendiri
   targets = [...new Set(targets)]
     .map(j => resolveFromParticipants(j))
     .filter(j => j && !areJidsSameUser(j, conn.user?.jid || conn.user?.id))
