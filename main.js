@@ -14,7 +14,21 @@ global.__filename = function filename(pathURL = import.meta.url, rmPrefix = plat
     return createRequire(dir)
 }
 import * as ws from 'ws';
-import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch } from 'fs';
+import { 
+    readdirSync,
+    statSync,
+    unlinkSync,
+    existsSync, 
+    readFileSync,
+    watch
+} from 'fs';
+import { 
+    useMultiFileAuthState,
+    DisconnectReason, 
+    fetchLatestBaileysVersion,
+    makeCacheableSignalKeyStore,
+    PHONENUMBER_MCC
+} from '@rexxhayanasi/elaina-baileys';
 import yargs from 'yargs';
 import { spawn } from 'child_process';
 import lodash from 'lodash';
@@ -25,7 +39,6 @@ import { format } from 'util';
 import { makeWASocket, protoType, serialize } from './lib/simple.js';
 import { Low, JSONFile } from 'lowdb'
 import pino from 'pino';
-const { useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, makeCacheableSignalKeyStore, PHONENUMBER_MCC } = await import('@rexxhayanasi/elaina-baileys');
 
 const { CONNECTING } = ws;
 const { chain } = lodash;
