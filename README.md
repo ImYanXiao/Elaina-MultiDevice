@@ -141,8 +141,10 @@ await conn.relayMessage(msg.key.remoteJid, msg.message, {
 ---
 > ⚠️ Perhatikan Hal penting berikut
 
->Setelah sukses pairing code usahakan restart Server Pterodatyl mubatau VPS/RDP Mu karena pesan tidak akan terbaca ketika baru pairing, ini pure bug dari Baileys
-> Pastikan jumlah **Perangkat Tertaut tidak melebihi batas maksimal** agar proses sinkronisasi berjalan dengan normal.
+>Setelah sukses pairing code usahakan restart Server Pterodatyl mu
+>atau VPS/RDP Mu karena pesan tidak akan terbaca ketika baru 
+>pairing, ini pure bug dari Baileys,
+>Pastikan jumlah **Perangkat Tertaut tidak melebihi batas maksimal** agar proses sinkronisasi berjalan dengan normal.
 
 ---
 
