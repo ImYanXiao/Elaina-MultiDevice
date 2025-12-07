@@ -139,18 +139,9 @@ await conn.relayMessage(msg.key.remoteJid, msg.message, {
 ```
 
 ---
-## ❌ Bot Tidak Bisa Konek?
+> ⚠️ Perhatikan Hal penting berikut
 
-Ikuti langkah berikut secara berurutan:
-
-1. Rename folder `plugins` menjadi `pluginslama`
-2. Buat folder baru bernama `plugins` (dalam keadaan kosong)
-3. Restart server / VPS / cPanel
-4. Login ulang bot seperti biasa
-5. Setelah bot berhasil tersambung:
-   - Hapus folder `plugins`
-   - Rename kembali `pluginslama` menjadi `plugins`
-
+>Setelah sukses pairing code usahakan restart Server Pterodatyl mubatau VPS/RDP Mu karena pesan tidak akan terbaca ketika baru pairing, ini pure bug dari Baileys
 > Pastikan jumlah **Perangkat Tertaut tidak melebihi batas maksimal** agar proses sinkronisasi berjalan dengan normal.
 
 ---
