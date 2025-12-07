@@ -2,12 +2,6 @@ import fs from 'fs'
 import archiver from 'archiver'
 
 let handler = async (m, { conn }) => {
-  // LID helpers usage
-  const sender = (global.decodeSender ? global.decodeSender(m, conn) : (conn?.decodeJid ? conn.decodeJid(m.sender) : m.sender));
-  const chatId = (global.decodeChat ? global.decodeChat(m, conn) : (conn?.decodeJid ? conn.decodeJid(m.chat) : m.chat));
-
-  // LID injection removed (now using global helpers)
-
     m.reply('Tunggu sebentar, sedang menyiapkan backup...')
 
     const zipPath = './Elaina - AI Backup.zip'
@@ -36,8 +30,6 @@ let handler = async (m, { conn }) => {
     })
 
     archive.pipe(output)
-
-    // Tambahkan semua file & folder kecuali node_modules dan sessions
     archive.glob('**/*', {
         ignore: ['node_modules/**', 'sessions/**', 'Elaina - AI Backup.zip']
     })
