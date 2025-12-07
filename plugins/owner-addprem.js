@@ -1,11 +1,6 @@
-import { jidNormalizedUser } from '@rexxhayanasi/elaina-bail'
+import { jidNormalizedUser } from '@rexxhayanasi/elaina-baileys'
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-  // LID helpers usage
-  const sender = (global.decodeSender ? global.decodeSender(m, conn) : (conn?.decodeJid ? conn.decodeJid(m.sender) : m.sender));
-  const chatId = (global.decodeChat ? global.decodeChat(m, conn) : (conn?.decodeJid ? conn.decodeJid(m.chat) : m.chat));
-
-  // LID injection removed (now using global helpers)
 
     let rawWho = m.mentionedJid && m.mentionedJid[0]
         ? m.mentionedJid[0]
@@ -29,13 +24,11 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
     let user = global.db.data.users[who]
 
-    // Ambil nama kontak dari conn.store.contacts kalau ada
     let contact = conn.store?.contacts?.[who]
     if (contact) {
-        // Utamakan properti nama yang ada, fallback ke jid username
         user.name = contact.notify || contact.name || contact.vname || who.split('@')[0]
     } else {
-        user.name = user.name || who.split('@')[0] // pastikan ada nama walau kontak gak ada
+        user.name = user.name || who.split('@')[0]
     }
 
     let txt = args[1]
