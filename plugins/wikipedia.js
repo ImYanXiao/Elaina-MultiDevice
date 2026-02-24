@@ -1,0 +1,15 @@
+let handler = async (m, { text, usedPrefix, command }) => {
+  if (!text) throw `Contoh penggunaan ${usedPrefix}${command} Minecraft`
+  let json = await bochil.wikipedia(text)
+  return await m.reply(`
+*${json.title}*
+${json.img}
+
+${json.articles}
+`.trim())
+}
+handler.help = ['wikipedia'].map(v => v + ' <apa>')
+handler.tags = ['internet']
+handler.command = /^(wiki|wikipedia)$/i
+
+export default handler
