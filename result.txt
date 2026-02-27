@@ -1,5 +1,5 @@
 Upgrading /home/runner/work/Elaina-MultiDevice/Elaina-MultiDevice/package.json
 
- @rexxhayanasi/elaina-baileys  ^1.0.8  →  ^1.0.9
+ @rexxhayanasi/elaina-baileys  ^1.1.0-DEV.2  →  ^1.2.9
 
 Run npm install to install new versions.
