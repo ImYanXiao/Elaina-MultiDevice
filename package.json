@@ -39,7 +39,7 @@
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
-        "@rexxhayanasi/elaina-baileys": "^1.1.0-DEV.2", 
+        "@rexxhayanasi/elaina-baileys": "^1.2.9", 
         "@bochilteam/scraper": "^5.0.1",
         "acrcloud": "^1.4.0",
         "archiver": "^7.0.1",
