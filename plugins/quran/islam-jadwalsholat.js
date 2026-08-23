@@ -1,0 +1,336 @@
+import { jadwalsholat } from '@bochilteam/scraper'
+let handler = async (m, { text, usedPrefix, command }) => {
+    if (!text) return m.reply(`Masukan nama wilayah!
+
+List wilayah: 
+- ambarawa
+- ambon
+- amlapura
+- amuntai
+- argamakmur
+- atambua
+- babo
+- bagan siapiapi
+- bahaur, kalteng
+- bajawa
+- balige
+- balikpapan
+- banda aceh
+- bandarlampung
+- bandung
+- bangkalan
+- bangkinang
+- bangko
+- bangli
+- banjar
+- banjar baru
+- banjarmasin
+- banjarnegara
+- bantaeng
+- banten
+- bantul
+- banyuwangi
+- barabai
+- barito
+- barru
+- batam
+- batang
+- batu
+- baturaja
+- batusangkar
+- baubau
+- bekasi
+- bengkalis
+- bengkulu
+- benteng
+- biak
+- bima
+- binjai
+- bireuen
+- bitung
+- blitar
+- blora
+- bogor
+- bojonegoro
+- bondowoso
+- bontang
+- boyolali
+- brebes
+- bukit tinggi
+- bula sbt, maluku
+- bulukumba
+- buntok
+- cepu
+- ciamis
+- cianjur
+- cibinong
+- cilacap
+- cilegon
+- cimahi
+- cirebon
+- curup
+- demak
+- denpasar
+- depok
+- dili
+- dompu
+- donggala
+- dumai
+- ende
+- enggano
+- enrekang
+- fakfak
+- garut
+- gianyar
+- gombong
+- gorontalo
+- gresik
+- gunung sitoli
+- indramayu
+- jakarta barat
+- jakarta pusat
+- jakarta selatan
+- jakarta timur
+- jakarta utara
+- jambi
+- jayapura
+- jember
+- jeneponto
+- jepara
+- jombang
+- kabanjahe
+- kalabahi
+- kalianda
+- kandangan
+- karanganyar
+- karawang
+- kasungan
+- kayuagung
+- kebumen
+- kediri
+- kefamenanu
+- kendal
+- kendari
+- kertosono
+- ketapang
+- kisaran
+- klaten
+- kolaka
+- kota baru pulau laut
+- kota bumi
+- kota jantho
+- kotamobagu
+- kuala kapuas
+- kuala kurun
+- kuala pembuang
+- kuala tungkal
+- kudus
+- kuningan
+- kupang
+- kutacane
+- kutoarjo
+- labuhan
+- lahat
+- lamongan
+- langsa
+- larantuka
+- lawang
+- lhoseumawe
+- limboto
+- lubuk basung
+- lubuk linggau
+- lubuk pakam
+- lubuk sikaping
+- lumajang
+- luwuk
+- madiun
+- magelang
+- magetan
+- majalengka
+- majene
+- makale
+- makassar
+- malang
+- mamuju
+- manna
+- manokwari
+- marabahan
+- maros
+- martapura kalsel
+- masamba, sulsel
+- masohi
+- mataram
+- maumere
+- medan
+- mempawah
+- menado
+- mentok
+- merauke
+- metro
+- meulaboh
+- mojokerto
+- muara bulian
+- muara bungo
+- muara enim
+- muara teweh
+- muaro sijunjung
+- muntilan
+- nabire
+- negara
+- nganjuk
+- ngawi
+- nunukan
+- pacitan
+- padang
+- padang panjang
+- padang sidempuan
+- pagaralam
+- painan
+- palangkaraya
+- palembang
+- palopo
+- palu
+- pamekasan
+- pandeglang
+- pangka_
+- pangkajene sidenreng
+- pangkalan bun
+- pangkalpinang
+- panyabungan
+- par_
+- parepare
+- pariaman
+- pasuruan
+- pati
+- payakumbuh
+- pekalongan
+- pekan baru
+- pemalang
+- pematangsiantar
+- pendopo
+- pinrang
+- pleihari
+- polewali
+- pondok gede
+- ponorogo
+- pontianak
+- poso
+- prabumulih
+- praya
+- probolinggo
+- purbalingga
+- purukcahu
+- purwakarta
+- purwodadigrobogan
+- purwokerto
+- purworejo
+- putussibau
+- raha
+- rangkasbitung
+- rantau
+- rantauprapat
+- rantepao
+- rembang
+- rengat
+- ruteng
+- sabang
+- salatiga
+- samarinda
+- sambas, kalbar
+- sampang
+- sampit
+- sanggau
+- sawahlunto
+- sekayu
+- selong
+- semarang
+- sengkang
+- serang
+- serui
+- sibolga
+- sidikalang
+- sidoarjo
+- sigli
+- singaparna
+- singaraja
+- singkawang
+- sinjai
+- sintang
+- situbondo
+- slawi
+- sleman
+- soasiu
+- soe
+- solo
+- solok
+- soreang
+- sorong
+- sragen
+- stabat
+- subang
+- sukabumi
+- sukoharjo
+- sumbawa besar
+- sumedang
+- sumenep
+- sungai liat
+- sungai penuh
+- sungguminasa
+- surabaya
+- surakarta
+- tabanan
+- tahuna
+- takalar
+- takengon
+- tamiang layang
+- tanah grogot
+- tangerang
+- tanjung balai
+- tanjung enim
+- tanjung pandan
+- tanjung pinang
+- tanjung redep
+- tanjung selor
+- tapak tuan
+- tarakan
+- tarutung
+- tasikmalaya
+- tebing tinggi
+- tegal
+- temanggung
+- tembilahan
+- tenggarong
+- ternate
+- tolitoli
+- tondano
+- trenggalek
+- tual
+- tuban
+- tulung agung
+- ujung berung
+- ungaran
+- waikabubak
+- waingapu
+- wamena
+- watampone
+- watansoppeng
+- wates
+- wonogiri
+- wonosari
+- wonosobo
+- yogyakarta
+
+Contoh Penggunaan: 
+${usedPrefix}${command} semarang`)
+    const res = await jadwalsholat(text)
+    m.reply(`
+Jadwal Sholat *${text}*
+
+${Object.entries(res.today).map(([name, data]) => `*Sholat ${name}:* ${data}`).join('\n').trim()}
+`.trim())
+}
+handler.help = ['jadwalsholat']
+handler.tags = ['quran']
+handler.command = /^(jadwal)?s(a|o|ha|ho)lat$/i
+
+export default handler
